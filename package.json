@@ -1,0 +1,51 @@
+{
+  "name": "calendar",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.2.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.2.7",
+    "@storybook/addon-links": "^5.2.7",
+    "@storybook/addons": "^5.2.7",
+    "@storybook/react": "^5.2.7",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
+    "jest": "^24.9.0"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./__tests__/setup/setupEnzyme.js",
+    "testPathIgnorePatterns": [
+      "./__tests__/setup/"
+    ]
+  }
+}
