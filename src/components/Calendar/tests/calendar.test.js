@@ -35,7 +35,7 @@ describe("Calendar structure", () => {
   it("displays the days", () => {
     wrapper = setup();
     const calendarComponent = wrapper.find("[data-test='calendar-days']");
-    expect(calendarComponent.length).toBe(1);
+    expect(calendarComponent.length).toBe(7);
   });
   it("displays the cells", () => {
     wrapper = setup();
