@@ -18,6 +18,17 @@ const styling = {
     alignItems: "center",
     color: "#f9f9f9",
     fontSize: 30
+  },
+  daysHeader: {
+    display: "flex",
+    justifyContent: "space-around",
+    border: "1px solid red",
+    height: "35px",
+    alignItems: "center"
+  },
+  dayHeaderCell: {
+    border: "1px solid red",
+    padding: 8
   }
 };
 
@@ -32,7 +43,29 @@ const Calendar = () => {
         >
           {getMonthYearString(new Date())}
         </div>
-        <div data-test="calendar-days">Days</div>
+        <div style={styling.daysHeader} data-test="calendar-days-header">
+          <div style={styling.dayHeaderCell} data-test="calendar-days">
+            Days
+          </div>
+          <div style={styling.dayHeaderCell} data-test="calendar-days">
+            Days
+          </div>
+          <div style={styling.dayHeaderCell} data-test="calendar-days">
+            Days
+          </div>
+          <div style={styling.dayHeaderCell} data-test="calendar-days">
+            Days
+          </div>
+          <div style={styling.dayHeaderCell} data-test="calendar-days">
+            Days
+          </div>
+          <div style={styling.dayHeaderCell} data-test="calendar-days">
+            Days
+          </div>
+          <div style={styling.dayHeaderCell} data-test="calendar-days">
+            Days
+          </div>
+        </div>
         <div data-test="calendar-cells">Cells</div>
       </div>
     </div>
