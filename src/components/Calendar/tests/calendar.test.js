@@ -2,6 +2,8 @@ import React from "react";
 import Enzyme, { shallow, mount } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 
+import getMonthYearString from "../utils";
+
 import Calendar from "../Calendar";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
@@ -30,11 +32,6 @@ describe("Calendar structure", () => {
     const calendarComponent = wrapper.find("[data-test='calendar-component']");
     expect(calendarComponent.length).toBe(1);
   });
-  it("displays the header", () => {
-    wrapper = setup();
-    const calendarComponent = wrapper.find("[data-test='calendar-header']");
-    expect(calendarComponent.length).toBe(1);
-  });
   it("displays the days", () => {
     wrapper = setup();
     const calendarComponent = wrapper.find("[data-test='calendar-days']");
@@ -47,9 +44,8 @@ describe("Calendar structure", () => {
   });
   it("displays current date date", () => {
     wrapper = setup();
-    const calendarComponent = wrapper.find(
-      "[data-test='calendar-current-date']"
-    );
-    expect(calendarComponent.length).toBe(1);
+    const calendarComponent = wrapper.find("[data-test='calendar-header']");
+    console.log(calendarComponent.text());
+    expect(calendarComponent.text()).toEqual(getMonthYearString(new Date()));
   });
 });
