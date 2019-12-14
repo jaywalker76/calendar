@@ -1,5 +1,6 @@
 import React from "react";
 import injectSheet from "react-jss";
+import getMonthYearString from "./utils";
 
 const styling = {
   outerWrapper: {
@@ -29,7 +30,7 @@ const Calendar = () => {
           id="header"
           data-test="calendar-header"
         >
-          Header
+          {getMonthYearString(new Date())}
         </div>
         <div data-test="calendar-days">Days</div>
         <div data-test="calendar-cells">Cells</div>
