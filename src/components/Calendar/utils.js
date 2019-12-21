@@ -11,9 +11,11 @@ const getMonthYearString = date => {
   return getMonthString(dateValue) + " " + getYear(dateValue);
 };
 
-function getDayName(dateStr, locale) {
+function getDayName(dateStr, dayDescriptorType, locale) {
+  const dayDescType =
+    dayDescriptorType !== undefined ? dayDescriptorType : "long";
   const date = new Date(dateStr);
-  return date.toLocaleDateString(locale, { weekday: "long" });
+  return date.toLocaleDateString(locale, { weekday: dayDescType });
 }
 
-export { getMonthYearString };
+export { getMonthYearString, getDayName };

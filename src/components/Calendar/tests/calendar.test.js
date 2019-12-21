@@ -45,7 +45,13 @@ describe("Calendar structure", () => {
   it("displays current date", () => {
     wrapper = setup();
     const calendarComponent = wrapper.find("[data-test='calendar-header']");
-    console.log(calendarComponent.text());
     expect(calendarComponent.text()).toEqual(getMonthYearString(new Date()));
+  });
+  it("correctly displays specified date", () => {
+    let startDate = "2011/11/01";
+    wrapper = setup((startDate = { startDate }));
+    const calendarComponent = wrapper.find("[data-test='calendar-header']");
+    console.log(calendarComponent.text());
+    expect(calendarComponent.text()).toEqual("November 2011");
   });
 });
