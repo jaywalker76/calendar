@@ -1,5 +1,5 @@
 import React from "react";
-import injectSheet from "react-jss";
+// import injectSheet from "react-jss";
 import { getMonthYearString } from "./utils";
 
 const styling = {
