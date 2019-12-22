@@ -1,6 +1,6 @@
 import React from "react";
 // import injectSheet from "react-jss";
-import { getMonthYearString, getDayName } from "./utils";
+import { getMonthYearString, getDayName, getNumberOfDaysInMonth } from "./utils";
 
 const styling = {
   outerWrapper: {
@@ -36,8 +36,49 @@ const styling = {
     flexGrow: 1,
     flexBasis: 0,
     maxWidth: "100%"
+  },
+  row:{
+    margin:0,
+    padding:0,
+    display:"flex",
+    flexDirection:"row",
+    flexWrap:"wrap",
+    width:"100%"
+  },
+  cell:{
+    maxWidth:"100%",
+    flexGrow:0,
+    flexBasis:"calc(100% / 7)",
+    width:"calc(100% / 7)",
+    position:"relative",
+    height:"5em",
   }
 };
+
+const cellGenerator = (startDate) => {
+  // get number of days for month
+  // determine starting day of month
+  //
+  const numberOfDays = getNumberOfDaysInMonth(startDate)
+  const weeksToRender = Math.ceil(numberOfDays/7);
+
+  const stuff = [];
+
+  const days = [];
+  for(let i=0; i < 7; i++){
+    days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
+  }
+
+  for(let i=0; i < weeksToRender; i++){
+    stuff.push(
+      <div class="row" style={styling.row} data-test='calendar-week-row'>
+        {days}
+      </div>
+    )
+  }
+
+  return stuff
+}
 
 const generateCalHeader = (dayDescriptorType, startOfWeek) => {
   let curr = new Date(); // get current date
@@ -78,7 +119,7 @@ const Calendar = props => {
         <div style={styling.daysHeader} data-test="calendar-days-header">
           {generateCalHeader(dayDescriptorType, startOfWeek)}
         </div>
-        <div data-test="calendar-cells">Cells</div>
+        <div>{cellGenerator(startDate)}</div>
       </div>
     </div>
   );

@@ -51,7 +51,14 @@ describe("Calendar structure", () => {
     let startDate = "2011/11/01";
     wrapper = setup((startDate = { startDate }));
     const calendarComponent = wrapper.find("[data-test='calendar-header']");
-    console.log(calendarComponent.text());
     expect(calendarComponent.text()).toEqual("November 2011");
   });
+
+  it("correctly displays the number of weeks in a month", () => {
+    let startDate = "2011/11/01";
+    wrapper = setup((startDate = { startDate }));
+    const calendarComponent = wrapper.find("[data-test='calendar-week-row']");
+    expect(calendarComponent.length).toEqual(5);
+  });
+
 });
