@@ -55,6 +55,35 @@ const styling = {
   }
 };
 
+const daysGenerator = (weekNumber, startingMonthDay) => {
+  const days = [];
+
+  for(let j=0; j < 7; j++){
+    if(weekNumber===0){
+      if(j >= startingMonthDay){
+        days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
+    } else {
+      days.push(<div style={styling.cell} data-test="calendar-cells">Buffer</div>)
+    }
+    } else {
+    days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
+    }
+  }
+
+  /*
+
+  for(let j=0; j < 7; j++){
+    if(weekNumber===0){
+      if(j >= startingMonthDay){
+        days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
+    } else {} else {
+
+      days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
+    }
+*/
+    return days;
+}
+
 const cellGenerator = (startDate) => {
   // get number of days for month
   // determine starting day of month
@@ -62,22 +91,40 @@ const cellGenerator = (startDate) => {
   const numberOfDays = getNumberOfDaysInMonth(startDate)
   const weeksToRender = Math.ceil(numberOfDays/7);
 
-  const stuff = [];
+  // get first day of month
+  // getDay -> 0 for when day is sunday
 
-  const days = [];
-  for(let i=0; i < 7; i++){
-    days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
+  // if startDate is undefined -> set curr date
+  // need ways to check that passed in date is valid
+  if(startDate === undefined){
+    let currDate = new Date();
+    let year = currDate.getFullYear();
+    let month = currDate.getMonth();
+
+    startDate = new Date(year, month, 1);
+
+  } else {
+    startDate = new Date(startDate);
   }
 
+  let startingDayOfMonth = startDate.getDay();
+
+
+
+  const calendarWeeks = [];
+
+
+
+
   for(let i=0; i < weeksToRender; i++){
-    stuff.push(
+    calendarWeeks.push(
       <div class="row" style={styling.row} data-test='calendar-week-row'>
-        {days}
+        {daysGenerator(i, startingDayOfMonth)}
       </div>
     )
   }
 
-  return stuff
+  return calendarWeeks
 }
 
 const generateCalHeader = (dayDescriptorType, startOfWeek) => {
