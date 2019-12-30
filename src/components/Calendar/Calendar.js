@@ -121,7 +121,7 @@ const daysGenerator = (weekNumber, dateParam) => {
   return days;
 };
 
-const cellGenerator = dateParam => {
+const cellGeneratorOld = dateParam => {
   let currDate;
   if (dateParam === undefined) {
     currDate = new Date();
@@ -166,6 +166,69 @@ const generateCalHeader = (dayDescriptorType, startOfWeek) => {
       ))}
     </>
   );
+};
+
+const cellGenerator = dateParam => {
+  let currDate;
+  if (dateParam === undefined) {
+    currDate = new Date();
+  } else {
+    currDate = new Date(dateParam);
+  }
+
+  let year = currDate.getFullYear();
+  let month = currDate.getMonth();
+
+  let startDate = new Date(year, month, 1);
+  let endDate = new Date(year, month + 1, 1);
+
+  let firstDayOfMonth = startDate.getDay();
+  let lastDayOfMonth = endDate.getDay();
+
+  // get number of days for month
+  // determine starting day of month
+  const numberOfDays = getNumberOfDaysInMonth(currDate);
+  const weeksToRender = Math.ceil(numberOfDays / 7);
+
+  let weeks = [];
+  let days = [];
+  let dayCount = 0;
+
+  for (let j = 0; j < weeksToRender; j++) {
+    for (let k = 0; k < 7; k++) {
+      if (j === 0) {
+        if (k >= firstDayOfMonth) {
+          days.push(
+            <div style={styling.cell} data-test="calendar-cells">
+              {addDaysToDate(startDate, dayCount).getDate()}
+            </div>
+          );
+          dayCount++;
+        } else {
+          days.push(
+            <div style={styling.cell} data-test="calendar-cells">
+              Buffer
+            </div>
+          );
+        }
+      } else {
+        days.push(
+          <div style={styling.cell} data-test="calendar-cells">
+            {addDaysToDate(startDate, dayCount).getDate()}
+          </div>
+        );
+        dayCount++;
+      }
+    }
+  }
+
+  weeks.push(
+    <div class="row" style={styling.row} data-test="calendar-week-row">
+      {days}
+    </div>
+  );
+
+  return weeks;
 };
 
 const Calendar = props => {
