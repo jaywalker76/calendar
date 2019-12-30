@@ -1,6 +1,10 @@
 import React from "react";
 // import injectSheet from "react-jss";
-import { getMonthYearString, getDayName, getNumberOfDaysInMonth } from "./utils";
+import {
+  getMonthYearString,
+  getDayName,
+  getNumberOfDaysInMonth
+} from "./utils";
 
 const styling = {
   outerWrapper: {
@@ -37,36 +41,62 @@ const styling = {
     flexBasis: 0,
     maxWidth: "100%"
   },
-  row:{
-    margin:0,
-    padding:0,
-    display:"flex",
-    flexDirection:"row",
-    flexWrap:"wrap",
-    width:"100%"
+  row: {
+    margin: 0,
+    padding: 0,
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: "100%"
   },
-  cell:{
-    maxWidth:"100%",
-    flexGrow:0,
-    flexBasis:"calc(100% / 7)",
-    width:"calc(100% / 7)",
-    position:"relative",
-    height:"5em",
+  cell: {
+    maxWidth: "100%",
+    flexGrow: 0,
+    flexBasis: "calc(100% / 7)",
+    width: "calc(100% / 7)",
+    position: "relative",
+    height: "5em"
   }
 };
 
-const daysGenerator = (weekNumber, startingMonthDay) => {
+const daysGenerator = (weekNumber, startingMonthDay, endingMonthDay) => {
   const days = [];
 
-  for(let j=0; j < 7; j++){
-    if(weekNumber===0){
-      if(j >= startingMonthDay){
-        days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
+  for (let j = 0; j < 7; j++) {
+    if (weekNumber === 0) {
+      if (j >= startingMonthDay) {
+        days.push(
+          <div style={styling.cell} data-test="calendar-cells">
+            Cells
+          </div>
+        );
+      } else {
+        days.push(
+          <div style={styling.cell} data-test="calendar-cells">
+            Buffer
+          </div>
+        );
+      }
+    } else if (weekNumber === 4) {
+      if (j < endingMonthDay) {
+        days.push(
+          <div style={styling.cell} data-test="calendar-cells">
+            Cells
+          </div>
+        );
+      } else {
+        days.push(
+          <div style={styling.cell} data-test="calendar-cells">
+            Buffer
+          </div>
+        );
+      }
     } else {
-      days.push(<div style={styling.cell} data-test="calendar-cells">Buffer</div>)
-    }
-    } else {
-    days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
+      days.push(
+        <div style={styling.cell} data-test="calendar-cells">
+          Cells
+        </div>
+      );
     }
   }
 
@@ -81,62 +111,80 @@ const daysGenerator = (weekNumber, startingMonthDay) => {
       days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
     }
 */
-    return days;
-}
+  return days;
+};
 
-const cellGenerator = (startDate) => {
+const cellGenerator = dateParam => {
   // get number of days for month
   // determine starting day of month
-  //
-  const numberOfDays = getNumberOfDaysInMonth(startDate)
-  const weeksToRender = Math.ceil(numberOfDays/7);
+  const numberOfDays = getNumberOfDaysInMonth(dateParam);
+  const weeksToRender = Math.ceil(numberOfDays / 7);
+  let startDate;
+  let endDate;
+  let currDate;
 
   // get first day of month
   // getDay -> 0 for when day is sunday
 
   // if startDate is undefined -> set curr date
   // need ways to check that passed in date is valid
-  if(startDate === undefined){
-    let currDate = new Date();
-    let year = currDate.getFullYear();
-    let month = currDate.getMonth();
-
-    startDate = new Date(year, month, 1);
-
+  if (dateParam === undefined) {
+    currDate = new Date();
   } else {
-    startDate = new Date(startDate);
+    // need to extract end date from passed in date value
+    currDate = new Date(dateParam);
   }
 
-  let startingDayOfMonth = startDate.getDay();
+  let year = currDate.getFullYear();
+  let month = currDate.getMonth();
 
+  startDate = new Date(year, month, 1);
+  endDate = new Date(year, month + 1, 1);
 
+  /*
+
+  var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
+   */
+
+  let firstDayOfMonth = startDate.getDay();
+  let lastDayOfMonth = endDate.getDay();
 
   const calendarWeeks = [];
 
-
-
-
-  for(let i=0; i < weeksToRender; i++){
+  for (let i = 0; i < weeksToRender; i++) {
     calendarWeeks.push(
-      <div class="row" style={styling.row} data-test='calendar-week-row'>
-        {daysGenerator(i, startingDayOfMonth)}
+      <div class="row" style={styling.row} data-test="calendar-week-row">
+        {daysGenerator(i, firstDayOfMonth, lastDayOfMonth)}
       </div>
-    )
+    );
   }
 
-  return calendarWeeks
+  return calendarWeeks;
+};
+
+const addDaysToDate = (date, daysToAdd) => {
+  let result = new Date(date);
+  result.setDate(result.getDate() + daysToAdd);
+  return result;
+};
+
+/*
+function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
 }
+ */
 
 const generateCalHeader = (dayDescriptorType, startOfWeek) => {
-  let curr = new Date(); // get current date
-  let first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+  let curr = new Date("2019/04/01"); // get current date
   // week starts on sunday adding a digit to first increments the starting day of
   // the week
   let dayNames = [];
 
   for (let i = 0; i < 7; i++) {
     dayNames.push(
-      getDayName(new Date(curr.setDate(first + i)), dayDescriptorType)
+      getDayName(new Date(addDaysToDate(curr, i)), dayDescriptorType)
     );
   }
 
