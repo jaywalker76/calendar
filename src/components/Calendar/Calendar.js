@@ -59,15 +59,33 @@ const styling = {
   }
 };
 
-const daysGenerator = (weekNumber, startingMonthDay, endingMonthDay) => {
+const addDaysToDate = (date, daysToAdd) => {
+  let result = new Date(date);
+  result.setDate(result.getDate() + daysToAdd);
+  return result;
+};
+
+const daysGenerator = (weekNumber, dateParam) => {
   const days = [];
+
+  let startDate;
+  let endDate;
+
+  let year = dateParam.getFullYear();
+  let month = dateParam.getMonth();
+
+  startDate = new Date(year, month, 1);
+  endDate = new Date(year, month + 1, 1);
+
+  let firstDayOfMonth = startDate.getDay();
+  let lastDayOfMonth = endDate.getDay();
 
   for (let j = 0; j < 7; j++) {
     if (weekNumber === 0) {
-      if (j >= startingMonthDay) {
+      if (j >= firstDayOfMonth) {
         days.push(
           <div style={styling.cell} data-test="calendar-cells">
-            Cells
+            {addDaysToDate(startDate, j + 1).getDate()}
           </div>
         );
       } else {
@@ -78,7 +96,7 @@ const daysGenerator = (weekNumber, startingMonthDay, endingMonthDay) => {
         );
       }
     } else if (weekNumber === 4) {
-      if (j < endingMonthDay) {
+      if (j < lastDayOfMonth) {
         days.push(
           <div style={styling.cell} data-test="calendar-cells">
             Cells
@@ -100,61 +118,28 @@ const daysGenerator = (weekNumber, startingMonthDay, endingMonthDay) => {
     }
   }
 
-  /*
-
-  for(let j=0; j < 7; j++){
-    if(weekNumber===0){
-      if(j >= startingMonthDay){
-        days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
-    } else {} else {
-
-      days.push(<div style={styling.cell} data-test="calendar-cells">Cells</div>)
-    }
-*/
   return days;
 };
 
 const cellGenerator = dateParam => {
-  // get number of days for month
-  // determine starting day of month
-  const numberOfDays = getNumberOfDaysInMonth(dateParam);
-  const weeksToRender = Math.ceil(numberOfDays / 7);
-  let startDate;
-  let endDate;
   let currDate;
-
-  // get first day of month
-  // getDay -> 0 for when day is sunday
-
-  // if startDate is undefined -> set curr date
-  // need ways to check that passed in date is valid
   if (dateParam === undefined) {
     currDate = new Date();
   } else {
-    // need to extract end date from passed in date value
     currDate = new Date(dateParam);
   }
 
-  let year = currDate.getFullYear();
-  let month = currDate.getMonth();
-
-  startDate = new Date(year, month, 1);
-  endDate = new Date(year, month + 1, 1);
-
-  /*
-
-  var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0)
-   */
-
-  let firstDayOfMonth = startDate.getDay();
-  let lastDayOfMonth = endDate.getDay();
+  // get number of days for month
+  // determine starting day of month
+  const numberOfDays = getNumberOfDaysInMonth(currDate);
+  const weeksToRender = Math.ceil(numberOfDays / 7);
 
   const calendarWeeks = [];
 
   for (let i = 0; i < weeksToRender; i++) {
     calendarWeeks.push(
       <div class="row" style={styling.row} data-test="calendar-week-row">
-        {daysGenerator(i, firstDayOfMonth, lastDayOfMonth)}
+        {daysGenerator(i, currDate)}
       </div>
     );
   }
@@ -162,24 +147,8 @@ const cellGenerator = dateParam => {
   return calendarWeeks;
 };
 
-const addDaysToDate = (date, daysToAdd) => {
-  let result = new Date(date);
-  result.setDate(result.getDate() + daysToAdd);
-  return result;
-};
-
-/*
-function addDays(date, days) {
-  var result = new Date(date);
-  result.setDate(result.getDate() + days);
-  return result;
-}
- */
-
 const generateCalHeader = (dayDescriptorType, startOfWeek) => {
   let curr = new Date("2019/04/01"); // get current date
-  // week starts on sunday adding a digit to first increments the starting day of
-  // the week
   let dayNames = [];
 
   for (let i = 0; i < 7; i++) {
