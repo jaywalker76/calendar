@@ -121,34 +121,14 @@ const daysGenerator = (weekNumber, dateParam) => {
   return days;
 };
 
-const cellGeneratorOld = dateParam => {
-  let currDate;
-  if (dateParam === undefined) {
-    currDate = new Date();
-  } else {
-    currDate = new Date(dateParam);
-  }
-
-  // get number of days for month
-  // determine starting day of month
-  const numberOfDays = getNumberOfDaysInMonth(currDate);
-  const weeksToRender = Math.ceil(numberOfDays / 7);
-
-  const calendarWeeks = [];
-
-  for (let i = 0; i < weeksToRender; i++) {
-    calendarWeeks.push(
-      <div class="row" style={styling.row} data-test="calendar-week-row">
-        {daysGenerator(i, currDate)}
-      </div>
-    );
-  }
-
-  return calendarWeeks;
-};
-
 const generateCalHeader = (dayDescriptorType, startOfWeek) => {
-  let curr = new Date("2019/04/01"); // get current date
+  let currentDate = new Date();
+  // get first day of current week
+  let day = currentDate.getDay();
+  let diff = currentDate.getDate() - day + (day === 0 ? -6 : 1);
+  // starting date on header as monday
+  let curr = new Date(currentDate.setDate(diff));
+
   let dayNames = [];
 
   for (let i = 0; i < 7; i++) {
@@ -182,13 +162,25 @@ const cellGenerator = dateParam => {
   let startDate = new Date(year, month, 1);
   let endDate = new Date(year, month + 1, 1);
 
-  let firstDayOfMonth = startDate.getDay();
-  let lastDayOfMonth = endDate.getDay();
-
   // get number of days for month
   // determine starting day of month
   const numberOfDays = getNumberOfDaysInMonth(currDate);
-  const weeksToRender = Math.ceil(numberOfDays / 7);
+  let weeksToRender = Math.ceil(numberOfDays / 7);
+
+  let mondayIsFirst = true;
+
+  let firstDayOfMonth = startDate.getDay();
+
+  if (mondayIsFirst) {
+    if (firstDayOfMonth === 0) {
+      firstDayOfMonth = 6;
+    } else {
+      firstDayOfMonth = firstDayOfMonth - 1;
+    }
+    weeksToRender = weeksToRender + 1;
+  }
+
+  let lastDayOfMonth = endDate.getDay();
 
   let weeks = [];
   let days = [];
@@ -197,6 +189,7 @@ const cellGenerator = dateParam => {
   for (let j = 0; j < weeksToRender; j++) {
     for (let k = 0; k < 7; k++) {
       if (j === 0) {
+        // determine what is first day of week and control push
         if (k >= firstDayOfMonth) {
           days.push(
             <div style={styling.cell} data-test="calendar-cells">
