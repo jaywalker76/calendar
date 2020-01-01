@@ -254,12 +254,20 @@ const cellGenerator = dateParam => {
           );
         }
       } else {
-        days.push(
-          <div style={styling.cell} data-test="calendar-cells">
-            {addDaysToDate(startDate, dayCount).getDate()}
-          </div>
-        );
-        dayCount++;
+        if (dayCount < numberOfDays) {
+          days.push(
+            <div style={styling.cell} data-test="calendar-cells">
+              {addDaysToDate(startDate, dayCount).getDate()}
+            </div>
+          );
+          dayCount++;
+        } else {
+          days.push(
+            <div style={styling.cell} data-test="calendar-cells">
+              Buffer
+            </div>
+          );
+        }
       }
     }
   }
