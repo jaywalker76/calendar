@@ -11,14 +11,22 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 #### Next Features
 
-- Implement
+### Implementation Plan
 
-  - [ ] day cell displays
+- ToDo:
+
   - [ ] specification of starting day of week
   - [ ] previous/next month navigation
   - [ ] reorganize storybook structure
   - [ ] set front/backwards date navigation limits
   - [ ] configure react-jss
+  - [ ] configure react-props
+  - [ ] add fonts and icons
+  - [ ] specify display of buffer cells
+
+- Done
+
+  - [x] day cell displays
 
   Requirements
 

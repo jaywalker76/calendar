@@ -185,17 +185,20 @@ const cellGenerator = dateParam => {
 };
 
 const Calendar = props => {
-  const { startDate, dayDescriptorType, startOfWeek } = props;
+  const { startDate, dayDescriptorType, startOfWeek, includeHeader } = props;
   return (
     <div style={styling.outerWrapper}>
       <div style={styling.calendarWrapper} data-test="calendar-component">
-        <div
-          style={styling.calendarHeader}
-          id="header"
-          data-test="calendar-header"
-        >
-          {getMonthYearString(startDate)}
-        </div>
+        {includeHeader && (
+          <div
+            style={styling.calendarHeader}
+            id="header"
+            data-test="calendar-header"
+          >
+            {getMonthYearString(startDate)}
+          </div>
+        )}
+
         <div style={styling.daysHeader} data-test="calendar-days-header">
           {generateCalHeader(dayDescriptorType, startOfWeek)}
         </div>
