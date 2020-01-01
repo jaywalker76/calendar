@@ -40,7 +40,7 @@ describe("Calendar structure", () => {
   it("displays the cells", () => {
     wrapper = setup();
     const calendarComponent = wrapper.find("[data-test='calendar-cells']");
-    expect(calendarComponent.length).toBe(1);
+    expect(calendarComponent.length).toBe(31);
   });
   it("displays current date", () => {
     wrapper = setup();
@@ -60,5 +60,4 @@ describe("Calendar structure", () => {
     const calendarComponent = wrapper.find("[data-test='calendar-week-row']");
     expect(calendarComponent.length).toEqual(5);
   });
-
 });

@@ -3,7 +3,11 @@ import React from "react";
 import {
   getMonthYearString,
   getDayName,
-  getNumberOfDaysInMonth
+  getNumberOfDaysInMonth,
+  addDaysToDate,
+  getLastDayInMonth,
+  getIsoWeek,
+  getWeekDifferential
 } from "./utils";
 
 const styling = {
@@ -59,107 +63,6 @@ const styling = {
   }
 };
 
-const addDaysToDate = (date, daysToAdd) => {
-  let result = new Date(date);
-  result.setDate(result.getDate() + daysToAdd);
-  return result;
-};
-
-const daysGenerator = (weekNumber, dateParam) => {
-  const days = [];
-
-  let startDate;
-  let endDate;
-
-  let year = dateParam.getFullYear();
-  let month = dateParam.getMonth();
-
-  startDate = new Date(year, month, 1);
-  endDate = new Date(year, month + 1, 1);
-
-  let firstDayOfMonth = startDate.getDay();
-  let lastDayOfMonth = endDate.getDay();
-
-  for (let j = 0; j < 7; j++) {
-    if (weekNumber === 0) {
-      if (j >= firstDayOfMonth) {
-        days.push(
-          <div style={styling.cell} data-test="calendar-cells">
-            {addDaysToDate(startDate, j + 1).getDate()}
-          </div>
-        );
-      } else {
-        days.push(
-          <div style={styling.cell} data-test="calendar-cells">
-            Buffer
-          </div>
-        );
-      }
-    } else if (weekNumber === 4) {
-      if (j < lastDayOfMonth) {
-        days.push(
-          <div style={styling.cell} data-test="calendar-cells">
-            Cells
-          </div>
-        );
-      } else {
-        days.push(
-          <div style={styling.cell} data-test="calendar-cells">
-            Buffer
-          </div>
-        );
-      }
-    } else {
-      days.push(
-        <div style={styling.cell} data-test="calendar-cells">
-          Cells
-        </div>
-      );
-    }
-  }
-
-  return days;
-};
-
-const getLastDayInMonth = dateParam => {
-  let nextMonth = new Date(dateParam.setMonth(dateParam.getMonth() + 1));
-  return new Date(nextMonth.getFullYear(), nextMonth.getMonth() + 1, 0);
-};
-
-const getIsoWeek = dateParam => {
-  let date = new Date(dateParam.getTime());
-  date.setHours(0, 0, 0, 0);
-  date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
-
-  let week1 = new Date(date.getFullYear(), 0, 4);
-
-  let weekNumber =
-    1 +
-    Math.round(
-      ((date.getTime() - week1.getTime()) / 86400000 -
-        3 +
-        ((week1.getDay() + 6) % 7)) /
-        7
-    );
-
-  let weekYear = dateParam.getFullYear();
-
-  return {
-    week: weekNumber,
-    year: weekYear
-  };
-};
-
-const getWeekDifferential = (lastWeek, firstWeek) => {
-  if (lastWeek.year === firstWeek.year) {
-    return lastWeek.week - firstWeek.week + 1;
-  } else if (lastWeek.year > firstWeek.year) {
-    return 52 + lastWeek.week - firstWeek.week + 1;
-  } else {
-    throw Error("Incorrect date params");
-  }
-};
-
 const generateCalHeader = (dayDescriptorType, startOfWeek) => {
   let currentDate = new Date();
   // get first day of current week
@@ -209,14 +112,13 @@ const cellGenerator = dateParam => {
   let firstDayWeekNumber = getIsoWeek(startDate);
   let lastDayWeekNumber = getIsoWeek(endDate);
 
-  // let weeksToRender = Math.ceil(numberOfDays / 7);
-  // check if weeks are in different years
   // if so adjust to reflect this
   let weeksToRender = getWeekDifferential(
     lastDayWeekNumber,
     firstDayWeekNumber
   );
 
+  // set this as a prop
   let mondayIsFirst = true;
 
   let firstDayOfMonth = startDate.getDay();
@@ -232,10 +134,11 @@ const cellGenerator = dateParam => {
   let lastDayOfMonth = endDate.getDay();
 
   let weeks = [];
-  let days = [];
+  let days;
   let dayCount = 0;
 
   for (let j = 0; j < weeksToRender; j++) {
+    days = [];
     for (let k = 0; k < 7; k++) {
       if (j === 0) {
         // determine what is first day of week and control push
@@ -248,7 +151,7 @@ const cellGenerator = dateParam => {
           dayCount++;
         } else {
           days.push(
-            <div style={styling.cell} data-test="calendar-cells">
+            <div style={styling.cell} data-test="calendar-buffer">
               Buffer
             </div>
           );
@@ -263,20 +166,20 @@ const cellGenerator = dateParam => {
           dayCount++;
         } else {
           days.push(
-            <div style={styling.cell} data-test="calendar-cells">
+            <div style={styling.cell} data-test="calendar-buffer">
               Buffer
             </div>
           );
         }
       }
     }
-  }
 
-  weeks.push(
-    <div class="row" style={styling.row} data-test="calendar-week-row">
-      {days}
-    </div>
-  );
+    weeks.push(
+      <div class="row" style={styling.row} data-test="calendar-week-row">
+        {days}
+      </div>
+    );
+  }
 
   return weeks;
 };
