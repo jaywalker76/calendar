@@ -121,6 +121,45 @@ const daysGenerator = (weekNumber, dateParam) => {
   return days;
 };
 
+const getLastDayInMonth = dateParam => {
+  let nextMonth = new Date(dateParam.setMonth(dateParam.getMonth() + 1));
+  return new Date(nextMonth.getFullYear(), nextMonth.getMonth() + 1, 0);
+};
+
+const getIsoWeek = dateParam => {
+  let date = new Date(dateParam.getTime());
+  date.setHours(0, 0, 0, 0);
+  date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
+
+  let week1 = new Date(date.getFullYear(), 0, 4);
+
+  let weekNumber =
+    1 +
+    Math.round(
+      ((date.getTime() - week1.getTime()) / 86400000 -
+        3 +
+        ((week1.getDay() + 6) % 7)) /
+        7
+    );
+
+  let weekYear = dateParam.getFullYear();
+
+  return {
+    week: weekNumber,
+    year: weekYear
+  };
+};
+
+const getWeekDifferential = (lastWeek, firstWeek) => {
+  if (lastWeek.year === firstWeek.year) {
+    return lastWeek.week - firstWeek.week + 1;
+  } else if (lastWeek.year > firstWeek.year) {
+    return 52 + lastWeek.week - firstWeek.week + 1;
+  } else {
+    throw Error("Incorrect date params");
+  }
+};
+
 const generateCalHeader = (dayDescriptorType, startOfWeek) => {
   let currentDate = new Date();
   // get first day of current week
@@ -128,6 +167,7 @@ const generateCalHeader = (dayDescriptorType, startOfWeek) => {
   let diff = currentDate.getDate() - day + (day === 0 ? -6 : 1);
   // starting date on header as monday
   let curr = new Date(currentDate.setDate(diff));
+  // ToDo - Adjust header to adjust to configured week day
 
   let dayNames = [];
 
@@ -165,7 +205,17 @@ const cellGenerator = dateParam => {
   // get number of days for month
   // determine starting day of month
   const numberOfDays = getNumberOfDaysInMonth(currDate);
-  let weeksToRender = Math.ceil(numberOfDays / 7);
+
+  let firstDayWeekNumber = getIsoWeek(startDate);
+  let lastDayWeekNumber = getIsoWeek(endDate);
+
+  // let weeksToRender = Math.ceil(numberOfDays / 7);
+  // check if weeks are in different years
+  // if so adjust to reflect this
+  let weeksToRender = getWeekDifferential(
+    lastDayWeekNumber,
+    firstDayWeekNumber
+  );
 
   let mondayIsFirst = true;
 
@@ -177,7 +227,6 @@ const cellGenerator = dateParam => {
     } else {
       firstDayOfMonth = firstDayOfMonth - 1;
     }
-    weeksToRender = weeksToRender + 1;
   }
 
   let lastDayOfMonth = endDate.getDay();
