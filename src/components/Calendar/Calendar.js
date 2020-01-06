@@ -151,7 +151,7 @@ const cellGenerator = dateParam => {
           dayCount++;
         } else {
           days.push(
-            <div style={styling.cell} data-test="calendar-buffer">
+            <div style={styling.cell} data-test="calendar-cells">
               Buffer
             </div>
           );
@@ -166,7 +166,7 @@ const cellGenerator = dateParam => {
           dayCount++;
         } else {
           days.push(
-            <div style={styling.cell} data-test="calendar-buffer">
+            <div style={styling.cell} data-test="calendar-cells">
               Buffer
             </div>
           );
