@@ -43,8 +43,12 @@ describe("Calendar structure", () => {
     let daysInMonth = calendarComponent
       .map(el => el.text() !== "Buffer")
       .filter(el => el === true);
+
+    //console.log("days in month: " + daysInMonth.debug());
+
     expect(daysInMonth.length).toBe(31);
   });
+
   it("displays current date", () => {
     wrapper = setup({ includeHeader: true });
     const calendarComponent = wrapper.find("[data-test='calendar-header']");
@@ -75,7 +79,10 @@ describe("Calendar buffer days renderization", () => {
     const bufferDayCells = wrapper
       .find("[data-test='calendar-week-row']")
       .at(0)
-      .find("[data-test='calendar-buffer']");
+      .find("[data-test='calendar-cells']")
+      .map(el => el.text() === "Buffer")
+      .filter(el => el === true);
+
     expect(bufferDayCells.length).toEqual(6);
   });
 
@@ -85,21 +92,31 @@ describe("Calendar buffer days renderization", () => {
     const bufferDayCells = wrapper
       .find("[data-test='calendar-week-row']")
       .at(0)
-      .find("[data-test='calendar-buffer']");
+      .find("[data-test='calendar-cells']")
+      .filter(el => el.text() === "Buffer");
+
     expect(bufferDayCells.length).toEqual(0);
   });
 
   it("correctly renders a 28 day february", () => {
     let startDate = "2019/02/01";
     wrapper = setup((startDate = { startDate }));
-    const calendarComponent = wrapper.find("[data-test='calendar-cells']");
+    const calendarComponent = wrapper
+      .find("[data-test='calendar-cells']")
+      .map(el => el.text() !== "Buffer")
+      .filter(el => el === true);
+
     expect(calendarComponent.length).toEqual(28);
   });
 
   it("correctly renders a 29 day february", () => {
     let startDate = "2020/02/01";
     wrapper = setup((startDate = { startDate }));
-    const calendarComponent = wrapper.find("[data-test='calendar-cells']");
+    const calendarComponent = wrapper
+      .find("[data-test='calendar-cells']")
+      .map(el => el.text() !== "Buffer")
+      .filter(el => el === true);
+
     expect(calendarComponent.length).toEqual(29);
   });
 
@@ -117,11 +134,8 @@ describe("Calendar buffer days renderization", () => {
     const daysInFirstWeek = weeksInFebruary
       .at(0)
       .find("[data-test='calendar-cells']");
-    console.log(daysInFirstWeek.debug());
 
     let daysInWeek = daysInFirstWeek.map(el => el.text());
-
-    //console.log("days in week: " + daysInWeek);
 
     expect(weeksInFebruary.length).toEqual(5);
   });
