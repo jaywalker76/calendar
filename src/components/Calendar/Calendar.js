@@ -190,13 +190,17 @@ const Calendar = props => {
     <div style={styling.outerWrapper}>
       <div style={styling.calendarWrapper} data-test="calendar-component">
         {includeHeader && (
-          <div
-            style={styling.calendarHeader}
-            id="header"
-            data-test="calendar-header"
-          >
-            {getMonthYearString(startDate)}
-          </div>
+          <>
+            <div data-test="calendar-navigation-arrows">back</div>
+            <div
+              style={styling.calendarHeader}
+              id="header"
+              data-test="calendar-header"
+            >
+              {getMonthYearString(startDate)}
+            </div>
+            <div data-test="calendar-navigation-arrows">forward</div>
+          </>
         )}
 
         <div style={styling.daysHeader} data-test="calendar-days-header">
