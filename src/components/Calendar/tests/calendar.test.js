@@ -144,6 +144,8 @@ describe("Calendar buffer days renderization", () => {
 
 */
 describe("Calendar navigation", () => {
+  const mockCallBack = jest.fn();
+
   let configs = {
     startDate: "2019/12/01",
     includeHeader: true,
@@ -168,6 +170,28 @@ describe("Calendar navigation", () => {
     console.log("navigation arrows: " + navigationArrows.debug());
 
     expect(navigationArrows.length).toEqual(0);
+  });
+
+  it("should invoke a callback when clicking in the navigation arrows", () => {
+    wrapper = setup(configs);
+    const calendarHeader = wrapper.find("[data-test='calendar-header']");
+    const navigationArrowBack = wrapper
+      .find("[data-test='calendar-navigation-arrows']")
+      .at(0);
+
+    const navigationArrowForward = wrapper
+      .find("[data-test='calendar-navigation-arrows']")
+      .at(1);
+
+    navigationArrowBack.simulate("click");
+
+    expect(mockCallBack.mock.calls.length).toHaveBeenCalled();
+    expect(mockCallBack.mock.calls.length).toEqual(1);
+
+    navigationArrowForward.simulate("click");
+
+    expect(mockCallBack.mock.calls.length).toHaveBeenCalled();
+    expect(mockCallBack.mock.calls.length).toEqual(1);
   });
 
   /*
