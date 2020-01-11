@@ -148,12 +148,22 @@ describe("Calendar navigation", () => {
     startDate: "2019/12/01",
     includeHeader: true
   };
-  it("should have navigation arrows for calendar", () => {
+  it("should display navigation arrows for calendar", () => {
     wrapper = setup(configs);
     const navigationArrows = wrapper.find(
       "[data-test='calendar-navigation-arrows']"
     );
     expect(navigationArrows.length).toEqual(2);
+  });
+
+  it("should not display navigation arrows for calendar when configured", () => {
+    configs.displayNavArrows = false;
+
+    wrapper = setup(configs);
+    const navigationArrows = wrapper.find(
+      "[data-test='calendar-navigation-arrows']"
+    );
+    expect(navigationArrows.length).toEqual(0);
   });
 
   /*
