@@ -146,7 +146,8 @@ describe("Calendar buffer days renderization", () => {
 describe("Calendar navigation", () => {
   let configs = {
     startDate: "2019/12/01",
-    includeHeader: true
+    includeHeader: true,
+    displayNavArrows: true
   };
   it("should display navigation arrows for calendar", () => {
     wrapper = setup(configs);
@@ -163,6 +164,9 @@ describe("Calendar navigation", () => {
     const navigationArrows = wrapper.find(
       "[data-test='calendar-navigation-arrows']"
     );
+
+    console.log("navigation arrows: " + navigationArrows.debug());
+
     expect(navigationArrows.length).toEqual(0);
   });
 
