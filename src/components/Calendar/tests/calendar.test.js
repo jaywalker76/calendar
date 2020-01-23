@@ -21,7 +21,7 @@ const setup = (props = {}, state = null) => {
 
 let wrapper;
 
-/*
+
 describe("Calendar structure", () => {
   it("renders without crashing", () => {
     wrapper = setup();
@@ -142,7 +142,7 @@ describe("Calendar buffer days renderization", () => {
   });
 });
 
-*/
+
 describe("Calendar navigation", () => {
   const mockCallBack = jest.fn();
 
@@ -152,7 +152,7 @@ describe("Calendar navigation", () => {
     displayNavArrows: true
   };
 
-  /*
+  
   it("should display navigation arrows for calendar", () => {
     wrapper = setup(configs);
     const navigationArrows = wrapper.find(
@@ -174,7 +174,7 @@ describe("Calendar navigation", () => {
     expect(navigationArrows.length).toEqual(0);
   });
 
-  */
+  
 
   it("should invoke a callback when clicking in the navigation arrows", () => {
     wrapper = setup(configs);
@@ -191,15 +191,15 @@ describe("Calendar navigation", () => {
 
     expect(mockCallBack).toHaveBeenCalled();
     expect(mockCallBack.mock.calls.length).toEqual(1);
-    /*
+    
     navigationArrowForward.simulate("click");
 
     expect(mockCallBack.mock.calls.length).toHaveBeenCalled();
     expect(mockCallBack.mock.calls.length).toEqual(1);
-    */
+    
   });
 
-  /*
+
   it("should display correct date when navigating backwards/forward", () => {
     const mockCallBack = jest.fn();
 
@@ -228,5 +228,5 @@ describe("Calendar navigation", () => {
 
     expect(calendarHeader.text()).toEqual("January 2020");
   });
-  */
+  
 });
