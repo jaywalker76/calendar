@@ -196,6 +196,34 @@ describe("Calendar navigation", () => {
     expect(navigationArrows.length).toEqual(2);
   });
 
+  it("should display left nav arrow", () => {
+    wrapper = setup(configs);
+    const leftNavArrow = wrapper
+      .find("[data-test='calendar-header']")
+      .dive()
+      .find("[data-test='header-nav']")
+      .at(0)
+      .find("[data-test='left-nav-arrow']");
+
+    console.log("left nav arrow: " + leftNavArrow.debug());
+
+    expect(leftNavArrow.length).toEqual(1);
+  });
+
+  it("should display right nav arrow", () => {
+    wrapper = setup(configs);
+    const rightNavArrow = wrapper
+      .find("[data-test='calendar-header']")
+      .dive()
+      .find("[data-test='header-nav']")
+      .at(0)
+      .find("[data-test='right-nav-arrow']");
+
+    console.log("left nav arrow: " + rightNavArrow.debug());
+
+    expect(rightNavArrow.length).toEqual(1);
+  });
+
   it("should not display navigation arrows for calendar when configured", () => {
     configs.displayNavArrows = false;
 
