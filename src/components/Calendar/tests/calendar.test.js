@@ -80,6 +80,8 @@ describe("Calendar Header Tests", () => {
     };
 
     wrapper = setup(calProps);
+
+    console.log("calendar el: " + wrapper.debug());
     const calendarComponent = wrapper.find("[data-test='calendar-header']");
     expect(calendarComponent.length).toEqual(1);
   });

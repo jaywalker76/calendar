@@ -15,10 +15,16 @@ const Calendar = props => {
     includeHeader,
     displayNavArrows
   } = props;
+
   return (
     <div style={styling.outerWrapper}>
       <div style={styling.calendarWrapper} data-test="calendar-component">
-        <CalendarHeader dateToDisplay={"January 2010"} />
+        {includeHeader && (
+          <CalendarHeader
+            data-test="calendar-header"
+            dateToDisplay={"January 2010"}
+          />
+        )}
         <div style={styling.daysHeader} data-test="calendar-days-header">
           {generateDaysColumn(dayDescriptorType, startOfWeek, styling)}
         </div>
