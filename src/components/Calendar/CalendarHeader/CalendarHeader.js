@@ -16,7 +16,17 @@ const CalendarHeader = props => {
     includeHeader,
     displayNavArrows
   } = props;
-  return calendarHeader(startDate, styling, displayNavArrows);
+  return (
+    <div
+      id="calendar-header"
+      data-test="calendar-header"
+      style={styling.calendarHeader}
+    >
+      {displayNavArrows && calendarNavArrows("left", styling)}
+      <div id="dateDisplay">{getMonthYearString(startDate)}</div>
+      {displayNavArrows && calendarNavArrows("right", styling)}
+    </div>
+  );
 };
 
 // const StyledCalendar = injectSheet(styles)(Calendar);

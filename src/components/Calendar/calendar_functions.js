@@ -144,16 +144,4 @@ const calendarNavArrows = (direction, styling) => (
   </div>
 );
 
-const calendarHeader = (startDate, styling, displayNavArrows) => (
-  <div
-    id="calendar-header"
-    data-test="calendar-header"
-    style={styling.calendarHeader}
-  >
-    {displayNavArrows && calendarNavArrows("left", styling)}
-    <div id="dateDisplay">{getMonthYearString(startDate)}</div>
-    {displayNavArrows && calendarNavArrows("right", styling)}
-  </div>
-);
-
-export { generateDaysColumn, cellGenerator, calendarNavArrows, calendarHeader };
+export { generateDaysColumn, cellGenerator, calendarNavArrows };
