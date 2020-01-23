@@ -69,8 +69,6 @@ describe("Calendar structure", () => {
       .dive()
       .find("[data-test='calendar-header-date']");
 
-    console.log("the date value: " + calendarHeaderComp.text());
-
     expect(calendarHeaderComp.text()).toEqual("November 2011");
   });
 
@@ -193,10 +191,7 @@ describe("Calendar navigation", () => {
     const navigationArrows = wrapper
       .find("[data-test='calendar-header']")
       .dive()
-      .find("");
-    //.find("[data-test='calendar-navigation-arrows']");
-
-    console.log("find arrows: " + navigationArrows.debug());
+      .find("[data-test='header-nav']");
 
     expect(navigationArrows.length).toEqual(2);
   });
