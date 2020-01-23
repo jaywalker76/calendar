@@ -7,6 +7,8 @@ import { generateDaysColumn, cellGenerator } from "./calendar_functions";
 
 import styling from "./style";
 
+import { getMonthYearString } from "./utils";
+
 const Calendar = props => {
   const {
     startDate,
@@ -16,13 +18,15 @@ const Calendar = props => {
     displayNavArrows
   } = props;
 
+  const headerDate = getMonthYearString(startDate);
+
   return (
     <div style={styling.outerWrapper}>
       <div style={styling.calendarWrapper} data-test="calendar-component">
         {includeHeader && (
           <CalendarHeader
             data-test="calendar-header"
-            dateToDisplay={"January 2010"}
+            dateToDisplay={headerDate}
           />
         )}
         <div style={styling.daysHeader} data-test="calendar-days-header">

@@ -47,20 +47,28 @@ describe("Calendar structure", () => {
     expect(daysInMonth.length).toBe(31);
   });
 
-  it("displays current date", () => {
+  it("displays current date when not configured", () => {
     wrapper = setup({ includeHeader: true });
     const calendarComponent = wrapper.find("[data-test='calendar-header']");
 
     expect(calendarComponent.text()).toEqual(getMonthYearString(new Date()));
   });
-  it("correctly displays specified date", () => {
+
+  it("correctly displays configured date", () => {
     let configs = {
       startDate: "2011/11/01",
       includeHeader: true
     };
+
     wrapper = setup(configs);
-    const calendarComponent = wrapper.find("[data-test='calendar-header']");
-    expect(calendarComponent.text()).toEqual("November 2011");
+    const calendarHeaderComp = wrapper
+      .find("[data-test='calendar-header']")
+      .dive()
+      .find("[data-test='calendar-header-date']");
+
+    console.log("the date value: " + calendarHeaderComp.text());
+
+    expect(calendarHeaderComp.text()).toEqual("November 2011");
   });
 
   it("correctly displays the number of weeks in a month", () => {
