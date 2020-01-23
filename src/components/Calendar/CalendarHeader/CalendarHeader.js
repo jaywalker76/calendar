@@ -1,34 +1,18 @@
 import React from "react";
 
-import {
-  generateDaysColumn,
-  cellGenerator,
-  calendarHeader
-} from "../calendar_functions";
-
 import styling from "./style";
 
 const CalendarHeader = props => {
-  const {
-    startDate,
-    dayDescriptorType,
-    startOfWeek,
-    includeHeader,
-    displayNavArrows
-  } = props;
+  const { dateToDisplay } = props;
   return (
     <div
       id="calendar-header"
       data-test="calendar-header"
       style={styling.calendarHeader}
     >
-      {displayNavArrows && calendarNavArrows("left", styling)}
-      <div id="dateDisplay">{getMonthYearString(startDate)}</div>
-      {displayNavArrows && calendarNavArrows("right", styling)}
+      <div id="dateDisplay">{dateToDisplay}</div>
     </div>
   );
 };
-
-// const StyledCalendar = injectSheet(styles)(Calendar);
 
 export default CalendarHeader;
