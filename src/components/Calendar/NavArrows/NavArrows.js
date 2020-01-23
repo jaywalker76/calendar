@@ -9,7 +9,7 @@ import styling from "./style";
 const NavArrows = props => {
     const { direction } = props;
     return (
-        <div style={styling.navigationArrows} data-test="calendar-navigation-arrows">
+        <div style={styling.navigationArrows} data-test={`${direction}-nav-arrow`}>
             <FontAwesomeIcon
       icon={direction === "left" ? faChevronLeft : faChevronRight}
     />

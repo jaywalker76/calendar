@@ -203,9 +203,8 @@ describe("Calendar navigation", () => {
       .dive()
       .find("[data-test='header-nav']")
       .at(0)
+      .dive()
       .find("[data-test='left-nav-arrow']");
-
-    console.log("left nav arrow: " + leftNavArrow.debug());
 
     expect(leftNavArrow.length).toEqual(1);
   });
@@ -216,10 +215,9 @@ describe("Calendar navigation", () => {
       .find("[data-test='calendar-header']")
       .dive()
       .find("[data-test='header-nav']")
-      .at(0)
+      .at(1)
+      .dive()
       .find("[data-test='right-nav-arrow']");
-
-    console.log("left nav arrow: " + rightNavArrow.debug());
 
     expect(rightNavArrow.length).toEqual(1);
   });
