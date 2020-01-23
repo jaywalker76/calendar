@@ -44,14 +44,13 @@ describe("Calendar structure", () => {
       .map(el => el.text() !== "Buffer")
       .filter(el => el === true);
 
-    //console.log("days in month: " + daysInMonth.debug());
-
     expect(daysInMonth.length).toBe(31);
   });
 
   it("displays current date", () => {
     wrapper = setup({ includeHeader: true });
     const calendarComponent = wrapper.find("[data-test='calendar-header']");
+
     expect(calendarComponent.text()).toEqual(getMonthYearString(new Date()));
   });
   it("correctly displays specified date", () => {
@@ -78,11 +77,12 @@ describe("Calendar Header Tests", () => {
       startDate: "2011/11/01",
       includeHeader: true
     };
-
     wrapper = setup(calProps);
+    const calendarComponent = wrapper
+      .find("[data-test='calendar-header']")
+      .dive()
+      .find("[data-test='calendar-header-date']");
 
-    console.log("calendar el: " + wrapper.debug());
-    const calendarComponent = wrapper.find("[data-test='calendar-header']");
     expect(calendarComponent.length).toEqual(1);
   });
 
@@ -94,6 +94,7 @@ describe("Calendar Header Tests", () => {
 
     wrapper = setup(calProps);
     const calendarComponent = wrapper.find("[data-test='calendar-header']");
+
     expect(calendarComponent.length).toEqual(0);
   });
 });
@@ -191,8 +192,6 @@ describe("Calendar navigation", () => {
     const navigationArrows = wrapper.find(
       "[data-test='calendar-navigation-arrows']"
     );
-
-    console.log("navigation arrows: " + navigationArrows.debug());
 
     expect(navigationArrows.length).toEqual(0);
   });
