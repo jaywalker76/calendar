@@ -1,4 +1,5 @@
 import React from "react";
+import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
 // import injectSheet from "react-jss";
 
@@ -21,7 +22,7 @@ const Calendar = props => {
   return (
     <div style={styling.outerWrapper}>
       <div style={styling.calendarWrapper} data-test="calendar-component">
-        {includeHeader && calendarHeader(startDate, styling, displayNavArrows)}
+        <CalendarHeader />
         <div style={styling.daysHeader} data-test="calendar-days-header">
           {generateDaysColumn(dayDescriptorType, startOfWeek, styling)}
         </div>
