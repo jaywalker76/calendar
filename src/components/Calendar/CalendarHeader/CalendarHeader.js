@@ -6,7 +6,7 @@ import {
   calendarHeader
 } from "../calendar_functions";
 
-import styling from "../style";
+import styling from "./style";
 
 const CalendarHeader = props => {
   const {

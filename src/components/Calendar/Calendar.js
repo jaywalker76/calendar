@@ -3,11 +3,7 @@ import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
 // import injectSheet from "react-jss";
 
-import {
-  generateDaysColumn,
-  cellGenerator,
-  calendarHeader
-} from "./calendar_functions";
+import { generateDaysColumn, cellGenerator } from "./calendar_functions";
 
 import styling from "./style";
 

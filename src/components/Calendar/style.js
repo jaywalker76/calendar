@@ -2,24 +2,12 @@ const styling = {
   outerWrapper: {
     width: 600
   },
+  /*
   calendarWrapper: {
     width: "100%",
     border: "1px solid black"
   },
-  calendarHeader: {
-    background: "blue",
-    height: 100,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    color: "#f9f9f9",
-    fontSize: 30
-  },
-  navigationArrows: {
-    width: 36,
-    justifyContent: "center",
-    display: "flex"
-  },
+  */
   daysHeader: {
     margin: 0,
     padding: 0,
