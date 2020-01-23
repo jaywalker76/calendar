@@ -49,7 +49,10 @@ describe("Calendar structure", () => {
 
   it("displays current date when not configured", () => {
     wrapper = setup({ includeHeader: true });
-    const calendarComponent = wrapper.find("[data-test='calendar-header']");
+    const calendarComponent = wrapper
+      .find("[data-test='calendar-header']")
+      .dive()
+      .find("[data-test='calendar-header-date']");
 
     expect(calendarComponent.text()).toEqual(getMonthYearString(new Date()));
   });

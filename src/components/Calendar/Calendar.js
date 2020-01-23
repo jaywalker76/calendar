@@ -18,7 +18,10 @@ const Calendar = props => {
     displayNavArrows
   } = props;
 
-  const headerDate = getMonthYearString(startDate);
+  const headerDate =
+    startDate !== undefined
+      ? getMonthYearString(startDate)
+      : getMonthYearString(new Date());
 
   return (
     <div style={styling.outerWrapper}>
