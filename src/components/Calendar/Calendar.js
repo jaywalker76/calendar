@@ -29,6 +29,7 @@ const Calendar = props => {
         {includeHeader && (
           <CalendarHeader
             data-test="calendar-header"
+            displayNavArrows={displayNavArrows}
             dateToDisplay={headerDate}
           />
         )}

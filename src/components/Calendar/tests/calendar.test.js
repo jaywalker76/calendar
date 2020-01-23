@@ -190,9 +190,11 @@ describe("Calendar navigation", () => {
 
   it("should display navigation arrows for calendar", () => {
     wrapper = setup(configs);
-    const navigationArrows = wrapper.find(
-      "[data-test='calendar-navigation-arrows']"
-    );
+    const navigationArrows = wrapper
+      .find("[data-test='calendar-header']")
+      .dive()
+      .find("[data-test='calendar-navigation-arrows']");
+
     expect(navigationArrows.length).toEqual(2);
   });
 
