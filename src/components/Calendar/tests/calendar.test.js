@@ -193,7 +193,10 @@ describe("Calendar navigation", () => {
     const navigationArrows = wrapper
       .find("[data-test='calendar-header']")
       .dive()
-      .find("[data-test='calendar-navigation-arrows']");
+      .find("");
+    //.find("[data-test='calendar-navigation-arrows']");
+
+    console.log("find arrows: " + navigationArrows.debug());
 
     expect(navigationArrows.length).toEqual(2);
   });
