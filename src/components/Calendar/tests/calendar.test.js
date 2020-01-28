@@ -183,28 +183,23 @@ describe("Calendar navigation", () => {
   let configs = {
     startDate: "2019/12/01",
     includeHeader: true,
-    displayNavArrows: true
+    displayNavArrows: true,
+    onClick: mockCallBack
   };
 
-  it("should display navigation arrows for calendar", () => {
-    wrapper = setup(configs);
-    const navigationArrows = wrapper
-      .find("[data-test='calendar-header']")
-      .dive()
-      .find("[data-test='header-nav']");
-
-    expect(navigationArrows.length).toEqual(2);
-  });
+  /*
+  ** refactoring tests to reflect new comp naming
+    naming nav arrows specifically - doesn't seem to make sense
+    to test for the existence of both
+  */
 
   it("should display left nav arrow", () => {
     wrapper = setup(configs);
+
     const leftNavArrow = wrapper
       .find("[data-test='calendar-header']")
       .dive()
-      .find("[data-test='header-nav']")
-      .at(0)
-      .dive()
-      .find("[data-test='left-nav-arrow']");
+      .find("[data-test='left-header-nav']");
 
     expect(leftNavArrow.length).toEqual(1);
   });
@@ -214,10 +209,7 @@ describe("Calendar navigation", () => {
     const rightNavArrow = wrapper
       .find("[data-test='calendar-header']")
       .dive()
-      .find("[data-test='header-nav']")
-      .at(1)
-      .dive()
-      .find("[data-test='right-nav-arrow']");
+      .find("[data-test='right-header-nav']");
 
     expect(rightNavArrow.length).toEqual(1);
   });
@@ -234,15 +226,14 @@ describe("Calendar navigation", () => {
   });
 
   it("should invoke a callback when clicking in the navigation arrows", () => {
+    configs.displayNavArrows = true;
     wrapper = setup(configs);
     const calendarHeader = wrapper.find("[data-test='calendar-header']");
-    const navigationArrowBack = wrapper
-      .find("[data-test='left-nav-arrow']")
-      .at(0);
+    const navigationArrowBack = wrapper.find("[data-test='left-nav-arrow']");
 
-    const navigationArrowForward = wrapper
-      .find("[data-test='right-nav-arrow']")
-      .at(1);
+    const navigationArrowForward = wrapper.find(
+      "[data-test='right-nav-arrow']"
+    );
 
     navigationArrowBack.simulate("click");
 
@@ -260,17 +251,19 @@ describe("Calendar navigation", () => {
 
     let configs = {
       startDate: "2019/12/01",
-      includeHeader: true
+      includeHeader: true,
+
+      onClick: mockCallBack
     };
     wrapper = setup(configs);
-    const calendarHeader = wrapper.find("[data-test='calendar-header']");
-    const navigationArrowBack = wrapper
-      .find("[data-test='calendar-navigation-arrows']")
-      .at(0);
 
-    const navigationArrowForward = wrapper
-      .find("[data-test='calendar-navigation-arrows']")
-      .at(1);
+    const calendarHeader = wrapper.find("[data-test='calendar-header']");
+
+    const navigationArrowBack = wrapper.find("[data-test='right-nav-arrow']");
+
+    const navigationArrowForward = wrapper.find(
+      "[data-test='right-nav-arrow']"
+    );
 
     navigationArrowBack.simulate("click");
 
