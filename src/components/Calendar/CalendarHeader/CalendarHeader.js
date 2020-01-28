@@ -9,14 +9,14 @@ const navClickHandler = () => {
 };
 
 const CalendarHeader = props => {
-  const { dateToDisplay, displayNavArrows } = props;
+  const { dateToDisplay, displayNavArrows, onClick } = props;
   return (
     <div id="calendar-header" style={styling.calendarHeader}>
       {displayNavArrows && (
         <CalendarNavArrows
           data-test="left-header-nav"
           direction={"left"}
-          onClick={navClickHandler}
+          onClick={onClick}
         />
       )}
       <div id="dateDisplay" data-test="calendar-header-date">
@@ -26,7 +26,7 @@ const CalendarHeader = props => {
         <CalendarNavArrows
           data-test="right-header-nav"
           direction={"right"}
-          onClick={navClickHandler}
+          onClick={onClick}
         />
       )}
     </div>

@@ -228,12 +228,16 @@ describe("Calendar navigation", () => {
   it("should invoke a callback when clicking in the navigation arrows", () => {
     configs.displayNavArrows = true;
     wrapper = setup(configs);
+    
     const calendarHeader = wrapper.find("[data-test='calendar-header']");
-    const navigationArrowBack = wrapper.find("[data-test='left-nav-arrow']");
 
-    const navigationArrowForward = wrapper.find(
-      "[data-test='right-nav-arrow']"
-    );
+    const navigationArrowBack = calendarHeader
+      .dive()
+      .find("[data-test='left-header-nav']");
+
+    const navigationArrowForward = calendarHeader
+      .dive()
+      .find("[data-test='right-header-nav']");
 
     navigationArrowBack.simulate("click");
 
