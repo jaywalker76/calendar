@@ -237,11 +237,11 @@ describe("Calendar navigation", () => {
     wrapper = setup(configs);
     const calendarHeader = wrapper.find("[data-test='calendar-header']");
     const navigationArrowBack = wrapper
-      .find("[data-test='calendar-navigation-arrows']")
+      .find("[data-test='left-nav-arrow']")
       .at(0);
 
     const navigationArrowForward = wrapper
-      .find("[data-test='calendar-navigation-arrows']")
+      .find("[data-test='right-nav-arrow']")
       .at(1);
 
     navigationArrowBack.simulate("click");
