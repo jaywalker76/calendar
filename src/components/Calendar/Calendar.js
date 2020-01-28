@@ -15,7 +15,8 @@ const Calendar = props => {
     dayDescriptorType,
     startOfWeek,
     includeHeader,
-    displayNavArrows
+    displayNavArrows,
+    onClick
   } = props;
 
   const headerDate =
@@ -31,6 +32,7 @@ const Calendar = props => {
             data-test="calendar-header"
             displayNavArrows={displayNavArrows}
             dateToDisplay={headerDate}
+            onClick={onClick}
           />
         )}
         <div style={styling.daysHeader} data-test="calendar-days-header">

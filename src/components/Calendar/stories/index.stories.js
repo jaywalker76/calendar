@@ -17,3 +17,12 @@ export const withSpecifiedStartDate = () => (
     includeHeader={true}
   />
 );
+export const withNavFunction = () => (
+  <Calendar
+    startDate={"2019/12/01"}
+    dayDescriptorType={"short"}
+    includeHeader={true}
+    displayNavArrows={true}
+    onClick={()=>{alert("Ok")}}
+  />
+);
