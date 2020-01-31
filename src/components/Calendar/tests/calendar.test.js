@@ -235,8 +235,6 @@ describe("Calendar navigation", () => {
       .dive()
       .find("[data-test='left-header-nav']");
 
-      console.log("node to click: "+ navigationArrowBack)
-
     const navigationArrowForward = calendarHeader
       .dive()
       .find("[data-test='right-header-nav']");
@@ -250,6 +248,24 @@ describe("Calendar navigation", () => {
 
     expect(mockCallBack).toHaveBeenCalled();
     expect(mockCallBack.mock.calls.length).toEqual(2);
+  });
+
+  it("should increase date value when clicking forward navigation arrow", () => {
+    wrapper = setup(configs);
+
+    const calendarHeader = wrapper.find("[data-test='calendar-header']");
+
+    const navigationArrowForward = calendarHeader
+      .dive()
+      .find("[data-test='right-header-nav']");
+
+    navigationArrowForward.simulate("click");
+
+    const calendarHeaderComp = calendarHeader
+      .dive()
+      .find("[data-test='calendar-header-date']");
+
+    expect(calendarHeaderComp.text()).toEqual("January 2020");
   });
 
   it("should display correct date when navigating backwards/forward", () => {
