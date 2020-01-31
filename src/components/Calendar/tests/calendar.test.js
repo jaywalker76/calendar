@@ -228,12 +228,14 @@ describe("Calendar navigation", () => {
   it("should invoke a callback when clicking in the navigation arrows", () => {
     configs.displayNavArrows = true;
     wrapper = setup(configs);
-    
+
     const calendarHeader = wrapper.find("[data-test='calendar-header']");
 
     const navigationArrowBack = calendarHeader
       .dive()
       .find("[data-test='left-header-nav']");
+
+      console.log("node to click: "+ navigationArrowBack)
 
     const navigationArrowForward = calendarHeader
       .dive()
@@ -246,8 +248,8 @@ describe("Calendar navigation", () => {
 
     navigationArrowForward.simulate("click");
 
-    expect(mockCallBack.mock.calls.length).toHaveBeenCalled();
-    expect(mockCallBack.mock.calls.length).toEqual(1);
+    expect(mockCallBack).toHaveBeenCalled();
+    expect(mockCallBack.mock.calls.length).toEqual(2);
   });
 
   it("should display correct date when navigating backwards/forward", () => {
