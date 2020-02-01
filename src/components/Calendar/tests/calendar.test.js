@@ -1,5 +1,5 @@
 import React from "react";
-import Enzyme, { shallow, mount } from "enzyme";
+import Enzyme, { mount } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 
 import { getMonthYearString } from "../utils";
@@ -16,7 +16,7 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
  * @return {[type]}              [shallow App]
  */
 const setup = (props = {}, state = null) => {
-  return shallow(<Calendar {...props} />);
+  return mount(<Calendar {...props} />);
 };
 
 let wrapper;
@@ -41,8 +41,6 @@ describe("Calendar structure", () => {
   it("displays current date when not configured", () => {
     wrapper = setup({ includeHeader: true });
     const calendarComponent = wrapper
-      .find("[data-test='calendar-header']")
-      .dive()
       .find("[data-test='calendar-header-date']");
 
     expect(calendarComponent.text()).toEqual(getMonthYearString(new Date()));
@@ -56,8 +54,6 @@ describe("Calendar structure", () => {
 
     wrapper = setup(configs);
     const calendarHeaderComp = wrapper
-      .find("[data-test='calendar-header']")
-      .dive()
       .find("[data-test='calendar-header-date']");
 
     expect(calendarHeaderComp.text()).toEqual("November 2011");
@@ -90,8 +86,6 @@ describe("Calendar Header Tests", () => {
     };
     wrapper = setup(calProps);
     const calendarComponent = wrapper
-      .find("[data-test='calendar-header']")
-      .dive()
       .find("[data-test='calendar-header-date']");
 
     expect(calendarComponent.length).toEqual(1);
@@ -199,8 +193,6 @@ describe("Calendar navigation", () => {
     wrapper = setup(configs);
 
     const leftNavArrow = wrapper
-      .find("[data-test='calendar-header']")
-      .dive()
       .find("[data-test='left-header-nav']");
 
     expect(leftNavArrow.length).toEqual(1);
@@ -209,8 +201,6 @@ describe("Calendar navigation", () => {
   it("should display right nav arrow", () => {
     wrapper = setup(configs);
     const rightNavArrow = wrapper
-      .find("[data-test='calendar-header']")
-      .dive()
       .find("[data-test='right-header-nav']");
 
     expect(rightNavArrow.length).toEqual(1);
@@ -234,11 +224,9 @@ describe("Calendar navigation", () => {
     const calendarHeader = wrapper.find("[data-test='calendar-header']");
 
     const navigationArrowBack = calendarHeader
-      .dive()
       .find("[data-test='left-header-nav']");
 
     const navigationArrowForward = calendarHeader
-      .dive()
       .find("[data-test='right-header-nav']");
 
     navigationArrowBack.simulate("click");
@@ -258,13 +246,11 @@ describe("Calendar navigation", () => {
     const calendarHeader = wrapper.find("[data-test='calendar-header']");
 
     const navigationArrowForward = calendarHeader
-      .dive()
       .find("[data-test='right-header-nav']");
 
     navigationArrowForward.simulate("click");
 
     const calendarHeaderComp = calendarHeader
-      .dive()
       .find("[data-test='calendar-header-date']");
 
     expect(calendarHeaderComp.text()).toEqual("January 2020");
