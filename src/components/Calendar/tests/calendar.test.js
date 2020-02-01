@@ -32,19 +32,10 @@ describe("Calendar structure", () => {
     const calendarComponent = wrapper.find("[data-test='calendar-component']");
     expect(calendarComponent.length).toBe(1);
   });
-  it("displays the days", () => {
+  it("displays the days in the week", () => {
     wrapper = setup();
     const calendarComponent = wrapper.find("[data-test='calendar-days']");
     expect(calendarComponent.length).toBe(7);
-  });
-  it("displays the days", () => {
-    wrapper = setup();
-    const calendarComponent = wrapper.find("[data-test='calendar-cells']");
-    let daysInMonth = calendarComponent
-      .map(el => el.text() !== "Buffer")
-      .filter(el => el === true);
-
-    expect(daysInMonth.length).toBe(31);
   });
 
   it("displays current date when not configured", () => {
@@ -70,6 +61,17 @@ describe("Calendar structure", () => {
       .find("[data-test='calendar-header-date']");
 
     expect(calendarHeaderComp.text()).toEqual("November 2011");
+  });
+// moved test to this location in order for days to be
+// correctly counted, rather than having the test fail
+// when a new month roll sin
+  it("displays the days in a month", () => {
+    const calendarComponent = wrapper.find("[data-test='calendar-cells']");
+    let daysInMonth = calendarComponent
+      .map(el => el.text() !== "Buffer")
+      .filter(el => el === true);
+
+    expect(daysInMonth.length).toBe(30);
   });
 
   it("correctly displays the number of weeks in a month", () => {
