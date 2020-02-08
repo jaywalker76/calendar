@@ -30,13 +30,15 @@ export const withNavFunction = () => (
   />
 );
 
+const resolveDate = direction => {
+  alert("resolving the date: " + direction);
+};
+
 export const calendarHeader = () => (
   <CalendarHeader
     data-test="calendar-header"
     displayNavArrows={true}
     dateToDisplay={"2019/12/01"}
-    onClick={() => {
-      alert("Arrow Pressed");
-    }}
+    onClick={resolveDate}
   />
 );

@@ -16,7 +16,9 @@ const CalendarHeader = props => {
         <CalendarNavArrows
           data-test="left-header-nav"
           direction={"left"}
-          onClick={onClick}
+          onClick={() => {
+            onClick("left");
+          }}
         />
       )}
       <div id="dateDisplay" data-test="calendar-header-date">
@@ -26,7 +28,9 @@ const CalendarHeader = props => {
         <CalendarNavArrows
           data-test="right-header-nav"
           direction={"right"}
-          onClick={onClick}
+          onClick={() => {
+            onClick("right");
+          }}
         />
       )}
     </div>

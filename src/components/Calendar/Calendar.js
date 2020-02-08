@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
 // import injectSheet from "react-jss";
@@ -19,10 +19,19 @@ const Calendar = props => {
     onClick
   } = props;
 
-  const headerDate =
-    startDate !== undefined
-      ? getMonthYearString(startDate)
-      : getMonthYearString(new Date());
+  const workingDate = startDate !== undefined ? startDate : new Date();
+
+  const [date, setDate] = useState(workingDate);
+
+  const resolveDate = direction => {
+    let newDate;
+    if (direction === "left") {
+      newDate = new Date(date.setMonth(date.getMonth() - 1));
+    } else {
+      newDate = new Date(date.setMonth(date.getMonth() + 1));
+    }
+    setDate(newDate);
+  };
 
   return (
     <div style={styling.outerWrapper}>
@@ -31,8 +40,8 @@ const Calendar = props => {
           <CalendarHeader
             data-test="calendar-header"
             displayNavArrows={displayNavArrows}
-            dateToDisplay={headerDate}
-            onClick={onClick}
+            dateToDisplay={getMonthYearString(date)}
+            onClick={resolveDate}
           />
         )}
         <div style={styling.daysHeader} data-test="calendar-days-header">
