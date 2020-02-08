@@ -34,17 +34,11 @@ describe("Calendar navigation", () => {
   const mockCallBack = jest.fn();
 
   let configs = {
-    startDate: "2019/12/01",
+    startDate: "December 2019",
     includeHeader: true,
     displayNavArrows: true,
     onClick: mockCallBack
   };
-
-  /*
-  ** refactoring tests to reflect new comp naming
-    naming nav arrows specifically - doesn't seem to make sense
-    to test for the existence of both
-  */
 
   it("should display left nav arrow", () => {
     wrapper = setup(configs);
@@ -76,13 +70,9 @@ describe("Calendar navigation", () => {
     configs.displayNavArrows = true;
     wrapper = setup(configs);
 
-    const calendarHeader = wrapper.find("[data-test='calendar-header']");
+    const navigationArrowBack = wrapper.find("[data-test='left-header-nav']");
 
-    const navigationArrowBack = calendarHeader.find(
-      "[data-test='left-header-nav']"
-    );
-
-    const navigationArrowForward = calendarHeader.find(
+    const navigationArrowForward = wrapper.find(
       "[data-test='right-header-nav']"
     );
 
@@ -97,36 +87,18 @@ describe("Calendar navigation", () => {
     expect(mockCallBack.mock.calls.length).toEqual(2);
   });
 
-  it("should increase date value when clicking forward navigation arrow", () => {
-    wrapper = setup(configs);
-
-    const calendarHeader = wrapper.find("[data-test='calendar-header']");
-
-    const navigationArrowForward = calendarHeader.find(
-      "[data-test='right-header-nav']"
-    );
-
-    navigationArrowForward.simulate("click");
-
-    const calendarHeaderComp = calendarHeader.find(
-      "[data-test='calendar-header-date']"
-    );
-
-    expect(calendarHeaderComp.text()).toEqual("January 2020");
-  });
+  /* removed this test as it was duplicating what were testing in the next set of tests */
 
   it("should display correct date when navigating backwards/forward", () => {
     const mockCallBack = jest.fn();
 
     let configs = {
-      startDate: "2019/12/01",
-      includeHeader: true,
-
+      displayNavArrows: true,
+      dateToDisplay: "December 2019",
       onClick: mockCallBack
     };
-    wrapper = setup(configs);
 
-    const calendarHeader = wrapper.find("[data-test='calendar-header']");
+    wrapper = setup(configs);
 
     const navigationArrowBack = wrapper.find("[data-test='right-nav-arrow']");
 
@@ -134,15 +106,15 @@ describe("Calendar navigation", () => {
       "[data-test='right-nav-arrow']"
     );
 
+    const dateDisplay = wrapper.find("[data-test='calendar-header-date']");
+
     navigationArrowBack.simulate("click");
 
     expect(mockCallBack.mock.calls.length).toEqual(1);
 
-    expect(calendarHeader.text()).toEqual("November 2019");
-
     navigationArrowForward.simulate("click");
     navigationArrowForward.simulate("click");
 
-    expect(calendarHeader.text()).toEqual("January 2020");
+    expect(dateDisplay.text()).toEqual("January 2020");
   });
 });
