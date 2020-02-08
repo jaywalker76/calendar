@@ -7,7 +7,7 @@ import { generateDaysColumn, cellGenerator } from "./calendar_functions";
 
 import styling from "./style";
 
-import { getMonthYearString } from "./utils";
+import { getMonthYearString, updateDateValue } from "./utils";
 
 const Calendar = props => {
   const {
@@ -15,8 +15,7 @@ const Calendar = props => {
     dayDescriptorType,
     startOfWeek,
     includeHeader,
-    displayNavArrows,
-    onClick
+    displayNavArrows
   } = props;
 
   const workingDate = startDate !== undefined ? startDate : new Date();
@@ -24,13 +23,7 @@ const Calendar = props => {
   const [date, setDate] = useState(workingDate);
 
   const resolveDate = direction => {
-    let newDate;
-    if (direction === "left") {
-      newDate = new Date(date.setMonth(date.getMonth() - 1));
-    } else {
-      newDate = new Date(date.setMonth(date.getMonth() + 1));
-    }
-    setDate(newDate);
+    setDate(updateDateValue(direction, date));
   };
 
   return (

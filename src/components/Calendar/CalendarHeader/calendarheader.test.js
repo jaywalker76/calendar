@@ -87,8 +87,6 @@ describe("Calendar navigation", () => {
     expect(mockCallBack.mock.calls.length).toEqual(2);
   });
 
-  /* removed this test as it was duplicating what were testing in the next set of tests */
-
   it("should display correct date when navigating backwards/forward", () => {
     /* Not sure of how to test this */
     const mockCallBack = jest.fn();

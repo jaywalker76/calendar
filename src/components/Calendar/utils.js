@@ -79,6 +79,16 @@ const getWeekDifferential = (lastWeek, firstWeek) => {
   }
 };
 
+const updateDateValue = (direction, date) => {
+  let newDate;
+  if (direction === "left") {
+    newDate = new Date(date.setMonth(date.getMonth() - 1));
+  } else {
+    newDate = new Date(date.setMonth(date.getMonth() + 1));
+  }
+  return newDate;
+};
+
 export {
   getMonthYearString,
   getDayName,
@@ -86,5 +96,6 @@ export {
   addDaysToDate,
   getLastDayInMonth,
   getIsoWeek,
-  getWeekDifferential
+  getWeekDifferential,
+  updateDateValue
 };

@@ -30,6 +30,8 @@ export const withNavFunction = () => (
   />
 );
 
+/* should I fully replicate the functionality here?
+Should it be available */
 const resolveDate = direction => {
   alert("resolving the date: " + direction);
 };
@@ -38,7 +40,7 @@ export const calendarHeader = () => (
   <CalendarHeader
     data-test="calendar-header"
     displayNavArrows={true}
-    dateToDisplay={"2019/12/01"}
+    dateToDisplay={"December 2019"}
     onClick={resolveDate}
   />
 );
