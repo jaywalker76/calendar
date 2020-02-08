@@ -1,6 +1,7 @@
 import React from "react";
 
 import Calendar from "../Calendar";
+import CalendarHeader from "../CalendarHeader/CalendarHeader";
 
 export default { title: "Calendar" };
 
@@ -23,6 +24,19 @@ export const withNavFunction = () => (
     dayDescriptorType={"short"}
     includeHeader={true}
     displayNavArrows={true}
-    onClick={()=>{alert("Ok")}}
+    onClick={() => {
+      alert("Ok");
+    }}
+  />
+);
+
+export const calendarHeader = () => (
+  <CalendarHeader
+    data-test="calendar-header"
+    displayNavArrows={true}
+    dateToDisplay={"2019/12/01"}
+    onClick={() => {
+      alert("Arrow Pressed");
+    }}
   />
 );
