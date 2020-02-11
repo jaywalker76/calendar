@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Calendar from "../Calendar";
 import CalendarHeader from "../CalendarHeader/CalendarHeader";
+
+import { getMonthYearString, updateDateValue } from "../utils";
 
 export default { title: "Calendar" };
 
@@ -32,15 +34,25 @@ export const withNavFunction = () => (
 
 /* should I fully replicate the functionality here?
 Should it be available */
-const resolveDate = direction => {
-  alert("resolving the date: " + direction);
-};
 
+const workingDate = new Date();
+
+const displayDateString = getMonthYearString(workingDate);
+
+const resolveDate = direction => {
+  alert("arrow clicked: " + direction);
+};
+/*
+const [date, setDate] = useState(workingDate);
+const resolveDate = direction => {
+  setDate(updateDateValue(direction, date));
+};
+*/
 export const calendarHeader = () => (
   <CalendarHeader
     data-test="calendar-header"
     displayNavArrows={true}
-    dateToDisplay={"December 2019"}
+    dateToDisplay={displayDateString}
     onClick={resolveDate}
   />
 );
