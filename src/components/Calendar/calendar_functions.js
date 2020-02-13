@@ -15,6 +15,11 @@ import {
   getWeekDifferential
 } from "./utils";
 
+/**
+ *
+ * Presentational Code
+ */
+
 const generateDaysColumn = (dayDescriptorType, startOfWeek, styling) => {
   let currentDate = new Date();
   // get first day of current week

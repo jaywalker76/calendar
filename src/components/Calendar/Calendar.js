@@ -9,6 +9,24 @@ import styling from "./style";
 
 import { getMonthYearString, updateDateValue } from "./utils";
 
+/**
+ * Props
+ * {
+ *  startDate,
+ *  dayDescriptorType (if day description in header is long/short)
+ *  startOfWeek (week start day),
+    includeHeader
+    displayNavArrows
+ * }
+  Object to receive - for full render mode
+  {
+    calendar header,
+    calendar days column,
+    calendar day cells
+  }
+
+ */
+
 const Calendar = props => {
   const {
     startDate,

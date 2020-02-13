@@ -1,3 +1,7 @@
+/**
+ *
+ * Presentational Code
+ */
 const getMonthString = date => {
   return date.toLocaleString("default", { month: "long" });
 };
@@ -17,6 +21,11 @@ const getDayName = (dateParam, dayDescriptorType, locale) => {
   const date = new Date(dateParam);
   return date.toLocaleDateString(locale, { weekday: dayDescType });
 };
+
+/**
+ *
+ * Business Logic Code
+ */
 
 const getNumberOfDaysInMonth = dateParam => {
   const dateValue = dateValidator(dateParam);
