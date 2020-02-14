@@ -7,7 +7,13 @@ class CalendarModule {
     return this.generateDateString();
   }
   // Method
-  generateDateString() {}
+  generateDateString() {
+    const dateObj = new Date(this.date);
+    const monthName = dateObj.toLocaleString("default", { month: "long" });
+    const yearString = dateObj.getFullYear();
+
+    return `${monthName}, ${yearString}`;
+  }
 }
 
 export default CalendarModule;
