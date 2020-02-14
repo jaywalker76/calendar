@@ -1,13 +1,17 @@
 import CalendarModule from "./Module";
 
 describe("Module functionality", () => {
-  const ModuleInstance = new CalendarModule("10/01/2019");
-
-  it("date string should match date param", () => {
-    const dateString = ModuleInstance.dateString;
-
-    console.log("parsed date: " + dateString);
-
-    expect(dateString).toMatch("October, 2019");
-  });
+  test.each`
+    dateValue       | expectedResult
+    ${"10/01/2019"} | ${"October, 2019"}
+    ${"12/31/2019"} | ${"December, 2019"}
+    ${"01/01/2020"} | ${"January, 2020"}
+    ${"02/29/2020"} | ${"February, 2020"}
+  `(
+    "correctly converts $dateValue to $expectedResult",
+    ({ dateValue, expectedResult }) => {
+      const moduleInstance = new CalendarModule(dateValue);
+      expect(moduleInstance.dateString).toBe(expectedResult);
+    }
+  );
 });

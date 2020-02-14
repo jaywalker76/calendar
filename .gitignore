@@ -1,1 +1,3 @@
 node_modules
+module.test_*
+.gitignore_*
