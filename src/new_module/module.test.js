@@ -45,15 +45,32 @@ describe("Module functionality", () => {
       "Monday",
       "Tuesday",
       "Wednesday",
-      "Thrusday",
+      "Thursday",
       "Friday",
       "Saturday",
       "Sunday"
     ];
 
     const moduleInstance = new CalendarModule();
-    const retrievedWeedayNames = moduleInstance.getWeekDayNames();
+    const retrievedWeekdayNames = moduleInstance.getWeekDayNames();
 
-    expect(weekdayNames).toEqual(retrievedWeedayNames);
+    expect(weekdayNames).toEqual(retrievedWeekdayNames);
+  });
+
+  it("Returns order weekday names", () => {
+    const weekdayNames = [
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+      "Monday"
+    ];
+
+    const moduleInstance = new CalendarModule();
+    const retrievedWeekdayNames = moduleInstance.getWeekDayNames(2);
+
+    expect(weekdayNames).toEqual(retrievedWeekdayNames);
   });
 });

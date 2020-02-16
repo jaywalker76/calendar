@@ -37,7 +37,7 @@ class CalendarModule {
       "Monday",
       "Tuesday",
       "Wednesday",
-      "Thrusday",
+      "Thursday",
       "Friday",
       "Saturday",
       "Sunday"
