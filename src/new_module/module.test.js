@@ -23,4 +23,12 @@ describe("Module functionality", () => {
     const moduleInstance = new CalendarModule();
     expect(moduleInstance.dateString).toBe(`${monthName}, ${yearString}`);
   });
+
+  it("Returns weekday numbers", () => {
+    const weekDayNumbers = [0, 1, 2, 3, 4, 5, 6];
+    const moduleInstance = new CalendarModule();
+    const retrievedWeekDays = moduleInstance.getWeekDayNumbers();
+
+    expect(weekDayNumbers).toEqual(retrievedWeekDays);
+  });
 });
