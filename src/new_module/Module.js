@@ -22,6 +22,18 @@ class CalendarModule {
   getWeekDayNumbers() {
     return [0, 1, 2, 3, 4, 5, 6];
   }
+
+  getWeekDayNames() {
+    return [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thrusday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ];
+  }
 }
 
 export default CalendarModule;
