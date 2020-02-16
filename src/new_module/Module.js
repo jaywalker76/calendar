@@ -19,8 +19,17 @@ class CalendarModule {
     return `${monthName}, ${yearString}`;
   }
 
-  getWeekDayNumbers() {
-    return [0, 1, 2, 3, 4, 5, 6];
+  getWeekDayNumbers(startIndex) {
+    let dayNumbersArray = [0, 1, 2, 3, 4, 5, 6];
+
+    if (startIndex !== undefined) {
+      for (let i = 0; i < startIndex; i++) {
+        let temp = dayNumbersArray.shift();
+        dayNumbersArray.push(temp);
+      }
+    }
+
+    return dayNumbersArray;
   }
 
   getWeekDayNames() {
