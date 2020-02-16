@@ -1,6 +1,10 @@
 class CalendarModule {
   constructor(date) {
-    this.date = date;
+    if (date !== undefined) {
+      this.date = date;
+    } else {
+      this.date = new Date();
+    }
   }
   // Getter
   get dateString() {
