@@ -32,6 +32,14 @@ describe("Module functionality", () => {
     expect(weekDayNumbers).toEqual(retrievedWeekDays);
   });
 
+  it("Returns ordered weekday numbers", () => {
+    const weekDayNumbers = [2, 3, 4, 5, 6, 0, 1];
+    const moduleInstance = new CalendarModule();
+    const retrievedWeekDays = moduleInstance.getWeekDayNumbers(2);
+
+    expect(weekDayNumbers).toEqual(retrievedWeekDays);
+  });
+
   it("Returns weekday names", () => {
     const weekdayNames = [
       "Monday",
