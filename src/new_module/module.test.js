@@ -57,7 +57,7 @@ describe("Module functionality", () => {
     expect(weekdayNames).toEqual(retrievedWeekdayNames);
   });
 
-  it("Returns order weekday names", () => {
+  it("Returns reordered weekday names", () => {
     const weekdayNames = [
       "Tuesday",
       "Wednesday",
@@ -69,7 +69,7 @@ describe("Module functionality", () => {
     ];
 
     const moduleInstance = new CalendarModule();
-    const retrievedWeekdayNames = moduleInstance.getWeekDayNames(2);
+    const retrievedWeekdayNames = moduleInstance.getWeekDayNames(1);
 
     expect(weekdayNames).toEqual(retrievedWeekdayNames);
   });

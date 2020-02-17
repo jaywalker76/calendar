@@ -1,4 +1,4 @@
-class CalendarModule {
+module.exports = class CalendarModule {
   constructor(date) {
     if (date !== undefined) {
       this.date = date;
@@ -23,26 +23,39 @@ class CalendarModule {
     let dayNumbersArray = [0, 1, 2, 3, 4, 5, 6];
 
     if (startIndex !== undefined) {
-      for (let i = 0; i < startIndex; i++) {
-        let temp = dayNumbersArray.shift();
-        dayNumbersArray.push(temp);
-      }
+      let remainingDays = dayNumbersArray.splice(startIndex);
+      let orderedDays = remainingDays.concat(dayNumbersArray);
+
+      dayNumbersArray = orderedDays;
     }
 
     return dayNumbersArray;
   }
 
-  getWeekDayNames() {
-    return [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday"
-    ];
-  }
-}
+  getLocalizedDayNames(locale) {
+    let lcl = locale !== undefined ? locale : "en-US";
 
-export default CalendarModule;
+    let baseDate = new Date(Date.UTC(2020, 0, 6)); //monday
+    let weekdays = [];
+    for (let i = 0; i < 7; i++) {
+      weekdays.push(baseDate.toLocaleDateString(lcl, { weekday: "long" }));
+      baseDate.setDate(baseDate.getDate() + 1);
+    }
+
+    return weekdays;
+  }
+
+  getWeekDayNames(weekdayStartIndex) {
+    let weekdayNames = [];
+    let localizedWeekdayNames = this.getLocalizedDayNames();
+    let weekDayNumbers = this.getWeekDayNumbers(weekdayStartIndex);
+
+    for (let i = 0; i < localizedWeekdayNames.length; i++) {
+      weekdayNames.push(localizedWeekdayNames[weekDayNumbers[i]]);
+    }
+
+    return weekdayNames;
+  }
+};
+
+//export default CalendarModule;
