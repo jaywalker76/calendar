@@ -10,6 +10,8 @@ import {
   sundayStart
 } from "./week_defs";
 
+import { monthTest } from "./day_months";
+
 describe("Module functionality", () => {
   test.each`
     testName                                   | dateValue       | expectedResult
@@ -103,4 +105,11 @@ describe("Module functionality", () => {
       );
     }
   );
+
+  it("Returns day cells for a given month", () => {
+    const moduleInstance = new CalendarModule();
+    const retrievedMonthDays = moduleInstance.getDaysInMonth();
+
+    expect(monthTest).toEqual(retrievedMonthDays);
+  });
 });
