@@ -33,7 +33,11 @@ const monthTest = [
   },
   {
     day: 9,
-    month: 10
+    month: 1
+  },
+  {
+    day: 10,
+    month: 1
   },
   {
     day: 11,

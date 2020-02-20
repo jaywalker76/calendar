@@ -56,6 +56,18 @@ module.exports = class CalendarModule {
 
     return weekdayNames;
   }
+
+  getDaysInMonth() {
+    // testing for January
+    const daysInMonth = 31;
+    let daysObj = [];
+
+    for (let i = 1; i <= daysInMonth; i++) {
+      daysObj.push({ day: i, month: 1 });
+    }
+
+    return daysObj;
+  }
 };
 
 //export default CalendarModule;
