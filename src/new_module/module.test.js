@@ -112,4 +112,10 @@ describe("Module functionality", () => {
 
     expect(monthTest).toEqual(retrievedMonthDays);
   });
+
+  it("Returns number of days for a given month", () => {
+    const moduleInstance = new CalendarModule("10/01/2019");
+    const retrievedMonthDays = moduleInstance.getTotalDaysInMonth();
+    expect(retrievedMonthDays).toEqual(31);
+  });
 });
