@@ -1,7 +1,7 @@
 module.exports = class CalendarModule {
   constructor(date) {
     if (date !== undefined) {
-      this.date = date;
+      this.date = new Date(date);
     } else {
       this.date = new Date();
     }
@@ -55,6 +55,10 @@ module.exports = class CalendarModule {
     }
 
     return weekdayNames;
+  }
+
+  getTotalDaysInMonth() {
+    return new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
   }
 
   getDaysInMonth() {
