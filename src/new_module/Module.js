@@ -1,7 +1,7 @@
 module.exports = class CalendarModule {
   constructor(date) {
     if (date !== undefined) {
-      this.date = new Date(date);
+      this.date = date;
     } else {
       this.date = new Date();
     }
@@ -66,9 +66,12 @@ module.exports = class CalendarModule {
     const daysInMonth = 31;
     let daysObj = [];
 
-    for (let i = 1; i <= daysInMonth; i++) {
-      daysObj.push({ day: i, month: 1 });
+    for (let i = 0; i < daysInMonth; i++) {
+      daysObj.push({ day: i + 1, month: 1 });
     }
+
+    console.log("input date value: " + this.date);
+    console.log("length of array " + Object.keys(daysObj).length);
 
     return daysObj;
   }
