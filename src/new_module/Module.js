@@ -1,11 +1,10 @@
 module.exports = class CalendarModule {
   /**
    * 
-   * @param date - string in format MM/DD/YYYY
-   * 
+   * @param {string} date - string in format MM/DD/YYYY
+   * accept string in a given format and convert it to date
    */
-  
-  // accept string in a given format and convert it to date
+
   constructor(date) {
     this.date = date === undefined ? new Date() : new Date(date);
   }

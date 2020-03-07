@@ -36,7 +36,7 @@ describe("Module functionality", () => {
     expect(moduleInstance.dateString).toBe(`${monthName}, ${yearString}`);
   });
 
-  it("Returns weekday numbers", () => {
+  it("Returns ordered weekday numbers, given no specific starting day", () => {
     const weekDayNumbers = [0, 1, 2, 3, 4, 5, 6];
     const moduleInstance = new CalendarModule();
     const retrievedWeekDays = moduleInstance.getWeekDayNumbers();
@@ -44,7 +44,7 @@ describe("Module functionality", () => {
     expect(weekDayNumbers).toEqual(retrievedWeekDays);
   });
 
-  it("Returns ordered weekday numbers", () => {
+  it("Returns ordered weekday numbers, given a specific start day", () => {
     const weekDayNumbers = [2, 3, 4, 5, 6, 0, 1];
     const moduleInstance = new CalendarModule();
     const retrievedWeekDays = moduleInstance.getWeekDayNumbers(2);
