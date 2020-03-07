@@ -46,8 +46,8 @@ describe("Module functionality", () => {
 
   it("Returns ordered weekday numbers, given a specific start day", () => {
     const weekDayNumbers = [2, 3, 4, 5, 6, 0, 1];
-    const moduleInstance = new CalendarModule();
-    const retrievedWeekDays = moduleInstance.getWeekDayNumbers(2);
+    const moduleInstance = new CalendarModule(null, 2);
+    const retrievedWeekDays = moduleInstance.getWeekDayNumbers();
 
     expect(weekDayNumbers).toEqual(retrievedWeekDays);
   });
@@ -80,8 +80,8 @@ describe("Module functionality", () => {
       "Monday"
     ];
 
-    const moduleInstance = new CalendarModule();
-    const retrievedWeekdayNames = moduleInstance.getWeekDayNames(1);
+    const moduleInstance = new CalendarModule(null, 1);
+    const retrievedWeekdayNames = moduleInstance.getWeekDayNames();
 
     expect(weekdayNames).toEqual(retrievedWeekdayNames);
   });
@@ -98,9 +98,9 @@ describe("Module functionality", () => {
   `(
     "$testName: correctly converts $startDay to $expectedResult",
     ({ startDay, expectedResult }) => {
-      const moduleInstance = new CalendarModule();
+      const moduleInstance = new CalendarModule(null, startDay);
 
-      expect(moduleInstance.getWeekDayNames(startDay)).toStrictEqual(
+      expect(moduleInstance.getWeekDayNames()).toStrictEqual(
         expectedResult
       );
     }

@@ -2,11 +2,13 @@ module.exports = class CalendarModule {
   /**
    * 
    * @param {string} date - string in format MM/DD/YYYY
+   * @param {number} weekStartDay - number indicating starting day of week
    * accept string in a given format and convert it to date
    */
 
-  constructor(date) {
+  constructor(date, weekStartDay) {
     this.date = date === undefined ? new Date() : new Date(date);
+    this.weekStartDay = weekStartDay === undefined ? 0 : weekStartDay;
   }
 
   // Getter
@@ -25,15 +27,14 @@ module.exports = class CalendarModule {
     return `${monthName}, ${yearString}`;
   }
 
-  getWeekDayNumbers(startIndex) {
+  getWeekDayNumbers() {
     let dayNumbersArray = [0, 1, 2, 3, 4, 5, 6];
-
-    if (startIndex !== undefined) {
-      let remainingDays = dayNumbersArray.splice(startIndex);
+    
+      let remainingDays = dayNumbersArray.splice(this.weekStartDay);
       let orderedDays = remainingDays.concat(dayNumbersArray);
 
       dayNumbersArray = orderedDays;
-    }
+    
 
     return dayNumbersArray;
   }
