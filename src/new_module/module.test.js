@@ -117,6 +117,6 @@ describe("Module functionality", () => {
     const moduleInstance = new CalendarModule("10/01/2019");
     const retrievedMonthDays = moduleInstance.getTotalDaysInMonth();
 
-    expect(Object.keys(retrievedMonthDays).length).toEqual(31);
+    expect(retrievedMonthDays).toEqual(31);
   });
 });

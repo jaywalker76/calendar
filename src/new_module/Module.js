@@ -1,18 +1,25 @@
 module.exports = class CalendarModule {
+  /**
+   * 
+   * @param date - string in format MM/DD/YYYY
+   * 
+   */
+  
+  // accept string in a given format and convert it to date
   constructor(date) {
-    if (date !== undefined) {
-      this.date = date;
-    } else {
-      this.date = new Date();
-    }
+    this.date = date === undefined ? new Date() : new Date(date);
   }
+
   // Getter
   get dateString() {
     return this.generateDateString();
   }
+  /**
+   * Move new Date Object instantiation to Constructor
+   */
   // Method
   generateDateString() {
-    const dateObj = new Date(this.date);
+    const dateObj = this.date;
     const monthName = dateObj.toLocaleString("default", { month: "long" });
     const yearString = dateObj.getFullYear();
 
@@ -58,7 +65,7 @@ module.exports = class CalendarModule {
   }
 
   getTotalDaysInMonth() {
-    return new Date(this.date.getFullYear(), this.date.getMonth(), 0).getDate();
+    return new Date(this.date.getFullYear(), this.date.getMonth()+1, 0).getDate();
   }
 
   getDaysInMonth() {
@@ -69,12 +76,6 @@ module.exports = class CalendarModule {
     for (let i = 0; i < daysInMonth; i++) {
       daysObj.push({ day: i + 1, month: 1 });
     }
-
-    console.log("input date value: " + this.date);
-    console.log("length of array " + Object.keys(daysObj).length);
-
     return daysObj;
   }
 };
-
-//export default CalendarModule;
