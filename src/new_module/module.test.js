@@ -2,11 +2,7 @@ import CalendarModule from "./Module";
 
 import {
   mondayStart,
-  tuesdayStart,
-  wednesdayStart,
-  thursdayStart,
   fridayStart,
-  saturdayStart,
   sundayStart
 } from "./week_defs";
 
@@ -89,11 +85,7 @@ describe("Module functionality", () => {
   test.each`
     testName                      | startDay | expectedResult
     ${"week starts on monday"}    | ${0}     | ${mondayStart}
-    ${"week starts on tuesday"}   | ${1}     | ${tuesdayStart}
-    ${"week starts on wednesday"} | ${2}     | ${wednesdayStart}
-    ${"week starts on thursday"}  | ${3}     | ${thursdayStart}
     ${"week starts on friday"}    | ${4}     | ${fridayStart}
-    ${"week starts on saturday"}  | ${5}     | ${saturdayStart}
     ${"week starts on sunday"}    | ${6}     | ${sundayStart}
   `(
     "$testName: correctly converts $startDay to $expectedResult",
