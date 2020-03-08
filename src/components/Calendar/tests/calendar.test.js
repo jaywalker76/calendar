@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, { mount } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 
-import { getMonthYearString } from "../utils";
+import CalendarModule from "../../../new_module/Module";
 
 import Calendar from "../Calendar";
 
@@ -43,8 +43,8 @@ describe("Calendar structure", () => {
     const calendarComponent = wrapper.find(
       "[data-test='calendar-header-date']"
     );
-
-    expect(calendarComponent.text()).toEqual(getMonthYearString(new Date()));
+    const calendarModule = new CalendarModule();
+    expect(calendarComponent.text()).toEqual(calendarModule.dateString);
   });
 
   it("correctly displays configured date", () => {

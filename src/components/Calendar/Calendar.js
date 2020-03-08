@@ -7,7 +7,9 @@ import { generateDaysColumn, cellGenerator } from "./calendar_functions";
 
 import styling from "./style";
 
-import { getMonthYearString, updateDateValue } from "./utils";
+import { updateDateValue } from "./utils";
+
+import CalendarModule from "../../new_module/Module";
 
 /**
  * Props
@@ -40,10 +42,13 @@ const Calendar = props => {
 
   const [date, setDate] = useState(workingDate);
 
+  const calendarModule = new CalendarModule(startDate)
+
   const resolveDate = direction => {
     setDate(updateDateValue(direction, date));
   };
 
+  debugger;
   return (
     <div style={styling.outerWrapper}>
       <div style={styling.calendarWrapper} data-test="calendar-component">
@@ -51,7 +56,7 @@ const Calendar = props => {
           <CalendarHeader
             data-test="calendar-header"
             displayNavArrows={displayNavArrows}
-            dateToDisplay={getMonthYearString(date)}
+            dateToDisplay={calendarModule.dateString}
             onClick={resolveDate}
           />
         )}
