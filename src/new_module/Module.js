@@ -19,7 +19,9 @@ module.exports = class CalendarModule {
    * It makes sense for the Module to return the date object, so that it can be available to other 
    * cases which will need it
    */
-  
+  get instantiatedDate(){
+    return this.date;
+  }
   /**
    * Move new Date Object instantiation to Constructor
    */
