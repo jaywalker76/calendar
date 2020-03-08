@@ -1,127 +1,127 @@
 const monthTest = [
   {
     day: 1,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 2,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 3,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 4,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 5,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 6,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 7,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 8,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 9,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 10,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 11,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 12,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 13,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 14,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 15,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 16,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 17,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 18,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 19,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 20,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 21,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 22,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 23,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 24,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 25,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 26,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 27,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 28,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 29,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 30,
-    month: 1
+    isCurrentMonth: true
   },
   {
     day: 31,
-    month: 1
+    isCurrentMonth: true
   }
 ];
 
