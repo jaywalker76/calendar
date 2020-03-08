@@ -48,7 +48,6 @@ const Calendar = props => {
     setDate(updateDateValue(direction, date));
   };
 
-  debugger;
   return (
     <div style={styling.outerWrapper}>
       <div style={styling.calendarWrapper} data-test="calendar-component">

@@ -111,4 +111,11 @@ describe("Module functionality", () => {
 
     expect(retrievedMonthDays).toEqual(31);
   });
+
+  it("Returns the Date object created on Module instantiation", () => {
+    const moduleInstance = new CalendarModule();
+    const retrievedDateObject = moduleInstance.instantiatedDate();
+
+    expect(retrievedDateObject).toEqual(new Date());
+  })
 });

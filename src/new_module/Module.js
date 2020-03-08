@@ -16,6 +16,11 @@ module.exports = class CalendarModule {
     return this.generateDateString();
   }
   /**
+   * It makes sense for the Module to return the date object, so that it can be available to other 
+   * cases which will need it
+   */
+  
+  /**
    * Move new Date Object instantiation to Constructor
    */
   // Method
