@@ -114,8 +114,9 @@ describe("Module functionality", () => {
 
   it("Returns the Date object created on Module instantiation", () => {
     const moduleInstance = new CalendarModule();
-    const retrievedDateObject = moduleInstance.instantiatedDate;
+    const retrievedDateObject = (moduleInstance.instantiatedDate).toISOString().slice(0,16);
+    const nowDate = (new Date()).toISOString().slice(0,16);
 
-    expect(retrievedDateObject).toEqual(new Date());
+    expect(retrievedDateObject).toEqual(nowDate);
   })
 });

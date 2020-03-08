@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
-// import injectSheet from "react-jss";
-
 import { generateDaysColumn, cellGenerator } from "./calendar_functions";
 
 import styling from "./style";
@@ -38,12 +36,10 @@ const Calendar = props => {
     displayNavArrows
   } = props;
 
-  const workingDate = startDate !== undefined ? startDate : new Date();
+  const calendarModule = new CalendarModule(startDate);
 
-  const [date, setDate] = useState(workingDate);
-
-  const calendarModule = new CalendarModule(startDate)
-
+  const [date, setDate] = useState(calendarModule.instantiatedDate);  
+  // how to handle date change? 
   const resolveDate = direction => {
     setDate(updateDateValue(direction, date));
   };
@@ -67,7 +63,5 @@ const Calendar = props => {
     </div>
   );
 };
-
-// const StyledCalendar = injectSheet(styles)(Calendar);
 
 export default Calendar;

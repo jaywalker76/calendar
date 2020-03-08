@@ -89,6 +89,7 @@ const getWeekDifferential = (lastWeek, firstWeek) => {
 };
 
 const updateDateValue = (direction, date) => {
+  debugger;
   let newDate;
   if (direction === "left") {
     newDate = new Date(date.setMonth(date.getMonth() - 1));
