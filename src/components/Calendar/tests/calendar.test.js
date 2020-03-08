@@ -58,7 +58,7 @@ describe("Calendar structure", () => {
       "[data-test='calendar-header-date']"
     );
 
-    expect(calendarHeaderComp.text()).toEqual("November 2011");
+    expect(calendarHeaderComp.text()).toEqual("November, 2011");
   });
   // moved test to this location in order for days to be
   // correctly counted, rather than having the test fail
