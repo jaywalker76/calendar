@@ -127,8 +127,8 @@ describe("Module functionality", () => {
     // decrease month rep
   it("Returns an array representing a week, containing 7 cells representing the days of the week", () => {
     const moduleInstance = new CalendarModule();
-    const retrievedWeekObject = (moduleInstance.getWeekObject);
+    const retrievedWeekObject = (moduleInstance.getWeekObject());
 
-    expect(retrievedWeekObject.length()).toEqual(7);
+    expect(retrievedWeekObject.length).toEqual(7);
   })
 });
