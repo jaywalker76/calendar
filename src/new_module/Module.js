@@ -92,18 +92,25 @@ module.exports = class CalendarModule {
     return weekRepresentation;
   }
 
-  getWeekNumber(){
-    let date = this.date;
+  getWeekNumber(dateParam){
+    const date = dateParam || this.date;
     date.setHours(0,0,0,0);
     date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
-    let week1 = new Date(this.date.getFullYear(), 0, 4);
+    const week1 = new Date(this.date.getFullYear(), 0, 4);
     
     return  1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
 }
   
 
   getWeeksInMonth(){
-    return 5;
+   const firstDay = new Date(this.date.getFullYear(), this.date.getMonth(), 1);
+   const lastDay = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0);
+
+   const startWeekNumber = this.getWeekNumber(firstDay)
+   const endWeekNumber = this.getWeekNumber(lastDay)
+
+
+    return endWeekNumber - (startWeekNumber === 1 ? 0 : startWeekNumber);
   }
   
 
