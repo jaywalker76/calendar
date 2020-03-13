@@ -95,5 +95,6 @@ module.exports = class CalendarModule {
   getWeeksInMonth(){
     return 5;
   }
+  
 
 };

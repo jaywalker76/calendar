@@ -142,10 +142,17 @@ describe("Module functionality", () => {
   })
 
   it("Returns the number of weeks in a given month", ()=>{
-    const moduleInstance = new CalendarModule("10/01/2020");
+    const moduleInstance = new CalendarModule("01/01/2020");
     const numberOfWeeksInMonth = (moduleInstance.getWeeksInMonth());
 
     expect(numberOfWeeksInMonth).toEqual(5)
+  })
+
+  it("Returns the week number for a given week", ()=>{
+    const moduleInstance = new CalendarModule("01/01/2020");
+    const dateWeekNumber = (moduleInstance.getWeekNumber());
+
+    expect(dateWeekNumber).toEqual(1)
   })
 
 });
