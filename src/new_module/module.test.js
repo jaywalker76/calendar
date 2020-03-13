@@ -118,5 +118,17 @@ describe("Module functionality", () => {
     const nowDate = (new Date()).toISOString().slice(0,16);
 
     expect(retrievedDateObject).toEqual(nowDate);
+  });
+
+    // ToDo:
+    // get week generator
+    // get month generator
+    // increase month rep
+    // decrease month rep
+  it("Returns an array representing a week, containing 7 cells representing the days of the week", () => {
+    const moduleInstance = new CalendarModule();
+    const retrievedWeekObject = (moduleInstance.getWeekObject);
+
+    expect(retrievedWeekObject.length()).toEqual(7);
   })
 });
