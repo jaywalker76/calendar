@@ -132,12 +132,20 @@ describe("Module functionality", () => {
     expect(retrievedWeekObject.length).toEqual(7);
   })
 
+  // this may be a duplicated test
   it("Returns an ordered array representing a week given a starting day of week", ()=>{
     const moduleInstance = new CalendarModule(null, 3);
     const retrievedWeekObject = (moduleInstance.getWeekObject());
     let orderedWeekDays = retrievedWeekObject.map(e =>  e.weekDay)
 
     expect(orderedWeekDays).toEqual([3,4,5,6,0,1,2])
+  })
+
+  it("Returns the number of weeks in a given month", ()=>{
+    const moduleInstance = new CalendarModule("10/01/2020");
+    const numberOfWeeksInMonth = (moduleInstance.getWeeksInMonth());
+
+    expect(numberOfWeeksInMonth).toEqual(5)
   })
 
 });
