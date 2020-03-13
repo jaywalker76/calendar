@@ -86,7 +86,7 @@ module.exports = class CalendarModule {
     return daysObj;
   }
   getWeekObject(){
-    let weekRepresentation = [...Array(7).keys()].map(i => ({"weekDay":i}) );
+    let weekRepresentation = this.getWeekDayNumbers().map(i => ({"weekDay":i}) );
 
     return weekRepresentation;
   }

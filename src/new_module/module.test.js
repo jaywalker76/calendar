@@ -125,10 +125,11 @@ describe("Module functionality", () => {
     // get month generator
     // increase month rep
     // decrease month rep
-  it("Returns an array representing a week, containing 7 cells representing the days of the week", () => {
+  it("Returns an ordered array representing a week, containing 7 cells representing the days of the week", () => {
     const moduleInstance = new CalendarModule();
     const retrievedWeekObject = (moduleInstance.getWeekObject());
 
     expect(retrievedWeekObject.length).toEqual(7);
   })
+
 });
