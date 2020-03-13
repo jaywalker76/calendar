@@ -92,6 +92,10 @@ module.exports = class CalendarModule {
     return weekRepresentation;
   }
 
+  getWeekNumber(){
+    return 1;
+  }
+
   getWeeksInMonth(){
     return 5;
   }
