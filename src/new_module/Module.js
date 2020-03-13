@@ -85,10 +85,15 @@ module.exports = class CalendarModule {
     }
     return daysObj;
   }
+
   getWeekObject(){
     let weekRepresentation = this.getWeekDayNumbers().map(i => ({"weekDay":i}) );
 
     return weekRepresentation;
+  }
+
+  getWeeksInMonth(){
+    return 5;
   }
 
 };
