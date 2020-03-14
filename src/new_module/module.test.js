@@ -155,4 +155,21 @@ describe("Module functionality", () => {
     expect(dateWeekNumber).toEqual(1)
   })
 
+  it("Returns a structure representing a month", ()=>{
+    const moduleInstance = new CalendarModule("01/01/2020");
+    const monthRepresentation = (moduleInstance.getMonthObject());
+
+    // for January it should have 5 weeks and 31 days
+    expect(monthRepresentation.length).toEqual(5);
+
+    let dayCount = 0;
+
+    monthRepresentation.map((currElem, index) => {
+      dayCount += currElem.length;
+     })
+
+     expect(dayCount).toEqual(31);
+    
+  })
+
 });
