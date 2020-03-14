@@ -112,6 +112,24 @@ module.exports = class CalendarModule {
 
     return endWeekNumber - (startWeekNumber === 1 ? 0 : startWeekNumber);
   }
-  
+
+  getMonthObject(){
+
+    let weeksInMonth = this.getWeeksInMonth();
+    let daysInMonth = this.getDaysInMonth();
+    
+    let monthRepresentation = [];
+
+    while (weeksInMonth--) {
+      let weekRepresentation = [];
+      let daysInWeek = 7;
+      while(daysInWeek-- && daysInMonth.length > 0){
+        weekRepresentation.push(daysInMonth.shift())
+      }
+      monthRepresentation.push(weekRepresentation);
+    }
+    return monthRepresentation
+
+  }  
 
 };

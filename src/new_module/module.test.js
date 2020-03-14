@@ -161,13 +161,12 @@ describe("Module functionality", () => {
 
     // for January it should have 5 weeks and 31 days
     expect(monthRepresentation.length).toEqual(5);
-
+    
     let dayCount = 0;
-
     monthRepresentation.map((currElem, index) => {
       dayCount += currElem.length;
      })
-
+     
      expect(dayCount).toEqual(31);
     
   })
