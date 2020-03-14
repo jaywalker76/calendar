@@ -2,3 +2,5 @@ node_modules
 module.test_*
 .gitignore_*
 .history
+.vscode
+report.*
