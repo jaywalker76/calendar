@@ -171,6 +171,11 @@ describe("Module functionality", () => {
     
   })
 
+    /**
+     * purpose of this test is to ensure that the days in the calendar object
+     * are aligned with the correct week day, i.e. Jan 1st 2020, falls on a wednesday (3) 
+     * */ 
+
   it("Correctly places month days in correct calendar slot", () => {
     const moduleInstance = new CalendarModule("01/01/2020");
     const monthRepresentation = (moduleInstance.getMonthObject());
