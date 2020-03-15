@@ -171,4 +171,19 @@ describe("Module functionality", () => {
     
   })
 
+  it("Correctly places month days in correct calendar slot", () => {
+    const moduleInstance = new CalendarModule("01/01/2020");
+    const monthRepresentation = (moduleInstance.getMonthObject());
+
+    const firstDayInMonth = monthRepresentation[0][0].day;
+
+    expect(firstDayInMonth.dayOfWeek).toEqual(3);
+
+    const lastMonthWeek = monthRepresentation[monthRepresentation.length-1];
+    const lastDayInMonth = lastMonthWeek[lastMonthWeek.length-1].day;
+
+    expect(lastDayInMonth.dayOfWeek).toEqual(6);
+  })
+
+
 });
