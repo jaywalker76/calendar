@@ -91,15 +91,17 @@ describe("Module functionality", () => {
       expect(moduleInstance.getWeekDayNames()).toStrictEqual(expectedResult);
     }
   );
+});
 
-  it("Returns day cells for a given month", () => {
+describe("Calendar implementation", () => {
+  it("Returns calendar object for current month when no date param is specified", () => {
     const moduleInstance = new CalendarModule();
     const retrievedMonthDays = moduleInstance.getDaysInMonth();
 
     expect(monthTest).toEqual(retrievedMonthDays);
   });
 
-  it("Returns number of days for a given month", () => {
+  it("Returns calendar object for month with a given date parameter", () => {
     const moduleInstance = new CalendarModule("10/01/2019");
     const retrievedMonthDays = moduleInstance.getTotalDaysInMonth();
 
