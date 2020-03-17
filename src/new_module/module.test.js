@@ -117,8 +117,24 @@ describe("Calendar implementation", () => {
     }
   );
 
+  test.each`
+    monthName          | monthDateParameter | daysInMonth
+    ${"January 2020"}  | ${"01/01/2020"}    | ${31}
+    ${"February 2020"} | ${"02/01/2020"}    | ${29}
+    ${"February 2019"} | ${"02/01/2019"}    | ${28}
+    ${"April 2020"}    | ${"04/01/2020"}    | ${30}
+  `(
+    "Returns an object for $monthName $daysInMonth days",
+    ({ monthDateParameter, daysInMonth }) => {
+      const moduleInstance = new CalendarModule(monthDateParameter);
+      const retrievedMonthDays = moduleInstance.getDaysInMonth();
+
+      expect(retrievedMonthDays).toEqual(daysInMonth);
+    }
+  );
+
   it("Returns calendar object for month with a given date parameter", () => {
-    const moduleInstance = new CalendarModule("10/01/2019");
+    const moduleInstance = new CalendarModule("01/01/2019");
     const retrievedMonthDays = moduleInstance.getTotalDaysInMonth();
 
     expect(retrievedMonthDays).toEqual(31);
