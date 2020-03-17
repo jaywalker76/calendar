@@ -8,3 +8,7 @@
 3 - Create test table for other months
 These tests are calling this function: getTotalDaysInMonth which returns a simple number, regarding the number of days in the month. The getDaysInMonth function will be responsible for returning the day objects. CUrrently, this function is hardcoded for Jan2020. It should hook into the getTotalDaysInMonth, to get the number of days, for which it will need to generate day cells
 **The tests in line 96 and 104 could be merged as both functions are somewhat related, but it seems harmful to have the dayCount function be calculated implicitly rather than explicitly.**
+ff28c5e
+This commit includes the creation of a test battery for retrieval of month objects for a given set of months. It will fail initially. It should be resolved by switching the invoked function, as stated in the previous point.
+Actually, I forgot that the test should be compared to an object, as this is whats being expected
+Left wondering if there's a better way to generate the testing objects.
