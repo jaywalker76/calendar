@@ -1,10 +1,6 @@
 import CalendarModule from "./Module";
 
-import {
-  mondayStart,
-  fridayStart,
-  sundayStart
-} from "./week_defs";
+import { mondayStart, fridayStart, sundayStart } from "./week_defs";
 
 import { monthTest } from "./day_months";
 
@@ -83,18 +79,16 @@ describe("Module functionality", () => {
   });
 
   test.each`
-    testName                      | startDay | expectedResult
-    ${"week starts on monday"}    | ${0}     | ${mondayStart}
-    ${"week starts on friday"}    | ${4}     | ${fridayStart}
-    ${"week starts on sunday"}    | ${6}     | ${sundayStart}
+    testName                   | startDay | expectedResult
+    ${"week starts on monday"} | ${0}     | ${mondayStart}
+    ${"week starts on friday"} | ${4}     | ${fridayStart}
+    ${"week starts on sunday"} | ${6}     | ${sundayStart}
   `(
     "$testName: correctly converts $startDay to $expectedResult",
     ({ startDay, expectedResult }) => {
       const moduleInstance = new CalendarModule(null, startDay);
 
-      expect(moduleInstance.getWeekDayNames()).toStrictEqual(
-        expectedResult
-      );
+      expect(moduleInstance.getWeekDayNames()).toStrictEqual(expectedResult);
     }
   );
 
@@ -114,9 +108,11 @@ describe("Module functionality", () => {
 
   it("Returns the Date object created on Module instantiation", () => {
     const moduleInstance = new CalendarModule();
-    const retrievedDateObject = (moduleInstance.instantiatedDate).toISOString().slice(0,16);
-    const nowDate = (new Date()).toISOString().slice(0,16);
+    const retrievedDateObject = moduleInstance.instantiatedDate
+      .toISOString()
+      .slice(0, 16);
+    const nowDate = new Date().toISOString().slice(0, 16);
 
     expect(retrievedDateObject).toEqual(nowDate);
-  })
+  });
 });
