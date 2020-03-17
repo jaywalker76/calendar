@@ -1,6 +1,6 @@
 module.exports = class CalendarModule {
   /**
-   * 
+   *
    * @param {string} date - string in format MM/DD/YYYY
    * @param {number} weekStartDay - number indicating starting day of week
    * accept string in a given format and convert it to date
@@ -16,10 +16,10 @@ module.exports = class CalendarModule {
     return this.generateDateString();
   }
   /**
-   * It makes sense for the Module to return the date object, so that it can be available to other 
+   * It makes sense for the Module to return the date object, so that it can be available to other
    * cases which will need it
    */
-  get instantiatedDate(){
+  get instantiatedDate() {
     return this.date;
   }
   /**
@@ -36,12 +36,11 @@ module.exports = class CalendarModule {
 
   getWeekDayNumbers() {
     let dayNumbersArray = [0, 1, 2, 3, 4, 5, 6];
-    
-      let remainingDays = dayNumbersArray.splice(this.weekStartDay);
-      let orderedDays = remainingDays.concat(dayNumbersArray);
 
-      dayNumbersArray = orderedDays;
-    
+    let remainingDays = dayNumbersArray.splice(this.weekStartDay);
+    let orderedDays = remainingDays.concat(dayNumbersArray);
+
+    dayNumbersArray = orderedDays;
 
     return dayNumbersArray;
   }
@@ -72,12 +71,16 @@ module.exports = class CalendarModule {
   }
 
   getTotalDaysInMonth() {
-    return new Date(this.date.getFullYear(), this.date.getMonth()+1, 0).getDate();
+    return new Date(
+      this.date.getFullYear(),
+      this.date.getMonth() + 1,
+      0
+    ).getDate();
   }
 
   getDaysInMonth() {
     // testing for January
-    const daysInMonth = 31;
+    const daysInMonth = this.getTotalDaysInMonth();
     let daysObj = [];
 
     for (let i = 0; i < daysInMonth; i++) {
