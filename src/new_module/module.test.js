@@ -2,7 +2,7 @@ import CalendarModule from "./Module";
 
 import { mondayStart, fridayStart, sundayStart } from "./week_defs";
 
-import { monthTest } from "./day_months";
+import { Jan2020, February2019, February2020, April2020 } from "./day_months";
 
 describe("Module functionality", () => {
   test.each`
@@ -98,7 +98,7 @@ describe("Calendar implementation", () => {
     const moduleInstance = new CalendarModule();
     const retrievedMonthDays = moduleInstance.getDaysInMonth();
 
-    expect(monthTest).toEqual(retrievedMonthDays);
+    expect(Jan2020).toEqual(retrievedMonthDays);
   });
 
   test.each`
@@ -118,18 +118,18 @@ describe("Calendar implementation", () => {
   );
 
   test.each`
-    monthName          | monthDateParameter | daysInMonth
-    ${"January 2020"}  | ${"01/01/2020"}    | ${31}
-    ${"February 2020"} | ${"02/01/2020"}    | ${29}
-    ${"February 2019"} | ${"02/01/2019"}    | ${28}
-    ${"April 2020"}    | ${"04/01/2020"}    | ${30}
+    monthName          | monthDateParameter | monthDayObject  | daysInMonth
+    ${"January 2020"}  | ${"01/01/2020"}    | ${Jan2020}      | ${31}
+    ${"February 2020"} | ${"02/01/2020"}    | ${February2020} | ${29}
+    ${"February 2019"} | ${"02/01/2019"}    | ${February2019} | ${28}
+    ${"April 2020"}    | ${"04/01/2020"}    | ${April2020}    | ${30}
   `(
-    "Returns an object for $monthName $daysInMonth days",
-    ({ monthDateParameter, daysInMonth }) => {
+    "Returns an object for $monthName having $daysInMonth days",
+    ({ monthDateParameter, monthDayObject }) => {
       const moduleInstance = new CalendarModule(monthDateParameter);
       const retrievedMonthDays = moduleInstance.getDaysInMonth();
 
-      expect(retrievedMonthDays).toEqual(daysInMonth);
+      expect(retrievedMonthDays).toEqual(monthDayObject);
     }
   );
 
