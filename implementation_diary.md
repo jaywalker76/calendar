@@ -12,3 +12,5 @@ ff28c5e
 This commit includes the creation of a test battery for retrieval of month objects for a given set of months. It will fail initially. It should be resolved by switching the invoked function, as stated in the previous point.
 Actually, I forgot that the test should be compared to an object, as this is whats being expected
 Left wondering if there's a better way to generate the testing objects.
+89dd6f6
+This commit implements a change from the hardcoded value in line 83 of Module.js, to invoking getTotalDaysInMonth
