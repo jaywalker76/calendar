@@ -152,7 +152,7 @@ describe("Calendar implementation", () => {
 });
 
 describe("Weekday properties implementation", () => {
-  it("Correctly Identifies Week Number for a given day", () => {
+  it("Correctly Identifies Week Number for first day of year", () => {
     const moduleInstance = new CalendarModule("01/01/2020");
     const specifiedWeekNumber = moduleInstance.getWeekNumber();
 
