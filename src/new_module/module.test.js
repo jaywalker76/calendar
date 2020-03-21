@@ -178,6 +178,6 @@ describe("Weekday properties implementation", () => {
     const moduleInstance = new CalendarModule();
     const specifiedWeekNumber = moduleInstance.getWeekNumber("01/23/2020");
 
-    expect(specifiedWeekNumber).toEqual(3);
+    expect(specifiedWeekNumber).toEqual(4);
   });
 });
