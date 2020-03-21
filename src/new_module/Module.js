@@ -93,7 +93,10 @@ module.exports = class CalendarModule {
   }
 
   getWeekNumber(dateParameter) {
-    let setDate = new Date(this.date.getTime());
+    let chosenDate =
+      dateParameter !== undefined ? new Date(dateParameter) : this.date;
+
+    let setDate = new Date(chosenDate.getTime());
     setDate.setHours(0, 0, 0, 0);
     // Thursday in current week decides the year.
     setDate.setDate(setDate.getDate() + 3 - ((setDate.getDay() + 6) % 7));
@@ -102,12 +105,8 @@ module.exports = class CalendarModule {
     // adjust to thursday in week1 and count nr of weeks
     let ellapsedDaysTotal = (setDate.getTime() - week1.getTime()) / 86400000;
 
-    let weekNumber =
-      dateParameter !== undefined
-        ? 4
-        : 1 +
-          Math.round((ellapsedDaysTotal - 3 + ((week1.getDay() + 6) % 7)) / 7);
-
-    return weekNumber;
+    return (
+      1 + Math.round((ellapsedDaysTotal - 3 + ((week1.getDay() + 6) % 7)) / 7)
+    );
   }
 };
