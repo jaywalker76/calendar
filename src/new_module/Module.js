@@ -83,7 +83,11 @@ module.exports = class CalendarModule {
     let daysObj = [];
 
     for (let i = 0; i < daysInMonth; i++) {
-      daysObj.push({ day: i + 1, isCurrentMonth: true, weekNumber: 1 });
+      daysObj.push({
+        day: i + 1,
+        isCurrentMonth: true,
+        weekNumber: this.getWeekNumber()
+      });
     }
     return daysObj;
   }
