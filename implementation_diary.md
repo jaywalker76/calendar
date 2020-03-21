@@ -17,5 +17,6 @@ This commit implements a change from the hardcoded value in line 83 of Module.js
 
 ## 21Mar2020
 
-- Implement days grouped into weeks in month
+- Implement week Id for current day
+  - currently getting an error for week calculation,
 - Implement Tests for Increasing and Decreasing current month
