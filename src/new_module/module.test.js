@@ -158,4 +158,11 @@ describe("Weekday properties implementation", () => {
 
     expect(specifiedWeekNumber).toEqual(1);
   });
+
+  it("Correctly Identifies Week Number for last day of year", () => {
+    const moduleInstance = new CalendarModule("12/01/2020");
+    const specifiedWeekNumber = moduleInstance.getWeekNumber();
+
+    expect(specifiedWeekNumber).toEqual(52);
+  });
 });
