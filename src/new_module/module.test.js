@@ -174,10 +174,21 @@ describe("Weekday properties implementation", () => {
     expect(firstDayInJan.weekNumber).toEqual(1);
   });
 
-  it("getWeekNumber returns week number for a given date", () => {
-    const moduleInstance = new CalendarModule();
-    const specifiedWeekNumber = moduleInstance.getWeekNumber("01/23/2020");
+  test.each`
+    monthDateParameter | weekNumber
+    ${"01/01/2020"}    | ${1}
+    ${"01/23/2020"}    | ${4}
+    ${"03/04/2020"}    | ${10}
+    ${"12/31/2020"}    | ${52}
+  `(
+    "getWeekNumber returns week ${weekNumber} for a given date: ${monthDateParameter}",
+    ({ monthDateParameter, weekNumber }) => {
+      const moduleInstance = new CalendarModule();
+      const specifiedWeekNumber = moduleInstance.getWeekNumber(
+        monthDateParameter
+      );
 
-    expect(specifiedWeekNumber).toEqual(4);
-  });
+      expect(specifiedWeekNumber).toEqual(weekNumber);
+    }
+  );
 });
