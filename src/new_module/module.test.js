@@ -165,4 +165,12 @@ describe("Weekday properties implementation", () => {
 
     expect(specifiedWeekNumber).toEqual(52);
   });
+
+  it("Days in week contain week number information", () => {
+    const moduleInstance = new CalendarModule("01/01/2020");
+    // get first day in first week of January
+    const firstDayInJan = moduleInstance.getDaysInMonth().slice(0, 6)[0];
+
+    expect(firstDayInJan.weekNumber).toEqual(1);
+  });
 });
