@@ -79,7 +79,6 @@ module.exports = class CalendarModule {
   }
 
   getDaysInMonth() {
-    // testing for January
     const daysInMonth = this.getTotalDaysInMonth();
     let daysObj = [];
 
