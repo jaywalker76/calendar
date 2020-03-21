@@ -139,14 +139,23 @@ describe("Calendar implementation", () => {
 
     expect(retrievedMonthDays).toEqual(31);
   });
-
+  // ensuring that the date being used to generate calendar objects
+  // matches to current time when it not specifically defined
   it("Returns the Date object created on Module instantiation", () => {
     const moduleInstance = new CalendarModule();
     const retrievedDateObject = moduleInstance.instantiatedDate
       .toISOString()
       .slice(0, 16);
     const nowDate = new Date().toISOString().slice(0, 16);
-
     expect(retrievedDateObject).toEqual(nowDate);
+  });
+});
+
+describe("Weekday properties implementation", () => {
+  it("Correctly Identifies Week Number for a given day", () => {
+    const moduleInstance = new CalendarModule("01/01/2020");
+    const specifiedWeekNumber = moduleInstance.getWeekNumber();
+
+    expect(specifiedWeekNumber).toEqual(1);
   });
 });

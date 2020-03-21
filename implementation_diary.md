@@ -14,3 +14,8 @@ Actually, I forgot that the test should be compared to an object, as this is wha
 Left wondering if there's a better way to generate the testing objects.
 89dd6f6
 This commit implements a change from the hardcoded value in line 83 of Module.js, to invoking getTotalDaysInMonth
+
+## 21Mar2020
+
+- Implement days grouped into weeks in month
+- Implement Tests for Increasing and Decreasing current month
