@@ -418,123 +418,153 @@ const February2019 = [
 const April2020 = [
   {
     day: 1,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 14
   },
   {
     day: 2,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 14
   },
   {
     day: 3,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 14
   },
   {
     day: 4,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 14
   },
   {
     day: 5,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 14
   },
   {
     day: 6,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 15
   },
   {
     day: 7,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 15
   },
   {
     day: 8,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 15
   },
   {
     day: 9,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 15
   },
   {
     day: 10,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 15
   },
   {
     day: 11,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 15
   },
   {
     day: 12,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 15
   },
   {
     day: 13,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 16
   },
   {
     day: 14,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 16
   },
   {
     day: 15,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 16
   },
   {
     day: 16,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 16
   },
   {
     day: 17,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 16
   },
   {
     day: 18,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 16
   },
   {
     day: 19,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 16
   },
   {
     day: 20,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 16
   },
   {
     day: 21,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 17
   },
   {
     day: 22,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 17
   },
   {
     day: 23,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 17
   },
   {
     day: 24,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 17
   },
   {
     day: 25,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 17
   },
   {
     day: 26,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 17
   },
   {
     day: 27,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 17
   },
   {
     day: 28,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 17
   },
   {
     day: 29,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 18
   },
   {
     day: 30,
-    isCurrentMonth: true
+    isCurrentMonth: true,
+    weekNumber: 18
   }
 ];
 
