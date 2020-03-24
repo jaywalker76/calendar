@@ -1,22 +1,12 @@
-// March starts on a sunday, has no days from previous month
-const March2020 = [
-    {},
-    {},
-    {},
-    {},
-    {},
-    {}
-]
 // Feb 28 days, starting on a Sunday
-const February2015 = [
-    {},
-    {},
-    {},
-    {},
-    {}
-]
-// April 2020 having days from previous and next month
+const February2015 = [{}, {}, {}, {}, {}];
+// Feb 2019 has 28 days
+const Feb2019 = [{}, {}, {}, {}, {}];
+// Feb2020 has days of previous month at start, no days for next month at end
+const Feb2020 = [{}, {}, {}, {}, {}];
+// March starts on a sunday, has no days from previous month has days for next month
+const March2020 = [{}, {}, {}, {}, {}, {}];
+// April 2020 having days from previous and next month and has 29 days
+const April2020 = [{}, {}, {}, {}, {}];
 
-next test -> days at the beginning of month, with days of next month at end (days at end) March
-next test -> days at end of month, with days of previous month at beginnning (days at start)Feb
-next test -> month with both cases -> April
+export { February2015, Feb2019, Feb2020, March2020, April2020 };

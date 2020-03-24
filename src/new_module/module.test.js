@@ -2,7 +2,14 @@ import CalendarModule from "./Module";
 
 import { mondayStart, fridayStart, sundayStart } from "./week_defs";
 
-import { Jan2020, February2019, February2020, April2020 } from "./day_months";
+// import { Jan2020, February2019, February2020, April2020 } from "./day_months";
+import {
+  February2015,
+  Feb2019,
+  Feb2020,
+  March2020,
+  April2020
+} from "./month_objects";
 
 describe("Module functionality", () => {
   test.each`
@@ -94,6 +101,19 @@ describe("Module functionality", () => {
 });
 
 describe("Calendar implementation", () => {
+  test.each`
+    monthName       | monthDateParameter | weeksInMonth | monthObject
+    ${"March 2020"} | ${"01/01/2020"}    | ${6}         | ${March2020}
+  `(
+    "Month Object  for $monthName should have the correct number of weeks: $weeksInMonth",
+    ({ monthDateParameter, monthObject }) => {
+      const moduleInstance = new CalendarModule(monthDateParameter);
+      const retrievedNumberOfWeeks = moduleInstance.getNumberOfWeeksInMonth();
+
+      expect(retrievedNumberOfWeeks).toEqual(monthObject.length);
+    }
+  );
+  /*
   it("Returns calendar object for current month when no date param is specified", () => {
     const moduleInstance = new CalendarModule();
     const retrievedMonthDays = moduleInstance.getDaysInMonth();
@@ -148,5 +168,5 @@ describe("Calendar implementation", () => {
     const nowDate = new Date().toISOString().slice(0, 16);
 
     expect(retrievedDateObject).toEqual(nowDate);
-  });
+  });*/
 });

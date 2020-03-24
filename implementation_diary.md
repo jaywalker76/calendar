@@ -14,3 +14,20 @@ Actually, I forgot that the test should be compared to an object, as this is wha
 Left wondering if there's a better way to generate the testing objects.
 89dd6f6
 This commit implements a change from the hardcoded value in line 83 of Module.js, to invoking getTotalDaysInMonth
+
+# ToDo:
+
+## monthRepresentation - this object contains the necessary cells to represent a given month, with full weeks, meaning that it should contain the days of the month, as well as the days of the previous and next month, necessary to represent a full week.
+
+(each of the following steps should have at least one test)
+
+### Feature Steps
+
+0. Month Object should have the correct number of weeks(week is an object containing day cells) - week objects can be empty boxes -> representation would be an array with empty objects (the correct number) (test for different number of weeks 4/5/6)
+1. Week object should contain cells containing the day and info if they belong to current or prev/next month. (test scenario can be for the complete month object) -> start with an easy month i.e day 1 starts on day 1 -> March is a good candidate (1st March is first day of week)
+   Feb with 28 days starting on a Sunday -> good test candidate (da)
+   next test -> days at the beginning of month, with days of next month at end (days at end) March
+   next test -> days at end of month, with days of previous month at beginnning (days at start)Feb
+   next test -> month with both cases -> April
+1. Implement graphic representation -> test first
+1. Change starting day of week
