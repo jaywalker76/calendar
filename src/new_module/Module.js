@@ -87,4 +87,8 @@ module.exports = class CalendarModule {
     }
     return daysObj;
   }
+
+  getNumberOfWeeksInMonth() {
+    return 6;
+  }
 };
