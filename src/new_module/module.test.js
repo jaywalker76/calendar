@@ -185,8 +185,10 @@ describe("Week Number implementation", () => {
   `(
     "Month Object  for $monthName should have the correct number of weeks: $weeksInMonth",
     ({ monthDateParameter, weekObject }) => {
-      const moduleInstance = new CalendarModule(monthDateParameter);
-      const retrievedWeekNumber = moduleInstance.getWeekNumber();
+      const moduleInstance = new CalendarModule();
+      const retrievedWeekNumber = moduleInstance.getWeekNumber(
+        monthDateParameter
+      );
 
       expect(retrievedWeekNumber).toEqual(weekObject[monthDateParameter]);
     }
