@@ -11,6 +11,8 @@ import {
   April2020
 } from "./month_objects";
 
+import { dateWeekNumber } from "./week_numbers";
+
 describe("Module functionality", () => {
   test.each`
     dateValue       | expectedResult
@@ -170,4 +172,19 @@ describe("Calendar implementation", () => {
 
     expect(retrievedDateObject).toEqual(nowDate);
   });*/
+});
+
+describe("Week Number implementation", () => {
+  test.each`
+    monthDateParameter | weekObject
+    ${"01/01/2020"}    | ${dateWeekNumber}
+  `(
+    "Month Object  for $monthName should have the correct number of weeks: $weeksInMonth",
+    ({ monthDateParameter, weekObject }) => {
+      const moduleInstance = new CalendarModule(monthDateParameter);
+      const retrievedWeekNumber = moduleInstance.getWeekNumber();
+
+      expect(retrievedWeekNumber).toEqual(weekObject[monthDateParameter]);
+    }
+  );
 });
