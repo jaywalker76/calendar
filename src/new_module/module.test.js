@@ -177,8 +177,11 @@ describe("Calendar implementation", () => {
 describe("Week Number implementation", () => {
   test.each`
     monthDateParameter | weekObject
+    ${"12/28/2019"}    | ${dateWeekNumber}
     ${"01/01/2020"}    | ${dateWeekNumber}
     ${"01/27/2020"}    | ${dateWeekNumber}
+    ${"12/28/2020"}    | ${dateWeekNumber}
+    ${"12/21/2020"}    | ${dateWeekNumber}
   `(
     "Month Object  for $monthName should have the correct number of weeks: $weeksInMonth",
     ({ monthDateParameter, weekObject }) => {
