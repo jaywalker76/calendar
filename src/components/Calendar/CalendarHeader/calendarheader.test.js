@@ -108,13 +108,10 @@ describe("Calendar navigation", () => {
     const dateDisplay = wrapper.find("[data-test='calendar-header-date']");
 
     navigationArrowBack.simulate("click");
-    console.log("something: " + dateDisplay.text());
 
     expect(mockCallBack.mock.calls.length).toEqual(1);
 
     navigationArrowForward.simulate("click");
     navigationArrowForward.simulate("click");
-
-    //expect(dateDisplay.text()).toEqual("January 2020");
   });
 });

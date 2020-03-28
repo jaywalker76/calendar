@@ -175,6 +175,8 @@ describe("Calendar implementation", () => {
 });
 
 describe("Week Number implementation", () => {
+  // modifying test, so that the date for retrieving the week number is passed as an
+  // argument to the function, allowing for calculating the first and last week in month
   test.each`
     monthDateParameter | weekObject
     ${"12/28/2019"}    | ${dateWeekNumber}
