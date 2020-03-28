@@ -199,3 +199,20 @@ describe("Week Number implementation", () => {
     }
   );
 });
+
+describe("Days in Week implementation", () => {
+  const weekdayNames = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+  ];
+
+  const moduleInstance = new CalendarModule();
+  const retrievedWeekdayNames = moduleInstance.getWeekDayNames();
+
+  expect(weekdayNames).toEqual(retrievedWeekdayNames);
+});
