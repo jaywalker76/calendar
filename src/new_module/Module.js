@@ -89,6 +89,7 @@ module.exports = class CalendarModule {
   }
 
   getNumberOfWeeksInMonth() {
+    // we need to calculate the number of the week so that we can calculate the number of weeks in a month
     return 6;
   }
 };
