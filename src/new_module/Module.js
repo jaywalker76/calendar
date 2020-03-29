@@ -104,4 +104,32 @@ module.exports = class CalendarModule {
 
     return Math.ceil(dayCount / 7);
   }
+
+  getMonthObject() {
+    let weeksToGenerate = this.getNumberOfWeeksInMonth();
+    let numberOfDaysInMonth = this.getTotalDaysInMonth();
+    let startingDay = this.date;
+    let dayCounter = 0;
+    //1 - get number of weeks in month
+
+    //2 - populate weeks with day cells
+    //3 - populate day cells with day info
+    //4 - assumes that weeks start on sunday
+    // let week = new Array(7).fill({""});
+
+    let monthObject = [...new Array(weeksToGenerate)].map((el, index) =>
+      [...new Array(7)].map((el, idx) => ({
+        day: startingDay.getDate(),
+        weekday: idx,
+        stuff: new Date(
+          startingDay.setDate(startingDay.getDate() + dayCounter)
+        ).getDate(),
+        counter: (dayCounter += 1)
+      }))
+    );
+    // get number of weeks to generate
+    // populate each week with day cell
+    // populate day cell
+    return monthObject;
+  }
 };

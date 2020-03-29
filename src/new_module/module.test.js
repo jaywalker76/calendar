@@ -126,6 +126,14 @@ describe("Calendar implementation", () => {
       const moduleInstance = new CalendarModule(monthDateParameter);
       const retrievedMonthObject = moduleInstance.getMonthObject();
 
+      expect(retrievedMonthObject).toEqual([
+        [{}, {}, {}, {}, {}, {}, {}],
+        [{}, {}, {}, {}, {}, {}, {}],
+        [{}, {}, {}, {}, {}, {}, {}],
+        [{}, {}, {}, {}, {}, {}, {}],
+        [{}, {}, {}, {}, {}, {}, {}]
+      ]);
+
       expect(retrievedMonthObject).toEqual(monthObject);
     }
   );
