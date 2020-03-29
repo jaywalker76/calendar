@@ -2,9 +2,55 @@
 const February2015 = [{}, {}, {}, {}, {}];
 // Feb 2019 has 28 days
 const February2019 = [{}, {}, {}, {}, {}];
-// Feb2020 has days of previous month at start, no days for next month at end
-const February2020 = [{}, {}, {}, {}, {}];
-// March starts on a sunday, has no days from previous month has days for next month
+// Feb2020 has leading days, no trailing days
+const February2020 = [
+  [
+    { day: 26, weekday: 0, currentMonth: false },
+    { day: 27, weekday: 1, currentMonth: false },
+    { day: 28, weekday: 2, currentMonth: false },
+    { day: 29, weekday: 3, currentMonth: false },
+    { day: 30, weekday: 4, currentMonth: false },
+    { day: 32, weekday: 5, currentMonth: false },
+    { day: 1, weekday: 6, currentMonth: true }
+  ],
+  [
+    { day: 2, weekday: 0, currentMonth: true },
+    { day: 3, weekday: 1, currentMonth: true },
+    { day: 4, weekday: 2, currentMonth: true },
+    { day: 5, weekday: 3, currentMonth: true },
+    { day: 6, weekday: 4, currentMonth: true },
+    { day: 7, weekday: 5, currentMonth: true },
+    { day: 8, weekday: 6, currentMonth: true }
+  ],
+  [
+    { day: 9, weekday: 0, currentMonth: true },
+    { day: 10, weekday: 1, currentMonth: true },
+    { day: 11, weekday: 2, currentMonth: true },
+    { day: 12, weekday: 3, currentMonth: true },
+    { day: 13, weekday: 4, currentMonth: true },
+    { day: 14, weekday: 5, currentMonth: true },
+    { day: 15, weekday: 6, currentMonth: true }
+  ],
+  [
+    { day: 16, weekday: 0, currentMonth: true },
+    { day: 17, weekday: 1, currentMonth: true },
+    { day: 18, weekday: 2, currentMonth: true },
+    { day: 19, weekday: 3, currentMonth: true },
+    { day: 20, weekday: 4, currentMonth: true },
+    { day: 21, weekday: 5, currentMonth: true },
+    { day: 22, weekday: 6, currentMonth: true }
+  ],
+  [
+    { day: 23, weekday: 0, currentMonth: true },
+    { day: 24, weekday: 1, currentMonth: true },
+    { day: 25, weekday: 2, currentMonth: true },
+    { day: 26, weekday: 3, currentMonth: true },
+    { day: 27, weekday: 4, currentMonth: true },
+    { day: 28, weekday: 5, currentMonth: true },
+    { day: 29, weekday: 6, currentMonth: true }
+  ]
+];
+// March starts on a sunday, no leading days, has trailing days
 const March2020 = [
   [
     { day: 1, weekday: 0, currentMonth: true },
