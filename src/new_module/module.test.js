@@ -119,7 +119,6 @@ describe("Calendar implementation", () => {
 
   test.each`
     monthName          | monthDateParameter | monthObject
-    ${"March 2020"}    | ${"03/01/2020"}    | ${March2020}
     ${"February 2020"} | ${"02/01/2020"}    | ${February2020}
   `(
     "Generated Month Object for $monthName matches the test object",

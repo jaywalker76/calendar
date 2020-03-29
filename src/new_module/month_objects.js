@@ -10,7 +10,7 @@ const February2020 = [
     { day: 28, weekday: 2, currentMonth: false },
     { day: 29, weekday: 3, currentMonth: false },
     { day: 30, weekday: 4, currentMonth: false },
-    { day: 32, weekday: 5, currentMonth: false },
+    { day: 31, weekday: 5, currentMonth: false },
     { day: 1, weekday: 6, currentMonth: true }
   ],
   [

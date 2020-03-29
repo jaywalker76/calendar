@@ -107,17 +107,22 @@ module.exports = class CalendarModule {
 
   getMonthObject() {
     let weeksToGenerate = this.getNumberOfWeeksInMonth();
-    let numberOfDaysInMonth = this.getTotalDaysInMonth();
-    let dayCounter = 1;
-    let monthObject = [];
-    const startingDate = this.date;
-    let isCurrentMonth = true;
-    //1 - get number of weeks in month
 
-    //2 - populate weeks with day cells
-    //3 - populate day cells with day info
-    //4 - assumes that weeks start on sunday
-    // let week = new Array(7).fill({""});
+    let monthObject = [];
+    let startingDate = this.instantiatedDate;
+
+    startingDate =
+      startingDate.getDay() === 0
+        ? startingDate
+        : new Date(
+            startingDate.setDate(startingDate.getDate() - startingDate.getDay())
+          );
+
+    let dayCounter = startingDate.getDate() === 1 ? 1 : startingDate.getDate();
+
+    // for first day in month determine if it falls on sunday
+    // if not subtract index days from date
+    let isCurrentMonth = this.instantiatedDate === startingDate.getMonth();
 
     for (
       let numberOfWeeks = 0;
@@ -136,7 +141,7 @@ module.exports = class CalendarModule {
         let presentMonth = currentDate.getMonth();
 
         if (presentMonth !== startingDate.getMonth()) {
-          isCurrentMonth = false;
+          isCurrentMonth = presentMonth !== startingDate.getMonth();
           // increase month and restart counter
           dayCounter = 1;
           currentDate = new Date(
