@@ -102,11 +102,7 @@ describe("Module functionality", () => {
 describe("Calendar implementation", () => {
   test.each`
     monthName          | monthDateParameter | weeksInMonth | monthObject
-    ${"March 2020"}    | ${"03/01/2020"}    | ${5}         | ${March2020}
     ${"February 2015"} | ${"02/01/2015"}    | ${4}         | ${February2015}
-    ${"February 2019"} | ${"02/01/2019"}    | ${5}         | ${February2019}
-    ${"February 2020"} | ${"02/01/2020"}    | ${5}         | ${February2020}
-    ${"April 2020"}    | ${"04/01/2015"}    | ${5}         | ${April2020}
   `(
     "Month Object  for $monthName should have the correct number of weeks: $weeksInMonth",
     ({ monthDateParameter, monthObject }) => {
@@ -119,8 +115,8 @@ describe("Calendar implementation", () => {
 
   test.each`
     monthName          | monthDateParameter | monthObject
-    ${"March 2020"}    | ${"03/01/2020"}    | ${March2020}
     ${"February 2020"} | ${"02/01/2020"}    | ${February2020}
+    ${"March 2020"}    | ${"03/01/2020"}    | ${March2020}
   `(
     "Generated Month Object for $monthName matches the test object",
     ({ monthDateParameter, monthObject }) => {

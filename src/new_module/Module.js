@@ -89,20 +89,15 @@ module.exports = class CalendarModule {
   }
 
   getNumberOfWeeksInMonth() {
-    const firstDayInMonth = new Date(
-      this.date.getFullYear(),
-      this.date.getMonth() - 1,
-      1
-    );
+    let currentDate = this.instantiatedDate;
+
     const lastDayInMonth = new Date(
-      this.date.getFullYear(),
-      this.date.getMonth(),
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1,
       0
-    );
+    ).getDate();
 
-    const dayCount = firstDayInMonth.getDay() + lastDayInMonth.getDate();
-
-    return Math.ceil(dayCount / 7);
+    return Math.ceil(lastDayInMonth / 7);
   }
 
   getMonthObject() {
