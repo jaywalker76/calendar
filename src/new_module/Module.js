@@ -108,8 +108,10 @@ module.exports = class CalendarModule {
   getMonthObject() {
     let weeksToGenerate = this.getNumberOfWeeksInMonth();
     let numberOfDaysInMonth = this.getTotalDaysInMonth();
-    let startingDay = this.date;
-    let dayCounter = 0;
+    let dayCounter = 1;
+    let monthObject = [];
+    const startingDate = this.date;
+    let isCurrentMonth = true;
     //1 - get number of weeks in month
 
     //2 - populate weeks with day cells
@@ -117,16 +119,44 @@ module.exports = class CalendarModule {
     //4 - assumes that weeks start on sunday
     // let week = new Array(7).fill({""});
 
-    let monthObject = [...new Array(weeksToGenerate)].map((el, index) =>
-      [...new Array(7)].map((el, idx) => ({
-        day: startingDay.getDate(),
-        weekday: idx,
-        stuff: new Date(
-          startingDay.setDate(startingDay.getDate() + dayCounter)
-        ).getDate(),
-        counter: (dayCounter += 1)
-      }))
-    );
+    for (
+      let numberOfWeeks = 0;
+      numberOfWeeks < weeksToGenerate;
+      numberOfWeeks++
+    ) {
+      let week = [];
+
+      for (let daysInWeek = 0; daysInWeek < 7; daysInWeek++) {
+        let currentDate = new Date(
+          startingDate.getFullYear(),
+          startingDate.getMonth(),
+          dayCounter
+        );
+        let presentDay = currentDate.getDate();
+        let presentMonth = currentDate.getMonth();
+
+        if (presentMonth !== startingDate.getMonth()) {
+          isCurrentMonth = false;
+          // increase month and restart counter
+          dayCounter = 1;
+          currentDate = new Date(
+            startingDate.getFullYear(),
+            startingDate.getMonth() + 1,
+            dayCounter
+          ).getDate();
+        }
+
+        week.push({
+          day: presentDay,
+          weekday: daysInWeek,
+          currentMonth: isCurrentMonth
+        });
+
+        dayCounter += 1;
+      }
+      monthObject.push(week);
+    }
+
     // get number of weeks to generate
     // populate each week with day cell
     // populate day cell
