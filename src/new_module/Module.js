@@ -91,38 +91,17 @@ module.exports = class CalendarModule {
   getNumberOfWeeksInMonth() {
     const firstDayInMonth = new Date(
       this.date.getFullYear(),
-      this.date.getMonth(),
+      this.date.getMonth() - 1,
       1
     );
     const lastDayInMonth = new Date(
       this.date.getFullYear(),
-      this.date.getMonth() + 1,
+      this.date.getMonth(),
       0
     );
 
-    const firstWeekInMonth = this.getWeekNumber(firstDayInMonth);
-    const lastWeekInMonth = this.getWeekNumber(lastDayInMonth);
-    // we need to calculate the number of the week so that we can calculate the number of weeks in a month
-    return lastWeekInMonth - firstWeekInMonth + 1;
-  }
+    const dayCount = firstDayInMonth.getDay() + lastDayInMonth.getDate();
 
-  getWeekNumber(monthDateParameter) {
-    const weekDateValue = new Date(monthDateParameter);
-    let date = new Date(weekDateValue.getTime());
-    date.setHours(0, 0, 0, 0);
-    // Thursday in current week decides the year.
-    date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
-    // January 4 is always in week 1.
-    let week1 = new Date(date.getFullYear(), 0, 4);
-    // Adjust to Thursday in week 1 and count number of weeks from date to week1.
-    return (
-      1 +
-      Math.round(
-        ((date.getTime() - week1.getTime()) / 86400000 -
-          3 +
-          ((week1.getDay() + 6) % 7)) /
-          7
-      )
-    );
+    return Math.ceil(dayCount / 7);
   }
 };

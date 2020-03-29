@@ -2,7 +2,6 @@ import CalendarModule from "./Module";
 
 import { mondayStart, fridayStart, sundayStart } from "./week_defs";
 
-// import { Jan2020, February2019, February2020, April2020 } from "./day_months";
 import {
   February2015,
   February2019,
@@ -10,8 +9,6 @@ import {
   March2020,
   April2020
 } from "./month_objects";
-
-import { dateWeekNumber } from "./week_numbers";
 
 describe("Module functionality", () => {
   test.each`
@@ -119,100 +116,4 @@ describe("Calendar implementation", () => {
       expect(retrievedNumberOfWeeks).toEqual(monthObject.length);
     }
   );
-  /*
-  it("Returns calendar object for current month when no date param is specified", () => {
-    const moduleInstance = new CalendarModule();
-    const retrievedMonthDays = moduleInstance.getDaysInMonth();
-
-    expect(Jan2020).toEqual(retrievedMonthDays);
-  });
-
-  test.each`
-    monthName          | monthDateParameter | daysInMonth
-    ${"January 2020"}  | ${"01/01/2020"}    | ${31}
-    ${"February 2020"} | ${"02/01/2020"}    | ${29}
-    ${"February 2019"} | ${"02/01/2019"}    | ${28}
-    ${"April 2020"}    | ${"04/01/2020"}    | ${30}
-  `(
-    "$monthName should have $daysInMonth days",
-    ({ monthDateParameter, daysInMonth }) => {
-      const moduleInstance = new CalendarModule(monthDateParameter);
-      const retrievedMonthDays = moduleInstance.getTotalDaysInMonth();
-
-      expect(retrievedMonthDays).toEqual(daysInMonth);
-    }
-  );
-
-  test.each`
-    monthName          | monthDateParameter | monthDayObject  | daysInMonth
-    ${"January 2020"}  | ${"01/01/2020"}    | ${Jan2020}      | ${31}
-    ${"February 2020"} | ${"02/01/2020"}    | ${February2020} | ${29}
-    ${"February 2019"} | ${"02/01/2019"}    | ${February2019} | ${28}
-    ${"April 2020"}    | ${"04/01/2020"}    | ${April2020}    | ${30}
-  `(
-    "Returns an object for $monthName having $daysInMonth days",
-    ({ monthDateParameter, monthDayObject }) => {
-      const moduleInstance = new CalendarModule(monthDateParameter);
-      const retrievedMonthDays = moduleInstance.getDaysInMonth();
-
-      expect(retrievedMonthDays).toEqual(monthDayObject);
-    }
-  );
-
-  it("Returns calendar object for month with a given date parameter", () => {
-    const moduleInstance = new CalendarModule("01/01/2019");
-    const retrievedMonthDays = moduleInstance.getTotalDaysInMonth();
-
-    expect(retrievedMonthDays).toEqual(31);
-  });
-
-  it("Returns the Date object created on Module instantiation", () => {
-    const moduleInstance = new CalendarModule();
-    const retrievedDateObject = moduleInstance.instantiatedDate
-      .toISOString()
-      .slice(0, 16);
-    const nowDate = new Date().toISOString().slice(0, 16);
-
-    expect(retrievedDateObject).toEqual(nowDate);
-  });*/
-});
-
-describe("Week Number implementation", () => {
-  // modifying test, so that the date for retrieving the week number is passed as an
-  // argument to the function, allowing for calculating the first and last week in month
-  test.each`
-    monthDateParameter | weekObject
-    ${"12/28/2019"}    | ${dateWeekNumber}
-    ${"01/01/2020"}    | ${dateWeekNumber}
-    ${"01/27/2020"}    | ${dateWeekNumber}
-    ${"12/28/2020"}    | ${dateWeekNumber}
-    ${"12/21/2020"}    | ${dateWeekNumber}
-  `(
-    "Month Object  for $monthName should have the correct number of weeks: $weeksInMonth",
-    ({ monthDateParameter, weekObject }) => {
-      const moduleInstance = new CalendarModule();
-      const retrievedWeekNumber = moduleInstance.getWeekNumber(
-        monthDateParameter
-      );
-
-      expect(retrievedWeekNumber).toEqual(weekObject[monthDateParameter]);
-    }
-  );
-});
-
-describe("Days in Week implementation", () => {
-  const weekdayNames = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday"
-  ];
-
-  const moduleInstance = new CalendarModule();
-  const retrievedWeekdayNames = moduleInstance.getWeekDayNames();
-
-  expect(weekdayNames).toEqual(retrievedWeekdayNames);
 });
