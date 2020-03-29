@@ -116,4 +116,17 @@ describe("Calendar implementation", () => {
       expect(retrievedNumberOfWeeks).toEqual(monthObject.length);
     }
   );
+
+  test.each`
+    monthName       | monthDateParameter | monthObject
+    ${"March 2020"} | ${"03/01/2020"}    | ${March2020}
+  `(
+    "Generated Month Object for $monthName matches the test object",
+    ({ monthDateParameter, monthObject }) => {
+      const moduleInstance = new CalendarModule(monthDateParameter);
+      const retrievedMonthObject = moduleInstance.getMonthObject();
+
+      expect(retrievedMonthObject).toEqual(monthObject);
+    }
+  );
 });
