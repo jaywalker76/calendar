@@ -105,7 +105,7 @@ describe("Module functionality", () => {
 describe("Calendar implementation", () => {
   test.each`
     monthName          | monthDateParameter | weeksInMonth | monthObject
-    ${"March 2020"}    | ${"03/01/2020"}    | ${6}         | ${March2020}
+    ${"March 2020"}    | ${"03/01/2020"}    | ${5}         | ${March2020}
     ${"February 2015"} | ${"02/01/2015"}    | ${5}         | ${February2015}
     ${"February 2019"} | ${"02/01/2019"}    | ${5}         | ${February2019}
     ${"February 2020"} | ${"02/01/2020"}    | ${5}         | ${February2020}
