@@ -31,3 +31,5 @@ This commit implements a change from the hardcoded value in line 83 of Module.js
    next test -> month with both cases -> April
 1. Implement graphic representation -> test first
 1. Change starting day of week
+
+getMonthObject -> refactor into smaller functionality chunks
