@@ -138,6 +138,11 @@ describe("Week Number Implementation", () => {
     ${"04/04/2020"}    | ${15}
     ${"02/01/2015"}    | ${6}
     ${"02/22/2015"}    | ${9}
+    ${"04/21/2015"}    | ${17}
+    ${"05/31/2015"}    | ${23}
+    ${"05/26/2019"}    | ${22}
+    ${"02/16/2020"}    | ${8}
+    ${"02/23/2020"}    | ${9}
   `(
     "Correctly calculates week in year number for $monthDateParameter",
     ({ monthDateParameter, weekNumber }) => {
