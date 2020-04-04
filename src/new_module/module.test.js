@@ -131,8 +131,12 @@ describe("Calendar implementation", () => {
   );
 
   test.each`
-    monthName       | monthDateParameter | monthObject
-    ${"March 2020"} | ${"03/01/2020"}    | ${March2020}
+    monthName          | monthDateParameter | monthObject
+    ${"February 2015"} | ${"02/01/2015"}    | ${February2015}
+    ${"March 2020"}    | ${"03/01/2020"}    | ${March2020}
+    ${"February 2019"} | ${"02/01/2019"}    | ${February2019}
+    ${"February 2020"} | ${"02/01/2020"}    | ${February2020}
+    ${"April 2020"}    | ${"04/01/2020"}    | ${April2020}
   `(
     "Generated Month Object for $monthName matches the test object",
     ({ monthDateParameter, monthObject }) => {
