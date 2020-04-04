@@ -147,9 +147,22 @@ describe("Week Number Implementation", () => {
     "Correctly calculates week in year number for $monthDateParameter",
     ({ monthDateParameter, weekNumber }) => {
       const moduleInstance = new CalendarModule(monthDateParameter);
-      const retrievedMonthObject = moduleInstance.getWeekInYear();
+      const retrievedWeekNumber = moduleInstance.getWeekInYear();
 
-      expect(retrievedMonthObject).toEqual(weekNumber);
+      expect(retrievedWeekNumber).toEqual(weekNumber);
+    }
+  );
+
+  test.each`
+    monthDateParameter | weekNumber
+    ${"04/04/2020"}    | ${5}
+  `(
+    "Correctly calculates the number of weeks in a month leveragint getWeekInYear function",
+    ({ monthDateParameter, weekNumber }) => {
+      const moduleInstance = new CalendarModule(monthDateParameter);
+      const retrievedNumberOfWeeksInMonth = moduleInstance.getNumberOfWeeksInMonth();
+
+      expect(retrievedNumberOfWeeksInMonth).toEqual(weekNumber);
     }
   );
 });
