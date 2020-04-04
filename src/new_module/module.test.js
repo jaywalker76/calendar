@@ -133,10 +133,18 @@ describe("Calendar implementation", () => {
 });
 
 describe("Week Number Implementation", () => {
-  it("Returns a week number for a given date", () => {
-    const moduleInstance = new CalendarModule();
-    const retrievedWeekInYear = moduleInstance.getWeekInYear();
+  test.each`
+    monthDateParameter | weekNumber
+    ${"04/04/2020"}    | ${15}
+    ${"02/01/2015"}    | ${6}
+    ${"02/22/2015"}    | ${9}
+  `(
+    "Correctly calculates week in year number for $monthDateParameter",
+    ({ monthDateParameter, weekNumber }) => {
+      const moduleInstance = new CalendarModule(monthDateParameter);
+      const retrievedMonthObject = moduleInstance.getWeekInYear();
 
-    expect(retrievedWeekInYear).toEqual(15);
-  });
+      expect(retrievedMonthObject).toEqual(weekNumber);
+    }
+  );
 });

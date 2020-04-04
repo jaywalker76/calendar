@@ -101,9 +101,9 @@ module.exports = class CalendarModule {
   }
 
   getWeekInYear() {
-    const day = new Date();
+    const day = this.date;
     const MILLISECONDS_IN_WEEK = 604800000;
-    const firstDayOfWeek = 1; // monday as the first day (0 = sunday)
+    const firstDayOfWeek = 0; // sunday as the first day (1 = monday)
     const startOfYear = new Date(day.getFullYear(), 0, 1);
     startOfYear.setDate(
       startOfYear.getDate() + (firstDayOfWeek - (startOfYear.getDay() % 7))
