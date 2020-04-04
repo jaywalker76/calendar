@@ -100,6 +100,19 @@ module.exports = class CalendarModule {
     return Math.ceil(lastDayInMonth / 7);
   }
 
+  getWeekInYear() {
+    const day = new Date();
+    const MILLISECONDS_IN_WEEK = 604800000;
+    const firstDayOfWeek = 1; // monday as the first day (0 = sunday)
+    const startOfYear = new Date(day.getFullYear(), 0, 1);
+    startOfYear.setDate(
+      startOfYear.getDate() + (firstDayOfWeek - (startOfYear.getDay() % 7))
+    );
+    const dayWeek = Math.round((day - startOfYear) / MILLISECONDS_IN_WEEK) + 1;
+
+    return dayWeek;
+  }
+
   getMonthObject() {
     let weeksToGenerate = this.getNumberOfWeeksInMonth();
 
