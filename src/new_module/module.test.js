@@ -100,6 +100,7 @@ describe("Module functionality", () => {
 });
 
 describe("Calendar implementation", () => {
+  /* 
   test.each`
     monthName          | monthDateParameter | weeksInMonth | monthObject
     ${"February 2015"} | ${"02/01/2015"}    | ${4}         | ${February2015}
@@ -129,7 +130,7 @@ describe("Calendar implementation", () => {
       expect(retrievedMonthObject.length).toEqual(monthObject.length);
     }
   );
-
+*/
   test.each`
     monthName          | monthDateParameter | monthObject
     ${"February 2015"} | ${"02/01/2015"}    | ${February2015}
@@ -147,6 +148,7 @@ describe("Calendar implementation", () => {
     }
   );
 });
+/*
 describe("Week Number Implementation", () => {
   test.each`
     monthDateParameter | weekNumber
@@ -181,4 +183,4 @@ describe("Week Number Implementation", () => {
       expect(retrievedNumberOfWeeksInMonth).toEqual(weekNumber);
     }
   );
-});
+});*/

@@ -20,7 +20,9 @@ module.exports = class CalendarModule {
    * cases which will need it
    */
   get instantiatedDate() {
-    return this.date;
+    return new Date(this.date);
+
+    //instantiatedDate -> returns new Date(this.date) -> this way mutations made onn the this.instantiatedDate will not affect the this.date
   }
   /**
    * Move new Date Object instantiation to Constructor
@@ -90,24 +92,6 @@ module.exports = class CalendarModule {
 
   getNumberOfWeeksInMonth() {
     let currentDate = this.instantiatedDate;
-    /*
-    const firstDayInMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      1
-    );
-
-    const lastDayInMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() + 1,
-      0
-    );
-
-    const firstWeekNumber = this.getWeekInYear(firstDayInMonth);
-    const lastWeekNumber = this.getWeekInYear(lastDayInMonth);
-
-    return lastWeekNumber - firstWeekNumber;
-    */
 
     let theYear = currentDate.getFullYear();
     let theMonth = currentDate.getMonth() + 1;
@@ -134,67 +118,45 @@ module.exports = class CalendarModule {
     return dayWeek;
   }
 
+  getFirstDayOfWeek(dateParam) {
+    let weekDay = dateParam.getDay();
+    let dateDifferential = dateParam.getDate() - weekDay;
+
+    return new Date(dateParam.setDate(dateDifferential));
+  }
+
   getMonthObject() {
     let weeksToGenerate = this.getNumberOfWeeksInMonth();
-
     let monthObject = [];
-    let startingDate = this.instantiatedDate;
 
-    startingDate =
-      startingDate.getDay() === 0
-        ? startingDate
-        : new Date(
-            startingDate.setDate(startingDate.getDate() - startingDate.getDay())
-          );
-
-    let dayCounter = startingDate.getDate() === 1 ? 1 : startingDate.getDate();
-
-    // for first day in month determine if it falls on sunday
-    // if not subtract index days from date
-    let isCurrentMonth =
-      this.instantiatedDate.getMonth() === startingDate.getMonth();
+    let startingDate =
+      this.instantiatedDate.getDay() === 0
+        ? this.instantiatedDate
+        : this.getFirstDayOfWeek(this.instantiatedDate);
+    let dayCounter = 0;
 
     for (
       let numberOfWeeks = 0;
       numberOfWeeks < weeksToGenerate;
       numberOfWeeks++
     ) {
+      // the week object
       let week = [];
-
       for (let daysInWeek = 0; daysInWeek < 7; daysInWeek++) {
-        let currentDate = new Date(
-          startingDate.getFullYear(),
-          startingDate.getMonth(),
-          dayCounter
-        );
-        let presentDay = currentDate.getDate();
-        let presentMonth = currentDate.getMonth();
-
-        if (presentMonth !== startingDate.getMonth()) {
-          isCurrentMonth = presentMonth === startingDate.getMonth();
-          // increase month and restart counter
-          dayCounter = 1;
-          currentDate = new Date(
-            startingDate.getFullYear(),
-            startingDate.getMonth() + 1,
-            dayCounter
-          ).getDate();
-        }
-
+        // generate day
+        // the startingDate
+        let startDate = new Date(startingDate);
+        let day = new Date(startDate.setDate(startDate.getDate() + dayCounter));
         week.push({
-          day: presentDay,
-          weekday: daysInWeek,
-          currentMonth: isCurrentMonth
+          currentMonth: day.getMonth() === this.instantiatedDate.getMonth(),
+          day: day.getDate(),
+          weekday: day.getDay()
         });
-
+        // update count of days to generate
         dayCounter += 1;
       }
       monthObject.push(week);
     }
-
-    // get number of weeks to generate
-    // populate each week with day cell
-    // populate day cell
     return monthObject;
   }
 };
