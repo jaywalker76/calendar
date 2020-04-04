@@ -102,11 +102,11 @@ describe("Module functionality", () => {
 describe("Calendar implementation", () => {
   test.each`
     monthName          | monthDateParameter | weeksInMonth | monthObject
-    ${"March 2020"}    | ${"03/01/2020"}    | ${5}         | ${March2020}
     ${"February 2015"} | ${"02/01/2015"}    | ${4}         | ${February2015}
+    ${"March 2020"}    | ${"03/01/2020"}    | ${5}         | ${March2020}
     ${"February 2019"} | ${"02/01/2019"}    | ${5}         | ${February2019}
     ${"February 2020"} | ${"02/01/2020"}    | ${5}         | ${February2020}
-    ${"April 2020"}    | ${"04/01/2015"}    | ${5}         | ${April2020}
+    ${"April 2020"}    | ${"04/01/2020"}    | ${5}         | ${April2020}
   `(
     "Month Object for $monthName should have the correct number of weeks: $weeksInMonth",
     ({ monthDateParameter, monthObject }) => {
@@ -118,9 +118,21 @@ describe("Calendar implementation", () => {
   );
 
   test.each`
-    monthName          | monthDateParameter | monthObject
-    ${"February 2020"} | ${"02/01/2020"}    | ${February2020}
-    ${"March 2020"}    | ${"03/01/2020"}    | ${March2020}
+    monthName          | monthDateParameter | weeksInMonth | monthObject
+    ${"February 2015"} | ${"02/01/2015"}    | ${4}         | ${February2015}
+  `(
+    "Month Object for $monthName should have the correct number of weeks: $weeksInMonth",
+    ({ monthDateParameter, monthObject }) => {
+      const moduleInstance = new CalendarModule(monthDateParameter);
+      const retrievedMonthObject = moduleInstance.getMonthObject();
+
+      expect(retrievedMonthObject.length).toEqual(monthObject.length);
+    }
+  );
+
+  test.each`
+    monthName       | monthDateParameter | monthObject
+    ${"March 2020"} | ${"03/01/2020"}    | ${March2020}
   `(
     "Generated Month Object for $monthName matches the test object",
     ({ monthDateParameter, monthObject }) => {
@@ -131,7 +143,6 @@ describe("Calendar implementation", () => {
     }
   );
 });
-
 describe("Week Number Implementation", () => {
   test.each`
     monthDateParameter | weekNumber
@@ -156,8 +167,9 @@ describe("Week Number Implementation", () => {
   test.each`
     monthDateParameter | weekNumber
     ${"04/04/2020"}    | ${5}
+    ${"02/01/2015"}    | ${4}
   `(
-    "Correctly calculates the number of weeks in a month leveragint getWeekInYear function",
+    "Correctly calculates the number of weeks in a month leveraging getWeekInYear function",
     ({ monthDateParameter, weekNumber }) => {
       const moduleInstance = new CalendarModule(monthDateParameter);
       const retrievedNumberOfWeeksInMonth = moduleInstance.getNumberOfWeeksInMonth();

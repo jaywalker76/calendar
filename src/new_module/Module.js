@@ -90,18 +90,39 @@ module.exports = class CalendarModule {
 
   getNumberOfWeeksInMonth() {
     let currentDate = this.instantiatedDate;
+    /*
+    const firstDayInMonth = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      1
+    );
 
     const lastDayInMonth = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth() + 1,
       0
-    ).getDate();
+    );
 
-    return Math.ceil(lastDayInMonth / 7);
+    const firstWeekNumber = this.getWeekInYear(firstDayInMonth);
+    const lastWeekNumber = this.getWeekInYear(lastDayInMonth);
+
+    return lastWeekNumber - firstWeekNumber;
+    */
+
+    let theYear = currentDate.getFullYear();
+    let theMonth = currentDate.getMonth() + 1;
+
+    let date = new Date(theYear, theMonth - 1, 1);
+    let day = date.getDay();
+    let numDaysInMonth = new Date(theYear, theMonth, 0).getDate();
+    return Math.ceil((numDaysInMonth + day) / 7);
   }
 
-  getWeekInYear() {
-    const day = this.date;
+  // how can I modify tests for a scenario in which I pass arguments to a function
+  // internally?
+  // so cool to modify something and have the tests still pass
+  getWeekInYear(weekDateParam) {
+    const day = weekDateParam !== undefined ? weekDateParam : this.date;
     const MILLISECONDS_IN_WEEK = 604800000;
     const firstDayOfWeek = 0; // sunday as the first day (1 = monday)
     const startOfYear = new Date(day.getFullYear(), 0, 1);
@@ -130,7 +151,8 @@ module.exports = class CalendarModule {
 
     // for first day in month determine if it falls on sunday
     // if not subtract index days from date
-    let isCurrentMonth = this.instantiatedDate === startingDate.getMonth();
+    let isCurrentMonth =
+      this.instantiatedDate.getMonth() === startingDate.getMonth();
 
     for (
       let numberOfWeeks = 0;
@@ -149,7 +171,7 @@ module.exports = class CalendarModule {
         let presentMonth = currentDate.getMonth();
 
         if (presentMonth !== startingDate.getMonth()) {
-          isCurrentMonth = presentMonth !== startingDate.getMonth();
+          isCurrentMonth = presentMonth === startingDate.getMonth();
           // increase month and restart counter
           dayCounter = 1;
           currentDate = new Date(
