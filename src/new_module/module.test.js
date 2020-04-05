@@ -100,7 +100,6 @@ describe("Module functionality", () => {
 });
 
 describe("Calendar implementation", () => {
-  /* 
   test.each`
     monthName          | monthDateParameter | weeksInMonth | monthObject
     ${"February 2015"} | ${"02/01/2015"}    | ${4}         | ${February2015}
@@ -121,6 +120,10 @@ describe("Calendar implementation", () => {
   test.each`
     monthName          | monthDateParameter | weeksInMonth | monthObject
     ${"February 2015"} | ${"02/01/2015"}    | ${4}         | ${February2015}
+    ${"March 2020"}    | ${"03/01/2020"}    | ${5}         | ${March2020}
+    ${"February 2019"} | ${"02/01/2019"}    | ${5}         | ${February2019}
+    ${"February 2020"} | ${"02/01/2020"}    | ${5}         | ${February2020}
+    ${"April 2020"}    | ${"04/01/2020"}    | ${5}         | ${April2020}
   `(
     "Month Object for $monthName should have the correct number of weeks: $weeksInMonth",
     ({ monthDateParameter, monthObject }) => {
@@ -130,7 +133,7 @@ describe("Calendar implementation", () => {
       expect(retrievedMonthObject.length).toEqual(monthObject.length);
     }
   );
-*/
+
   test.each`
     monthName          | monthDateParameter | monthObject
     ${"February 2015"} | ${"02/01/2015"}    | ${February2015}
@@ -148,7 +151,7 @@ describe("Calendar implementation", () => {
     }
   );
 });
-/*
+
 describe("Week Number Implementation", () => {
   test.each`
     monthDateParameter | weekNumber
@@ -183,4 +186,4 @@ describe("Week Number Implementation", () => {
       expect(retrievedNumberOfWeeksInMonth).toEqual(weekNumber);
     }
   );
-});*/
+});
