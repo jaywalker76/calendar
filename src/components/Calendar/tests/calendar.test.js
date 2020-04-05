@@ -31,6 +31,16 @@ describe("Calendar structure", () => {
     const calendarComponent = wrapper.find("[data-test='calendar-component']");
     expect(calendarComponent.length).toBe(1);
   });
+  it("renders the calendar header", () => {
+    wrapper = setup();
+    const calendarComponent = wrapper.find("[data-test='calendar-header']");
+    expect(calendarComponent.length).toBe(1);
+  });
+  it("renders the calendar body", () => {
+    wrapper = setup();
+    const calendarComponent = wrapper.find("[data-test='calendar-body']");
+    expect(calendarComponent.length).toBe(1);
+  });
   /*
   
   it("displays the days in the week", () => {
