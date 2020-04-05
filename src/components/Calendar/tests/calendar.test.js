@@ -33,8 +33,13 @@ describe("Calendar structure", () => {
     const calendarComponent = wrapper.find("[data-test='calendar-component']");
     expect(calendarComponent.length).toBe(1);
   });
-  it("renders the calendar header", () => {
-    wrapper = setup();
+  // this test was modified in order to clearly test the calendar header rendering
+  // and not its contents
+  it("conditionally render the calendar header", () => {
+    let configs = {
+      includeHeader: true
+    };
+    wrapper = setup(configs);
     const calendarComponent = wrapper.find("[data-test='calendar-header']");
     expect(calendarComponent.length).toBe(1);
   });
@@ -57,7 +62,7 @@ describe("Calendar structure", () => {
     const calendarHeaderComponent = wrapper.find(
       "[data-test='calendar-header']"
     );
-    expect(calendarHeaderComponent.text()).toBe("");
+    expect(calendarHeaderComponent.text()).toBe("April 2020");
   });
 
   it("renders the calendar body", () => {
