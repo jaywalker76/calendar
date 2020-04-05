@@ -42,7 +42,10 @@ const Calendar = props => {
 
   const renderCalendarStructure = () => {
     return (
-      <div style={styling.calendarWrapper} data-test="calendar-component"></div>
+      <div style={styling.calendarWrapper} data-test="calendar-component">
+        <div data-test="calendar-header">The Calendar Header </div>
+        <div data-test="calendar-body">The Calendar Body </div>
+      </div>
     );
   };
 
