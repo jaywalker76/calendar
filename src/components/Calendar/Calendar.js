@@ -41,10 +41,11 @@ const Calendar = props => {
   const [date, setDate] = useState(calendarModule.instantiatedDate);
 
   const renderCalendarStructure = () => {
+    let monthYearString = getMonthYearString(calendarModule.date);
     return (
       <div style={styling.calendarWrapper} data-test="calendar-component">
         <div id="calendar-header" data-test="calendar-header">
-          The Calendar Header{" "}
+          {monthYearString}
         </div>
         <div data-test="calendar-body">The Calendar Body </div>
       </div>
