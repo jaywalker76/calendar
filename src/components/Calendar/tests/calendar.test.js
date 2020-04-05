@@ -53,18 +53,6 @@ describe("Calendar structure", () => {
     expect(calendarHeaderComponent.text()).toBe("April 2020");
   });
 
-  it("renders the current month and year string in the header conditionally", () => {
-    let configs = {
-      includeHeader: false
-    };
-    wrapper = setup(configs);
-    const currentDate = getMonthYearString(new Date());
-    const calendarHeaderComponent = wrapper.find(
-      "[data-test='calendar-header']"
-    );
-    expect(calendarHeaderComponent.text()).toBe("April 2020");
-  });
-
   it("renders the calendar body", () => {
     wrapper = setup();
     const calendarComponent = wrapper.find("[data-test='calendar-body']");
