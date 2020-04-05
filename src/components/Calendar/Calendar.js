@@ -36,6 +36,12 @@ const Calendar = props => {
     displayNavArrows
   } = props;
 
+  /**
+   *      currentMonth: day.getMonth() === this.instantiatedDate.getMonth(),
+          day: day.getDate(),
+          weekday: day.getDay()
+   */
+
   const calendarModule = new CalendarModule(startDate);
 
   const [date, setDate] = useState(calendarModule.instantiatedDate);
@@ -53,7 +59,14 @@ const Calendar = props => {
 
         <div data-test="calendar-body">
           {calendarModule.getMonthObject().map(row => (
-            <div data-test="calendar-month-row">"A row"</div>
+            <div data-test="calendar-month-row">
+              {row.map(cell => (
+                <div data-test="calendar-day-cell">
+                  {cell.day}
+                  {cell.currentMonth}
+                </div>
+              ))}
+            </div>
           ))}
         </div>
       </div>
