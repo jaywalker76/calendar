@@ -75,6 +75,17 @@ describe("Calendar structure", () => {
     expect(monthRows.length).toBe(5);
   });
 
+  it("renders the correct number of day cells in each calendar row", () => {
+    let configs = {
+      startDate: "2020/04/01"
+    };
+    wrapper = setup(configs);
+
+    const calendarComponent = wrapper.find("[data-test='calendar-body']");
+    const monthRows = calendarComponent.find("[data-test='calendar-day-cell']");
+    expect(monthRows.length).toBe(35);
+  });
+
   /*
   
   it("displays the days in the week", () => {
