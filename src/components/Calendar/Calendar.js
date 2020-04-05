@@ -51,7 +51,11 @@ const Calendar = props => {
           </div>
         )}
 
-        <div data-test="calendar-body">The Calendar Body </div>
+        <div data-test="calendar-body">
+          {calendarModule.getMonthObject().map(row => (
+            <div data-test="calendar-month-row">"A row"</div>
+          ))}
+        </div>
       </div>
     );
   };
