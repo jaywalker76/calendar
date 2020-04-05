@@ -62,6 +62,17 @@ describe("Calendar structure", () => {
     expect(calendarComponent.length).toBe(1);
   });
 
+  it("renders the correct number of month rows in the calendar body", () => {
+    let configs = {
+      startDate: "2020/04/01"
+    };
+    wrapper = setup(configs);
+
+    const calendarComponent = wrapper.find("[data-test='calendar-body']");
+    const monthRows = wrapper.find("[data-test='calendar-month-rows']");
+    expect(monthRows.length).toBe(5);
+  });
+
   /*
   
   it("displays the days in the week", () => {
