@@ -6,6 +6,8 @@ import CalendarModule from "../../../new_module/Module";
 
 import Calendar from "../Calendar";
 
+import { getMonthYearString } from "../utils";
+
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 /**
@@ -36,11 +38,22 @@ describe("Calendar structure", () => {
     const calendarComponent = wrapper.find("[data-test='calendar-header']");
     expect(calendarComponent.length).toBe(1);
   });
+
+  it("renders the current month and year string in the header", () => {
+    wrapper = setup();
+    const currentDate = getMonthYearString(new Date());
+    const calendarHeaderComponent = wrapper.find(
+      "[data-test='calendar-header']"
+    );
+    expect(calendarHeaderComponent.text()).toBe("April 2020");
+  });
+
   it("renders the calendar body", () => {
     wrapper = setup();
     const calendarComponent = wrapper.find("[data-test='calendar-body']");
     expect(calendarComponent.length).toBe(1);
   });
+
   /*
   
   it("displays the days in the week", () => {

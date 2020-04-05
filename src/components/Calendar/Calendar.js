@@ -5,7 +5,7 @@ import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
 import styling from "./style";
 
-import { updateDateValue } from "./utils";
+import { updateDateValue, getMonthYearString } from "./utils";
 
 import CalendarModule from "../../new_module/Module";
 
@@ -43,7 +43,9 @@ const Calendar = props => {
   const renderCalendarStructure = () => {
     return (
       <div style={styling.calendarWrapper} data-test="calendar-component">
-        <div data-test="calendar-header">The Calendar Header </div>
+        <div id="calendar-header" data-test="calendar-header">
+          The Calendar Header{" "}
+        </div>
         <div data-test="calendar-body">The Calendar Body </div>
       </div>
     );
