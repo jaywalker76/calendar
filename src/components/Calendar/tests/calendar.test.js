@@ -69,7 +69,9 @@ describe("Calendar structure", () => {
     wrapper = setup(configs);
 
     const calendarComponent = wrapper.find("[data-test='calendar-body']");
-    const monthRows = wrapper.find("[data-test='calendar-month-rows']");
+    const monthRows = calendarComponent.find(
+      "[data-test='calendar-month-row']"
+    );
     expect(monthRows.length).toBe(5);
   });
 
