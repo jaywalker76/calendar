@@ -26,7 +26,7 @@ describe("Calendar structure", () => {
     wrapper = setup();
     expect(wrapper).toBeTruthy();
   });
-  it("renders the calendar structure", () => {
+  it("renders the calendar wrapper", () => {
     wrapper = setup();
     const calendarComponent = wrapper.find("[data-test='calendar-component']");
     expect(calendarComponent.length).toBe(1);
