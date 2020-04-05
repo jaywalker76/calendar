@@ -26,12 +26,13 @@ describe("Calendar structure", () => {
     wrapper = setup();
     expect(wrapper).toBeTruthy();
   });
-
   it("renders the calendar structure", () => {
     wrapper = setup();
     const calendarComponent = wrapper.find("[data-test='calendar-component']");
     expect(calendarComponent.length).toBe(1);
   });
+  /*
+  
   it("displays the days in the week", () => {
     wrapper = setup();
     const calendarComponent = wrapper.find("[data-test='calendar-days']");
@@ -78,8 +79,9 @@ describe("Calendar structure", () => {
     const calendarComponent = wrapper.find("[data-test='calendar-week-row']");
     expect(calendarComponent.length).toEqual(5);
   });
+  */
 });
-
+/*
 describe("Calendar Header Tests", () => {
   it("displays calendar header", () => {
     let calProps = {
@@ -175,3 +177,4 @@ describe("Calendar buffer days renderization", () => {
     expect(weeksInFebruary.length).toEqual(5);
   });
 });
+*/

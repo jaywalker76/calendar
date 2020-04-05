@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
-import { generateDaysColumn, cellGenerator } from "./calendar_functions";
+// import { generateDaysColumn, cellGenerator } from "./calendar_functions";
 
 import styling from "./style";
 
@@ -38,30 +38,15 @@ const Calendar = props => {
 
   const calendarModule = new CalendarModule(startDate);
 
-  const [date, setDate] = useState(calendarModule.instantiatedDate);  
-  // how to handle date change? 
-  const resolveDate = direction => {
-    setDate(updateDateValue(direction, date));
+  const [date, setDate] = useState(calendarModule.instantiatedDate);
+
+  const renderCalendarStructure = () => {
+    return (
+      <div style={styling.calendarWrapper} data-test="calendar-component"></div>
+    );
   };
 
-  return (
-    <div style={styling.outerWrapper}>
-      <div style={styling.calendarWrapper} data-test="calendar-component">
-        {includeHeader && (
-          <CalendarHeader
-            data-test="calendar-header"
-            displayNavArrows={displayNavArrows}
-            dateToDisplay={calendarModule.dateString}
-            onClick={resolveDate}
-          />
-        )}
-        <div style={styling.daysHeader} data-test="calendar-days-header">
-          {generateDaysColumn(dayDescriptorType, startOfWeek, styling)}
-        </div>
-        <div>{cellGenerator(startDate, styling)}</div>
-      </div>
-    </div>
-  );
+  return <div style={styling.outerWrapper}>{renderCalendarStructure()}</div>;
 };
 
 export default Calendar;

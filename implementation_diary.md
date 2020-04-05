@@ -29,7 +29,8 @@ This commit implements a change from the hardcoded value in line 83 of Module.js
    next test -> days at the beginning of month, with days of next month at end (days at end) March
    next test -> days at end of month, with days of previous month at beginnning (days at start)Feb
    next test -> month with both cases -> April
-1. Implement graphic representation -> test first
-1. Change starting day of week
+
+1) Implement graphic representation -> test first
+1) Change starting day of week
 
 getMonthObject -> refactor into smaller functionality chunks
