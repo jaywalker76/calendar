@@ -39,11 +39,14 @@ const Calendar = (props) => {
   const calendarModule = new CalendarModule(startDate);
 
   const [date, setDate] = useState(calendarModule.instantiatedDate);
+  const retrievedDateToDisplay = calendarModule.generateDateString();
 
   const renderCalendarStructure = () => {
     return (
       <div style={styling.calendarWrapper} data-test="calendar-component">
-        <CalendarHeader dateToDisplay={"April 2020"} />
+        {includeHeader && (
+          <CalendarHeader dateToDisplay={retrievedDateToDisplay} />
+        )}
         The Calendar
       </div>
     );

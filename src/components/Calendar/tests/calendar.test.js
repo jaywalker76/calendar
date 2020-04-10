@@ -47,6 +47,14 @@ describe("Calendar structure", () => {
     );
     expect(calendarHeader.length).toBe(0);
   });
+  it("renders the calendar body", () => {
+    wrapper = setup();
+    const calendarComponent = wrapper.find("[data-test='calendar-component']");
+    const calendarHeader = calendarComponent.find(
+      "[data-test='calendar-header']"
+    );
+    expect(calendarHeader.length).toBe(0);
+  });
 
   /*
   
@@ -99,32 +107,6 @@ describe("Calendar structure", () => {
   */
 });
 /*
-describe("Calendar Header Tests", () => {
-  it("displays calendar header", () => {
-    let calProps = {
-      startDate: "2011/11/01",
-      includeHeader: true
-    };
-    wrapper = setup(calProps);
-    const calendarComponent = wrapper.find(
-      "[data-test='calendar-header-date']"
-    );
-
-    expect(calendarComponent.length).toEqual(1);
-  });
-
-  it("does not display calendar header", () => {
-    let calProps = {
-      startDate: "2011/11/01",
-      includeHeader: false
-    };
-
-    wrapper = setup(calProps);
-    const calendarComponent = wrapper.find("[data-test='calendar-header']");
-
-    expect(calendarComponent.length).toEqual(0);
-  });
-});
 
 describe("Calendar buffer days renderization", () => {
   it("correctly places the starting day on a month starting on a sunday", () => {
