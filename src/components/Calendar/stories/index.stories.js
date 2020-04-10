@@ -52,5 +52,8 @@ export const calendarHeader = () => (
     dateToDisplay={"April 2020"}
   />
 );
-
-export const defaultCalendar = () => <Calendar includeHeader={true} />;
+// ToDo: fix Calendar object rendering -> when no date is passed, the calendar
+// object should be instantiated to the beginning of the month
+export const defaultCalendar = () => (
+  <Calendar startDate={"2020/04/01"} includeHeader={true} />
+);
