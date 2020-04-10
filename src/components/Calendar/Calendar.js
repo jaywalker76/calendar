@@ -36,6 +36,19 @@ const Calendar = (props) => {
     displayNavArrows,
   } = props;
 
+  const generateCalendarBody = (calendarDateObject) => {
+    return calendarDateObject.map((rows) => (
+      <div data-test="calendar-rows">
+        {rows.map((cell) => (
+          <div data-test="calendar-day-cell">
+            {cell.day}
+            {cell.currentMonth}
+          </div>
+        ))}
+      </div>
+    ));
+  };
+
   const calendarModule = new CalendarModule(startDate);
 
   const [date, setDate] = useState(calendarModule.instantiatedDate);
@@ -48,16 +61,7 @@ const Calendar = (props) => {
           <CalendarHeader dateToDisplay={retrievedDateToDisplay} />
         )}
         <div data-test="calendar-body">
-          {calendarModule.getMonthObject().map((rows) => (
-            <div data-test="calendar-rows">
-              {rows.map((cell) => (
-                <div data-test="calendar-day-cell">
-                  {cell.day}
-                  {cell.currentMonth}
-                </div>
-              ))}
-            </div>
-          ))}
+          {generateCalendarBody(calendarModule.getMonthObject())}
         </div>
       </div>
     );
