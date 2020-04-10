@@ -49,7 +49,14 @@ const Calendar = (props) => {
         )}
         <div data-test="calendar-body">
           {calendarModule.getMonthObject().map((rows) => (
-            <div data-test="calendar-rows">week</div>
+            <div data-test="calendar-rows">
+              {rows.map((cell) => (
+                <div data-test="calendar-day-cell">
+                  {cell.day}
+                  {cell.currentMonth}
+                </div>
+              ))}
+            </div>
           ))}
         </div>
       </div>
