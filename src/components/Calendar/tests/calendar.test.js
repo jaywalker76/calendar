@@ -52,12 +52,19 @@ describe("Calendar structure", () => {
     const calendarBody = wrapper.find("[data-test='calendar-body']");
     expect(calendarBody.length).toBe(1);
   });
-  it("renders the correct number of weeks in body", () => {
+  it("renders the correct number of weeks in calendar body", () => {
     wrapper = setup({
       startDate: "2011/11/01",
     });
     const calendarBodyRows = wrapper.find("[data-test='calendar-rows']");
     expect(calendarBodyRows.length).toBe(5);
+  });
+  it("renders the correct number of day cells in calendar body", () => {
+    wrapper = setup({
+      startDate: "2011/11/01",
+    });
+    const calendarBodyRows = wrapper.find("[data-test='calendar-day-cell']");
+    expect(calendarBodyRows.length).toBe(35);
   });
 
   /*
