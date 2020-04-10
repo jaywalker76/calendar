@@ -47,7 +47,7 @@ const Calendar = (props) => {
         {includeHeader && (
           <CalendarHeader dateToDisplay={retrievedDateToDisplay} />
         )}
-        The Calendar
+        <div data-test="calendar-body">The Calendar</div>
       </div>
     );
   };

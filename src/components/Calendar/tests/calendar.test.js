@@ -49,11 +49,8 @@ describe("Calendar structure", () => {
   });
   it("renders the calendar body", () => {
     wrapper = setup();
-    const calendarComponent = wrapper.find("[data-test='calendar-component']");
-    const calendarHeader = calendarComponent.find(
-      "[data-test='calendar-header']"
-    );
-    expect(calendarHeader.length).toBe(0);
+    const calendarBody = wrapper.find("[data-test='calendar-body']");
+    expect(calendarBody.length).toBe(1);
   });
 
   /*
