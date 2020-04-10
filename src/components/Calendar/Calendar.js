@@ -47,7 +47,11 @@ const Calendar = (props) => {
         {includeHeader && (
           <CalendarHeader dateToDisplay={retrievedDateToDisplay} />
         )}
-        <div data-test="calendar-body">The Calendar</div>
+        <div data-test="calendar-body">
+          {calendarModule.getMonthObject().map((rows) => (
+            <div data-test="calendar-rows">week</div>
+          ))}
+        </div>
       </div>
     );
   };
