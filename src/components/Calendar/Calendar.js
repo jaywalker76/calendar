@@ -27,13 +27,13 @@ import CalendarModule from "../../new_module/Module";
 
  */
 
-const Calendar = props => {
+const Calendar = (props) => {
   const {
     startDate,
     dayDescriptorType,
     startOfWeek,
     includeHeader,
-    displayNavArrows
+    displayNavArrows,
   } = props;
 
   const calendarModule = new CalendarModule(startDate);
@@ -42,7 +42,9 @@ const Calendar = props => {
 
   const renderCalendarStructure = () => {
     return (
-      <div style={styling.calendarWrapper} data-test="calendar-component"></div>
+      <div style={styling.calendarWrapper} data-test="calendar-component">
+        The Calendar
+      </div>
     );
   };
 

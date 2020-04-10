@@ -8,10 +8,14 @@ const navClickHandler = () => {
   alert("Boom");
 };
 
-const CalendarHeader = props => {
+const CalendarHeader = (props) => {
   const { dateToDisplay, displayNavArrows, onClick } = props;
   return (
-    <div id="calendar-header" style={styling.calendarHeader}>
+    <div
+      id="calendar-header"
+      data-test="calendar-header"
+      style={styling.calendarHeader}
+    >
       {displayNavArrows && (
         <CalendarNavArrows
           data-test="left-header-nav"

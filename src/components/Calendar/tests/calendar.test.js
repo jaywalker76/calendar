@@ -3,7 +3,7 @@ import Enzyme, { mount } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 
 import CalendarModule from "../../../new_module/Module";
-
+import CalendarHeader from "../CalendarHeader/CalendarHeader";
 import Calendar from "../Calendar";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
@@ -31,6 +31,15 @@ describe("Calendar structure", () => {
     const calendarComponent = wrapper.find("[data-test='calendar-component']");
     expect(calendarComponent.length).toBe(1);
   });
+  it("renders the calendar header", () => {
+    wrapper = setup({ includeHeader: true });
+    const calendarComponent = wrapper.find("[data-test='calendar-component']");
+    const calendarHeader = calendarComponent.find(
+      "[data-test='calendar-header']"
+    );
+    expect(calendarHeader.length).toBe(1);
+  });
+
   /*
   
   it("displays the days in the week", () => {
