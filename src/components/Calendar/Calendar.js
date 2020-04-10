@@ -43,6 +43,7 @@ const Calendar = (props) => {
   const renderCalendarStructure = () => {
     return (
       <div style={styling.calendarWrapper} data-test="calendar-component">
+        <CalendarHeader dateToDisplay={"April 2020"} />
         The Calendar
       </div>
     );
