@@ -53,10 +53,10 @@ describe("Calendar structure", () => {
     expect(calendarBody.length).toBe(1);
   });
   it("renders the correct number of weeks in calendar body", () => {
-    wrapper = setup({
+    const myWrapper = setup({
       startDate: "2011/11/01",
     });
-    const calendarBodyRows = wrapper.find("[data-test='calendar-rows']");
+    const calendarBodyRows = myWrapper.find("[data-test='calendar-rows']");
     expect(calendarBodyRows.length).toBe(5);
   });
   it("renders the correct number of day cells in calendar body", () => {

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
+import { css } from "emotion";
+
 // import { generateDaysColumn, cellGenerator } from "./calendar_functions";
 
 import styling from "./style";
@@ -27,6 +29,41 @@ import CalendarModule from "../../new_module/Module";
 
  */
 
+const calendarContainerStyle = css`
+  border: 1px solid black;
+`;
+
+const rowStyle = css`
+  background: pink;
+  border: 1px solid blue;
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
+`;
+
+const cellStyle = css`
+  background: white;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: aquamarine;
+  border: 1px solid gray;
+`;
+
+const generateCalendarBody = (calendarDateObject) => {
+  return calendarDateObject.map((rows) => (
+    <div className={rowStyle} data-test="calendar-rows">
+      {rows.map((cell) => (
+        <div className={cellStyle} data-test="calendar-day-cell">
+          {cell.day}
+          {cell.currentMonth}
+        </div>
+      ))}
+    </div>
+  ));
+};
+
 const Calendar = (props) => {
   const {
     startDate,
@@ -36,19 +73,6 @@ const Calendar = (props) => {
     displayNavArrows,
   } = props;
 
-  const generateCalendarBody = (calendarDateObject) => {
-    return calendarDateObject.map((rows) => (
-      <div data-test="calendar-rows">
-        {rows.map((cell) => (
-          <div data-test="calendar-day-cell">
-            {cell.day}
-            {cell.currentMonth}
-          </div>
-        ))}
-      </div>
-    ));
-  };
-
   const calendarModule = new CalendarModule(startDate);
 
   const [date, setDate] = useState(calendarModule.instantiatedDate);
@@ -56,7 +80,7 @@ const Calendar = (props) => {
 
   const renderCalendarStructure = () => {
     return (
-      <div style={styling.calendarWrapper} data-test="calendar-component">
+      <div className={calendarContainerStyle} data-test="calendar-component">
         {includeHeader && (
           <CalendarHeader dateToDisplay={retrievedDateToDisplay} />
         )}
