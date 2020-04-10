@@ -39,6 +39,14 @@ describe("Calendar structure", () => {
     );
     expect(calendarHeader.length).toBe(1);
   });
+  it("conditionally renders the calendar header", () => {
+    wrapper = setup();
+    const calendarComponent = wrapper.find("[data-test='calendar-component']");
+    const calendarHeader = calendarComponent.find(
+      "[data-test='calendar-header']"
+    );
+    expect(calendarHeader.length).toBe(0);
+  });
 
   /*
   
