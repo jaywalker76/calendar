@@ -150,7 +150,7 @@ module.exports = class CalendarModule {
         week.push({
           currentMonth: day.getMonth() === this.instantiatedDate.getMonth(),
           day: day.getDate(),
-          weekday: day.getDay()
+          weekday: day.getDay(),
         });
         // update count of days to generate
         dayCounter += 1;
@@ -158,5 +158,9 @@ module.exports = class CalendarModule {
       monthObject.push(week);
     }
     return monthObject;
+  }
+
+  getWeekHeader() {
+    return ["S", "M", "T", "W", "T", "F", "S"];
   }
 };
