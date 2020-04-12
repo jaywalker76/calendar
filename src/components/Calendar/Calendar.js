@@ -64,6 +64,10 @@ const generateCalendarBody = (calendarDateObject) => {
   ));
 };
 
+const calendarWeekHeader = (weekHeaderObject) => {
+  return weekHeaderObject.map((cell) => <div>{cell}</div>);
+};
+
 const Calendar = (props) => {
   const {
     startDate,
@@ -84,6 +88,9 @@ const Calendar = (props) => {
         {includeHeader && (
           <CalendarHeader dateToDisplay={retrievedDateToDisplay} />
         )}
+        <div data-test="calendar-col-header">
+          {calendarWeekHeader(calendarModule.getWeekHeader())}
+        </div>
         <div data-test="calendar-body">
           {generateCalendarBody(calendarModule.getMonthObject())}
         </div>
