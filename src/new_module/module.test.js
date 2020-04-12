@@ -1,13 +1,14 @@
 import CalendarModule from "./Module";
 
 import { mondayStart, fridayStart, sundayStart } from "./week_defs";
+import { sundayStartShort } from "./week_col_headers";
 
 import {
   February2015,
   February2019,
   February2020,
   March2020,
-  April2020
+  April2020,
 } from "./month_objects";
 
 describe("Module functionality", () => {
@@ -58,7 +59,7 @@ describe("Module functionality", () => {
       "Thursday",
       "Friday",
       "Saturday",
-      "Sunday"
+      "Sunday",
     ];
 
     const moduleInstance = new CalendarModule();
@@ -75,7 +76,7 @@ describe("Module functionality", () => {
       "Friday",
       "Saturday",
       "Sunday",
-      "Monday"
+      "Monday",
     ];
 
     const moduleInstance = new CalendarModule(null, 1);
@@ -186,4 +187,13 @@ describe("Week Number Implementation", () => {
       expect(retrievedNumberOfWeeksInMonth).toEqual(weekNumber);
     }
   );
+});
+
+describe("Calendar Header implementation", () => {
+  it("returns a object with the weekday initial, starting on S for Sunday, for english", () => {
+    const moduleInstance = new CalendarModule();
+    const retrievedColWeekHeader = moduleInstance.getWeekHeader();
+
+    expect(retrievedColWeekHeader).toEqual(sundayStartShort);
+  });
 });
