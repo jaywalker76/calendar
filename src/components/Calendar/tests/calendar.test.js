@@ -47,6 +47,11 @@ describe("Calendar structure", () => {
     );
     expect(calendarHeader.length).toBe(0);
   });
+  it("renders the calendar week col header", () => {
+    wrapper = setup();
+    const calendarColHeader = wrapper.find("[data-test='calendar-col-header']");
+    expect(calendarColHeader.length).toBe(1);
+  });
   it("renders the calendar body", () => {
     wrapper = setup();
     const calendarBody = wrapper.find("[data-test='calendar-body']");
