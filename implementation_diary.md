@@ -42,8 +42,8 @@ getMonthObject -> refactor into smaller functionality chunks
 20200413 - ToDo
 Add to js files in which we were working, add description of responsibility of said module.
 
-Finish Col Header renderization: separate code
-Convert Calendar Body into a Component
+~~Finish Col Header renderization: separate code~~
+~~Convert Calendar Body into a Component~~
 Should Calendar Header be part of Body?
 
 1. Change starting day of week
