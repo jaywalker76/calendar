@@ -1,6 +1,7 @@
 import React from "react";
 
 import { css } from "emotion";
+import CalendarColumnHeader from "./CalendarHeader/CalendarColumnHeader";
 
 const rowStyle = css`
   background: pink;
@@ -21,25 +22,28 @@ const cellStyle = css`
 `;
 
 const CalendarBody = (props) => {
-  const { monthObject } = props;
+  const { monthObject, weekHeaderObject } = props;
 
   return (
-    <div data-test="calendar-body">
-      {monthObject.map((rows, row_id) => (
-        <div key={row_id} className={rowStyle} data-test="calendar-rows">
-          {rows.map((cell, cell_id) => (
-            <div
-              key={cell_id}
-              className={cellStyle}
-              data-test="calendar-day-cell"
-            >
-              {cell.day}
-              {cell.currentMonth}
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
+    <>
+      <CalendarColumnHeader weekHeaderObject={weekHeaderObject} />
+      <div data-test="calendar-body">
+        {monthObject.map((rows, row_id) => (
+          <div key={row_id} className={rowStyle} data-test="calendar-rows">
+            {rows.map((cell, cell_id) => (
+              <div
+                key={cell_id}
+                className={cellStyle}
+                data-test="calendar-day-cell"
+              >
+                {cell.day}
+                {cell.currentMonth}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 

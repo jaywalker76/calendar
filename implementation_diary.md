@@ -44,6 +44,6 @@ Add to js files in which we were working, add description of responsibility of s
 
 ~~Finish Col Header renderization: separate code~~
 ~~Convert Calendar Body into a Component~~
-Should Calendar Header be part of Body?
+~~Should Calendar Header be part of Body?~~ makes sense that the col header be part of the calendar body
 
 1. Change starting day of week

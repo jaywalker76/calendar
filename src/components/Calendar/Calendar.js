@@ -39,8 +39,10 @@ const Calendar = (props) => {
         {includeHeader && (
           <CalendarHeader dateToDisplay={retrievedDateToDisplay} />
         )}
-        <CalendarColumnHeader weekHeaderObject={weekHeaderObject} />
-        <CalendarBody monthObject={calendarMonthObject} />
+        <CalendarBody
+          monthObject={calendarMonthObject}
+          weekHeaderObject={weekHeaderObject}
+        />
       </div>
     );
   };
