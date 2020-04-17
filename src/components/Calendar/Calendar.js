@@ -10,6 +10,7 @@ import styling from "./style";
 import { updateDateValue } from "./utils";
 
 import CalendarModule from "../../new_module/Module";
+import CalendarColumnHeader from "./CalendarHeader/CalendarColumnHeader";
 
 /**
  * Props
@@ -64,13 +65,6 @@ const generateCalendarBody = (calendarDateObject) => {
   ));
 };
 
-const dayColHeader = css`
-  display: flex;
-  justify-content: space-around;
-  height: 35px;
-  line-height: 35px;
-`;
-
 const calendarWeekHeader = (weekHeaderObject) => {
   return weekHeaderObject.map((cell) => <div>{cell}</div>);
 };
@@ -85,6 +79,7 @@ const Calendar = (props) => {
   } = props;
 
   const calendarModule = new CalendarModule(startDate);
+  const weekHeaderObject = calendarModule.getWeekHeader();
 
   const [date, setDate] = useState(calendarModule.instantiatedDate);
   const retrievedDateToDisplay = calendarModule.generateDateString();
@@ -95,9 +90,7 @@ const Calendar = (props) => {
         {includeHeader && (
           <CalendarHeader dateToDisplay={retrievedDateToDisplay} />
         )}
-        <div className={dayColHeader} data-test="calendar-col-header">
-          {calendarWeekHeader(calendarModule.getWeekHeader())}
-        </div>
+        <CalendarColumnHeader weekHeaderObject={weekHeaderObject} />
         <div data-test="calendar-body">
           {generateCalendarBody(calendarModule.getMonthObject())}
         </div>

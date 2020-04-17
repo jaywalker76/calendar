@@ -30,7 +30,20 @@ This commit implements a change from the hardcoded value in line 83 of Module.js
    next test -> days at end of month, with days of previous month at beginnning (days at start)Feb
    next test -> month with both cases -> April
 
-1) Implement graphic representation -> test first
-1) Change starting day of week
+1) Implement graphic representation -> test first -> this means the day grid.
 
 getMonthObject -> refactor into smaller functionality chunks
+
+20200406 - ToDo
+
+- refactor so that we have an object that represents the grid -> along the lines of the header; rather than the calendar being rendered in line the object should be returned from a function.
+- Use the Already created Calendar Header
+
+20200413 - ToDo
+Add to js files in which we were working, add description of responsibility of said module.
+
+Finish Col Header renderization: separate code
+Convert Calendar Body into a Component
+Should Calendar Header be part of Body?
+
+1. Change starting day of week
