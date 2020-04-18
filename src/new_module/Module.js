@@ -96,10 +96,14 @@ module.exports = class CalendarModule {
     let theYear = currentDate.getFullYear();
     let theMonth = currentDate.getMonth() + 1;
 
-    let date = new Date(theYear, theMonth - 1, 1);
-    let day = date.getDay();
-    let numDaysInMonth = new Date(theYear, theMonth, 0).getDate();
-    return Math.ceil((numDaysInMonth + day) / 7);
+    let firstDayOfMonth = new Date(theYear, theMonth - 1, 1);
+    let lastDayOfMonth = new Date(theYear, theMonth, 0);
+    let numDaysInMonth = lastDayOfMonth.getDate();
+
+    let firstWeekDay = (firstDayOfMonth.getDay() - this.weekStartDay + 7) % 7;
+    let daysUsedToRender = firstWeekDay + numDaysInMonth;
+
+    return Math.ceil(daysUsedToRender / 7);
   }
 
   // how can I modify tests for a scenario in which I pass arguments to a function
@@ -146,7 +150,11 @@ module.exports = class CalendarModule {
         // generate day
         // the startingDate
         let startDate = new Date(startingDate);
-        let day = new Date(startDate.setDate(startDate.getDate() + dayCounter));
+        let day = new Date(
+          startDate.setDate(
+            startDate.getDate() + this.weekStartDay + dayCounter
+          )
+        );
         week.push({
           currentMonth: day.getMonth() === this.instantiatedDate.getMonth(),
           day: day.getDate(),
