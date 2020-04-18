@@ -9,6 +9,7 @@ import {
   February2020,
   March2020,
   April2020,
+  May2020,
 } from "./month_objects";
 
 describe("Module functionality", () => {
@@ -196,4 +197,20 @@ describe("Calendar Header implementation", () => {
 
     expect(retrievedColWeekHeader).toEqual(sundayStartShort);
   });
+});
+
+describe("Calendar Implementation for week starting on Monday", () => {
+  test.each`
+    monthName     | monthDateParameter | monthObject
+    ${"May 2020"} | ${"05/01/2020"}    | ${May2020}
+  `(
+    "Generated Month Object for $monthName matches the test object",
+    ({ monthDateParameter, monthObject }) => {
+      const moduleInstance = new CalendarModule(monthDateParameter, 1);
+
+      const retrievedMonthObject = moduleInstance.getMonthObject();
+
+      expect(retrievedMonthObject).toEqual(monthObject);
+    }
+  );
 });

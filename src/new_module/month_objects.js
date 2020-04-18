@@ -464,4 +464,11 @@ const February2010 = [
   ],
 ];
 
-export { February2015, February2019, February2020, March2020, April2020 };
+export {
+  February2015,
+  February2019,
+  February2020,
+  March2020,
+  April2020,
+  May2020,
+};
