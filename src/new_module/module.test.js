@@ -10,6 +10,10 @@ import {
   March2020,
   April2020,
   May2020,
+  June2020,
+  July2020,
+  February2016,
+  February2010,
 } from "./month_objects";
 
 describe("Module functionality", () => {
@@ -201,8 +205,12 @@ describe("Calendar Header implementation", () => {
 
 describe("Calendar Implementation for week starting on Monday", () => {
   test.each`
-    monthName     | monthDateParameter | monthObject
-    ${"May 2020"} | ${"05/01/2020"}    | ${May2020}
+    monthName          | monthDateParameter | monthObject
+    ${"May 2020"}      | ${"05/01/2020"}    | ${May2020}
+    ${"June 2020"}     | ${"06/01/2020"}    | ${June2020}
+    ${"July 2020"}     | ${"07/01/2020"}    | ${July2020}
+    ${"February 2016"} | ${"02/01/2016"}    | ${February2016}
+    ${"February 2010"} | ${"02/01/2010"}    | ${February2010}
   `(
     "Generated Month Object for $monthName matches the test object",
     ({ monthDateParameter, monthObject }) => {
