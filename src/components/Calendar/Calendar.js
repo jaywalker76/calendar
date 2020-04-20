@@ -1,3 +1,9 @@
+/*
+Responsible for presenting the visual representation of the Calendar
+Instantiates a Calendar Model, using the functions in Module.js
+Aglomerates all the components that make up the calendar into the final component
+to be presented
+*/
 import React, { useState } from "react";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 

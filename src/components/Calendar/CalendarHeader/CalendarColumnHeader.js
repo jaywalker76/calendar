@@ -1,3 +1,6 @@
+/*
+Responsible for rendering the column header for the week days in the calendar
+*/
 import React from "react";
 
 import { css, cx } from "emotion";

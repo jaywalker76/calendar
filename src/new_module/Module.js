@@ -1,3 +1,6 @@
+/**
+This module is responsible for handling the model to be presented visually
+*/
 module.exports = class CalendarModule {
   /**
    *

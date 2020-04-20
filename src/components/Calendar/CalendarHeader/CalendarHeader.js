@@ -1,3 +1,6 @@
+/*
+Responsible for rendering the Calendar Header
+*/
 import React from "react";
 
 import { css, cx } from "emotion";

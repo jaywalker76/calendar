@@ -1,3 +1,6 @@
+/*
+Responsible for presenting the calendar body
+*/
 import React from "react";
 
 import { css } from "emotion";
