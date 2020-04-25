@@ -5,6 +5,11 @@ import EnzymeAdapter from "enzyme-adapter-react-16";
 import CalendarModule from "../../../../../new_module/";
 import CalendarColumnHeader from "..";
 
+import {
+  weekStartsOnSunday,
+  weekStartsOnMonday,
+} from "../testObjects/weekheader_col_values";
+
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 /**
@@ -31,5 +36,12 @@ describe("Calendar Column Header Structure", () => {
   it("renders without crashing", () => {
     wrapper = setup(props);
     expect(wrapper).toBeTruthy();
+  });
+
+  it("Returns week representation starting on a sunday, using day initials", () => {
+    const moduleInstance = new CalendarModule();
+    const retrievedWeekDaysColHeader = moduleInstance.getWeekHeader();
+
+    expect(weekStartsOnSunday).toEqual(retrievedWeekDaysColHeader);
   });
 });
