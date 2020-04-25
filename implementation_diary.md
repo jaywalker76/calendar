@@ -48,12 +48,12 @@ Add to js files in which we were working, add description of responsibility of s
 
 1. Change starting day of week
 
-
 20200420
+
 - Homework -> rename classes/modules to more significant names
 - Identify and remove unused code
 - Attribute more correct naming to testing objects, in order to reflect exactly how the object is supposed to be tested
-- Reorganize component structure into own folders (folder=same name as comp, with index.js that exports the component)
+- [ ] Reorganize component structure into own folders (folder=same name as comp, with index.js that exports the component)
 - calendarModule.getWeekHeader(): right now returns week day short designation; the conversion from number to representational display, it can reside in the parent component, or in the CalendarColHeader component
 - For functionality moved to own modules, move also accompanying tests
 

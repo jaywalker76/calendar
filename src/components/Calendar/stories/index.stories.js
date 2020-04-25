@@ -45,15 +45,20 @@ const resolveDate = direction => {
   setDate(updateDateValue(direction, date));
 };
 */
+// ToDo: fix Calendar object rendering -> when no date is passed, the calendar
+// object should be instantiated to the beginning of the month
+export const defaultCalendar = () => (
+  <Calendar startDate={"2020/04/01"} includeHeader={true} />
+);
+
+export const weekStartsOnMonday = () => (
+  <Calendar startDate={"2020/04/01"} includeHeader={true} />
+);
+
 export const calendarHeader = () => (
   <CalendarHeader
     data-test="calendar-header"
     displayNavArrows={true}
     dateToDisplay={"April 2020"}
   />
-);
-// ToDo: fix Calendar object rendering -> when no date is passed, the calendar
-// object should be instantiated to the beginning of the month
-export const defaultCalendar = () => (
-  <Calendar startDate={"2020/04/01"} includeHeader={true} />
 );

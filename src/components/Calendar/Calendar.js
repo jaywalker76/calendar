@@ -8,9 +8,6 @@ import React, { useState } from "react";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
 import { css } from "emotion";
-
-// import { generateDaysColumn, cellGenerator } from "./calendar_functions";
-
 import styling from "./style";
 
 import { updateDateValue } from "./utils";
