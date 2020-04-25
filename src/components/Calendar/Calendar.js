@@ -16,8 +16,8 @@ import styling from "./style";
 import { updateDateValue } from "./utils";
 
 import CalendarModule from "../../new_module/Module";
-import CalendarColumnHeader from "./CalendarHeader/CalendarColumnHeader";
-import CalendarBody from "./CalendarBody";
+import CalendarColumnHeader from "./CalendarHeader/CalendarColumnHeader/CalendarColumnHeader";
+import CalendarBody from "../Calendar/CalendarBody/CalendarBody";
 
 const calendarContainerStyle = css`
   border: 1px solid black;

@@ -5,7 +5,7 @@ import React from "react";
 
 import { css, cx } from "emotion";
 
-import CalendarNavArrows from "../NavArrows/NavArrows";
+import CalendarNavArrows from "./CalendarNavigationArrows/CalendarNavigationArrows";
 
 const navClickHandler = () => {
   alert("Boom");

@@ -1,7 +1,11 @@
 import CalendarModule from "./Module";
 
-import { mondayStart, fridayStart, sundayStart } from "./week_defs";
-import { sundayStartShort } from "./week_col_headers";
+import {
+  mondayStart,
+  fridayStart,
+  sundayStart,
+} from "./CalendarTestSamples/week_defs";
+import { sundayStartShort } from "./CalendarTestSamples/week_col_headers";
 
 import {
   February2015,
@@ -14,7 +18,7 @@ import {
   July2020,
   February2016,
   February2010,
-} from "./month_objects";
+} from "./CalendarTestSamples/month_objects";
 
 describe("Module functionality", () => {
   test.each`

@@ -4,7 +4,7 @@ Responsible for presenting the calendar body
 import React from "react";
 
 import { css } from "emotion";
-import CalendarColumnHeader from "./CalendarHeader/CalendarColumnHeader";
+import CalendarColumnHeader from "../CalendarHeader/CalendarColumnHeader/CalendarColumnHeader";
 
 const rowStyle = css`
   background: pink;

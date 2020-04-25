@@ -2,9 +2,7 @@ import React from "react";
 import Enzyme, { mount } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 
-import { getMonthYearString } from "../utils";
-
-import CalendarHeader from "../CalendarHeader/CalendarHeader";
+import CalendarHeader from "../CalendarHeader";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
@@ -37,7 +35,7 @@ describe("Calendar navigation", () => {
     startDate: "December 2019",
     includeHeader: true,
     displayNavArrows: true,
-    onClick: mockCallBack
+    onClick: mockCallBack,
   };
 
   it("should display left nav arrow", () => {
@@ -94,7 +92,7 @@ describe("Calendar navigation", () => {
     let configs = {
       displayNavArrows: true,
       dateToDisplay: "December 2019",
-      onClick: mockCallBack
+      onClick: mockCallBack,
     };
 
     wrapper = setup(configs);

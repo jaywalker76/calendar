@@ -2,18 +2,18 @@
  *
  * Presentational Code
  */
-const getMonthString = date => {
+const getMonthString = (date) => {
   return date.toLocaleString("default", { month: "long" });
 };
 
-const getYear = date => {
+const getYear = (date) => {
   return date.toLocaleString("default", { year: "numeric" });
 };
 
-const getMonthYearString = dateParam => {
-  const dateValue = dateValidator(dateParam);
-  return getMonthString(dateValue) + " " + getYear(dateValue);
-};
+// const getMonthYearString = dateParam => {
+//   const dateValue = dateValidator(dateParam);
+//   return getMonthString(dateValue) + " " + getYear(dateValue);
+// };
 
 const getDayName = (dateParam, dayDescriptorType, locale) => {
   const dayDescType =
@@ -27,7 +27,7 @@ const getDayName = (dateParam, dayDescriptorType, locale) => {
  * Business Logic Code
  */
 
-const getNumberOfDaysInMonth = dateParam => {
+const getNumberOfDaysInMonth = (dateParam) => {
   const dateValue = dateValidator(dateParam);
 
   return new Date(
@@ -37,7 +37,7 @@ const getNumberOfDaysInMonth = dateParam => {
   ).getDate();
 };
 
-const dateValidator = dateParam => {
+const dateValidator = (dateParam) => {
   const dateValue = dateParam !== undefined ? new Date(dateParam) : new Date();
 
   return dateValue;
@@ -49,12 +49,12 @@ const addDaysToDate = (date, daysToAdd) => {
   return result;
 };
 
-const getLastDayInMonth = dateParam => {
+const getLastDayInMonth = (dateParam) => {
   let nextMonth = new Date(dateParam.setMonth(dateParam.getMonth() + 1));
   return new Date(nextMonth.getFullYear(), nextMonth.getMonth() + 1, 0);
 };
 
-const getIsoWeek = dateParam => {
+const getIsoWeek = (dateParam) => {
   let date = new Date(dateParam.getTime());
   date.setHours(0, 0, 0, 0);
   date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
@@ -74,7 +74,7 @@ const getIsoWeek = dateParam => {
 
   return {
     week: weekNumber,
-    year: weekYear
+    year: weekYear,
   };
 };
 
@@ -100,12 +100,11 @@ const updateDateValue = (direction, date) => {
 };
 
 export {
-  getMonthYearString,
   getDayName,
   getNumberOfDaysInMonth,
   addDaysToDate,
   getLastDayInMonth,
   getIsoWeek,
   getWeekDifferential,
-  updateDateValue
+  updateDateValue,
 };
