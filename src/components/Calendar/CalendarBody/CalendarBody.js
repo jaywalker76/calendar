@@ -29,7 +29,7 @@ const CalendarBody = (props) => {
 
   return (
     <>
-      <CalendarColumnHeader weekHeaderObject={weekHeaderObject} />
+      <CalendarColumnHeader />
       <div data-test="calendar-body">
         {monthObject.map((rows, row_id) => (
           <div key={row_id} className={rowStyle} data-test="calendar-rows">

@@ -23,14 +23,14 @@ const calendarContainerStyle = css`
 const Calendar = (props) => {
   const {
     startDate,
-    dayDescriptorType,
+    // dayDescriptorType,
     startOfWeek,
     includeHeader,
     displayNavArrows,
   } = props;
 
   const calendarModule = new CalendarModule(startDate);
-  const weekHeaderObject = calendarModule.getWeekHeader();
+  // const weekHeaderObject = calendarModule.getWeekHeader();
   const calendarMonthObject = calendarModule.getMonthObject();
 
   const [date, setDate] = useState(calendarModule.instantiatedDate);
@@ -44,7 +44,7 @@ const Calendar = (props) => {
         )}
         <CalendarBody
           monthObject={calendarMonthObject}
-          weekHeaderObject={weekHeaderObject}
+          // weekHeaderObject={weekHeaderObject}
         />
       </div>
     );

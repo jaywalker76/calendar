@@ -5,7 +5,7 @@ const mondayStart = [
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday"
+  "Sunday",
 ];
 const fridayStart = [
   "Friday",
@@ -14,7 +14,7 @@ const fridayStart = [
   "Monday",
   "Tuesday",
   "Wednesday",
-  "Thursday"
+  "Thursday",
 ];
 
 const sundayStart = [
@@ -24,11 +24,7 @@ const sundayStart = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Saturday"
+  "Saturday",
 ];
 
-export {
-  mondayStart,
-  fridayStart,
-  sundayStart
-};
+export { mondayStart, fridayStart, sundayStart };

@@ -1,13 +1,6 @@
 import CalendarModule from "./Module";
 
 import {
-  mondayStart,
-  fridayStart,
-  sundayStart,
-} from "./CalendarTestSamples/week_defs";
-import { sundayStartShort } from "./CalendarTestSamples/week_col_headers";
-
-import {
   February2015,
   February2019,
   February2020,
@@ -59,54 +52,6 @@ describe("Module functionality", () => {
 
     expect(weekDayNumbers).toEqual(retrievedWeekDays);
   });
-
-  it("Returns weekday names", () => {
-    const weekdayNames = [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ];
-
-    const moduleInstance = new CalendarModule();
-    const retrievedWeekdayNames = moduleInstance.getWeekDayNames();
-
-    expect(weekdayNames).toEqual(retrievedWeekdayNames);
-  });
-
-  it("Returns reordered weekday names", () => {
-    const weekdayNames = [
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-      "Monday",
-    ];
-
-    const moduleInstance = new CalendarModule(null, 1);
-    const retrievedWeekdayNames = moduleInstance.getWeekDayNames();
-
-    expect(weekdayNames).toEqual(retrievedWeekdayNames);
-  });
-
-  test.each`
-    testName                   | startDay | expectedResult
-    ${"week starts on monday"} | ${0}     | ${mondayStart}
-    ${"week starts on friday"} | ${4}     | ${fridayStart}
-    ${"week starts on sunday"} | ${6}     | ${sundayStart}
-  `(
-    "$testName: correctly converts $startDay to $expectedResult",
-    ({ startDay, expectedResult }) => {
-      const moduleInstance = new CalendarModule(null, startDay);
-
-      expect(moduleInstance.getWeekDayNames()).toStrictEqual(expectedResult);
-    }
-  );
 });
 
 describe("Calendar implementation", () => {
@@ -196,15 +141,6 @@ describe("Week Number Implementation", () => {
       expect(retrievedNumberOfWeeksInMonth).toEqual(weekNumber);
     }
   );
-});
-
-describe("Calendar Header implementation", () => {
-  it("returns a object with the weekday initial, starting on S for Sunday, for english", () => {
-    const moduleInstance = new CalendarModule();
-    const retrievedColWeekHeader = moduleInstance.getWeekHeader();
-
-    expect(retrievedColWeekHeader).toEqual(sundayStartShort);
-  });
 });
 
 describe("Calendar Implementation for week starting on Monday", () => {
