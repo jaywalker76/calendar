@@ -22,13 +22,13 @@ const calendarContainerStyle = css`
 const Calendar = (props) => {
   const {
     startDate,
-    dayDescriptorType,
     startOfWeek,
+    dayDescriptorType,
     includeHeader,
     displayNavArrows,
   } = props;
 
-  const calendarModule = new CalendarModule(startDate);
+  const calendarModule = new CalendarModule(startDate, startOfWeek);
   const calendarMonthObject = calendarModule.getMonthObject();
 
   // this function is to be invoked by parent component (calendar.js -> this is the component that retains the state)
