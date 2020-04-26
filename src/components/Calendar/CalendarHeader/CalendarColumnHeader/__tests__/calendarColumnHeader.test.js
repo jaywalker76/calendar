@@ -65,6 +65,7 @@ describe("Calendar Column Header Structure", () => {
 
   it("returns a object with the weekday initial, starting on S for Sunday, for english", () => {
     wrapper = setup();
+
     const calendarColHeader = wrapper.find("[data-test='calendar-col-header']");
 
     expect(calendarColHeader).toEqual(weekStartsOnSunday);
