@@ -52,7 +52,7 @@ export const defaultCalendar = () => (
 );
 
 export const weekStartsOnMonday = () => (
-  <Calendar startDate={"2020/04/01"} includeHeader={true} />
+  <Calendar startDate={"2020/04/01"} includeHeader={true} startOfWeek={1} />
 );
 
 export const calendarHeader = () => (

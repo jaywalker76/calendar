@@ -2,15 +2,9 @@ import React from "react";
 import Enzyme, { mount } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 
-import CalendarModule from "../../../../../new_module/";
 import CalendarColumnHeader from "..";
-import Calendar from "../../../Calendar";
 
-import {
-  mondayStart,
-  fridayStart,
-  sundayStart,
-} from "../testObjects/week_defs";
+// import { mondayStart, fridayStart, sundayStart } from "./testObjects/week_defs";
 
 import {
   weekStartsOnSunday,
@@ -31,74 +25,63 @@ const setup = (props = {}, state = null) => {
   return mount(<CalendarColumnHeader {...props} />);
 };
 
-// const calendarSetup = (props = {}, state = null) => {
-//   return mount(<Calendar {...props} />);
-// };
-
-// let wrapper;
-
-// describe("Calendar structure", () => {
-//   it("renders without crashing", () => {
-//     wrapper = setup();
-//     expect(wrapper).toBeTruthy();
-//   });
-//   it("renders the calendar wrapper", () => {
-//     wrapper = setup();
-//     const calendarComponent = wrapper.find("[data-test='calendar-component']");
-//     expect(calendarComponent.length).toBe(1);
-//   });
-
-//let calendarWrapper;
 let wrapper;
+let props = { calendarColHeader: [0, 1, 2, 3, 4, 5, 6] };
 
 describe("Calendar Column Header Structure", () => {
   it("renders without crashing", () => {
-    wrapper = setup();
+    wrapper = setup(props);
     expect(wrapper).toBeTruthy();
   });
 
   it("renders the calendar column header ", () => {
-    wrapper = setup();
+    wrapper = setup(props);
     const calendarColHeader = wrapper.find("[data-test='calendar-col-header']");
     expect(calendarColHeader.length).toBe(1);
   });
 
   it("returns a object with the weekday initial, starting on S for Sunday, for english", () => {
-    wrapper = setup();
-
+    wrapper = setup(props);
     const calendarColHeader = wrapper.find("[data-test='calendar-col-header']");
     let headerContents = calendarColHeader.debug();
-
     headerContents = headerContents
       .replace(/(<([^>]+)>)/gi, "")
       .replace(/(?:\r\n|\r|\n)/g, "")
       .replace(/\s/g, "")
       .split("");
-
     expect(headerContents).toEqual(weekStartsOnSunday);
   });
+});
 
+describe("Calendar Column Header Structure", () => {
+  // it("Returns ordered weekday numbers, given no specific starting day", () => {
+  //   const weekDayNumbers = [0, 1, 2, 3, 4, 5, 6];
+  //   const moduleInstance = new CalendarModule();
+  //   const retrievedWeekDays = moduleInstance.getWeekDayNumbers();
+  //   expect(weekDayNumbers).toEqual(retrievedWeekDays);
+  // });
+  // it("Returns ordered weekday numbers, given a specific start day", () => {
+  //   const weekDayNumbers = [2, 3, 4, 5, 6, 0, 1];
+  //   const moduleInstance = new CalendarModule(null, 2);
+  //   const retrievedWeekDays = moduleInstance.getWeekDayNumbers();
+  //   expect(weekDayNumbers).toEqual(retrievedWeekDays);
+  // });
   // describe("Calendar Header implementation", () => {
   //   it("returns a object with the weekday initial, starting on S for Sunday, for english", () => {
   //     const moduleInstance = new CalendarModule();
   //     const retrievedColWeekHeader = moduleInstance.getWeekHeader();
-
   //     expect(retrievedColWeekHeader).toEqual(sundayStartShort);
   //   });
   // });
-
   // let startDate = "04/01/2020";
   // const calendarModule = new CalendarModule(startDate);
   // const retrievedWeekHeaderObject = calendarModule.getWeekHeader();
-
   // let props = { weekHeaderObject: retrievedWeekHeaderObject };
-
   // it("renders the calendar wrapper", () => {
   //   calendarWrapper = calendarSetup();
   //   const calendarComponent = wrapper.find("[data-test='calendar-component']");
   //   expect(calendarComponent.length).toBe(1);
   // });
-
   // it("Returns weekday names", () => {
   //   const weekdayNames = [
   //     "Monday",
@@ -109,13 +92,10 @@ describe("Calendar Column Header Structure", () => {
   //     "Saturday",
   //     "Sunday",
   //   ];
-
   //   const moduleInstance = new CalendarModule();
   //   const retrievedWeekdayNames = moduleInstance.getWeekDayNames();
-
   //   expect(weekdayNames).toEqual(retrievedWeekdayNames);
   // });
-
   // it("Returns reordered weekday names", () => {
   //   const weekdayNames = [
   //     "Tuesday",
@@ -126,13 +106,10 @@ describe("Calendar Column Header Structure", () => {
   //     "Sunday",
   //     "Monday",
   //   ];
-
   //   const moduleInstance = new CalendarModule(null, 1);
   //   const retrievedWeekdayNames = moduleInstance.getWeekDayNames();
-
   //   expect(weekdayNames).toEqual(retrievedWeekdayNames);
   // });
-
   // test.each`
   //   testName                   | startDay | expectedResult
   //   ${"week starts on monday"} | ${0}     | ${mondayStart}
@@ -142,22 +119,17 @@ describe("Calendar Column Header Structure", () => {
   //   "$testName: correctly converts $startDay to $expectedResult",
   //   ({ startDay, expectedResult }) => {
   //     const moduleInstance = new CalendarModule(null, startDay);
-
   //     expect(moduleInstance.getWeekDayNames()).toStrictEqual(expectedResult);
   //   }
   // );
-
   // it("Returns week representation starting on a sunday, using day initials", () => {
   //   const moduleInstance = new CalendarModule();
   //   const retrievedWeekDaysColHeader = moduleInstance.getWeekHeader();
-
   //   expect(weekStartsOnSunday).toEqual(retrievedWeekDaysColHeader);
   // });
-
   // it("Returns week representation starting on a monday, using day initials", () => {
   //   const moduleInstance = new CalendarModule(null, 1);
   //   const retrievedWeekDaysColHeader = moduleInstance.getWeekHeader();
-
   //   expect(weekStartsOnMonday).toEqual(retrievedWeekDaysColHeader);
   // });
 });

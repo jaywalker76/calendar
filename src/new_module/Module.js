@@ -39,18 +39,6 @@ module.exports = class CalendarModule {
     return `${monthName}, ${yearString}`;
   }
 
-  // this function is to be invoked by parent component (calendar.js -> this is the component that retains the state)
-  getWeekDayNumbers() {
-    let dayNumbersArray = [0, 1, 2, 3, 4, 5, 6];
-
-    let remainingDays = dayNumbersArray.splice(this.weekStartDay);
-    let orderedDays = remainingDays.concat(dayNumbersArray);
-
-    dayNumbersArray = orderedDays;
-
-    return dayNumbersArray;
-  }
-
   getTotalDaysInMonth() {
     return new Date(
       this.date.getFullYear(),

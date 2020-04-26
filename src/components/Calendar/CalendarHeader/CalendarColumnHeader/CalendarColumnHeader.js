@@ -13,37 +13,34 @@ const dayColHeader = css`
 `;
 
 const CalendarColumnHeader = (props) => {
-  const getWeekHeader = () => {
-    return ["S", "M", "T", "W", "T", "F", "S"];
-  };
+  const { calendarColHeader } = props;
 
   const getLocalizedDayNames = (locale) => {
     let lcl = locale !== undefined ? locale : "en-US";
 
-    let baseDate = new Date(Date.UTC(2020, 0, 6)); //monday
+    let baseDate = new Date(Date.UTC(2020, 0, 5)); //sunday
     let weekdays = [];
     for (let i = 0; i < 7; i++) {
-      weekdays.push(baseDate.toLocaleDateString(lcl, { weekday: "long" }));
+      weekdays.push(baseDate.toLocaleDateString(lcl, { weekday: "short" }));
       baseDate.setDate(baseDate.getDate() + 1);
     }
 
     return weekdays;
   };
 
-  const getWeekDayNames = (weekdayStartIndex) => {
+  const getWeekDayNames = () => {
     let weekdayNames = [];
-    let localizedWeekdayNames = this.getLocalizedDayNames();
-    let weekDayNumbers = this.getWeekDayNumbers(weekdayStartIndex);
-
+    let localizedWeekdayNames = getLocalizedDayNames();
+    let weekDayNumbers = calendarColHeader;
+    debugger;
     for (let i = 0; i < localizedWeekdayNames.length; i++) {
       weekdayNames.push(localizedWeekdayNames[weekDayNumbers[i]]);
     }
 
     return weekdayNames;
   };
-  // const { weekHeaderObject } = props;
 
-  const weekHeaderObject = getWeekHeader();
+  const weekHeaderObject = getWeekDayNames();
 
   return (
     <div className={dayColHeader} data-test="calendar-col-header">

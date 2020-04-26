@@ -25,11 +25,11 @@ const cellStyle = css`
 `;
 
 const CalendarBody = (props) => {
-  const { monthObject, weekHeaderObject } = props;
+  const { monthObject, calendarColHeader } = props;
 
   return (
     <>
-      <CalendarColumnHeader />
+      <CalendarColumnHeader calendarColHeader={calendarColHeader} />
       <div data-test="calendar-body">
         {monthObject.map((rows, row_id) => (
           <div key={row_id} className={rowStyle} data-test="calendar-rows">
