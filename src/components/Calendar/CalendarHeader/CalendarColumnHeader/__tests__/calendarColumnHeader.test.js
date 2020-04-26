@@ -66,9 +66,16 @@ describe("Calendar Column Header Structure", () => {
   it("returns a object with the weekday initial, starting on S for Sunday, for english", () => {
     wrapper = setup();
 
-    const calendarColHeader = wrapper.find("[data-test='calendar-col-header']");
+    const calendarColHeader = wrapper.find("[data-test='col-header-values']");
+    let headerContents = calendarColHeader.debug();
 
-    expect(calendarColHeader).toEqual(weekStartsOnSunday);
+    headerContents = headerContents
+      .replace(/(<([^>]+)>)/gi, "")
+      .replace(/(?:\r\n|\r|\n)/g, "")
+      .replace(/\s/g, "")
+      .split("");
+
+    expect(headerContents).toEqual(weekStartsOnSunday);
   });
 
   // describe("Calendar Header implementation", () => {
