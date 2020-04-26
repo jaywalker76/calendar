@@ -22,7 +22,7 @@ const calendarContainerStyle = css`
 const Calendar = (props) => {
   const {
     startDate,
-    // dayDescriptorType,
+    dayDescriptorType,
     startOfWeek,
     includeHeader,
     displayNavArrows,
@@ -57,6 +57,7 @@ const Calendar = (props) => {
         <CalendarBody
           monthObject={calendarMonthObject}
           calendarColHeader={weekDayNumbers}
+          dayDescriptorType={dayDescriptorType}
         />
       </div>
     );

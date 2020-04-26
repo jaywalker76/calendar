@@ -13,16 +13,24 @@ const dayColHeader = css`
 `;
 
 const CalendarColumnHeader = (props) => {
-  const { calendarColHeader } = props;
+  const { calendarColHeader, dayDescriptorType = "initial" } = props;
 
   const getLocalizedDayNames = (locale) => {
+    let descriptorType =
+      dayDescriptorType === "initial" ? "short" : dayDescriptorType;
+
     let lcl = locale !== undefined ? locale : "en-US";
 
     let baseDate = new Date(Date.UTC(2020, 0, 5)); //sunday
     let weekdays = [];
     for (let i = 0; i < 7; i++) {
-      weekdays.push(baseDate.toLocaleDateString(lcl, { weekday: "short" }));
+      weekdays.push(
+        baseDate.toLocaleDateString(lcl, { weekday: descriptorType })
+      );
       baseDate.setDate(baseDate.getDate() + 1);
+    }
+    if (dayDescriptorType === "initial") {
+      weekdays = weekdays.map((day) => day.slice(0, 1));
     }
 
     return weekdays;
@@ -32,7 +40,7 @@ const CalendarColumnHeader = (props) => {
     let weekdayNames = [];
     let localizedWeekdayNames = getLocalizedDayNames();
     let weekDayNumbers = calendarColHeader;
-    debugger;
+
     for (let i = 0; i < localizedWeekdayNames.length; i++) {
       weekdayNames.push(localizedWeekdayNames[weekDayNumbers[i]]);
     }
