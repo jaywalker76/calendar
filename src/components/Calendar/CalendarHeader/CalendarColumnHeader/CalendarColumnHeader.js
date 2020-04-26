@@ -47,11 +47,9 @@ const CalendarColumnHeader = (props) => {
 
   return (
     <div className={dayColHeader} data-test="calendar-col-header">
-      <div data-test="col-header-values">
-        {weekHeaderObject.map((cell, id) => (
-          <div key={id}>{cell}</div>
-        ))}
-      </div>
+      {weekHeaderObject.map((cell, id) => (
+        <div key={id}>{cell}</div>
+      ))}
     </div>
   );
 };
