@@ -3,13 +3,9 @@ Responsible for rendering the Calendar Header
 */
 import React from "react";
 
-import { css, cx } from "emotion";
+import { css } from "emotion";
 
 import CalendarNavArrows from "./CalendarNavigationArrows/CalendarNavigationArrows";
-
-const navClickHandler = () => {
-  alert("Boom");
-};
 
 const calendarHeaderStyle = css`
   background: pink;
@@ -33,9 +29,7 @@ const CalendarHeader = (props) => {
         <CalendarNavArrows
           data-test="left-header-nav"
           direction={"left"}
-          onClick={() => {
-            onClick("left");
-          }}
+          onClick={onClick}
         />
       )}
       <div id="dateDisplay" data-test="calendar-header-date">
@@ -45,9 +39,7 @@ const CalendarHeader = (props) => {
         <CalendarNavArrows
           data-test="right-header-nav"
           direction={"right"}
-          onClick={() => {
-            onClick("right");
-          }}
+          onClick={onClick}
         />
       )}
     </div>

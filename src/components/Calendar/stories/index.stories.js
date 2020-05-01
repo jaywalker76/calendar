@@ -60,6 +60,16 @@ export const weekStartsOnMonday = () => (
   />
 );
 
+export const calendarWithNavigationArrows = () => (
+  <Calendar
+    startDate={"2020/04/01"}
+    includeHeader={true}
+    startOfWeek={1}
+    dayDescriptorType={"short"}
+    displayNavArrows
+  />
+);
+
 export const calendarHeader = () => (
   <CalendarHeader
     data-test="calendar-header"

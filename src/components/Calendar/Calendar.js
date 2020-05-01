@@ -28,9 +28,6 @@ const Calendar = (props) => {
     displayNavArrows,
   } = props;
 
-  const calendarModule = new CalendarModule(startDate, startOfWeek);
-  const calendarMonthObject = calendarModule.getMonthObject();
-
   // this function is to be invoked by parent component (calendar.js -> this is the component that retains the state)
   const getWeekDayNumbers = () => {
     const weekStartDay = startOfWeek === undefined ? 0 : startOfWeek;
@@ -44,15 +41,29 @@ const Calendar = (props) => {
     return dayNumbersArray;
   };
 
-  const [date, setDate] = useState(calendarModule.instantiatedDate);
+  const [date, setDate] = useState(startDate);
   const [weekDayNumbers, setWeekDayNumbers] = useState(getWeekDayNumbers());
+
+  const calendarModule = new CalendarModule(date, startOfWeek);
+  const calendarMonthObject = calendarModule.getMonthObject();
+
   const retrievedDateToDisplay = calendarModule.generateDateString();
+
+  const increase = (e) => {
+    alert("coming from Cal: " + date);
+    setDate(new Date(date.setMonth(date.getMonth() + 1)));
+    console.log(e.target.id);
+  };
 
   const renderCalendarStructure = () => {
     return (
       <div className={calendarContainerStyle} data-test="calendar-component">
         {includeHeader && (
-          <CalendarHeader dateToDisplay={retrievedDateToDisplay} />
+          <CalendarHeader
+            dateToDisplay={retrievedDateToDisplay}
+            displayNavArrows={displayNavArrows}
+            onClick={increase}
+          />
         )}
         <CalendarBody
           monthObject={calendarMonthObject}
