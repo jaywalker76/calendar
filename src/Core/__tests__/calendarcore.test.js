@@ -1,4 +1,4 @@
-import CalendarModule from "../Module";
+import CalendarModule from "../CalendarCore";
 
 import {
   February2015,
@@ -11,7 +11,7 @@ import {
   July2020,
   February2016,
   February2010,
-} from "../CalendarTestSamples/month_objects";
+} from "../CoreTestSamples/month_objects";
 
 describe("Module functionality", () => {
   test.each`

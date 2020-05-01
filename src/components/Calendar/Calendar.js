@@ -8,15 +8,15 @@ import React, { useState } from "react";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 
 import { css } from "emotion";
-import styling from "./style";
 
 import { updateDateValue } from "./utils";
 
-import CalendarModule from "../../new_module/Module";
+import CalendarModule from "../../Core/CalendarCore";
 import CalendarBody from "../Calendar/CalendarBody/CalendarBody";
 
 const calendarContainerStyle = css`
   border: 1px solid black;
+  width: 600px;
 `;
 
 const Calendar = (props) => {
@@ -63,7 +63,7 @@ const Calendar = (props) => {
     );
   };
 
-  return <div style={styling.outerWrapper}>{renderCalendarStructure()}</div>;
+  return renderCalendarStructure();
 };
 
 export default Calendar;
