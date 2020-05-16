@@ -1,0 +1,39 @@
+classDiagram
+CalendarHeader --> Calendar
+CalendarModule --> Calendar
+CalendarBody --> Calendar
+Calendar <-- Duck
+Calendar <-- Fish
+Calendar <-- Zebra
+
+
+CalendarBody: prop monthObject
+CalendarBody: prop calendarColHeader
+CalendarBody: prop dayDescriptorType
+
+CalendarHeader: prop dateToDisplay
+CalendarHeader: prop displayNavArrows
+CalendarHeader: onClick()
+
+Calendar :prop startDate
+Calendar :prop startOfWeek
+Calendar :prop dayDescriptorType
+Calendar :prop includeHeader
+Calendar :prop displayNavArrows
+Calendar: renderCalendarStructure()
+Calendar: changeMonthDate()
+Calendar: getWeekDayNumbers()
+
+class Duck{
++String beakColor
++swim()
++quack()
+}
+class Fish{
+-int sizeInFeet
+-canEat()
+}
+class Zebra{
++bool is_wild
++run()
+}
