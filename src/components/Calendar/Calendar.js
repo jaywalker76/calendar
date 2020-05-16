@@ -41,7 +41,7 @@ const Calendar = (props) => {
     return dayNumbersArray;
   };
 
-  const [date, setDate] = useState(startDate);
+  const [date, setDate] = useState(new Date(startDate));
   const [weekDayNumbers, setWeekDayNumbers] = useState(getWeekDayNumbers());
 
   const calendarModule = new CalendarModule(date, startOfWeek);
@@ -49,9 +49,13 @@ const Calendar = (props) => {
 
   const retrievedDateToDisplay = calendarModule.generateDateString();
 
-  const increase = (e) => {
-    alert("coming from Cal: " + date);
-    setDate(new Date(date.setMonth(date.getMonth() + 1)));
+  const changeMonthDate = (e, direction) => {
+    if(direction ==="left"){
+      setDate(new Date(date.setMonth(date.getMonth() - 1)));
+    } else {
+      setDate(new Date(date.setMonth(date.getMonth() + 1)));
+    }
+
     console.log(e.target.id);
   };
 
@@ -62,7 +66,7 @@ const Calendar = (props) => {
           <CalendarHeader
             dateToDisplay={retrievedDateToDisplay}
             displayNavArrows={displayNavArrows}
-            onClick={increase}
+            onClick={changeMonthDate}
           />
         )}
         <CalendarBody

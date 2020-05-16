@@ -27,7 +27,7 @@ const NavArrows = (props) => {
       id={`${direction}-nav-arrow`}
       className={buttonStyle}
       data-test={`${direction}-nav-arrow`}
-      onClick={(e) => onClick(e)}
+      onClick={(e) => onClick(e, direction)}
     >
       <FontAwesomeIcon
         icon={direction === "left" ? faChevronLeft : faChevronRight}
