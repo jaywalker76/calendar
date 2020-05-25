@@ -1,0 +1,19 @@
+graph TD
+    %% Load Calendar
+    A((Load <br/>Calendar)) --> B[Read <br> props]
+    B --> C{start date <br/> defined}
+    %% Instantiate with Date.now()
+    C -- Y --> D[Instantiate with date param]
+    %% Instantiate with startdate prop
+    C -- N --> E[Instantiate w/ curr date]
+
+    %% check calendar mode
+    D --> F{Calendar <br> Mode}
+    E --> F{Calendar <br> Mode}
+
+    F -- Basic --> G[Load Basic<br>Mode]
+    F -- Selectable --> H[Load Event<br>Mode]
+    F -- Year --> I[Load Year <br>View]
+
+    
+    

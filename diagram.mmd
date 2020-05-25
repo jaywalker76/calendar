@@ -1,39 +1,66 @@
 classDiagram
-CalendarHeader --> Calendar
+CalendarHeader --* Calendar
 CalendarModule --> Calendar
-CalendarBody --> Calendar
-Calendar <-- Duck
-Calendar <-- Fish
-Calendar <-- Zebra
+CalendarColumnHeader --* CalendarBody
+CalendarBody --* Calendar
+EventRow --* CalendarBody
 
-
-CalendarBody: prop monthObject
-CalendarBody: prop calendarColHeader
-CalendarBody: prop dayDescriptorType
-
-CalendarHeader: prop dateToDisplay
-CalendarHeader: prop displayNavArrows
-CalendarHeader: onClick()
-
-Calendar :prop startDate
-Calendar :prop startOfWeek
-Calendar :prop dayDescriptorType
-Calendar :prop includeHeader
-Calendar :prop displayNavArrows
-Calendar: renderCalendarStructure()
-Calendar: changeMonthDate()
-Calendar: getWeekDayNumbers()
-
-class Duck{
-+String beakColor
-+swim()
-+quack()
+class CalendarModule{
+CalendarModule(date ~date~, weekStartDay~int~)<<Constructor>>
+get_dateString() ~string~
+get_instantiatedDate() ~Date~
+getMonthObject() ~Month~
+generateDateString() ~string~
+getDaysInMonth() days ~Array~
+getTotalDaysInMonth() ~int~
+getNumberOfWeeksInMonth() ~int~
+getWeekInYear(weekDateParam~date~) ~int~
+getFirstDayOfWeek(dateParm~date~) ~Date~
 }
-class Fish{
--int sizeInFeet
--canEat()
+
+class CalendarColumnHeader{
+calendarColHeader ~prop~
+dayDescriptorType ~prop~
 }
-class Zebra{
-+bool is_wild
-+run()
+
+class CalendarBody{
+monthObject ~prop~
+calendarColHeader ~prop~
+dayDescriptorType ~prop~
+events ~prop~*
+ }
+
+class EventRow{
+events ~prop~
+generateEventRows(events)
+
 }
+
+
+class CalendarHeader{
+dateToDisplay ~prop~
+displayNavArrows ~prop~
+onClick()
+}
+
+
+class Calendar{
+startDate ~prop~
+startOfWeek ~prop~
+dayDescriptorType ~prop~
+includeHeader ~prop~
+displayNavArrows ~prop~
+events ~prop~*
+calendarMode ~prop~*
+
+renderCalendarStructure()
+changeMonthDate()
+getWeekDayNumbers()
+}
+
+
+
+
+
+
+
