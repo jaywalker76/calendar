@@ -1,0 +1,23 @@
+graph TD
+    %% Calendar Loaded
+    A((Calendar<br/>Loaded)) --> B[Click day cell]
+    B --> C{cell has <br/> event}
+    %% Instantiate with Date.now()
+    C -- Y --> D[Display Event <br>Information]
+    %% Instantiate with startdate prop
+    C -- N --> E[Display Event <br> creation Prompt]
+
+    %% check calendar mode
+    D --> F[Edit Event <br> f - editEvent]
+    D --> G[Delete Event <br> f - updateEvent]
+    E --> H[Create Event <br> f - createEvent]
+    F --> I[Save Events <br> f - updateEvent?]
+    G --> I[Save Events <br> f - updateEvent?]
+    H --> I[Save Events <br> f - updateEvent?]
+    I --> J[Re-render <br>Calendar View]
+
+    
+
+
+    
+    

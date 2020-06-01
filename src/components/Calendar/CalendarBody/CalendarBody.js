@@ -41,6 +41,9 @@ const CalendarBody = (props) => {
                 key={cell_id}
                 className={cellStyle}
                 data-test="calendar-day-cell"
+                onClick={() => {
+                  alert("Hello");
+                }}
               >
                 {cell.day}
                 {cell.currentMonth}

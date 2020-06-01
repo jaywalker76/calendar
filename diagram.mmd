@@ -1,21 +1,26 @@
 classDiagram
-CalendarHeader --* Calendar
+CalendarHeader "1" --* "0..1" Calendar
+MonthObject --> CalendarModule
 CalendarModule --> Calendar
 CalendarColumnHeader --* CalendarBody
 CalendarBody --* Calendar
-EventRow --* CalendarBody
+Events --* CalendarBody
+
+class MonthObject{
+monthObject
+}
 
 class CalendarModule{
 CalendarModule(date ~date~, weekStartDay~int~)<<Constructor>>
-get_dateString() ~string~
-get_instantiatedDate() ~Date~
-getMonthObject() ~Month~
-generateDateString() ~string~
-getDaysInMonth() days ~Array~
-getTotalDaysInMonth() ~int~
-getNumberOfWeeksInMonth() ~int~
-getWeekInYear(weekDateParam~date~) ~int~
-getFirstDayOfWeek(dateParm~date~) ~Date~
+-get_dateString() ~string~
+-get_instantiatedDate() ~Date~
++getMonthObject() ~Month~
++generateDateString() ~string~
+-getDaysInMonth() days ~Array~
+-getTotalDaysInMonth() ~int~
+-getNumberOfWeeksInMonth() ~int~
+-getWeekInYear(weekDateParam~date~) ~int~
+-getFirstDayOfWeek(dateParm~date~) ~Date~
 }
 
 class CalendarColumnHeader{
@@ -30,10 +35,12 @@ dayDescriptorType ~prop~
 events ~prop~*
  }
 
-class EventRow{
+class Events{
 events ~prop~
-generateEventRows(events)
-
+-createEvent()
+-readEvents(eventStorageLocation ~string~)
+-updateEvent()
+-deleteEvent()
 }
 
 
@@ -53,7 +60,7 @@ displayNavArrows ~prop~
 events ~prop~*
 calendarMode ~prop~*
 
-renderCalendarStructure()
+-renderCalendarStructure()
 changeMonthDate()
 getWeekDayNumbers()
 }
