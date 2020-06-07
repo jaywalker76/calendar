@@ -1,1 +1,1 @@
-export { default } from "./CalendarCore";
+export { default } from "./Events";
