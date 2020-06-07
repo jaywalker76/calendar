@@ -2,8 +2,6 @@
 This module is responsible for handling the crud operations related to calendar events
 */
 
-import { merge } from "emotion";
-
 function readEvents(eventList) {
   return eventList;
 }
@@ -29,4 +27,13 @@ function updateEvent(currentEventList, newEventInfo) {
   return currentEventList;
 }
 
-export { readEvents, createEvent, updateEvent };
+function deleteEvent(currentEventList, eventToRemove) {
+  let updatedEventList = currentEventList.events.filter(
+    (item) => item.id !== eventToRemove
+  );
+
+  currentEventList.events = updatedEventList;
+  return currentEventList;
+}
+
+export { readEvents, createEvent, updateEvent, deleteEvent };
