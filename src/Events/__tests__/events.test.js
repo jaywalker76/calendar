@@ -1,4 +1,4 @@
-import { readEvents, createEvent } from "../Events";
+import { readEvents, createEvent, updateEvent } from "../Events";
 import eventlist from "../eventlist.js";
 
 // const readEvents = (list) => list;
@@ -41,15 +41,14 @@ describe("Module functionality", () => {
   });
 
   it("updates an event", () => {
-    let eventList = readEvents("path_to_events");
-    let eventToUpdate = eventList[0];
+    let readEventList = readEvents(eventlist);
     let newEvent = {
-      title: "Stuff",
-      startDate: "2020/01/01",
-      endDate: "2020/01/01",
+      id: 1,
+      startDate: "2021/01/01",
+      endDate: "2021/01/01",
     };
-    updateEvent(eventToUpdate, newEvent);
-    expect(eventList[0]).toEqual(newEvent);
+    let updatedList = updateEvent(readEventList, newEvent);
+    expect(updatedList.events[0]).toEqual(newEvent);
   });
 
   it("deletes an event", () => {

@@ -11,4 +11,9 @@ function createEvent(currentEventList, eventToAdd) {
   return currentEventList;
 }
 
-export { readEvents, createEvent };
+function updateEvent(currentEventList, eventToAdd) {
+  currentEventList.events.push(eventToAdd);
+  return currentEventList;
+}
+
+export { readEvents, createEvent, updateEvent };
