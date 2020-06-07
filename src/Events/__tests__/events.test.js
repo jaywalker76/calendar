@@ -1,4 +1,4 @@
-import { readEvents, createEvent, updateEvent } from "../Events";
+import { readEvents, createEvent, updateEvent, deleteEvent } from "../Events";
 import eventlist from "../eventlist.js";
 
 // const readEvents = (list) => list;
@@ -52,12 +52,11 @@ describe("Module functionality", () => {
   });
 
   it("deletes an event", () => {
-    let eventList = readEvents("path_to_events");
-    let existingEvents = eventList.length;
-    let eventToDelete = eventList[0];
+    let readEventList = readEvents(eventlist);
+    let initialEventCount = readEventList.events.length;
+    let eventToDelete = readEventList.events[0].id;
 
-    deleteEvent(eventToDelete);
-    expect(eventList.length).toBe(existingEvents - 1);
-    expect(eventList[eventToDelete.title]).toBe(null);
+    let updatedList = deleteEvent(readEventList, eventToDelete);
+    expect(updatedList.events.length).toBe(initialEventCount - 1);
   });
 });
