@@ -1,4 +1,4 @@
-import { readEvents } from "../Events";
+import { readEvents, createEvent } from "../Events";
 import eventlist from "../eventlist.js";
 
 // const readEvents = (list) => list;
@@ -16,15 +16,15 @@ describe("Module functionality", () => {
   });
 
   it("Creates a new single day event", () => {
-    let eventList = readEvents("path_to_events");
-    let existingEvents = eventList.length;
+    let readEventList = readEvents(eventList);
+    let existingEvents = readEventList.length;
     let newEvent = {
       title: "Stuff",
       startDate: "2020/01/01",
       endDate: "2020/01/01",
     };
-    createEvent(newEvent);
-    expect(eventList.length).toBe(existingEvents + 1);
+    let updatedList = createEvent(readEventList, newEvent);
+    expect(updatedList.length).toBe(existingEvents + 1);
   });
 
   it("Creates a new multi day event", () => {

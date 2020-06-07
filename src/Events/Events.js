@@ -11,6 +11,4 @@ This module is responsible for handling the crud operations related to calendar 
 
 // export { createEvent, readEvents, updateEvent, deleteEvent };
 
-export function readEvents(eventList) {
-  return eventList;
-}
+export function readEvents() {}
