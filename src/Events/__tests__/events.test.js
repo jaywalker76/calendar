@@ -1,4 +1,7 @@
-import Events from "../Event";
+import { readEvents } from "../Events";
+import eventlist from "../eventlist.js";
+
+// const readEvents = (list) => list;
 
 describe("Module functionality", () => {
   it("Reads event data", () => {
@@ -7,12 +10,9 @@ describe("Module functionality", () => {
      * Currently it is assumed that this will be a json file
      * within the project structure
      */
+    const listOfEvents = readEvents(eventlist);
 
-    /**
-     * Check that event list exists
-     * accepts as argument a path to the event list location
-     */
-    expect(readEvents("path_to_events").length).toBe(1);
+    expect(listOfEvents).toEqual(eventlist);
   });
 
   it("Creates a new single day event", () => {
