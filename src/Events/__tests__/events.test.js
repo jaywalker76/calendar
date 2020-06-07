@@ -1,8 +1,6 @@
 import { readEvents, createEvent, updateEvent, deleteEvent } from "../Events";
 import eventlist from "../eventlist.js";
 
-// const readEvents = (list) => list;
-
 describe("Module functionality", () => {
   it("Reads event data", () => {
     /**

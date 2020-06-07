@@ -12,7 +12,7 @@ function createEvent(currentEventList, eventToAdd) {
 }
 
 function updateEvent(currentEventList, newEventInfo) {
-  let updatedEventList = currentEventList.events.map((item) => {
+  currentEventList.events = currentEventList.events.map((item) => {
     let merged;
     if (item.id === newEventInfo.id) {
       merged = { ...item, ...newEventInfo };
@@ -22,17 +22,14 @@ function updateEvent(currentEventList, newEventInfo) {
     return item;
   });
 
-  currentEventList.events = updatedEventList;
-
   return currentEventList;
 }
 
 function deleteEvent(currentEventList, eventToRemove) {
-  let updatedEventList = currentEventList.events.filter(
+  currentEventList.events = currentEventList.events.filter(
     (item) => item.id !== eventToRemove
   );
 
-  currentEventList.events = updatedEventList;
   return currentEventList;
 }
 
