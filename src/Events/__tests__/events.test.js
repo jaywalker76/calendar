@@ -16,27 +16,28 @@ describe("Module functionality", () => {
   });
 
   it("Creates a new single day event", () => {
-    let readEventList = readEvents(eventList);
-    let existingEvents = readEventList.length;
+    let readEventList = readEvents(eventlist);
+    let existingEvents = readEventList.events.length;
     let newEvent = {
       title: "Stuff",
       startDate: "2020/01/01",
       endDate: "2020/01/01",
     };
     let updatedList = createEvent(readEventList, newEvent);
-    expect(updatedList.length).toBe(existingEvents + 1);
+    expect(updatedList.events.length).toBe(existingEvents + 1);
   });
 
   it("Creates a new multi day event", () => {
-    let eventList = readEvents("path_to_events");
-    let existingEvents = eventList.length;
+    let readEventList = readEvents(eventlist);
+    let existingEvents = readEventList.events.length;
     let newEvent = {
       title: "Stuff",
       startDate: "2020/01/01",
-      endDate: "2020/01/01",
+      endDate: "2020/01/02",
     };
-    createEvent(newEvent);
-    expect(eventList.length).toBe(existingEvents + 1);
+
+    let updatedList = createEvent(readEventList, newEvent);
+    expect(updatedList.events.length).toBe(existingEvents + 1);
   });
 
   it("updates an event", () => {

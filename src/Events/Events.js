@@ -2,13 +2,13 @@
 This module is responsible for handling the crud operations related to calendar events
 */
 
-// const createEvent = () => {};
-// const readEvents = (eventStore) => {
-//   return eventStore;
-// };
-// const updateEvent = () => {};
-// const deleteEvent = () => {};
+function readEvents(eventList) {
+  return eventList;
+}
 
-// export { createEvent, readEvents, updateEvent, deleteEvent };
+function createEvent(currentEventList, eventToAdd) {
+  currentEventList.events.push(eventToAdd);
+  return currentEventList;
+}
 
-export function readEvents() {}
+export { readEvents, createEvent };
