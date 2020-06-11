@@ -5,6 +5,7 @@ import React from "react";
 
 import { css } from "emotion";
 import CalendarColumnHeader from "../CalendarHeader/CalendarColumnHeader/CalendarColumnHeader";
+import { renderCell } from "../../../DecoratorModule/Decorator";
 
 const rowStyle = css`
   background: pink;
@@ -37,19 +38,7 @@ const CalendarBody = (props) => {
         {monthObject.map((rows, row_id) => (
           <div key={row_id} className={rowStyle} data-test="calendar-rows">
             {rows.map((cell, cell_id) => {
-              return (
-                <div
-                  key={cell_id}
-                  className={cellStyle}
-                  data-test="calendar-day-cell"
-                  onClick={() => {
-                    alert("Hello");
-                  }}
-                >
-                  {cell.day}
-                  {cell.currentMonth}
-                </div>
-              );
+              return renderCell(cell, cell_id);
             })}
           </div>
         ))}

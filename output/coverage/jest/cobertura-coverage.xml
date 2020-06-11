@@ -1,0 +1,754 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage lines-valid="244" lines-covered="129" line-rate="0.5287" branches-valid="77" branches-covered="22" branch-rate="0.2857" timestamp="1591872920588" complexity="0" version="0.1">
+  <sources>
+    <source>/home/jc/Documents/projects/calendar</source>
+  </sources>
+  <packages>
+    <package name="src" line-rate="0" branch-rate="0">
+      <classes>
+        <class name="serviceWorker.js" filename="src/serviceWorker.js" line-rate="0" branch-rate="0">
+          <methods>
+            <method name="register" hits="0" signature="()V">
+              <lines>
+                <line number="23" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="34" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="0" signature="()V">
+              <lines>
+                <line number="43" hits="0"/>
+              </lines>
+            </method>
+            <method name="registerValidSW" hits="0" signature="()V">
+              <lines>
+                <line number="57" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_4)" hits="0" signature="()V">
+              <lines>
+                <line number="60" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_5)" hits="0" signature="()V">
+              <lines>
+                <line number="61" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_6)" hits="0" signature="()V">
+              <lines>
+                <line number="66" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_7)" hits="0" signature="()V">
+              <lines>
+                <line number="96" hits="0"/>
+              </lines>
+            </method>
+            <method name="checkValidServiceWorker" hits="0" signature="()V">
+              <lines>
+                <line number="101" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="0" signature="()V">
+              <lines>
+                <line number="106" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_10)" hits="0" signature="()V">
+              <lines>
+                <line number="114" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_11)" hits="0" signature="()V">
+              <lines>
+                <line number="115" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_12)" hits="0" signature="()V">
+              <lines>
+                <line number="124" hits="0"/>
+              </lines>
+            </method>
+            <method name="unregister" hits="0" signature="()V">
+              <lines>
+                <line number="131" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_14)" hits="0" signature="()V">
+              <lines>
+                <line number="133" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="13" hits="0" branch="false"/>
+            <line number="24" hits="0" branch="true" condition-coverage="0% (0/4)"/>
+            <line number="26" hits="0" branch="false"/>
+            <line number="27" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="31" hits="0" branch="false"/>
+            <line number="34" hits="0" branch="false"/>
+            <line number="35" hits="0" branch="false"/>
+            <line number="37" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="39" hits="0" branch="false"/>
+            <line number="43" hits="0" branch="false"/>
+            <line number="44" hits="0" branch="false"/>
+            <line number="51" hits="0" branch="false"/>
+            <line number="58" hits="0" branch="false"/>
+            <line number="61" hits="0" branch="false"/>
+            <line number="62" hits="0" branch="false"/>
+            <line number="63" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="64" hits="0" branch="false"/>
+            <line number="66" hits="0" branch="false"/>
+            <line number="67" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="68" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="72" hits="0" branch="false"/>
+            <line number="78" hits="0" branch="true" condition-coverage="0% (0/4)"/>
+            <line number="79" hits="0" branch="false"/>
+            <line number="85" hits="0" branch="false"/>
+            <line number="88" hits="0" branch="true" condition-coverage="0% (0/4)"/>
+            <line number="89" hits="0" branch="false"/>
+            <line number="97" hits="0" branch="false"/>
+            <line number="103" hits="0" branch="false"/>
+            <line number="108" hits="0" branch="false"/>
+            <line number="109" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="114" hits="0" branch="false"/>
+            <line number="115" hits="0" branch="false"/>
+            <line number="116" hits="0" branch="false"/>
+            <line number="121" hits="0" branch="false"/>
+            <line number="125" hits="0" branch="false"/>
+            <line number="132" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="133" hits="0" branch="false"/>
+            <line number="134" hits="0" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.Core" line-rate="0.875" branch-rate="0.875">
+      <classes>
+        <class name="CalendarCore.js" filename="src/Core/CalendarCore.js" line-rate="0.875" branch-rate="0.875">
+          <methods>
+            <method name="(anonymous_0)" hits="43" signature="()V">
+              <lines>
+                <line number="12" hits="43"/>
+              </lines>
+            </method>
+            <method name="(anonymous_1)" hits="5" signature="()V">
+              <lines>
+                <line number="18" hits="5"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="828" signature="()V">
+              <lines>
+                <line number="25" hits="828"/>
+              </lines>
+            </method>
+            <method name="(anonymous_3)" hits="13" signature="()V">
+              <lines>
+                <line number="34" hits="13"/>
+              </lines>
+            </method>
+            <method name="(anonymous_4)" hits="0" signature="()V">
+              <lines>
+                <line number="42" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_5)" hits="0" signature="()V">
+              <lines>
+                <line number="50" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_6)" hits="30" signature="()V">
+              <lines>
+                <line number="60" hits="30"/>
+              </lines>
+            </method>
+            <method name="(anonymous_7)" hits="8" signature="()V">
+              <lines>
+                <line number="79" hits="8"/>
+              </lines>
+            </method>
+            <method name="(anonymous_8)" hits="22" signature="()V">
+              <lines>
+                <line number="92" hits="22"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="28" signature="()V">
+              <lines>
+                <line number="99" hits="28"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="4" hits="2" branch="false"/>
+            <line number="13" hits="43" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="14" hits="43" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="19" hits="5" branch="false"/>
+            <line number="26" hits="828" branch="false"/>
+            <line number="35" hits="13" branch="false"/>
+            <line number="36" hits="13" branch="false"/>
+            <line number="37" hits="13" branch="false"/>
+            <line number="39" hits="13" branch="false"/>
+            <line number="43" hits="0" branch="false"/>
+            <line number="51" hits="0" branch="false"/>
+            <line number="52" hits="0" branch="false"/>
+            <line number="54" hits="0" branch="false"/>
+            <line number="55" hits="0" branch="false"/>
+            <line number="57" hits="0" branch="false"/>
+            <line number="61" hits="30" branch="false"/>
+            <line number="63" hits="30" branch="false"/>
+            <line number="64" hits="30" branch="false"/>
+            <line number="66" hits="30" branch="false"/>
+            <line number="67" hits="30" branch="false"/>
+            <line number="68" hits="30" branch="false"/>
+            <line number="70" hits="30" branch="false"/>
+            <line number="71" hits="30" branch="false"/>
+            <line number="73" hits="30" branch="false"/>
+            <line number="80" hits="8" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="81" hits="8" branch="false"/>
+            <line number="82" hits="8" branch="false"/>
+            <line number="83" hits="8" branch="false"/>
+            <line number="84" hits="8" branch="false"/>
+            <line number="87" hits="8" branch="false"/>
+            <line number="89" hits="8" branch="false"/>
+            <line number="93" hits="22" branch="false"/>
+            <line number="94" hits="22" branch="false"/>
+            <line number="96" hits="22" branch="false"/>
+            <line number="100" hits="28" branch="false"/>
+            <line number="101" hits="28" branch="false"/>
+            <line number="104" hits="28" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="107" hits="28" branch="false"/>
+            <line number="109" hits="28" branch="false"/>
+            <line number="110" hits="28" branch="false"/>
+            <line number="115" hits="106" branch="false"/>
+            <line number="116" hits="106" branch="false"/>
+            <line number="119" hits="742" branch="false"/>
+            <line number="120" hits="742" branch="false"/>
+            <line number="125" hits="742" branch="false"/>
+            <line number="131" hits="742" branch="false"/>
+            <line number="133" hits="106" branch="false"/>
+            <line number="135" hits="28" branch="false"/>
+          </lines>
+        </class>
+        <class name="index.js" filename="src/Core/index.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.Core.CoreTestSamples" line-rate="0.6667000000000001" branch-rate="1">
+      <classes>
+        <class name="day_months.js" filename="src/Core/CoreTestSamples/day_months.js" line-rate="0" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+            <line number="1" hits="0" branch="false"/>
+            <line number="127" hits="0" branch="false"/>
+            <line number="245" hits="0" branch="false"/>
+            <line number="359" hits="0" branch="false"/>
+          </lines>
+        </class>
+        <class name="month_objects.js" filename="src/Core/CoreTestSamples/month_objects.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+            <line number="3" hits="1" branch="false"/>
+            <line number="42" hits="1" branch="false"/>
+            <line number="90" hits="1" branch="false"/>
+            <line number="138" hits="1" branch="false"/>
+            <line number="186" hits="1" branch="false"/>
+            <line number="236" hits="1" branch="false"/>
+            <line number="284" hits="1" branch="false"/>
+            <line number="332" hits="1" branch="false"/>
+            <line number="380" hits="1" branch="false"/>
+            <line number="428" hits="1" branch="false"/>
+          </lines>
+        </class>
+        <class name="week_numbers.js" filename="src/Core/CoreTestSamples/week_numbers.js" line-rate="0" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+            <line number="1" hits="0" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.DecoratorModule" line-rate="0.75" branch-rate="1">
+      <classes>
+        <class name="Decorator.js" filename="src/DecoratorModule/Decorator.js" line-rate="0.75" branch-rate="1">
+          <methods>
+            <method name="renderCell" hits="70" signature="()V">
+              <lines>
+                <line number="14" hits="70"/>
+              </lines>
+            </method>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="20" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="0" signature="()V">
+              <lines>
+                <line number="31" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="4" hits="2" branch="false"/>
+            <line number="15" hits="70" branch="false"/>
+            <line number="21" hits="0" branch="false"/>
+            <line number="31" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="index.js" filename="src/DecoratorModule/index.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.Events" line-rate="1" branch-rate="1">
+      <classes>
+        <class name="Events.js" filename="src/Events/Events.js" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="readEvents" hits="5" signature="()V">
+              <lines>
+                <line number="5" hits="5"/>
+              </lines>
+            </method>
+            <method name="createEvent" hits="2" signature="()V">
+              <lines>
+                <line number="9" hits="2"/>
+              </lines>
+            </method>
+            <method name="updateEvent" hits="1" signature="()V">
+              <lines>
+                <line number="14" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_3)" hits="5" signature="()V">
+              <lines>
+                <line number="15" hits="5"/>
+              </lines>
+            </method>
+            <method name="deleteEvent" hits="1" signature="()V">
+              <lines>
+                <line number="28" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_5)" hits="5" signature="()V">
+              <lines>
+                <line number="30" hits="5"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="6" hits="5" branch="false"/>
+            <line number="10" hits="2" branch="false"/>
+            <line number="11" hits="2" branch="false"/>
+            <line number="15" hits="1" branch="false"/>
+            <line number="17" hits="5" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="18" hits="1" branch="false"/>
+            <line number="19" hits="1" branch="false"/>
+            <line number="22" hits="5" branch="false"/>
+            <line number="25" hits="1" branch="false"/>
+            <line number="29" hits="1" branch="false"/>
+            <line number="30" hits="5" branch="false"/>
+            <line number="33" hits="1" branch="false"/>
+          </lines>
+        </class>
+        <class name="eventlist.js" filename="src/Events/eventlist.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="index.js" filename="src/Events/index.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.Calendar" line-rate="0.2676" branch-rate="0.1364">
+      <classes>
+        <class name="Calendar.js" filename="src/components/Calendar/Calendar.js" line-rate="0.8261" branch-rate="0.5">
+          <methods>
+            <method name="(anonymous_0)" hits="8" signature="()V">
+              <lines>
+                <line number="22" hits="8"/>
+              </lines>
+            </method>
+            <method name="(anonymous_1)" hits="8" signature="()V">
+              <lines>
+                <line number="32" hits="8"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="0" signature="()V">
+              <lines>
+                <line number="52" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_3)" hits="8" signature="()V">
+              <lines>
+                <line number="62" hits="8"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="17" hits="1" branch="false"/>
+            <line number="22" hits="1" branch="false"/>
+            <line number="29" hits="8" branch="false"/>
+            <line number="32" hits="8" branch="false"/>
+            <line number="33" hits="8" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="34" hits="8" branch="false"/>
+            <line number="36" hits="8" branch="false"/>
+            <line number="37" hits="8" branch="false"/>
+            <line number="39" hits="8" branch="false"/>
+            <line number="41" hits="8" branch="false"/>
+            <line number="44" hits="8" branch="false"/>
+            <line number="45" hits="8" branch="false"/>
+            <line number="47" hits="8" branch="false"/>
+            <line number="48" hits="8" branch="false"/>
+            <line number="50" hits="8" branch="false"/>
+            <line number="52" hits="8" branch="false"/>
+            <line number="53" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="54" hits="0" branch="false"/>
+            <line number="56" hits="0" branch="false"/>
+            <line number="59" hits="0" branch="false"/>
+            <line number="62" hits="8" branch="false"/>
+            <line number="63" hits="8" branch="false"/>
+            <line number="81" hits="8" branch="false"/>
+          </lines>
+        </class>
+        <class name="calendar_functions.js" filename="src/components/Calendar/calendar_functions.js" line-rate="0" branch-rate="0">
+          <methods>
+            <method name="(anonymous_0)" hits="0" signature="()V">
+              <lines>
+                <line number="26" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="45" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="0" signature="()V">
+              <lines>
+                <line number="54" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_3)" hits="0" signature="()V">
+              <lines>
+                <line number="147" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="26" hits="0" branch="false"/>
+            <line number="27" hits="0" branch="false"/>
+            <line number="29" hits="0" branch="false"/>
+            <line number="30" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="32" hits="0" branch="false"/>
+            <line number="35" hits="0" branch="false"/>
+            <line number="37" hits="0" branch="false"/>
+            <line number="38" hits="0" branch="false"/>
+            <line number="43" hits="0" branch="false"/>
+            <line number="46" hits="0" branch="false"/>
+            <line number="54" hits="0" branch="false"/>
+            <line number="56" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="57" hits="0" branch="false"/>
+            <line number="59" hits="0" branch="false"/>
+            <line number="62" hits="0" branch="false"/>
+            <line number="63" hits="0" branch="false"/>
+            <line number="65" hits="0" branch="false"/>
+            <line number="66" hits="0" branch="false"/>
+            <line number="70" hits="0" branch="false"/>
+            <line number="72" hits="0" branch="false"/>
+            <line number="73" hits="0" branch="false"/>
+            <line number="76" hits="0" branch="false"/>
+            <line number="82" hits="0" branch="false"/>
+            <line number="84" hits="0" branch="false"/>
+            <line number="86" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="87" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="88" hits="0" branch="false"/>
+            <line number="90" hits="0" branch="false"/>
+            <line number="94" hits="0" branch="false"/>
+            <line number="96" hits="0" branch="false"/>
+            <line number="98" hits="0" branch="false"/>
+            <line number="100" hits="0" branch="false"/>
+            <line number="101" hits="0" branch="false"/>
+            <line number="102" hits="0" branch="false"/>
+            <line number="103" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="105" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="106" hits="0" branch="false"/>
+            <line number="111" hits="0" branch="false"/>
+            <line number="113" hits="0" branch="false"/>
+            <line number="120" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="121" hits="0" branch="false"/>
+            <line number="126" hits="0" branch="false"/>
+            <line number="128" hits="0" branch="false"/>
+            <line number="137" hits="0" branch="false"/>
+            <line number="144" hits="0" branch="false"/>
+            <line number="147" hits="0" branch="false"/>
+            <line number="148" hits="0" branch="false"/>
+          </lines>
+        </class>
+        <class name="index.js" filename="src/components/Calendar/index.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+          </lines>
+        </class>
+        <class name="style.js" filename="src/components/Calendar/style.js" line-rate="0" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+            <line number="1" hits="0" branch="false"/>
+          </lines>
+        </class>
+        <class name="utils.js" filename="src/components/Calendar/utils.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.Calendar.CalendarBody" line-rate="1" branch-rate="1">
+      <classes>
+        <class name="CalendarBody.js" filename="src/components/Calendar/CalendarBody/CalendarBody.js" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_0)" hits="8" signature="()V">
+              <lines>
+                <line number="28" hits="8"/>
+              </lines>
+            </method>
+            <method name="(anonymous_1)" hits="10" signature="()V">
+              <lines>
+                <line number="38" hits="10"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="70" signature="()V">
+              <lines>
+                <line number="40" hits="70"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="10" hits="1" branch="false"/>
+            <line number="18" hits="1" branch="false"/>
+            <line number="28" hits="1" branch="false"/>
+            <line number="29" hits="8" branch="false"/>
+            <line number="31" hits="8" branch="false"/>
+            <line number="39" hits="10" branch="false"/>
+            <line number="41" hits="70" branch="false"/>
+          </lines>
+        </class>
+        <class name="index.js" filename="src/components/Calendar/CalendarBody/index.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.Calendar.CalendarHeader" line-rate="0.8" branch-rate="1">
+      <classes>
+        <class name="CalendarHeader.js" filename="src/components/Calendar/CalendarHeader/CalendarHeader.js" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_0)" hits="7" signature="()V">
+              <lines>
+                <line number="20" hits="7"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="10" hits="2" branch="false"/>
+            <line number="20" hits="2" branch="false"/>
+            <line number="21" hits="7" branch="false"/>
+            <line number="22" hits="7" branch="false"/>
+          </lines>
+        </class>
+        <class name="style.js" filename="src/components/Calendar/CalendarHeader/style.js" line-rate="0" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+            <line number="1" hits="0" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.Calendar.CalendarHeader.CalendarColumnHeader" line-rate="1" branch-rate="0.5714">
+      <classes>
+        <class name="CalendarColumnHeader.js" filename="src/components/Calendar/CalendarHeader/CalendarColumnHeader/CalendarColumnHeader.js" line-rate="1" branch-rate="0.5714">
+          <methods>
+            <method name="(anonymous_0)" hits="12" signature="()V">
+              <lines>
+                <line number="15" hits="12"/>
+              </lines>
+            </method>
+            <method name="(anonymous_1)" hits="12" signature="()V">
+              <lines>
+                <line number="18" hits="12"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="84" signature="()V">
+              <lines>
+                <line number="33" hits="84"/>
+              </lines>
+            </method>
+            <method name="(anonymous_3)" hits="12" signature="()V">
+              <lines>
+                <line number="39" hits="12"/>
+              </lines>
+            </method>
+            <method name="(anonymous_4)" hits="84" signature="()V">
+              <lines>
+                <line number="55" hits="84"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="8" hits="2" branch="false"/>
+            <line number="15" hits="2" branch="false"/>
+            <line number="16" hits="12" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="18" hits="12" branch="false"/>
+            <line number="20" hits="12" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="22" hits="12" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="24" hits="12" branch="false"/>
+            <line number="25" hits="12" branch="false"/>
+            <line number="26" hits="12" branch="false"/>
+            <line number="27" hits="84" branch="false"/>
+            <line number="30" hits="84" branch="false"/>
+            <line number="32" hits="12" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="33" hits="84" branch="false"/>
+            <line number="36" hits="12" branch="false"/>
+            <line number="39" hits="12" branch="false"/>
+            <line number="40" hits="12" branch="false"/>
+            <line number="41" hits="12" branch="false"/>
+            <line number="42" hits="12" branch="false"/>
+            <line number="44" hits="12" branch="false"/>
+            <line number="45" hits="84" branch="false"/>
+            <line number="48" hits="12" branch="false"/>
+            <line number="51" hits="12" branch="false"/>
+            <line number="53" hits="12" branch="false"/>
+            <line number="56" hits="84" branch="false"/>
+          </lines>
+        </class>
+        <class name="index.js" filename="src/components/Calendar/CalendarHeader/CalendarColumnHeader/index.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.Calendar.CalendarHeader.CalendarColumnHeader.testObjects" line-rate="0.4" branch-rate="1">
+      <classes>
+        <class name="week_defs.js" filename="src/components/Calendar/CalendarHeader/CalendarColumnHeader/testObjects/week_defs.js" line-rate="0" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+            <line number="1" hits="0" branch="false"/>
+            <line number="10" hits="0" branch="false"/>
+            <line number="20" hits="0" branch="false"/>
+          </lines>
+        </class>
+        <class name="weekheader_col_values.js" filename="src/components/Calendar/CalendarHeader/CalendarColumnHeader/testObjects/weekheader_col_values.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+            <line number="1" hits="1" branch="false"/>
+            <line number="2" hits="1" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.Calendar.CalendarHeader.CalendarNavigationArrows" line-rate="0.8332999999999999" branch-rate="1">
+      <classes>
+        <class name="CalendarNavigationArrows.js" filename="src/components/Calendar/CalendarHeader/CalendarNavigationArrows/CalendarNavigationArrows.js" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_0)" hits="8" signature="()V">
+              <lines>
+                <line number="23" hits="8"/>
+              </lines>
+            </method>
+            <method name="(anonymous_1)" hits="5" signature="()V">
+              <lines>
+                <line number="30" hits="5"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="16" hits="2" branch="false"/>
+            <line number="23" hits="2" branch="false"/>
+            <line number="24" hits="8" branch="false"/>
+            <line number="25" hits="8" branch="false"/>
+            <line number="30" hits="5" branch="false"/>
+          </lines>
+        </class>
+        <class name="index.js" filename="src/components/Calendar/CalendarHeader/CalendarNavigationArrows/index.js" line-rate="1" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+          </lines>
+        </class>
+        <class name="style.js" filename="src/components/Calendar/CalendarHeader/CalendarNavigationArrows/style.js" line-rate="0" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+            <line number="1" hits="0" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.Calendar.stories" line-rate="0" branch-rate="1">
+      <classes>
+        <class name="index.stories.js" filename="src/components/Calendar/stories/index.stories.js" line-rate="0" branch-rate="1">
+          <methods>
+            <method name="(anonymous_0)" hits="0" signature="()V">
+              <lines>
+                <line number="50" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="54" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="0" signature="()V">
+              <lines>
+                <line number="63" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_3)" hits="0" signature="()V">
+              <lines>
+                <line number="73" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="50" hits="0" branch="false"/>
+            <line number="51" hits="0" branch="false"/>
+            <line number="54" hits="0" branch="false"/>
+            <line number="55" hits="0" branch="false"/>
+            <line number="63" hits="0" branch="false"/>
+            <line number="64" hits="0" branch="false"/>
+            <line number="73" hits="0" branch="false"/>
+            <line number="74" hits="0" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>
