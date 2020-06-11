@@ -1,17 +1,24 @@
+import React from "react";
 import events from "../../Events/eventlist";
-import {
-  readEvents,
-  createEvent,
-  updateEvent,
-  deleteEvent,
-} from "../../Events/Events";
+import { renderCell } from "../Decorator";
 
-// check if event list exists
+const sampleRenderedCell = (
+  <div class="css-v83txp-cellStyle" data-test="calendar-day-cell">
+    1
+  </div>
+);
+
+const cell_id = 0;
+const sampleCell = {
+  currentMonth: false,
+  day: 29,
+  weekday: 0,
+};
 
 describe("Decorator Module functionality", () => {
-  it("Retrieves an event list", () => {
-    const existingEvents = readEvents(events);
+  it("Renders a calendar cell", () => {
+    const renderedCalendarCell = renderCell(sampleCell, cell_id);
 
-    expect(existingEvents).toEqual(events);
+    expect(renderedCalendarCell).toEqual(sampleRenderedCell);
   });
 });

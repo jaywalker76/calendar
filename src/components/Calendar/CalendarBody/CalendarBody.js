@@ -36,19 +36,21 @@ const CalendarBody = (props) => {
       <div data-test="calendar-body">
         {monthObject.map((rows, row_id) => (
           <div key={row_id} className={rowStyle} data-test="calendar-rows">
-            {rows.map((cell, cell_id) => (
-              <div
-                key={cell_id}
-                className={cellStyle}
-                data-test="calendar-day-cell"
-                onClick={() => {
-                  alert("Hello");
-                }}
-              >
-                {cell.day}
-                {cell.currentMonth}
-              </div>
-            ))}
+            {rows.map((cell, cell_id) => {
+              return (
+                <div
+                  key={cell_id}
+                  className={cellStyle}
+                  data-test="calendar-day-cell"
+                  onClick={() => {
+                    alert("Hello");
+                  }}
+                >
+                  {cell.day}
+                  {cell.currentMonth}
+                </div>
+              );
+            })}
           </div>
         ))}
       </div>
