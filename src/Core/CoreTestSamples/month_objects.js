@@ -2,7 +2,11 @@
 // with no leading and trailing days and having just 4 weeks
 const February2015 = [
   [
-    { day: 1, weekday: 0, currentMonth: true },
+    {
+      day: 1,
+      weekday: 0,
+      currentMonth: true,
+    },
     { day: 2, weekday: 1, currentMonth: true },
     { day: 3, weekday: 2, currentMonth: true },
     { day: 4, weekday: 3, currentMonth: true },

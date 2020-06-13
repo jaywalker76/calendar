@@ -36,4 +36,5 @@ loadEvents: () => {};
 // for that specific day, as it cycles through the rendering cycle
 // Might make sense to have the day rendering as is be the responsibility of the decorator
 
+// I might need the date object
 export { renderCell };

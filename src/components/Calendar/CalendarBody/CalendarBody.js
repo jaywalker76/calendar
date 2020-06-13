@@ -3,6 +3,8 @@ Responsible for presenting the calendar body
 */
 import React from "react";
 
+import _ from "lodash";
+
 import { css } from "emotion";
 import CalendarColumnHeader from "../CalendarHeader/CalendarColumnHeader/CalendarColumnHeader";
 import { renderCell } from "../../../DecoratorModule/Decorator";
@@ -28,6 +30,7 @@ const cellStyle = css`
 const CalendarBody = (props) => {
   const { monthObject, calendarColHeader, dayDescriptorType } = props;
 
+  const test = _.filter(monthObject);
   return (
     <>
       <CalendarColumnHeader

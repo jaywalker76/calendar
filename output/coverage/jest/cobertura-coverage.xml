@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="244" lines-covered="129" line-rate="0.5287" branches-valid="77" branches-covered="22" branch-rate="0.2857" timestamp="1591872920588" complexity="0" version="0.1">
+<coverage lines-valid="245" lines-covered="130" line-rate="0.5306000000000001" branches-valid="77" branches-covered="22" branch-rate="0.2857" timestamp="1592035505466" complexity="0" version="0.1">
   <sources>
     <source>/home/jc/Documents/projects/calendar</source>
   </sources>
@@ -229,9 +229,9 @@
             <line number="119" hits="742" branch="false"/>
             <line number="120" hits="742" branch="false"/>
             <line number="125" hits="742" branch="false"/>
-            <line number="131" hits="742" branch="false"/>
-            <line number="133" hits="106" branch="false"/>
-            <line number="135" hits="28" branch="false"/>
+            <line number="132" hits="742" branch="false"/>
+            <line number="134" hits="106" branch="false"/>
+            <line number="136" hits="28" branch="false"/>
           </lines>
         </class>
         <class name="index.js" filename="src/Core/index.js" line-rate="1" branch-rate="1">
@@ -259,15 +259,15 @@
           </methods>
           <lines>
             <line number="3" hits="1" branch="false"/>
-            <line number="42" hits="1" branch="false"/>
-            <line number="90" hits="1" branch="false"/>
-            <line number="138" hits="1" branch="false"/>
-            <line number="186" hits="1" branch="false"/>
-            <line number="236" hits="1" branch="false"/>
-            <line number="284" hits="1" branch="false"/>
-            <line number="332" hits="1" branch="false"/>
-            <line number="380" hits="1" branch="false"/>
-            <line number="428" hits="1" branch="false"/>
+            <line number="46" hits="1" branch="false"/>
+            <line number="94" hits="1" branch="false"/>
+            <line number="142" hits="1" branch="false"/>
+            <line number="190" hits="1" branch="false"/>
+            <line number="240" hits="1" branch="false"/>
+            <line number="288" hits="1" branch="false"/>
+            <line number="336" hits="1" branch="false"/>
+            <line number="384" hits="1" branch="false"/>
+            <line number="432" hits="1" branch="false"/>
           </lines>
         </class>
         <class name="week_numbers.js" filename="src/Core/CoreTestSamples/week_numbers.js" line-rate="0" branch-rate="1">
@@ -530,28 +530,29 @@
           <methods>
             <method name="(anonymous_0)" hits="8" signature="()V">
               <lines>
-                <line number="28" hits="8"/>
+                <line number="30" hits="8"/>
               </lines>
             </method>
             <method name="(anonymous_1)" hits="10" signature="()V">
               <lines>
-                <line number="38" hits="10"/>
+                <line number="41" hits="10"/>
               </lines>
             </method>
             <method name="(anonymous_2)" hits="70" signature="()V">
               <lines>
-                <line number="40" hits="70"/>
+                <line number="43" hits="70"/>
               </lines>
             </method>
           </methods>
           <lines>
-            <line number="10" hits="1" branch="false"/>
-            <line number="18" hits="1" branch="false"/>
-            <line number="28" hits="1" branch="false"/>
-            <line number="29" hits="8" branch="false"/>
+            <line number="12" hits="1" branch="false"/>
+            <line number="20" hits="1" branch="false"/>
+            <line number="30" hits="1" branch="false"/>
             <line number="31" hits="8" branch="false"/>
-            <line number="39" hits="10" branch="false"/>
-            <line number="41" hits="70" branch="false"/>
+            <line number="33" hits="8" branch="false"/>
+            <line number="34" hits="8" branch="false"/>
+            <line number="42" hits="10" branch="false"/>
+            <line number="44" hits="70" branch="false"/>
           </lines>
         </class>
         <class name="index.js" filename="src/components/Calendar/CalendarBody/index.js" line-rate="1" branch-rate="1">

@@ -123,6 +123,7 @@ module.exports = class CalendarModule {
           )
         );
         week.push({
+          dayObject: day,
           currentMonth: day.getMonth() === this.instantiatedDate.getMonth(),
           day: day.getDate(),
           weekday: day.getDay(),

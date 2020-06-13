@@ -1,4 +1,5 @@
 import CalendarModule from "../CalendarCore";
+import _ from "lodash";
 
 import {
   February2015,
@@ -12,6 +13,13 @@ import {
   February2016,
   February2010,
 } from "../CoreTestSamples/month_objects";
+
+const removeDateObjectFromRetrievedMonth = (monthObjectToParse) =>
+  monthObjectToParse.map((week) => {
+    return week.map((day) => {
+      return _.omit(day, ["dayObject"]);
+    });
+  });
 
 describe("Module functionality", () => {
   test.each`
@@ -86,7 +94,11 @@ describe("Calendar implementation", () => {
       const moduleInstance = new CalendarModule(monthDateParameter);
       const retrievedMonthObject = moduleInstance.getMonthObject();
 
-      expect(retrievedMonthObject).toEqual(monthObject);
+      const filteredMonthObj = removeDateObjectFromRetrievedMonth(
+        retrievedMonthObject
+      );
+
+      expect(filteredMonthObj).toEqual(monthObject);
     }
   );
 });
@@ -141,8 +153,11 @@ describe("Calendar Implementation for week starting on Monday", () => {
       const moduleInstance = new CalendarModule(monthDateParameter, 1);
 
       const retrievedMonthObject = moduleInstance.getMonthObject();
+      const filteredMonthObj = removeDateObjectFromRetrievedMonth(
+        retrievedMonthObject
+      );
 
-      expect(retrievedMonthObject).toEqual(monthObject);
+      expect(filteredMonthObj).toEqual(monthObject);
     }
   );
 });
