@@ -14,5 +14,13 @@ module.exports = class EventStore {
   }
   // read event
   // update event
+  updateEvent(eventToUpdate, eventUpdate) {
+    for (let i = 0; i < Object.keys(this.eventList).length; i++) {
+      if (this.eventList[0].id === eventToUpdate.id) {
+        this.eventList[0] = { ...eventToUpdate, ...eventUpdate };
+      }
+    }
+    return this.eventList;
+  }
   // delete event
 };
