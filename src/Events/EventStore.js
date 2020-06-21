@@ -13,6 +13,9 @@ module.exports = class EventStore {
     return this.eventList;
   }
   // read event
+  readEvents() {
+    return this.eventList;
+  }
   // update event
   updateEvent(eventToUpdate, eventUpdate) {
     for (let i = 0; i < Object.keys(this.eventList).length; i++) {
