@@ -37,6 +37,35 @@ describe("Module functionality", () => {
     expect(updatedList[0]).toEqual(updateToEvent);
   });
   // read event
-  // update event
+  it("Creates two events and reads all events", () => {
+    eventStoreInstance = setup();
+    const firstEvent = {
+      id: 1,
+      startDate: "2020-01-01",
+      endDate: "2020-01-01",
+    };
+    const secondEvent = {
+      id: 2,
+      startDate: "2020-01-02",
+      endDate: "2020-01-02",
+    };
+    eventStoreInstance.createEvent(firstEvent);
+    eventStoreInstance.createEvent(secondEvent);
+
+    let updatedList = eventStoreInstance.readEvents();
+
+    expect(updatedList).toEqual([
+      {
+        id: 1,
+        startDate: "2020-01-01",
+        endDate: "2020-01-01",
+      },
+      {
+        id: 2,
+        startDate: "2020-01-02",
+        endDate: "2020-01-02",
+      },
+    ]);
+  });
   // delete event
 });
