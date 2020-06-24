@@ -95,4 +95,19 @@ describe("Module functionality", () => {
   });
 
   // delete event
+  it("Create Events and deletes event", () => {
+    eventStoreInstance = setup();
+    const firstEvent = {
+      id: 1,
+      startDate: "2020-01-01",
+      endDate: "2020-01-01",
+    };
+
+    eventStoreInstance.createEvent(firstEvent);
+    let updatedList = eventStoreInstance.readEvents(1);
+
+    expect(updatedList.length).toBe(1);
+    updatedList = eventStoreInstance.deleteEvent(1);
+    expect(updatedList.length).toBe(0);
+  });
 });
