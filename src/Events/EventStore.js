@@ -11,8 +11,10 @@ module.exports = class EventStore {
     return this.eventList;
   }
   // read event
-  readEvents() {
-    return this.eventList;
+  readEvents(eventId) {
+    return eventId === undefined
+      ? this.eventList
+      : this.eventList.filter((item) => item.id === 1);
   }
   // update event
   updateEvent(eventToUpdate, eventUpdate) {
