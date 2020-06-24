@@ -26,4 +26,7 @@ module.exports = class EventStore {
     return this.eventList;
   }
   // delete event
+  deleteEvent(eventId) {
+    return this.eventList.filter((item) => item.id !== eventId);
+  }
 };
