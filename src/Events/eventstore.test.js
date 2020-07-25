@@ -5,6 +5,13 @@ const setup = (eventList) => new EventStore(eventList);
 
 let eventStoreInstance;
 
+// tasks to execute:
+// update test procedure
+// - create
+// - retrieve created object id
+// - read event from event store
+// - compare events
+
 describe("Module functionality", () => {
   it("Retrieves EventStore instance", () => {
     eventStoreInstance = setup(events);
@@ -18,23 +25,26 @@ describe("Module functionality", () => {
   // create event
   it("Create an event in the EventStore instance", () => {
     eventStoreInstance = setup();
-    const newEvent = { id: 1, startDate: "2020-01-01", endDate: "2020-01-01" };
-    let updatedList = eventStoreInstance.createEvent(newEvent);
-    expect(updatedList[0]).toEqual(newEvent);
+    const newEventData = { startDate: "2020-01-01", endDate: "2020-01-01" };
+    let createdEvent = eventStoreInstance.createEvent(newEventData);
+    // read new created event
+    const eventInStore = eventStoreInstance.readEventById(createdEvent.id)[0];
+    delete eventInStore["id"];
+
+    expect(eventInStore).toEqual(newEventData);
   });
   it("Creates and updates event", () => {
     eventStoreInstance = setup();
-    const newEvent = { id: 1, startDate: "2020-01-01", endDate: "2020-01-01" };
+    const newEvent = { startDate: "2020-01-01", endDate: "2020-01-01" };
     const updateToEvent = {
-      id: 1,
       startDate: "2021-01-01",
       endDate: "2021-01-01",
     };
-    let updatedList = eventStoreInstance.createEvent(newEvent);
-    expect(updatedList[0]).toEqual(newEvent);
+    let createdEvent = eventStoreInstance.createEvent(newEvent);
+    expect(createdEvent).toEqual(newEvent);
 
-    updatedList = eventStoreInstance.updateEvent(updatedList[0], updateToEvent);
-    expect(updatedList[0]).toEqual(updateToEvent);
+    createdEvent = eventStoreInstance.updateEvent(updateToEvent);
+    expect(createdEvent).toEqual(updateToEvent);
   });
   // read event
   it("Creates two events and reads all events", () => {
