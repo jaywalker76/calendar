@@ -131,19 +131,38 @@ describe("Module functionality", () => {
   });
 
   // delete event
-  it("Create Events and deletes event", () => {
+  it("Create Events and deletes event by id", () => {
     eventStoreInstance = setup();
-    const firstEvent = {
-      id: 1,
-      startDate: "2020-01-01",
-      endDate: "2020-01-01",
-    };
 
-    eventStoreInstance.createEvent(firstEvent);
-    let updatedList = eventStoreInstance.readEvents(1);
+    for (let i = 0; i < 5; i++) {
+      let dayCount = i + 1;
+      if (dayCount < 10) {
+        dayCount = "0" + dayCount;
+      }
+      eventStoreInstance.createEvent({
+        startDate: `2021-01-${dayCount}`,
+        endDate: `2021-01-${dayCount}`,
+      });
+    }
 
-    expect(updatedList.length).toBe(1);
-    updatedList = eventStoreInstance.deleteEvent(1);
-    expect(updatedList.length).toBe(0);
+    // {id: 1, startDate: '2021-01-01', endDate: '2021-01-01'}
+    // {id: 2, startDate: '2021-01-02', endDate: '2021-01-02'}
+    // {id: 3, startDate: '2021-01-03', endDate: '2021-01-03'}
+    // {id: 4, startDate: '2021-01-04', endDate: '2021-01-04'}
+    // {id: 5, startDate: '2021-01-05', endDate: '2021-01-05'}
+
+    const first_last_deletion = [
+      { id: 2, startDate: "2021-01-02", endDate: "2021-01-02" },
+      { id: 3, startDate: "2021-01-03", endDate: "2021-01-03" },
+      { id: 4, startDate: "2021-01-04", endDate: "2021-01-04" },
+    ];
+
+    // delete first and last event
+    eventStoreInstance.deleteEvent(1);
+    eventStoreInstance.deleteEvent(5);
+
+    expect(eventStoreInstance.eventList).toMatchObject(first_last_deletion);
+    // updatedList = eventStoreInstance.deleteEvent(1);
+    // expect(updatedList.length).toBe(0);
   });
 });
