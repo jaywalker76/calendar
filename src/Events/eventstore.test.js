@@ -68,36 +68,28 @@ describe("Module functionality", () => {
     expect(createdEventInStore).toEqual(updateToEvent);
   });
   // read event
-  it("Creates two events and reads all events", () => {
+  it("Creates multiple events and reads events in a given date range", () => {
     eventStoreInstance = setup();
-    const firstEvent = {
-      id: 1,
+
+    for (let i = 0; i < 10; i++) {
+      let dayCount = i + 1;
+      if (dayCount < 10) {
+        dayCount = "0" + dayCount;
+      }
+      eventStoreInstance.createEvent({
+        startDate: `2020-01-${dayCount}`,
+        endDate: `2020-01-${dayCount}`,
+      });
+    }
+
+    // specifying the range in an object seems better as a way to
+    // enforce date sequence
+    let updatedList = eventStoreInstance.readEvents({
       startDate: "2020-01-01",
-      endDate: "2020-01-01",
-    };
-    const secondEvent = {
-      id: 2,
-      startDate: "2020-01-02",
-      endDate: "2020-01-02",
-    };
-    eventStoreInstance.createEvent(firstEvent);
-    eventStoreInstance.createEvent(secondEvent);
+      endDate: "2020-01-04",
+    });
 
-    let updatedList = eventStoreInstance.readEvents();
-
-    expect(updatedList).toEqual([
-      {
-        id: 1,
-        startDate: "2020-01-01",
-        endDate: "2020-01-01",
-      },
-      {
-        id: 2,
-        startDate: "2020-01-02",
-        endDate: "2020-01-02",
-      },
-    ]);
-  });
+    expect(updatedList.length).toBe(4);
 
   it("Creates two events and reads a specific event by id", () => {
     eventStoreInstance = setup();
