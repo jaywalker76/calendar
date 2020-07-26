@@ -77,19 +77,45 @@ describe("Module functionality", () => {
         dayCount = "0" + dayCount;
       }
       eventStoreInstance.createEvent({
-        startDate: `2020-01-${dayCount}`,
-        endDate: `2020-01-${dayCount}`,
+        startDate: `2021-01-${dayCount}`,
+        endDate: `2021-01-${dayCount}`,
       });
     }
 
     // specifying the range in an object seems better as a way to
     // enforce date sequence
-    let updatedList = eventStoreInstance.readEvents({
-      startDate: "2020-01-01",
-      endDate: "2020-01-04",
+    let retrievedList = eventStoreInstance.readEvents({
+      startDate: "2021-01-01",
+      endDate: "2021-01-04",
     });
 
-    expect(updatedList.length).toBe(4);
+    expect(retrievedList.length).toBe(4);
+
+    const comparisonObj = [
+      {
+        startDate: "2021-01-01",
+        endDate: "2021-01-01",
+      },
+      {
+        startDate: "2021-01-02",
+        endDate: "2021-01-02",
+      },
+      {
+        startDate: "2021-01-03",
+        endDate: "2021-01-03",
+      },
+      {
+        startDate: "2021-01-04",
+        endDate: "2021-01-04",
+      },
+    ];
+
+    retrievedList.forEach((calEvent) => {
+      delete calEvent["id"];
+    });
+
+    expect(comparisonObj[0]).toMatchObject(retrievedList[0]);
+  });
 
   it("Creates two events and reads a specific event by id", () => {
     eventStoreInstance = setup();

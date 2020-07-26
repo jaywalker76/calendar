@@ -21,8 +21,13 @@ module.exports = class EventStore {
     return newEvent;
   }
   // read event
-  readEvents() {
-    return this.eventList;
+  readEvents(dateFilterRange) {
+    let { startDate, endDate } = dateFilterRange;
+
+    // return this.eventList;
+    return this.eventList.filter(
+      (item) => item.startDate >= startDate && item.endDate <= endDate
+    );
   }
   // read event by id
   readEventById(eventId) {
