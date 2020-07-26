@@ -54,10 +54,18 @@ describe("Module functionality", () => {
       endDate: "2021-01-01",
     };
     let createdEvent = eventStoreInstance.createEvent(newEvent);
-    expect(createdEvent).toEqual(newEvent);
 
-    createdEvent = eventStoreInstance.updateEvent(updateToEvent);
-    expect(createdEvent).toEqual(updateToEvent);
+    let createdEventInStore = eventStoreInstance.readEventById(
+      createdEvent.id
+    )[0];
+    delete createdEventInStore["id"];
+    expect(createdEventInStore).toEqual(newEvent);
+
+    eventStoreInstance.updateEvent(updateToEvent);
+
+    createdEventInStore = eventStoreInstance.readEventById(createdEvent.id)[0];
+
+    expect(createdEventInStore).toEqual(updateToEvent);
   });
   // read event
   it("Creates two events and reads all events", () => {
