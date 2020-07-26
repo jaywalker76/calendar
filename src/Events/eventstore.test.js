@@ -145,15 +145,14 @@ describe("Module functionality", () => {
       });
     }
 
-    // {id: 1, startDate: '2021-01-01', endDate: '2021-01-01'}
-    // {id: 2, startDate: '2021-01-02', endDate: '2021-01-02'}
-    // {id: 3, startDate: '2021-01-03', endDate: '2021-01-03'}
-    // {id: 4, startDate: '2021-01-04', endDate: '2021-01-04'}
-    // {id: 5, startDate: '2021-01-05', endDate: '2021-01-05'}
-
     const first_last_deletion = [
       { id: 2, startDate: "2021-01-02", endDate: "2021-01-02" },
       { id: 3, startDate: "2021-01-03", endDate: "2021-01-03" },
+      { id: 4, startDate: "2021-01-04", endDate: "2021-01-04" },
+    ];
+
+    const middle_deletion = [
+      { id: 2, startDate: "2021-01-02", endDate: "2021-01-02" },
       { id: 4, startDate: "2021-01-04", endDate: "2021-01-04" },
     ];
 
@@ -162,7 +161,9 @@ describe("Module functionality", () => {
     eventStoreInstance.deleteEvent(5);
 
     expect(eventStoreInstance.eventList).toMatchObject(first_last_deletion);
-    // updatedList = eventStoreInstance.deleteEvent(1);
-    // expect(updatedList.length).toBe(0);
+
+    // delete middle event in list
+    eventStoreInstance.deleteEvent(3);
+    expect(eventStoreInstance.eventList).toMatchObject(middle_deletion);
   });
 });
