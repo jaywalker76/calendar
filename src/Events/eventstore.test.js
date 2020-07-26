@@ -105,28 +105,27 @@ describe("Module functionality", () => {
     expect(comparisonObj[0]).toMatchObject(retrievedList[0]);
   });
 
-  it("Creates two events and reads a specific event by id", () => {
+  it("Creates multiple events and retrieves a specific event by id", () => {
     eventStoreInstance = setup();
-    const firstEvent = {
-      id: 1,
-      startDate: "2020-01-01",
-      endDate: "2020-01-01",
-    };
-    const secondEvent = {
-      id: 2,
-      startDate: "2020-01-02",
-      endDate: "2020-01-02",
-    };
-    eventStoreInstance.createEvent(firstEvent);
-    eventStoreInstance.createEvent(secondEvent);
 
-    let updatedList = eventStoreInstance.readEvents(1);
+    for (let i = 0; i < 5; i++) {
+      let dayCount = i + 1;
+      if (dayCount < 10) {
+        dayCount = "0" + dayCount;
+      }
+      eventStoreInstance.createEvent({
+        startDate: `2021-01-${dayCount}`,
+        endDate: `2021-01-${dayCount}`,
+      });
+    }
+
+    let updatedList = eventStoreInstance.readEventById(3);
 
     expect(updatedList).toEqual([
       {
-        id: 1,
-        startDate: "2020-01-01",
-        endDate: "2020-01-01",
+        id: 3,
+        startDate: "2021-01-03",
+        endDate: "2021-01-03",
       },
     ]);
   });
