@@ -34,18 +34,6 @@ describe("Module functionality", () => {
     expect(eventInStore).toEqual(newEventData);
   });
 
-  it("Create multiple events in the EventStore instance", () => {
-    eventStoreInstance = setup();
-    const eventData = { startDate: "2020-01-01", endDate: "2020-01-01" };
-
-    for (let i = 0; i < 5; i++) {
-      eventStoreInstance.createEvent(eventData);
-    }
-    const eventsInStore = eventStoreInstance.readEvents();
-
-    expect(eventsInStore.length).toEqual(5);
-  });
-
   it("Creates and updates event", () => {
     eventStoreInstance = setup();
     const newEvent = { startDate: "2020-01-01", endDate: "2020-01-01" };
