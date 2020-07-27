@@ -165,7 +165,20 @@ describe("Module functionality with empty event store", () => {
 
 describe("Module functionality with existing event store", () => {
   it("Retrieves EventStore instance", () => {
-    eventStoreInstance = setup(events);
+    let eventStoreInstance = setup(events);
     expect(eventStoreInstance).toBeTruthy();
+  });
+
+  it("Create an event in the EventStore instance", () => {
+    let eventStoreInstance = setup(events);
+    const newEventData = { startDate: "2020-01-01", endDate: "2020-01-01" };
+    let createdEvent = eventStoreInstance.createEvent(newEventData);
+    // read new created event
+    const eventInStore = eventStoreInstance.readEventById(createdEvent.id)[0];
+    // check that new event is attributed a correct id
+    expect(eventInStore.id).toBe(4);
+    delete eventInStore["id"];
+
+    expect(eventInStore).toEqual(newEventData);
   });
 });
