@@ -12,12 +12,7 @@ let eventStoreInstance;
 // - read event from event store
 // - compare events
 
-describe("Module functionality", () => {
-  it("Retrieves EventStore instance", () => {
-    eventStoreInstance = setup(events);
-    expect(eventStoreInstance).toBeTruthy();
-  });
-
+describe("Module functionality with empty event store", () => {
   it("Retrieves EventStore instance when there are no existing events", () => {
     eventStoreInstance = setup();
     expect(eventStoreInstance).toBeTruthy();
@@ -165,5 +160,12 @@ describe("Module functionality", () => {
     // delete middle event in list
     eventStoreInstance.deleteEvent(3);
     expect(eventStoreInstance.eventList).toMatchObject(middle_deletion);
+  });
+});
+
+describe("Module functionality with existing event store", () => {
+  it("Retrieves EventStore instance", () => {
+    eventStoreInstance = setup(events);
+    expect(eventStoreInstance).toBeTruthy();
   });
 });
