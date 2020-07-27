@@ -3,6 +3,26 @@ import events from "../Events/events";
 
 const setup = (eventList) => new EventStore(eventList);
 
+let inProps = (key, props) => {
+  if (typeof props === "string") {
+    return key === props;
+  } else {
+    return props.some((omitKey) => {
+      return omitKey === key;
+    });
+  }
+};
+// omit method using my inProps method and Object.keys
+let omit = (obj, props) => {
+  let newObj = {};
+  Object.keys(obj).forEach((key) => {
+    if (!inProps(key, props)) {
+      newObj[key] = obj[key];
+    }
+  });
+  return newObj;
+};
+
 let eventStoreInstance;
 
 // tasks to execute:
@@ -180,5 +200,35 @@ describe("Module functionality with existing event store", () => {
     delete eventInStore["id"];
 
     expect(eventInStore).toEqual(newEventData);
+  });
+
+  it("Creates and updates event", () => {
+    let eventStoreInstance = setup(events);
+    const newEvent = { startDate: "2020-01-01", endDate: "2020-01-01" };
+
+    let createdEvent = eventStoreInstance.createEvent(newEvent);
+    let createdEventId = createdEvent.id;
+
+    let createdEventInStore = eventStoreInstance.readEventById(
+      createdEventId
+    )[0];
+
+    createdEventInStore = omit(createdEventInStore, "id");
+
+    expect(createdEventInStore).toEqual(newEvent);
+
+    const updateToEvent = {
+      id: createdEventId,
+      startDate: "2021-01-01",
+      endDate: "2021-01-01",
+    };
+
+    eventStoreInstance.updateEvent(updateToEvent);
+
+    let updatedEventInStore = eventStoreInstance.readEventById(
+      createdEventId
+    )[0];
+
+    expect(updatedEventInStore).toMatchObject(updateToEvent);
   });
 });

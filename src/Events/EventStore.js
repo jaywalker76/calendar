@@ -10,6 +10,7 @@ module.exports = class EventStore {
   constructor(eventList) {
     this.eventList = eventList === undefined ? [] : eventList;
   }
+
   // create event
   createEvent(eventToAdd) {
     const eventId = generateEventId(this.eventList);
@@ -34,10 +35,10 @@ module.exports = class EventStore {
     return this.eventList.filter((item) => item.id === eventId);
   }
   // update event
-  updateEvent(eventToUpdate, eventUpdate) {
+  updateEvent(eventToUpdate) {
     for (let i = 0; i < Object.keys(this.eventList).length; i++) {
-      if (this.eventList[0].id === eventToUpdate.id) {
-        this.eventList[0] = { ...eventToUpdate, ...eventUpdate };
+      if (this.eventList[i].id === eventToUpdate.id) {
+        this.eventList[i] = { ...eventToUpdate };
       }
     }
     return this.eventList;
