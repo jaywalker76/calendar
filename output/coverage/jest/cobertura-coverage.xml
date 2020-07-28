@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="246" lines-covered="18" line-rate="0.0732" branches-valid="81" branches-covered="6" branch-rate="0.0741" timestamp="1595921033180" complexity="0" version="0.1">
+<coverage lines-valid="246" lines-covered="18" line-rate="0.0732" branches-valid="81" branches-covered="6" branch-rate="0.0741" timestamp="1595922411888" complexity="0" version="0.1">
   <sources>
     <source>/home/jc/Documents/projects/calendar</source>
   </sources>
@@ -283,19 +283,19 @@
       <classes>
         <class name="EventStore.js" filename="src/Events/EventStore.js" line-rate="1" branch-rate="1">
           <methods>
-            <method name="(anonymous_0)" hits="34" signature="()V">
+            <method name="(anonymous_0)" hits="39" signature="()V">
               <lines>
-                <line number="5" hits="34"/>
+                <line number="5" hits="39"/>
               </lines>
             </method>
-            <method name="(anonymous_1)" hits="10" signature="()V">
+            <method name="(anonymous_1)" hits="11" signature="()V">
               <lines>
-                <line number="10" hits="10"/>
+                <line number="10" hits="11"/>
               </lines>
             </method>
-            <method name="(anonymous_2)" hits="34" signature="()V">
+            <method name="(anonymous_2)" hits="39" signature="()V">
               <lines>
-                <line number="15" hits="34"/>
+                <line number="15" hits="39"/>
               </lines>
             </method>
             <method name="(anonymous_3)" hits="2" signature="()V">
@@ -308,14 +308,14 @@
                 <line number="30" hits="25"/>
               </lines>
             </method>
-            <method name="(anonymous_5)" hits="7" signature="()V">
+            <method name="(anonymous_5)" hits="8" signature="()V">
               <lines>
-                <line number="34" hits="7"/>
+                <line number="34" hits="8"/>
               </lines>
             </method>
-            <method name="(anonymous_6)" hits="22" signature="()V">
+            <method name="(anonymous_6)" hits="42" signature="()V">
               <lines>
-                <line number="35" hits="22"/>
+                <line number="35" hits="42"/>
               </lines>
             </method>
             <method name="(anonymous_7)" hits="2" signature="()V">
@@ -336,17 +336,17 @@
           </methods>
           <lines>
             <line number="5" hits="1" branch="false"/>
-            <line number="6" hits="34" branch="false"/>
+            <line number="6" hits="39" branch="false"/>
             <line number="9" hits="1" branch="false"/>
-            <line number="11" hits="10" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="16" hits="34" branch="false"/>
-            <line number="17" hits="34" branch="false"/>
-            <line number="21" hits="34" branch="false"/>
-            <line number="22" hits="34" branch="false"/>
+            <line number="11" hits="11" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="16" hits="39" branch="false"/>
+            <line number="17" hits="39" branch="false"/>
+            <line number="21" hits="39" branch="false"/>
+            <line number="22" hits="39" branch="false"/>
             <line number="26" hits="2" branch="false"/>
             <line number="29" hits="2" branch="false"/>
             <line number="30" hits="25" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="35" hits="22" branch="false"/>
+            <line number="35" hits="42" branch="false"/>
             <line number="39" hits="2" branch="false"/>
             <line number="40" hits="6" branch="true" condition-coverage="100% (2/2)"/>
             <line number="41" hits="2" branch="false"/>
