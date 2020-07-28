@@ -15,9 +15,10 @@ module.exports = class EventStore {
   createEvent(eventToAdd) {
     const eventId = generateEventId(this.eventList);
     const newEvent = {
-      id: eventId,
       ...eventToAdd,
+      id: eventId,
     };
+
     this.eventList.push(newEvent);
     return newEvent;
   }
