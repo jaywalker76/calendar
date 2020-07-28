@@ -19,8 +19,10 @@ module.exports = class EventStore {
       id: eventId,
     };
 
+    const createdEvent = Object.assign({}, newEvent);
+
     this.eventList.push(newEvent);
-    return newEvent;
+    return createdEvent;
   }
   // read event
   readEvents(dateFilterRange) {
