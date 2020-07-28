@@ -35,7 +35,11 @@ module.exports = class EventStore {
   }
   // read event by id
   readEventById(eventId) {
-    return this.eventList.filter((item) => item.id === eventId);
+    const eventToReturn = Object.assign(
+      {},
+      this.eventList.filter((item) => item.id === eventId)
+    );
+    return eventToReturn;
   }
   // update event
   updateEvent(eventToUpdate) {
