@@ -39,7 +39,7 @@ module.exports = class EventStore {
       {},
       this.eventList.filter((item) => item.id === eventId)
     );
-    return eventToReturn;
+    return eventToReturn[0];
   }
   // update event
   updateEvent(eventToUpdate) {

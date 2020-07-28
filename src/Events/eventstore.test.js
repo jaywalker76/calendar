@@ -32,6 +32,9 @@ let eventStoreInstance;
 // - read event from event store
 // - compare events
 
+// ToDo - test object deletion by trying to retrieve the deleted object
+// ToDo - test object creation by trying to retrieve the created object
+// ToDo - test object update by trying to retrieve the updated object
 describe("Module functionality with empty event store", () => {
   it("Retrieves EventStore instance when there are no existing events", () => {
     eventStoreInstance = setup();
@@ -43,7 +46,7 @@ describe("Module functionality with empty event store", () => {
     const newEventData = { startDate: "2020-01-01", endDate: "2020-01-01" };
     let createdEvent = eventStoreInstance.createEvent(newEventData);
     // read new created event
-    const eventInStore = eventStoreInstance.readEventById(createdEvent.id)[0];
+    const eventInStore = eventStoreInstance.readEventById(createdEvent.id);
     delete eventInStore["id"];
 
     expect(eventInStore).toEqual(newEventData);
@@ -58,15 +61,13 @@ describe("Module functionality with empty event store", () => {
     };
     let createdEvent = eventStoreInstance.createEvent(newEvent);
 
-    let createdEventInStore = eventStoreInstance.readEventById(
-      createdEvent.id
-    )[0];
+    let createdEventInStore = eventStoreInstance.readEventById(createdEvent.id);
     delete createdEventInStore["id"];
     expect(createdEventInStore).toEqual(newEvent);
 
     eventStoreInstance.updateEvent(updateToEvent);
 
-    createdEventInStore = eventStoreInstance.readEventById(createdEvent.id)[0];
+    createdEventInStore = eventStoreInstance.readEventById(createdEvent.id);
 
     expect(createdEventInStore).toEqual(updateToEvent);
   });
