@@ -281,4 +281,27 @@ describe("Module functionality with existing event store", () => {
 
     expect(comparisonObj[0]).toMatchObject(parsedList[0]);
   });
+
+  it("Creates multiple events and retrieves a specific event by id", () => {
+    let eventStoreInstance = setup(events);
+
+    for (let i = 0; i < 5; i++) {
+      let dayCount = i + 1;
+      if (dayCount < 10) {
+        dayCount = "0" + dayCount;
+      }
+      eventStoreInstance.createEvent({
+        startDate: `2021-01-${dayCount}`,
+        endDate: `2021-01-${dayCount}`,
+      });
+    }
+
+    let filteredEvent = eventStoreInstance.readEventById(6);
+
+    expect(filteredEvent[0]).toMatchObject({
+      id: 6,
+      startDate: "2021-01-03",
+      endDate: "2021-01-03",
+    });
+  });
 });
