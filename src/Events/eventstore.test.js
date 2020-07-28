@@ -231,4 +231,54 @@ describe("Module functionality with existing event store", () => {
 
     expect(updatedEventInStore).toMatchObject(updateToEvent);
   });
+
+  it("Creates multiple events and reads events in a given date range", () => {
+    let eventStoreInstance = setup(events);
+
+    for (let i = 0; i < 10; i++) {
+      let dayCount = i + 1;
+      if (dayCount < 10) {
+        dayCount = "0" + dayCount;
+      }
+      eventStoreInstance.createEvent({
+        startDate: `2021-01-${dayCount}`,
+        endDate: `2021-01-${dayCount}`,
+      });
+    }
+
+    // specifying the range in an object seems better as a way to
+    // enforce date sequence
+    let filteredList = eventStoreInstance.readEvents({
+      startDate: "2021-01-01",
+      endDate: "2021-01-04",
+    });
+
+    expect(filteredList.length).toBe(5);
+
+    const comparisonObj = [
+      {
+        startDate: "2021-01-01",
+        endDate: "2021-01-01",
+      },
+      {
+        startDate: "2021-01-02",
+        endDate: "2021-01-02",
+      },
+      {
+        startDate: "2021-01-03",
+        endDate: "2021-01-03",
+      },
+      {
+        startDate: "2021-01-04",
+        endDate: "2021-01-04",
+      },
+    ];
+
+    let parsedList = [];
+    filteredList.forEach((calEvent) => {
+      parsedList.push(omit(calEvent, "id"));
+    });
+
+    expect(comparisonObj[0]).toMatchObject(parsedList[0]);
+  });
 });
