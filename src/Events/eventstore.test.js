@@ -48,6 +48,8 @@ const mockEventGenerator = (providedEventStore, numberOfEvents) => {
     });
     createdEventIds.push(createdEvent.id);
   }
+
+  return createdEventIds;
 };
 
 describe("Module functionality with empty event store", () => {
@@ -55,14 +57,16 @@ describe("Module functionality with empty event store", () => {
     let eventStoreInstance = setup();
     expect(eventStoreInstance).toBeTruthy();
   });
+
   // create event
   it("Create an event in the EventStore instance", () => {
     let eventStoreInstance = setup();
     const newEventData = { startDate: "2020-01-01", endDate: "2020-01-01" };
     let createdEvent = eventStoreInstance.createEvent(newEventData);
     // read new created event
-    const eventInStore = eventStoreInstance.readEventById(createdEvent.id);
-    delete eventInStore["id"];
+    let eventInStore = eventStoreInstance.readEventById(createdEvent.id);
+
+    eventInStore = omit(eventInStore, "id");
 
     expect(eventInStore).toEqual(newEventData);
   });
@@ -304,4 +308,25 @@ describe("Module functionality with existing event store", () => {
   //     endDate: "2021-01-03",
   //   });
   // });
+
+  // delete event
+  it("Create Events and deletes event by id", () => {
+    let eventStoreInstance = setup(events);
+
+    let generatedEvents = mockEventGenerator(eventStoreInstance, 5);
+
+    // get list of ids for generated events
+
+    // delete first event
+    eventStoreInstance.deleteEvent(1);
+    let deletedFirstEvent = eventStoreInstance.readEventById(1);
+
+    expect(deletedFirstEvent).toBe(undefined);
+
+    // delete last event
+    let lastEventInStore = generatedEvents[generatedEvents.length - 1];
+    eventStoreInstance.deleteEvent(lastEventInStore);
+    let deletedLastEvent = eventStoreInstance.readEventById(lastEventInStore);
+    expect(deletedLastEvent).toBe(undefined);
+  });
 });
