@@ -35,12 +35,17 @@ module.exports = class EventStore {
   }
   // read event by id
   readEventById(eventId) {
+    if (this.eventList[eventId] === undefined) {
+      throw new Error("Event does not exist");
+      return;
+    }
     const eventToReturn = Object.assign(
       {},
       this.eventList.filter((item) => item.id === eventId)
     );
     return eventToReturn[0];
   }
+
   // update event
   updateEvent(eventToUpdate) {
     for (let i = 0; i < Object.keys(this.eventList).length; i++) {
