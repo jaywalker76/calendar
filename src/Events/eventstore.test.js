@@ -319,9 +319,10 @@ describe("Module functionality with existing event store", () => {
 
     // delete first event
     eventStoreInstance.deleteEvent(1);
-    let deletedFirstEvent = eventStoreInstance.readEventById(1);
+    // let deletedFirstEvent = eventStoreInstance.readEventById(1);
 
-    expect(deletedFirstEvent).toBe(undefined);
+    // expect(deletedFirstEvent).toBe(undefined);
+    expect(() => eventStoreInstance.readEventById(1)).toThrow();
 
     // delete last event
     let lastEventInStore = generatedEvents[generatedEvents.length - 1];
@@ -330,18 +331,11 @@ describe("Module functionality with existing event store", () => {
     expect(deletedLastEvent).toBe(undefined);
   });
 
-  it("throws error when trying to read unexistent event", () => {
-    let eventStoreInstance = setup(events);
+  // it("throws error when trying to read unexistent event", () => {
+  //   let eventStoreInstance = setup(events);
 
-    expect(() => {
-      eventStoreInstance.readEventById(10);
-    }).toThrow(Error);
-  });
-
-  it("Test description", () => {
-    const t = () => {
-      throw new Error();
-    };
-    expect(t).toThrow(Error);
-  });
+  //   expect(() => {
+  //     return eventStoreInstance.readEventById(10);
+  //   }).toThrow();
+  // });
 });

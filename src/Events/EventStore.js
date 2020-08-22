@@ -6,6 +6,11 @@ const generateEventId = (eventList) => {
   return eventList.length + 1;
 };
 
+const isEmptyArray = (array) => array === undefined || array.length === 0;
+
+const isEmptyObject = (object) =>
+  Object.keys(object).length === 0 && object.constructor === Object;
+
 module.exports = class EventStore {
   constructor(eventList) {
     this.eventList = eventList === undefined ? [] : eventList;
@@ -35,14 +40,16 @@ module.exports = class EventStore {
   }
   // read event by id
   readEventById(eventId) {
-    if (this.eventList[eventId] === undefined) {
-      throw new Error("Event does not exist");
-      return;
-    }
     const eventToReturn = Object.assign(
       {},
       this.eventList.filter((item) => item.id === eventId)
     );
+
+    if (isEmptyArray(eventToReturn) || isEmptyObject(eventToReturn)) {
+      throw new Error("Event does not exist");
+      return;
+    }
+
     return eventToReturn[0];
   }
 
