@@ -1,4 +1,24 @@
-import { eventStore, newStore } from "./FunctionalEventStore";
+import { eventStore, newStore, addStoreEvent } from "./FunctionalEventStore";
+
+let inProps = (key, props) => {
+  if (typeof props === "string") {
+    return key === props;
+  } else {
+    return props.some((omitKey) => {
+      return omitKey === key;
+    });
+  }
+};
+
+let omit = (obj, props) => {
+  let newObj = {};
+  Object.keys(obj).forEach((key) => {
+    if (!inProps(key, props)) {
+      newObj[key] = obj[key];
+    }
+  });
+  return newObj;
+};
 
 describe("Module functionality with empty event store", () => {
   it("Retrieves EventStore instance when there are no existing events", () => {
@@ -22,7 +42,7 @@ describe("Module functionality with empty event store", () => {
     let eventStoreInstance = newStore();
     let eventAdded = addStoreEvent(eventStoreInstance, sampleEvent);
 
-    expect(eventAdded.store).toEqual(expect.arrayContaining(sampleEventStore));
+    expect(eventAdded.store).toMatchObject(sampleEventStore);
     expect(eventAdded.eventId).toBe(1);
   });
 });

@@ -19,4 +19,9 @@
 const eventStore = [];
 
 const newStore = () => eventStore;
-export { eventStore, newStore };
+const addStoreEvent = (store, event) => {
+  const eventWithId = { ...event, id: 1 };
+  const newStore = [...store, eventWithId];
+  return { store: newStore, eventId: eventWithId.id };
+};
+export { eventStore, newStore, addStoreEvent };
