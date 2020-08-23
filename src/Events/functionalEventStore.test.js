@@ -5,4 +5,6 @@ describe("Module functionality with empty event store", () => {
     let eventStoreInstance = functionalStore();
     expect(eventStoreInstance).toBeTruthy();
   });
+
+  it("Create new store", () => {});
 });
