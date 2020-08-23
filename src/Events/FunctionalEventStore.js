@@ -16,4 +16,8 @@
  *  - um evento (quer como argumento, quer como output das funções) tem a estrutura { title, start_date, end_date }
  */
 
-export const functionalStore = () => 1;
+function functionalStore() {
+  return [];
+}
+
+export { functionalStore };
