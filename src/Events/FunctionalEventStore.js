@@ -3,8 +3,8 @@
  * Exercício:
  * Criar uma versão funcional de uma "event store", que satisfaça os seguintes requisitos:
  *  - operações a implementar:
- *      newStore: () -> store
- *      addStoreEvent: (store, event) -> { store: store, eventId: id }
+ *      newStore: () -> store**
+ *      addStoreEvent: (store, event) -> { store: store, eventId: id }**
  *      getStoreEventsInRange: (store, start_date, end_date) -> mapa de eventId para event
  *      removeStoreEvent: (store, eventId) -> store
  *      updateStoreEvent: (store, eventId, event) -> store
@@ -19,9 +19,18 @@
 const eventStore = [];
 
 const newStore = () => eventStore;
+
 const addStoreEvent = (store, event) => {
   const eventWithId = { ...event, id: 1 };
   const newStore = [...store, eventWithId];
   return { store: newStore, eventId: eventWithId.id };
 };
-export { eventStore, newStore, addStoreEvent };
+
+const removeStoreEvent = (store, id) => {
+  // const d = a.filter((v, k) => k < 1)
+  const filteredStore = store.filter((event) => event !== id);
+  return filteredStore;
+  // d = [1]
+};
+
+export { eventStore, newStore, addStoreEvent, removeStoreEvent };
