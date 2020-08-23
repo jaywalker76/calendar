@@ -33,17 +33,16 @@ describe("Module functionality with empty event store", () => {
       startDate: `2021-01-01`,
       endDate: `2021-01-02`,
     };
-    let sampleEventStore = [
-      {
-        startDate: `2021-01-01`,
-        endDate: `2021-01-02`,
-      },
-    ];
+    let sampleEventStore = [sampleEvent];
     let eventStoreInstance = newStore();
     let eventAdded = addStoreEvent(eventStoreInstance, sampleEvent);
 
     expect(eventAdded.store).toMatchObject(sampleEventStore);
     expect(eventAdded.eventId).toBe(1);
+  });
+
+  it("Retrieve Events in a given Range", () => {
+    //getStoreEventsInRange
   });
 });
 
