@@ -1,4 +1,9 @@
-import { eventStore, newStore, addStoreEvent } from "./FunctionalEventStore";
+import {
+  eventStore,
+  newStore,
+  addStoreEvent,
+  removeStoreEvent,
+} from "./FunctionalEventStore";
 
 let inProps = (key, props) => {
   if (typeof props === "string") {
@@ -41,8 +46,40 @@ describe("Module functionality with empty event store", () => {
     expect(eventAdded.eventId).toBe(1);
   });
 
+  it("Add a new Store Event", () => {
+    let sampleEvent = {
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+    let sampleEventStore = [sampleEvent];
+    let eventStoreInstance = newStore();
+    let eventAdded = addStoreEvent(eventStoreInstance, sampleEvent);
+
+    expect(eventAdded.store).toMatchObject(sampleEventStore);
+    expect(eventAdded.eventId).toBe(1);
+  });
+
   it("Retrieve Events in a given Range", () => {
     //getStoreEventsInRange
+  });
+
+  it("Remove Store Events", () => {
+    // moving over to this case, in order to test sequential addition
+    // removeStoreEvent: (store, eventId) -> store
+    // removeStoreEvent
+    let sampleEvent = {
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+    let sampleEventStore = [sampleEvent];
+    let eventStoreInstance = newStore();
+    let eventAdded = addStoreEvent(eventStoreInstance, sampleEvent);
+
+    expect(eventAdded.store).toMatchObject(sampleEventStore);
+    expect(eventAdded.eventId).toBe(1);
+
+    let eventRemoved = removeStoreEvent(eventStoreInstance, 1);
+    expect(eventRemoved).toMatchObject([]);
   });
 });
 
