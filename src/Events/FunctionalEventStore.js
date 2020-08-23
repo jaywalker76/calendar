@@ -18,5 +18,5 @@
 
 const eventStore = [];
 
-const functionalStore = () => eventStore;
-export { functionalStore };
+const newStore = () => eventStore;
+export { eventStore, newStore };
