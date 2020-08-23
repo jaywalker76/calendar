@@ -59,10 +59,6 @@ describe("Module functionality with empty event store", () => {
     expect(eventAdded.eventId).toBe(1);
   });
 
-  it("Retrieve Events in a given Range", () => {
-    //getStoreEventsInRange
-  });
-
   it("Remove Store Events", () => {
     // moving over to this case, in order to test sequential addition
     // removeStoreEvent: (store, eventId) -> store
@@ -80,6 +76,34 @@ describe("Module functionality with empty event store", () => {
 
     let eventRemoved = removeStoreEvent(eventStoreInstance, 1);
     expect(eventRemoved).toMatchObject([]);
+  });
+
+  it("Add a three sequential events", () => {
+    let firstEvent = {
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+    let secondEvent = {
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+    let thirdEvent = {
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+    let sampleEventStore = [firstEvent, secondEvent, thirdEvent];
+    let eventStoreInstance = newStore();
+
+    addStoreEvent(eventStoreInstance, firstEvent);
+    addStoreEvent(eventStoreInstance, secondEvent);
+    let eventAdded = addStoreEvent(eventStoreInstance, thirdEvent);
+
+    expect(eventAdded.store).toMatchObject(sampleEventStore);
+    expect(eventAdded.eventId).toBe(1);
+  });
+
+  it("Retrieve Events in a given Range", () => {
+    //getStoreEventsInRange
   });
 });
 
