@@ -22,7 +22,7 @@ const newStore = () => eventStore;
 
 const addStoreEvent = (store, event) => {
   const eventWithId = { ...event, id: 1 };
-  const newStore = [...store, eventWithId];
+  const newStore = [(store.store === undefined ? ...store : ...store.store), eventWithId];
   return { store: newStore, eventId: eventWithId.id };
 };
 

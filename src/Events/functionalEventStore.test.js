@@ -94,9 +94,9 @@ describe("Module functionality with empty event store", () => {
     let sampleEventStore = [firstEvent, secondEvent, thirdEvent];
     let eventStoreInstance = newStore();
 
-    addStoreEvent(eventStoreInstance, firstEvent);
-    addStoreEvent(eventStoreInstance, secondEvent);
-    let eventAdded = addStoreEvent(eventStoreInstance, thirdEvent);
+    let firstAddition = addStoreEvent(eventStoreInstance, firstEvent);
+    let secondAddition = addStoreEvent(firstAddition, secondEvent);
+    let eventAdded = addStoreEvent(secondAddition, thirdEvent);
 
     expect(eventAdded.store).toMatchObject(sampleEventStore);
     expect(eventAdded.eventId).toBe(1);
