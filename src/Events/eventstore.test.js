@@ -331,11 +331,13 @@ describe("Module functionality with existing event store", () => {
     expect(deletedLastEvent).toBe(undefined);
   });
 
-  // it("throws error when trying to read unexistent event", () => {
-  //   let eventStoreInstance = setup(events);
+  it("throws error when trying to read unexistent event", () => {
+    let eventStoreInstance = setup(events);
 
-  //   expect(() => {
-  //     return eventStoreInstance.readEventById(10);
-  //   }).toThrow();
-  // });
+    try {
+      eventStoreInstance.readEventById(10);
+    } catch (error) {
+      expect(error).toEqual(new Error("Event does not exist"));
+    }
+  });
 });
