@@ -20,10 +20,35 @@ const eventStore = [];
 
 const newStore = () => eventStore;
 
+const sequentialEventAddition = (eventStore, start, end) => {
+  if (start > end) {
+    return eventStore;
+  }
+
+  let result = addStoreEvent(eventStore, {
+    startDate: start,
+    endDate: start,
+  });
+
+  let newStartDate = new Date(start);
+  let newStartString;
+  // Add a day
+  newStartDate.setDate(newStartDate.getDate() + 1);
+
+  newStartString = newStartDate.toISOString().substring(0, 11);
+
+  return sequentialEventAddition(result.store, newStartString, end);
+};
+
 const addStoreEvent = (store, event) => {
-  const eventWithId = { ...event, id: 1 };
-  const newStore = [(store.store === undefined ? ...store : ...store.store), eventWithId];
-  return { store: newStore, eventId: eventWithId.id };
+  // ignoring id generation for the moment
+  // const eventWithId = { ...event, id: 1 };
+  let newStore = [event];
+  if (store) {
+    newStore = store.concat(newStore);
+  }
+
+  return { store: newStore, eventId: 1 }; //ToDo eventId Generation
 };
 
 const removeStoreEvent = (store, id) => {
@@ -33,4 +58,10 @@ const removeStoreEvent = (store, id) => {
   // d = [1]
 };
 
-export { eventStore, newStore, addStoreEvent, removeStoreEvent };
+export {
+  eventStore,
+  newStore,
+  addStoreEvent,
+  removeStoreEvent,
+  sequentialEventAddition,
+};

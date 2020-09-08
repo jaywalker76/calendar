@@ -3,6 +3,7 @@ import {
   newStore,
   addStoreEvent,
   removeStoreEvent,
+  sequentialEventAddition,
 } from "./FunctionalEventStore";
 
 let inProps = (key, props) => {
@@ -107,4 +108,84 @@ describe("Module functionality with empty event store", () => {
   });
 });
 
+describe("Functional Event Addition", () => {
+  it("Sequential event addition on an empty store returns an empty store if start is greater than end", () => {
+    let eventStoreInstance = newStore();
+    const startDate = `2020-02-01`;
+    const endDate = `2020-01-01`;
+
+    const alteredStore = sequentialEventAddition(
+      eventStoreInstance,
+      startDate,
+      endDate
+    );
+    expect(alteredStore).toMatchObject(eventStoreInstance);
+  });
+  it("Sequential event addition on an empty store returns an store with an event if start is equal to end", () => {
+    let eventStoreInstance = newStore();
+
+    const startDate = `2020-01-01`;
+    const endDate = `2020-01-01`;
+
+    const expectedStore = [
+      {
+        startDate: `2020-01-01`,
+        endDate: `2020-01-01`,
+      },
+    ];
+
+    const alteredStore = sequentialEventAddition(
+      eventStoreInstance,
+      startDate,
+      endDate
+    );
+    expect(alteredStore).toMatchObject(expectedStore);
+  });
+
+  it("Sequential event addition on an empty store returns an store with various events if start is less than end", () => {
+    let eventStoreInstance = newStore();
+
+    const startDate = `2020-01-01`;
+    const endDate = `2020-01-02`;
+
+    const expectedStore = [
+      {
+        startDate: `2020-01-01`,
+        endDate: `2020-01-01`,
+      },
+      {
+        startDate: `2020-01-02`,
+        endDate: `2020-01-02`,
+      },
+    ];
+
+    const alteredStore = sequentialEventAddition(
+      eventStoreInstance,
+      startDate,
+      endDate
+    );
+    expect(alteredStore).toMatchObject(expectedStore);
+  });
+});
+
 // *      addStoreEvent: (store, event) -> { store: store, eventId: id }
+
+// newStore = () => functionalStore()
+
+// sequentialEventAddition = ( eventStore, start, end) =>
+// if(start > end){
+// return eventStore;
+// } else {
+// const {store, eventId} = addEvent(eventStore, {title: "title", startDate:start, endDate:start})
+// sequentialEventAddition(store, start+1, end)
+// }
+
+// nextday=new Date(oldDate.getFullYear(),oldDate.getMonth(),oldDate.getDate()+1);
+
+// iterativeEventAddition = (eventStore, start, end) =>
+// let store = eventStore
+// for(i = start; i < end; i++){
+// store = addEvent(eventStore, {title: "title", startDate:i, endDate:i}).store
+// }
+
+// return store
