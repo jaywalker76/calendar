@@ -73,9 +73,6 @@ module.exports = class CalendarModule {
     return Math.ceil(daysUsedToRender / 7);
   }
 
-  // how can I modify tests for a scenario in which I pass arguments to a function
-  // internally?
-  // so cool to modify something and have the tests still pass
   getWeekInYear(weekDateParam) {
     const day = weekDateParam !== undefined ? weekDateParam : this.date;
     const MILLISECONDS_IN_WEEK = 604800000;
@@ -89,9 +86,20 @@ module.exports = class CalendarModule {
     return dayWeek;
   }
 
+  /**
+   * 
+   * @param {function getMonday(d) {
+  d = new Date(d);
+  var day = d.getDay(),
+      diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+  return new Date(d.setDate(diff));
+}} dateParam 
+   */
+
   getFirstDayOfWeek(dateParam) {
     let weekDay = dateParam.getDay();
-    let dateDifferential = dateParam.getDate() - weekDay;
+    let dateDifferential =
+      dateParam.getDate() - weekDay + (weekDay === 0 ? -6 : 1);
 
     return new Date(dateParam.setDate(dateDifferential));
   }
@@ -101,8 +109,10 @@ module.exports = class CalendarModule {
     let monthObject = [];
 
     let startingDate =
-      this.instantiatedDate.getDay() === 0
-        ? this.instantiatedDate
+      // this should take into account the parameter passed for the starting week day
+      this.weekStartDay === 0
+        ? // this.instantiatedDate.getDay() === 0
+          this.instantiatedDate
         : this.getFirstDayOfWeek(this.instantiatedDate);
     let dayCounter = 0;
 
@@ -118,8 +128,11 @@ module.exports = class CalendarModule {
         // the startingDate
         let startDate = new Date(startingDate);
         let day = new Date(
+          //error happens here -> startDate is being reset and not taking into account
+          // the position of the day in the week
           startDate.setDate(
-            startDate.getDate() + this.weekStartDay + dayCounter
+            // startDate.getDate() + this.weekStartDay + dayCounter
+            startDate.getDate() + dayCounter
           )
         );
         week.push({
