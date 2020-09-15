@@ -5,6 +5,7 @@ import {
   February2019,
   February2020,
   March2020,
+  March2020StartOnMonday,
   April2020,
   May2020,
   June2020,
@@ -89,6 +90,15 @@ describe("Calendar implementation", () => {
       expect(retrievedMonthObject).toEqual(monthObject);
     }
   );
+});
+
+describe("Days in Month Generation - WIP", () => {
+  it("should generate March 2020 calendar object", () => {
+    const moduleInstance = new CalendarModule("03/01/2020", 1);
+    const retrievedMonthObject = moduleInstance.getMonthObject();
+    expect(retrievedMonthObject).toEqual(March2020StartOnMonday);
+    expect(retrievedMonthObject[0][0].day).toEqual(24);
+  });
 });
 
 describe("Week Number Implementation", () => {
