@@ -97,23 +97,44 @@ module.exports = class CalendarModule {
    */
 
   getFirstDayOfWeek(dateParam) {
-    let weekDay = dateParam.getDay();
-    let dateDifferential =
-      dateParam.getDate() - weekDay + (weekDay === 0 ? -6 : 1);
+    const dayOfWeek = dateParam.getDay();
+    let firstDayOfWeek = new Date(dateParam);
+    let diff =
+      dayOfWeek >= this.weekStartDay
+        ? dayOfWeek - this.weekStartDay
+        : 6 - dayOfWeek;
 
-    return new Date(dateParam.setDate(dateDifferential));
+    firstDayOfWeek.setDate(dateParam.getDate() - diff);
+    firstDayOfWeek.setHours(0, 0, 0, 0);
+    return firstDayOfWeek;
   }
+
+  /**
+   * function firstDayOfWeek(dateObject, firstDayOfWeekIndex) {
+
+    const dayOfWeek = dateObject.getDay(),
+        firstDayOfWeek = new Date(dateObject),
+        diff = dayOfWeek >= firstDayOfWeekIndex ?
+            dayOfWeek - firstDayOfWeekIndex :
+            6 - dayOfWeek
+
+    firstDayOfWeek.setDate(dateObject.getDate() - diff)
+    firstDayOfWeek.setHours(0,0,0,0)
+    return firstDayOfWeek
+
+  
+   */
 
   getMonthObject() {
     let weeksToGenerate = this.getNumberOfWeeksInMonth();
     let monthObject = [];
 
-    let startingDate =
-      // this should take into account the parameter passed for the starting week day
-      this.weekStartDay === 0
-        ? // this.instantiatedDate.getDay() === 0
-          this.instantiatedDate
-        : this.getFirstDayOfWeek(this.instantiatedDate);
+    let startingDate = this.getFirstDayOfWeek(this.instantiatedDate);
+    // this should take into account the parameter passed for the starting week day
+    // this.weekStartDay === 0
+    //   ? // this.instantiatedDate.getDay() === 0
+    //     this.instantiatedDate
+    //   : this.getFirstDayOfWeek(this.instantiatedDate);
     let dayCounter = 0;
 
     for (
@@ -127,14 +148,7 @@ module.exports = class CalendarModule {
         // generate day
         // the startingDate
         let startDate = new Date(startingDate);
-        let day = new Date(
-          //error happens here -> startDate is being reset and not taking into account
-          // the position of the day in the week
-          startDate.setDate(
-            // startDate.getDate() + this.weekStartDay + dayCounter
-            startDate.getDate() + dayCounter
-          )
-        );
+        let day = new Date(startDate.setDate(startDate.getDate() + dayCounter));
         week.push({
           currentMonth: day.getMonth() === this.instantiatedDate.getMonth(),
           day: day.getDate(),

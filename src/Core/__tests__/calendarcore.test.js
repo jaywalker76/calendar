@@ -99,6 +99,13 @@ describe("Days in Month Generation - WIP", () => {
     expect(retrievedMonthObject).toEqual(March2020StartOnMonday);
     expect(retrievedMonthObject[0][0].day).toEqual(24);
   });
+
+  it("should generate February 2018 calendar object", () => {
+    const moduleInstance = new CalendarModule("02/01/2019");
+    const retrievedMonthObject = moduleInstance.getMonthObject();
+    expect(retrievedMonthObject).toEqual(February2019);
+    expect(retrievedMonthObject[0][0].day).toEqual(27);
+  });
 });
 
 describe("Week Number Implementation", () => {
