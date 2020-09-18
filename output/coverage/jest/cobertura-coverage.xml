@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="277" lines-covered="161" line-rate="0.5811999999999999" branches-valid="93" branches-covered="37" branch-rate="0.3978" timestamp="1600203028458" complexity="0" version="0.1">
+<coverage lines-valid="276" lines-covered="161" line-rate="0.5832999999999999" branches-valid="93" branches-covered="37" branch-rate="0.3978" timestamp="1600422504457" complexity="0" version="0.1">
   <sources>
     <source>/home/jc/Documents/projects/calendar</source>
   </sources>
@@ -174,12 +174,12 @@
             </method>
             <method name="(anonymous_8)" hits="30" signature="()V">
               <lines>
-                <line number="99" hits="30"/>
+                <line number="89" hits="30"/>
               </lines>
             </method>
             <method name="(anonymous_9)" hits="30" signature="()V">
               <lines>
-                <line number="128" hits="30"/>
+                <line number="102" hits="30"/>
               </lines>
             </method>
           </methods>
@@ -215,26 +215,26 @@
             <line number="81" hits="8" branch="false"/>
             <line number="84" hits="8" branch="false"/>
             <line number="86" hits="8" branch="false"/>
-            <line number="100" hits="30" branch="false"/>
-            <line number="101" hits="30" branch="false"/>
-            <line number="103" hits="30" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="90" hits="30" branch="false"/>
+            <line number="91" hits="30" branch="false"/>
+            <line number="93" hits="30" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="97" hits="30" branch="false"/>
+            <line number="98" hits="30" branch="false"/>
+            <line number="99" hits="30" branch="false"/>
+            <line number="103" hits="30" branch="false"/>
+            <line number="104" hits="30" branch="false"/>
+            <line number="106" hits="30" branch="false"/>
             <line number="107" hits="30" branch="false"/>
-            <line number="108" hits="30" branch="false"/>
             <line number="109" hits="30" branch="false"/>
-            <line number="129" hits="30" branch="false"/>
-            <line number="130" hits="30" branch="false"/>
-            <line number="132" hits="30" branch="false"/>
-            <line number="138" hits="30" branch="false"/>
-            <line number="140" hits="30" branch="false"/>
-            <line number="141" hits="30" branch="false"/>
-            <line number="146" hits="117" branch="false"/>
-            <line number="147" hits="117" branch="false"/>
-            <line number="150" hits="819" branch="false"/>
-            <line number="151" hits="819" branch="false"/>
-            <line number="152" hits="819" branch="false"/>
-            <line number="158" hits="819" branch="false"/>
-            <line number="160" hits="117" branch="false"/>
-            <line number="162" hits="30" branch="false"/>
+            <line number="110" hits="30" branch="false"/>
+            <line number="115" hits="117" branch="false"/>
+            <line number="116" hits="117" branch="false"/>
+            <line number="119" hits="819" branch="false"/>
+            <line number="120" hits="819" branch="false"/>
+            <line number="121" hits="819" branch="false"/>
+            <line number="127" hits="819" branch="false"/>
+            <line number="129" hits="117" branch="false"/>
+            <line number="131" hits="30" branch="false"/>
           </lines>
         </class>
         <class name="index.js" filename="src/Core/index.js" line-rate="1" branch-rate="1">
@@ -283,9 +283,9 @@
         </class>
       </classes>
     </package>
-    <package name="src.Events" line-rate="0.9778" branch-rate="0.9444">
+    <package name="src.Events" line-rate="1" branch-rate="0.9444">
       <classes>
-        <class name="EventStore.js" filename="src/Events/EventStore.js" line-rate="0.9615" branch-rate="1">
+        <class name="EventStore.js" filename="src/Events/EventStore.js" line-rate="1" branch-rate="1">
           <methods>
             <method name="(anonymous_0)" hits="44" signature="()V">
               <lines>
@@ -334,17 +334,17 @@
             </method>
             <method name="(anonymous_9)" hits="2" signature="()V">
               <lines>
-                <line number="57" hits="2"/>
+                <line number="56" hits="2"/>
               </lines>
             </method>
             <method name="(anonymous_10)" hits="5" signature="()V">
               <lines>
-                <line number="66" hits="5"/>
+                <line number="65" hits="5"/>
               </lines>
             </method>
             <method name="(anonymous_11)" hits="51" signature="()V">
               <lines>
-                <line number="67" hits="51"/>
+                <line number="66" hits="51"/>
               </lines>
             </method>
           </methods>
@@ -368,13 +368,12 @@
             <line number="45" hits="84" branch="false"/>
             <line number="48" hits="10" branch="true" condition-coverage="100% (4/4)"/>
             <line number="49" hits="2" branch="false"/>
-            <line number="50" hits="0" branch="false"/>
-            <line number="53" hits="8" branch="false"/>
-            <line number="58" hits="2" branch="false"/>
-            <line number="59" hits="6" branch="true" condition-coverage="100% (2/2)"/>
-            <line number="60" hits="2" branch="false"/>
-            <line number="63" hits="2" branch="false"/>
-            <line number="67" hits="51" branch="false"/>
+            <line number="52" hits="8" branch="false"/>
+            <line number="57" hits="2" branch="false"/>
+            <line number="58" hits="6" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="59" hits="2" branch="false"/>
+            <line number="62" hits="2" branch="false"/>
+            <line number="66" hits="51" branch="false"/>
           </lines>
         </class>
         <class name="FunctionalEventStore.js" filename="src/Events/FunctionalEventStore.js" line-rate="1" branch-rate="0.75">

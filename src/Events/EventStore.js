@@ -47,7 +47,6 @@ module.exports = class EventStore {
 
     if (isEmptyArray(eventToReturn) || isEmptyObject(eventToReturn)) {
       throw new Error("Event does not exist");
-      return;
     }
 
     return eventToReturn[0];
