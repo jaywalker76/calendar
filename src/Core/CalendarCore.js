@@ -86,16 +86,6 @@ module.exports = class CalendarModule {
     return dayWeek;
   }
 
-  /**
-   * 
-   * @param {function getMonday(d) {
-  d = new Date(d);
-  var day = d.getDay(),
-      diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
-  return new Date(d.setDate(diff));
-}} dateParam 
-   */
-
   getFirstDayOfWeek(dateParam) {
     const dayOfWeek = dateParam.getDay();
     let firstDayOfWeek = new Date(dateParam);
@@ -109,32 +99,11 @@ module.exports = class CalendarModule {
     return firstDayOfWeek;
   }
 
-  /**
-   * function firstDayOfWeek(dateObject, firstDayOfWeekIndex) {
-
-    const dayOfWeek = dateObject.getDay(),
-        firstDayOfWeek = new Date(dateObject),
-        diff = dayOfWeek >= firstDayOfWeekIndex ?
-            dayOfWeek - firstDayOfWeekIndex :
-            6 - dayOfWeek
-
-    firstDayOfWeek.setDate(dateObject.getDate() - diff)
-    firstDayOfWeek.setHours(0,0,0,0)
-    return firstDayOfWeek
-
-  
-   */
-
   getMonthObject() {
     let weeksToGenerate = this.getNumberOfWeeksInMonth();
     let monthObject = [];
 
     let startingDate = this.getFirstDayOfWeek(this.instantiatedDate);
-    // this should take into account the parameter passed for the starting week day
-    // this.weekStartDay === 0
-    //   ? // this.instantiatedDate.getDay() === 0
-    //     this.instantiatedDate
-    //   : this.getFirstDayOfWeek(this.instantiatedDate);
     let dayCounter = 0;
 
     for (
