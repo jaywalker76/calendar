@@ -51,7 +51,7 @@ describe("Module functionality with empty event store", () => {
     expect(eventStoreWithAddedEvent.store[0].eventId).toBe(1);
   });
 
-  it("Remove Store Events", () => {
+  it("Adds and removes a single Store Event", () => {
     let sampleEvent = {
       startDate: `2021-01-01`,
       endDate: `2021-01-02`,
