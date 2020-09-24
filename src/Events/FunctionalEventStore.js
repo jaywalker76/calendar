@@ -40,15 +40,22 @@ const sequentialEventAddition = (eventStore, start, end) => {
   return sequentialEventAddition(result.store, newStartString, end);
 };
 
+const getEventId = (store) => {
+  return store.length + 1;
+};
+
 const addStoreEvent = (store, event) => {
   // ignoring id generation for the moment
   // const eventWithId = { ...event, id: 1 };
-  let newStore = [event];
+  // modifying this function so that the event id
+  // is added to the event itself
+  let eventWithId = { ...event, eventId: getEventId(store) };
+
   if (store) {
-    newStore = store.concat(newStore);
+    eventWithId = store.concat(eventWithId);
   }
 
-  return { store: newStore, eventId: 1 }; //ToDo eventId Generation
+  return { store: eventWithId }; //ToDo eventId Generation
 };
 
 const removeStoreEvent = (store, id) => {
