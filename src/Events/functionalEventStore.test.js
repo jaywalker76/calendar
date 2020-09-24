@@ -67,7 +67,7 @@ describe("Module functionality with empty event store", () => {
     expect(eventRemoved).toMatchObject([]);
   });
 
-  it("Add a three sequential events", () => {
+  it("Adds multiple events and deletes first, middle and last events", () => {
     let firstEvent = {
       startDate: `2021-01-01`,
       endDate: `2021-01-02`,
@@ -80,15 +80,25 @@ describe("Module functionality with empty event store", () => {
       startDate: `2021-01-01`,
       endDate: `2021-01-02`,
     };
-    let sampleEventStore = [firstEvent, secondEvent, thirdEvent];
+    let fourthEvent = {
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+    let fifthEvent = {
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+
     let eventStoreInstance = newStore();
 
     let firstAddition = addStoreEvent(eventStoreInstance, firstEvent);
     let secondAddition = addStoreEvent(firstAddition, secondEvent);
-    let eventAdded = addStoreEvent(secondAddition, thirdEvent);
+    let thirdAddition = addStoreEvent(secondAddition, thirdEvent);
+    let fourthAddition = addStoreEvent(thirdAddition, fourthEvent);
+    let fifthAddition = addStoreEvent(fourthAddition, fifthEvent);
 
-    expect(eventAdded.store).toMatchObject(sampleEventStore);
-    expect(eventAdded.eventId).toBe(1);
+    expect(fifthAddition.getNumberOfEventsInStore).toBe(5);
+    // expect(eventAdded.eventId).toBe(1);
   });
 
   it("Retrieve Events in a given Range", () => {

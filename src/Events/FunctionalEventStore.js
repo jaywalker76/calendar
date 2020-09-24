@@ -40,9 +40,9 @@ const sequentialEventAddition = (eventStore, start, end) => {
   return sequentialEventAddition(result.store, newStartString, end);
 };
 
-const getEventId = (store) => {
-  return store.length + 1;
-};
+const getNumberOfEventsInStore = (store) => store.length;
+
+const getEventId = (store) => getNumberOfEventsInStore(store) + 1;
 
 const addStoreEvent = (store, event) => {
   // ignoring id generation for the moment
