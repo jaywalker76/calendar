@@ -44,15 +44,17 @@ const getNumberOfEventsInStore = (store) => store.length;
 
 const getEventId = (store) => getNumberOfEventsInStore(store) + 1;
 
-const addStoreEvent = (store, event) => {
+const addStoreEvent = (eventStore, event) => {
   // ignoring id generation for the moment
   // const eventWithId = { ...event, id: 1 };
   // modifying this function so that the event id
   // is added to the event itself
-  let eventWithId = { ...event, eventId: getEventId(store) };
+  let eventWithId = { ...event, eventId: getEventId(eventStore) };
 
-  if (store) {
-    eventWithId = store.concat(eventWithId);
+  if (eventStore && Array.isArray(eventStore)) {
+    eventWithId = eventStore.concat(eventWithId);
+  } else {
+    eventWithId = eventStore.store.concat(eventWithId);
   }
 
   return { store: eventWithId }; //ToDo eventId Generation
@@ -73,4 +75,5 @@ export {
   addStoreEvent,
   removeStoreEvent,
   sequentialEventAddition,
+  getNumberOfEventsInStore,
 };

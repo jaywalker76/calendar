@@ -4,6 +4,7 @@ import {
   addStoreEvent,
   removeStoreEvent,
   sequentialEventAddition,
+  getNumberOfEventsInStore,
 } from "./FunctionalEventStore";
 
 let inProps = (key, props) => {
@@ -97,7 +98,7 @@ describe("Module functionality with empty event store", () => {
     let fourthAddition = addStoreEvent(thirdAddition, fourthEvent);
     let fifthAddition = addStoreEvent(fourthAddition, fifthEvent);
 
-    expect(fifthAddition.getNumberOfEventsInStore).toBe(5);
+    expect(getNumberOfEventsInStore(fifthAddition.store)).toBe(5);
     // expect(eventAdded.eventId).toBe(1);
   });
 
