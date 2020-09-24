@@ -58,9 +58,11 @@ const addStoreEvent = (store, event) => {
   return { store: eventWithId }; //ToDo eventId Generation
 };
 
-const removeStoreEvent = (store, id) => {
+const removeStoreEvent = (eventStore, id) => {
   // const d = a.filter((v, k) => k < 1)
-  const filteredStore = store.filter((event) => event !== id);
+  const filteredStore = eventStore.store.filter(
+    (event) => event.eventId !== id
+  );
   return filteredStore;
   // d = [1]
 };
