@@ -99,6 +99,10 @@ module.exports = class CalendarModule {
     return firstDayOfWeek;
   }
 
+  // this functionality should have been decomposed
+  // into the particulars, in order to test the various
+  // details -> in this case, as the function is complex
+  // decomposing it would have been helpful
   getMonthObject() {
     let weeksToGenerate = this.getNumberOfWeeksInMonth();
     let monthObject = [];
