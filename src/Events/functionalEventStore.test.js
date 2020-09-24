@@ -40,32 +40,30 @@ describe("Module functionality with empty event store", () => {
       endDate: `2021-01-02`,
     };
 
-    let newEventStoreInstance = newStore();
-    let eventAdded = addStoreEvent(newEventStoreInstance, sampleEvent);
+    let eventStoreInstance = newStore();
+    let eventStoreWithAddedEvent = addStoreEvent(
+      eventStoreInstance,
+      sampleEvent
+    );
 
     // rewriting test so that eventId is appended to the added event
-    expect(eventAdded.store[0]).toMatchObject(sampleEvent);
-    expect(eventAdded.store[0].eventId).toBe(1);
+    expect(eventStoreWithAddedEvent.store[0]).toMatchObject(sampleEvent);
+    expect(eventStoreWithAddedEvent.store[0].eventId).toBe(1);
   });
 
-  // duplicated test case
-
   it("Remove Store Events", () => {
-    // moving over to this case, in order to test sequential addition
-    // removeStoreEvent: (store, eventId) -> store
-    // removeStoreEvent
     let sampleEvent = {
       startDate: `2021-01-01`,
       endDate: `2021-01-02`,
     };
-    let sampleEventStore = [sampleEvent];
+
     let eventStoreInstance = newStore();
-    let eventAdded = addStoreEvent(eventStoreInstance, sampleEvent);
+    let eventStoreWithAddedEvent = addStoreEvent(
+      eventStoreInstance,
+      sampleEvent
+    );
 
-    expect(eventAdded.store).toMatchObject(sampleEventStore);
-    expect(eventAdded.eventId).toBe(1);
-
-    let eventRemoved = removeStoreEvent(eventStoreInstance, 1);
+    let eventRemoved = removeStoreEvent(eventStoreWithAddedEvent, 1);
     expect(eventRemoved).toMatchObject([]);
   });
 
