@@ -45,7 +45,7 @@ describe("Module functionality with empty event store", () => {
 
     // rewriting test so that eventId is appended to the added event
     expect(eventAdded.store[0]).toMatchObject(sampleEvent);
-    // expect(eventAdded.store[0].eventId).toBe(1);
+    expect(eventAdded.store[0].eventId).toBe(1);
   });
 
   // duplicated test case
