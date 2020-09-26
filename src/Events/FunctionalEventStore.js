@@ -63,23 +63,21 @@ const addStoreEvent = (eventStore, event) => {
   return { store: eventWithId }; //ToDo eventId Generation
 };
 
+const eventExistsInStore = (store, id) => {
+  const checkForEventInStore = store.filter((event) => event.eventId === id);
+
+  return checkForEventInStore.length > 0;
+};
+
 const removeStoreEvent = (eventStore, id) => {
-  const checkForEventInStore = eventStore.store.filter(
-    (event) => event.eventId === id
-  );
-  if (checkForEventInStore.length === 0) {
+  if (!eventExistsInStore(eventStore.store, id)) {
     throw new Error("Event does not exist in store");
   }
-  // const d = a.filter((v, k) => k < 1)
+
   const filteredStore = eventStore.store.filter(
     (event) => event.eventId !== id
   );
   return { store: filteredStore };
-  // d = [1]
-};
-
-const func = () => {
-  throw new Error("my error");
 };
 
 export {
@@ -89,5 +87,4 @@ export {
   removeStoreEvent,
   sequentialEventAddition,
   getNumberOfEventsInStore,
-  func,
 };

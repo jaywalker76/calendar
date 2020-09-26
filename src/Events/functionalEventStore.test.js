@@ -5,7 +5,6 @@ import {
   removeStoreEvent,
   sequentialEventAddition,
   getNumberOfEventsInStore,
-  func,
 } from "./FunctionalEventStore";
 
 let inProps = (key, props) => {
