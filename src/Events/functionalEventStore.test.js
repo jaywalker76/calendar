@@ -96,9 +96,16 @@ describe("Module functionality with empty event store", () => {
     let secondAddition = addStoreEvent(firstAddition, secondEvent);
     let thirdAddition = addStoreEvent(secondAddition, thirdEvent);
     let fourthAddition = addStoreEvent(thirdAddition, fourthEvent);
-    let fifthAddition = addStoreEvent(fourthAddition, fifthEvent);
+    let finalStore = addStoreEvent(fourthAddition, fifthEvent);
 
-    expect(getNumberOfEventsInStore(fifthAddition.store)).toBe(5);
+    expect(getNumberOfEventsInStore(finalStore.store)).toBe(5);
+
+    let firstRemoval = removeStoreEvent(finalStore, 1);
+    let secondRemoval = removeStoreEvent(firstRemoval, 3);
+    let finalRemoval = removeStoreEvent(secondRemoval, 5);
+
+    expect(getNumberOfEventsInStore(finalRemoval.store)).toBe(2);
+
     // expect(eventAdded.eventId).toBe(1);
   });
 
