@@ -5,6 +5,7 @@ import {
   removeStoreEvent,
   sequentialEventAddition,
   getNumberOfEventsInStore,
+  getEventsInRange,
 } from "./FunctionalEventStore";
 
 let inProps = (key, props) => {
@@ -151,6 +152,24 @@ describe("Module functionality with empty event store", () => {
     );
 
     expect(getNumberOfEventsInStore(eventStore)).toBe(15);
+    expect(
+      getEventsInRange(eventStore, "2020-01-01", "2020-01-05").length
+    ).toBe(5);
+    // no events in range
+    expect(
+      getEventsInRange(eventStore, "2020-02-01", "2020-02-05").length
+    ).toBe(0);
+    // start date not in range
+    expect(
+      getEventsInRange(eventStore, "2019-12-31", "2020-01-04").length
+    ).toBe(4);
+    // end date not in range
+    expect(
+      getEventsInRange(eventStore, "2019-01-13", "2020-01-18").length
+    ).toBe(3);
+    // additional test cases:
+    // check that returned object matches
+    // test for correct returns when startDate/endDate/start and end date do not exist in store
   });
 });
 

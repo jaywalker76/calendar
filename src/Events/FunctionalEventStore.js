@@ -86,6 +86,19 @@ const removeStoreEvent = (eventStore, id) => {
   return { store: filteredStore };
 };
 
+const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
+  // what should be the return type here?
+  let tempStore = [];
+
+  eventStore.forEach((event) => {
+    if (event.startDate >= startOfRange && event.startDate <= endOfRange) {
+      tempStore.push(event);
+    }
+  });
+
+  return tempStore;
+};
+
 export {
   eventStore,
   newStore,
@@ -93,4 +106,5 @@ export {
   removeStoreEvent,
   sequentialEventAddition,
   getNumberOfEventsInStore,
+  getEventsInRange,
 };
