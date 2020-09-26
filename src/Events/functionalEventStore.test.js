@@ -5,6 +5,7 @@ import {
   removeStoreEvent,
   sequentialEventAddition,
   getNumberOfEventsInStore,
+  func,
 } from "./FunctionalEventStore";
 
 let inProps = (key, props) => {
@@ -100,14 +101,45 @@ describe("Module functionality with empty event store", () => {
 
     expect(getNumberOfEventsInStore(finalStore.store)).toBe(5);
 
+    //*  - as operações de removeStoreEvent e updateStoreEventfazem throw de um erro
+    // se o eventId não existir na store
+    // thought about adding a getEventById functionality, for testing purposes
+    // but realized that I can test for object retrieval by ID, by testing for the
+    // removal of unexisting items
+
+    // test that events removed don't exist in respective store
+    // do we want to test on every step or just in the final block?
     let firstRemoval = removeStoreEvent(finalStore, 1);
+
+    expect(() => removeStoreEvent(firstRemoval, 1)).toThrowError(
+      "Event does not exist in store"
+    );
+
     let secondRemoval = removeStoreEvent(firstRemoval, 3);
+
+    expect(() => removeStoreEvent(secondRemoval, 3)).toThrowError(
+      "Event does not exist in store"
+    );
+
     let finalRemoval = removeStoreEvent(secondRemoval, 5);
 
-    expect(getNumberOfEventsInStore(finalRemoval.store)).toBe(2);
+    expect(() => removeStoreEvent(finalRemoval, 5)).toThrowError(
+      "Event does not exist in store"
+    );
 
-    // expect(eventAdded.eventId).toBe(1);
+    expect(getNumberOfEventsInStore(finalRemoval.store)).toBe(2);
   });
+
+  // memory aid -> to remove later
+  // describe("exception test", () => {
+  //   it("should throw an error", () => {
+  //     expect(func).toThrow();
+  //     // expect(func).not.toThrow();
+  //   });
+  //   it("should throw an error", () => {
+  //     expect(func).toThrowError("my error");
+  //   });
+  // });
 
   it("Retrieve Events in a given Range", () => {
     //getStoreEventsInRange

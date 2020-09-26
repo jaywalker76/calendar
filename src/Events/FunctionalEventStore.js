@@ -16,6 +16,9 @@
  *  - um evento (quer como argumento, quer como output das funções) tem a estrutura { title, start_date, end_date }
  */
 
+// initial model was a simple array -> wondering if i'm modifying the object to conform
+// to existing tests, rather than rewriting the tests and functionality as needed
+
 const eventStore = { store: [] };
 
 const newStore = () => eventStore;
@@ -61,12 +64,22 @@ const addStoreEvent = (eventStore, event) => {
 };
 
 const removeStoreEvent = (eventStore, id) => {
+  const checkForEventInStore = eventStore.store.filter(
+    (event) => event.eventId === id
+  );
+  if (checkForEventInStore.length === 0) {
+    throw new Error("Event does not exist in store");
+  }
   // const d = a.filter((v, k) => k < 1)
   const filteredStore = eventStore.store.filter(
     (event) => event.eventId !== id
   );
   return { store: filteredStore };
   // d = [1]
+};
+
+const func = () => {
+  throw new Error("my error");
 };
 
 export {
@@ -76,4 +89,5 @@ export {
   removeStoreEvent,
   sequentialEventAddition,
   getNumberOfEventsInStore,
+  func,
 };
