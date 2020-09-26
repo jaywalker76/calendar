@@ -64,8 +64,8 @@ describe("Module functionality with empty event store", () => {
       sampleEvent
     );
 
-    let eventRemoved = removeStoreEvent(eventStoreWithAddedEvent, 1);
-    expect(eventRemoved).toMatchObject([]);
+    let storeWithEventRemoved = removeStoreEvent(eventStoreWithAddedEvent, 1);
+    expect(storeWithEventRemoved).toMatchObject({ store: [] });
   });
 
   it("Adds multiple events and deletes first, middle and last events", () => {

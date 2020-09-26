@@ -65,7 +65,7 @@ const removeStoreEvent = (eventStore, id) => {
   const filteredStore = eventStore.store.filter(
     (event) => event.eventId !== id
   );
-  return filteredStore;
+  return { store: filteredStore };
   // d = [1]
 };
 
