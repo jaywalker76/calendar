@@ -63,7 +63,7 @@ describe("Module functionality with empty event store", () => {
       eventStoreInstance,
       sampleEvent
     );
-
+    // did not maintain in mind what was the expected object here
     let storeWithEventRemoved = removeStoreEvent(eventStoreWithAddedEvent, 1);
     expect(storeWithEventRemoved).toMatchObject({ store: [] });
   });

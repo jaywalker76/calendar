@@ -16,7 +16,7 @@
  *  - um evento (quer como argumento, quer como output das funções) tem a estrutura { title, start_date, end_date }
  */
 
-const eventStore = [];
+const eventStore = { store: [] };
 
 const newStore = () => eventStore;
 
@@ -49,7 +49,7 @@ const addStoreEvent = (eventStore, event) => {
   // const eventWithId = { ...event, id: 1 };
   // modifying this function so that the event id
   // is added to the event itself
-  let eventWithId = { ...event, eventId: getEventId(eventStore) };
+  let eventWithId = { ...event, eventId: getEventId(eventStore.store) };
 
   if (eventStore && Array.isArray(eventStore)) {
     eventWithId = eventStore.concat(eventWithId);
