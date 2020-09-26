@@ -141,7 +141,16 @@ describe("Module functionality with empty event store", () => {
   // });
 
   it("Retrieve Events in a given Range", () => {
-    //getStoreEventsInRange
+    // initialize store
+    let eventStoreInstance = newStore();
+    //const sequentialEventAddition = (eventStore, start, end) => {
+    const eventStore = sequentialEventAddition(
+      eventStoreInstance,
+      "2020-01-01",
+      "2020-01-15"
+    );
+
+    expect(getNumberOfEventsInStore(eventStore)).toBe(15);
   });
 });
 
