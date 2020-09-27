@@ -99,6 +99,8 @@ const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
   return tempStore;
 };
 
+const updateStoreEvent = (store, eventId, event) => {};
+
 export {
   eventStore,
   newStore,
@@ -107,4 +109,5 @@ export {
   sequentialEventAddition,
   getNumberOfEventsInStore,
   getEventsInRange,
+  updateStoreEvent,
 };

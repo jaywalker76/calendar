@@ -6,6 +6,7 @@ import {
   sequentialEventAddition,
   getNumberOfEventsInStore,
   getEventsInRange,
+  updateStoreEvent,
 } from "./FunctionalEventStore";
 
 let inProps = (key, props) => {
@@ -174,6 +175,30 @@ describe("Module functionality with empty event store", () => {
     // check that returned object matches
     // test for correct returns when startDate/endDate/start and end date do not exist in store
     // not sure if these tests are necessary
+  });
+
+  it("Adds a new Store Event and subsequently updates the event", () => {
+    const sampleEvent = {
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+
+    const eventUpdate = {
+      startDate: `2020-01-01`,
+      endDate: `2020-01-02`,
+    };
+    let eventStoreInstance = newStore();
+    let eventStoreWithAddedEvent = addStoreEvent(
+      eventStoreInstance,
+      sampleEvent
+    );
+
+    expect(eventStoreWithAddedEvent.store[0]).toMatchObject(sampleEvent);
+    expect(eventStoreWithAddedEvent.store[0].eventId).toBe(1);
+
+    expect(
+      updateStoreEvent(eventStoreWithAddedEvent, 1, eventUpdate)
+    ).toMatchObject(eventUpdate);
   });
 });
 
