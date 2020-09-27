@@ -165,7 +165,7 @@ describe("Module functionality with empty event store", () => {
     ).toBe(4);
     // end date not in range
     expect(
-      getEventsInRange(eventStore, "2019-01-13", "2020-01-18").length
+      getEventsInRange(eventStore, "2020-01-13", "2020-01-18").length
     ).toBe(3);
     // additional test cases:
     // check that returned object matches
