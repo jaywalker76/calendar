@@ -66,6 +66,9 @@ describe("Module functionality with empty event store", () => {
     );
     // did not maintain in mind what was the expected object here
     let storeWithEventRemoved = removeStoreEvent(eventStoreWithAddedEvent, 1);
+    expect(() => removeStoreEvent(storeWithEventRemoved, 1)).toThrowError(
+      "Event does not exist in store"
+    );
     expect(storeWithEventRemoved).toMatchObject({ store: [] });
   });
 
@@ -170,6 +173,7 @@ describe("Module functionality with empty event store", () => {
     // additional test cases:
     // check that returned object matches
     // test for correct returns when startDate/endDate/start and end date do not exist in store
+    // not sure if these tests are necessary
   });
 });
 
