@@ -128,9 +128,9 @@ const updateStoreEvent = (eventStore, eventId, event) => {
       eventStoreMinusEvent,
       modifiedEvent
     );
-
-    // return store
     return updatedEventStore;
+  } else {
+    throw new Error("Event does not exist in store");
   }
 };
 
