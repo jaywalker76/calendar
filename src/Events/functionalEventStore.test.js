@@ -7,6 +7,7 @@ import {
   getNumberOfEventsInStore,
   getEventsInRange,
   updateStoreEvent,
+  getEventById,
 } from "./FunctionalEventStore";
 
 let inProps = (key, props) => {
@@ -206,6 +207,30 @@ describe("Module functionality with empty event store", () => {
     expect(() =>
       updateStoreEvent(eventStoreWithAddedEvent, 2, eventUpdate)
     ).toThrowError("Event does not exist in store");
+  });
+
+  it("Updates first, middle and last event in store", () => {
+    let eventStoreInstance = newStore();
+    //const sequentialEventAddition = (eventStore, start, end) => {
+    const eventStore = sequentialEventAddition(
+      eventStoreInstance,
+      "2020-01-01",
+      "2020-01-05"
+    );
+
+    const eventUpdate = {
+      startDate: `2020-01-06`,
+      endDate: `2020-01-06`,
+    };
+
+    let firstStoreUpdate = updateStoreEvent(eventStore, 1, eventUpdate);
+    expect(getEventById(firstStoreUpdate, 1)).toMatchObject(eventUpdate);
+
+    let secondStoreUpdate = updateStoreEvent(firstStoreUpdate, 3, eventUpdate);
+    expect(getEventById(secondStoreUpdate, 3)).toMatchObject(eventUpdate);
+
+    let thirdStoreUpdate = updateStoreEvent(secondStoreUpdate, 5, eventUpdate);
+    expect(getEventById(thirdStoreUpdate, 5)).toMatchObject(eventUpdate);
   });
 });
 

@@ -64,7 +64,10 @@ const addStoreEvent = (eventStore, event) => {
   // ToDo: standardize the eventStore argument
   const eventStoreToProcess = getStoreToProcess(eventStore);
 
-  let eventWithId = { ...event, eventId: getEventId(eventStoreToProcess) };
+  let eventWithId = {
+    ...event,
+    eventId: event.eventId ? event.eventId : getEventId(eventStoreToProcess),
+  };
 
   if (eventStore) {
     eventWithId = eventStoreToProcess.concat(eventWithId);
@@ -108,7 +111,10 @@ const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
 };
 
 const getEventById = (eventStore, eventId) => {
-  const eventToReturn = eventStore.filter((event) => event.eventId === eventId);
+  const eventStoreToProcess = getStoreToProcess(eventStore);
+  const eventToReturn = eventStoreToProcess.filter(
+    (event) => event.eventId === eventId
+  );
   return eventToReturn[0];
 };
 
@@ -143,4 +149,5 @@ export {
   getNumberOfEventsInStore,
   getEventsInRange,
   updateStoreEvent,
+  getEventById,
 };
