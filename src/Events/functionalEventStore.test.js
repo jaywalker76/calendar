@@ -196,9 +196,12 @@ describe("Module functionality with empty event store", () => {
     expect(eventStoreWithAddedEvent.store[0]).toMatchObject(sampleEvent);
     expect(eventStoreWithAddedEvent.store[0].eventId).toBe(1);
 
-    expect(
-      updateStoreEvent(eventStoreWithAddedEvent, 1, eventUpdate)
-    ).toMatchObject(eventUpdate);
+    let updatedStore = updateStoreEvent(
+      eventStoreWithAddedEvent,
+      1,
+      eventUpdate
+    );
+    expect(updatedStore.store[0]).toMatchObject(eventUpdate);
   });
 });
 

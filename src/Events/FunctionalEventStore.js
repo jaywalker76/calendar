@@ -47,9 +47,7 @@ const getNumberOfEventsInStore = (store) => store.length;
 
 const getEventId = (store) => getNumberOfEventsInStore(store) + 1;
 
-const addStoreEvent = (eventStore, event) => {
-  // inconsistent store being passed
-  // ToDo: standardize the eventStore argument
+const getStoreToProcess = (eventStore) => {
   let eventStoreToProcess;
 
   if (Array.isArray(eventStore)) {
@@ -57,6 +55,14 @@ const addStoreEvent = (eventStore, event) => {
   } else {
     eventStoreToProcess = eventStore.store;
   }
+
+  return eventStoreToProcess;
+};
+
+const addStoreEvent = (eventStore, event) => {
+  // inconsistent store being passed
+  // ToDo: standardize the eventStore argument
+  const eventStoreToProcess = getStoreToProcess(eventStore);
 
   let eventWithId = { ...event, eventId: getEventId(eventStoreToProcess) };
 
@@ -76,11 +82,13 @@ const eventExistsInStore = (store, id) => {
 };
 
 const removeStoreEvent = (eventStore, id) => {
-  if (!eventExistsInStore(eventStore.store, id)) {
+  const eventStoreToProcess = getStoreToProcess(eventStore);
+
+  if (!eventExistsInStore(eventStoreToProcess, id)) {
     throw new Error("Event does not exist in store");
   }
 
-  const filteredStore = eventStore.store.filter(
+  const filteredStore = eventStoreToProcess.filter(
     (event) => event.eventId !== id
   );
   return { store: filteredStore };
@@ -99,7 +107,32 @@ const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
   return tempStore;
 };
 
-const updateStoreEvent = (store, eventId, event) => {};
+const getEventById = (eventStore, eventId) => {
+  const eventToReturn = eventStore.filter((event) => event.eventId === eventId);
+  return eventToReturn[0];
+};
+
+const updateStoreEvent = (eventStore, eventId, event) => {
+  const eventStoreToProcess = getStoreToProcess(eventStore);
+  // check if event exists in store
+  if (eventExistsInStore(eventStoreToProcess, eventId)) {
+    // retrieve event by Id
+
+    let eventToModify = getEventById(eventStoreToProcess, eventId);
+    // remove event from store
+    const eventStoreMinusEvent = removeStoreEvent(eventStoreToProcess, eventId);
+    // modify event
+    const modifiedEvent = { ...eventToModify, ...event };
+    // add event to store
+    const updatedEventStore = addStoreEvent(
+      eventStoreMinusEvent,
+      modifiedEvent
+    );
+
+    // return store
+    return updatedEventStore;
+  }
+};
 
 export {
   eventStore,
