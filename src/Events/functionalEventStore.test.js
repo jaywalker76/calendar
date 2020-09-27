@@ -202,6 +202,10 @@ describe("Module functionality with empty event store", () => {
       eventUpdate
     );
     expect(updatedStore.store[0]).toMatchObject(eventUpdate);
+
+    expect(() =>
+      updateStoreEvent(eventStoreWithAddedEvent, 2, eventUpdate)
+    ).toThrowError("Event does not exist in store");
   });
 });
 
