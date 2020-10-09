@@ -4,7 +4,7 @@ import {
   addStoreEvent,
   removeStoreEvent,
   sequentialEventAddition,
-  getNumberOfEventsInStore,
+  eventStoreCount,
   getEventsInRange,
   updateStoreEvent,
   getEventById,
@@ -104,7 +104,7 @@ describe("Module functionality with empty event store", () => {
     let fourthAddition = addStoreEvent(thirdAddition, fourthEvent);
     let finalStore = addStoreEvent(fourthAddition, fifthEvent);
 
-    expect(getNumberOfEventsInStore(finalStore.store)).toBe(5);
+    expect(eventStoreCount(finalStore.store)).toBe(5);
 
     //*  - as operações de removeStoreEvent e updateStoreEventfazem throw de um erro
     // se o eventId não existir na store
@@ -132,7 +132,7 @@ describe("Module functionality with empty event store", () => {
       "Event does not exist in store"
     );
 
-    expect(getNumberOfEventsInStore(finalRemoval.store)).toBe(2);
+    expect(eventStoreCount(finalRemoval.store)).toBe(2);
   });
 
   // memory aid -> to remove later
@@ -156,7 +156,7 @@ describe("Module functionality with empty event store", () => {
       "2020-01-15"
     );
 
-    expect(getNumberOfEventsInStore(eventStore)).toBe(15);
+    expect(eventStoreCount(eventStore)).toBe(15);
     expect(
       getEventsInRange(eventStore, "2020-01-01", "2020-01-05").length
     ).toBe(5);

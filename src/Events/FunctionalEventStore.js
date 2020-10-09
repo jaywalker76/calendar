@@ -43,9 +43,9 @@ const sequentialEventAddition = (eventStore, start, end) => {
   return sequentialEventAddition(result.store, newStartString, end);
 };
 
-const getNumberOfEventsInStore = (store) => store.length;
+const eventStoreCount = (store) => store.length;
 
-const getEventId = (store) => getNumberOfEventsInStore(store) + 1;
+const getEventId = (store) => eventStoreCount(store) + 1;
 
 const getStoreToProcess = (eventStore) => {
   let eventStoreToProcess;
@@ -146,7 +146,7 @@ export {
   addStoreEvent,
   removeStoreEvent,
   sequentialEventAddition,
-  getNumberOfEventsInStore,
+  eventStoreCount,
   getEventsInRange,
   updateStoreEvent,
   getEventById,
