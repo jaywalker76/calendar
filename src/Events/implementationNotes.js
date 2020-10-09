@@ -31,23 +31,29 @@ const newStore = newStore()
 
 newStore = () =>{
 
-// step 1 - returns an event store of type array, with eventSeedId set to 0
+// step 1 - returns an event store composed of an empty array of events and an ID seed field initialially set to zero)
 return {data:[], eventIdSeed: 0}
 
-// A descrição está um pouco estranha (a event store é o objecto todo, uma descrição mais precisa seria: returns an event store composed of an empty array of events and an ID seed field initialially set to zero), mas o resultado está ok.
+// A descrição está um pouco estranha (a event store é o objecto todo, uma descrição mais precisa seria: 
+// returns an event store composed of an empty array of events and an ID seed field initialially set to zero), 
+// mas o resultado está ok.
 
 // tests
 // expect newStore.data to equal []
 // expect newStore.eventSeedId to be 0
 
-Esta abordagem liga estes testes à estrutura da store, o que tem a desvantagem de os testes partirem se decidires refactorizar a implementação e alterar a estrutura. De uma forma geral, acho preferível que os testes (tal como os utilizadores destas funções) tratem a store como um objecto opaco (black box).
-Uma alternativa seria definir os testes por combinação de operações, por exemplo:
+// Esta abordagem liga estes testes à estrutura da store, o que tem a desvantagem de os testes partirem se 
+// decidires refactorizar a implementação e alterar a estrutura. 
+// De uma forma geral, acho preferível que os testes (tal como os utilizadores destas funções) 
+// tratem a store como um objecto opaco (black box).
+// Uma alternativa seria definir os testes por combinação de operações, por exemplo:
+
 // expect new store to have count of zero
 // expect adding an event to an empty store to return a store with count of one and event id = 1
 // expect to retrieve the added event by the id returned when adding an event to a store (empty or with some other events added before and after)
 // expect adding a second event will return a store with count of two and event id = 2
 // expect removing the second event and adding a third one will return a store with a count of two and event id = 3
-Etc.
+// Etc.
 
 }
 
@@ -58,14 +64,15 @@ Etc.
 
 const eventStoreWithNewEvent = addStoreEvent(someExistingStore, { title, start_date, end_date })
 
+/*
 Cuidado com os nomes. O resultado não é uma store, é um objecto que tem uma store lá dentro.
 Uma alternativa mais explícita seria:
 
 const { eventStoreWithNewEvent, idOfAddedEvent } = addStoreEvent(someExistingStore, { title, start_date, end_date })
-
+*/
 
 // Mock implementation
-addStoreEvent: (store, event){
+// const addStoreEvent = (store, event)
 
 // step 1 - generate an id to append to the event
 // step 2 - event id, is to be generated taking into account the eventIdSeed, passed in with the store
@@ -77,14 +84,15 @@ if(store.eventIdSeed){
   throw Error()
 }
 
+/*
 Já que vais testar a estrutura da store, se calhar também seria de validar que o store.data é uma array. E talvez colocar a lógica de validação numa função à parte porque provavelmente vais querer verificar que tens uma store bem formada nos outros métodos também.
-
+*/
 // step 4 - update event instance with generated id
 const updatedEvent = {...event, eventId}
-
+/*
 Aqui estás a assumir que o evento que te foi passado está bem formado e que não tem campos a mais. Uma implementação mais defensiva seria, pelo menos, ir buscar explicitamente os campos:
 const updatedEvent = { eventId, title: event.title, start_date: event.start_date, end_date: event.end_date };
-
+*/
 // step 5 - update event store with updated eventSeedId && return store
 
 return {

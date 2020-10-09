@@ -19,9 +19,11 @@
 // initial model was a simple array -> wondering if i'm modifying the object to conform
 // to existing tests, rather than rewriting the tests and functionality as needed
 
-const eventStore = { store: [] };
+// return a new store structure, containing an event seed id
 
-const newStore = () => eventStore;
+const newStore = () => {
+  return { data: [], eventIdSeed: 0 };
+};
 
 const sequentialEventAddition = (eventStore, start, end) => {
   if (start > end) {
@@ -155,7 +157,6 @@ const updateStoreEvent = (eventStore, eventId, event) => {
 };
 
 export {
-  eventStore,
   newStore,
   addStoreEvent,
   removeStoreEvent,

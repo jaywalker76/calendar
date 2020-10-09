@@ -1,5 +1,4 @@
 import {
-  eventStore,
   newStore,
   addStoreEvent,
   removeStoreEvent,
