@@ -23,7 +23,7 @@
 // - eventStoreCount: (store) -> # of events in store
 // - getEventById: (store, id) -> event
 
-*NOTA* Aqui o ‘event’ retornado não tem o ID, porque o ID não faz parte da definição da estrutura do evento.
+// *NOTA* Aqui o ‘event’ retornado não tem o ID, porque o ID não faz parte da definição da estrutura do evento.
 
 // - Implement a function that returns a new store
 // Mock implementation
@@ -34,7 +34,7 @@ newStore = () =>{
 // step 1 - returns an event store of type array, with eventSeedId set to 0
 return {data:[], eventIdSeed: 0}
 
-A descrição está um pouco estranha (a event store é o objecto todo, uma descrição mais precisa seria: returns an event store composed of an empty array of events and an ID seed field initialially set to zero), mas o resultado está ok.
+// A descrição está um pouco estranha (a event store é o objecto todo, uma descrição mais precisa seria: returns an event store composed of an empty array of events and an ID seed field initialially set to zero), mas o resultado está ok.
 
 // tests
 // expect newStore.data to equal []

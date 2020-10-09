@@ -110,12 +110,26 @@ const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
   return tempStore;
 };
 
+const omitObjectByKey = (objectToProcess, keyToOmit) => {
+  return Object.keys(objectToProcess).reduce((object, key) => {
+    if (key !== keyToOmit) {
+      object[key] = objectToProcess[key];
+    }
+    return object;
+  }, {});
+};
+
 const getEventById = (eventStore, eventId) => {
+  // modifying function so that event returned does not contain ID
+  // as it is not part of the event structure
   const eventStoreToProcess = getStoreToProcess(eventStore);
   const eventToReturn = eventStoreToProcess.filter(
     (event) => event.eventId === eventId
   );
-  return eventToReturn[0];
+
+  const returnObj = omitObjectByKey(eventToReturn[0], "eventId");
+
+  return returnObj;
 };
 
 const updateStoreEvent = (eventStore, eventId, event) => {
@@ -128,7 +142,7 @@ const updateStoreEvent = (eventStore, eventId, event) => {
     // remove event from store
     const eventStoreMinusEvent = removeStoreEvent(eventStoreToProcess, eventId);
     // modify event
-    const modifiedEvent = { ...eventToModify, ...event };
+    const modifiedEvent = { ...eventToModify, ...event, eventId: eventId };
     // add event to store
     const updatedEventStore = addStoreEvent(
       eventStoreMinusEvent,
