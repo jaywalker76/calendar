@@ -50,8 +50,8 @@ describe("Module functionality with empty event store", () => {
     );
 
     // rewriting test so that eventId is appended to the added event
-    expect(eventStoreWithAddedEvent.store[0]).toMatchObject(sampleEvent);
-    expect(eventStoreWithAddedEvent.store[0].eventId).toBe(1);
+    expect(eventStoreWithAddedEvent.data[0]).toMatchObject(sampleEvent);
+    expect(eventStoreWithAddedEvent.data[0].eventId).toBe(1);
   });
 
   it("Adds and removes a single Store Event", () => {
@@ -70,7 +70,7 @@ describe("Module functionality with empty event store", () => {
     expect(() => removeStoreEvent(storeWithEventRemoved, 1)).toThrowError(
       "Event does not exist in store"
     );
-    expect(storeWithEventRemoved).toMatchObject({ store: [] });
+    expect(storeWithEventRemoved).toMatchObject({ data: [] });
   });
 
   it("Adds multiple events and deletes first, middle and last events", () => {
@@ -103,7 +103,7 @@ describe("Module functionality with empty event store", () => {
     let fourthAddition = addStoreEvent(thirdAddition, fourthEvent);
     let finalStore = addStoreEvent(fourthAddition, fifthEvent);
 
-    expect(eventStoreCount(finalStore.store)).toBe(5);
+    expect(eventStoreCount(finalStore.data)).toBe(5);
 
     //*  - as operações de removeStoreEvent e updateStoreEventfazem throw de um erro
     // se o eventId não existir na store
@@ -131,7 +131,7 @@ describe("Module functionality with empty event store", () => {
       "Event does not exist in store"
     );
 
-    expect(eventStoreCount(finalRemoval.store)).toBe(2);
+    expect(eventStoreCount(finalRemoval.data)).toBe(2);
   });
 
   // memory aid -> to remove later
@@ -193,15 +193,15 @@ describe("Module functionality with empty event store", () => {
       sampleEvent
     );
 
-    expect(eventStoreWithAddedEvent.store[0]).toMatchObject(sampleEvent);
-    expect(eventStoreWithAddedEvent.store[0].eventId).toBe(1);
+    expect(eventStoreWithAddedEvent.data[0]).toMatchObject(sampleEvent);
+    expect(eventStoreWithAddedEvent.data[0].eventId).toBe(1);
 
     let updatedStore = updateStoreEvent(
       eventStoreWithAddedEvent,
       1,
       eventUpdate
     );
-    expect(updatedStore.store[0]).toMatchObject(eventUpdate);
+    expect(updatedStore.data[0]).toMatchObject(eventUpdate);
 
     expect(() =>
       updateStoreEvent(eventStoreWithAddedEvent, 2, eventUpdate)

@@ -19,6 +19,12 @@
 // initial model was a simple array -> wondering if i'm modifying the object to conform
 // to existing tests, rather than rewriting the tests and functionality as needed
 
+/**
+ * CHANGES:
+ * - rename event.store to event.data
+ * - modify way in which event seed is calculated: incremented in place rather than in function
+ */
+
 // return a new store structure, containing an event seed id
 
 const newStore = () => {
@@ -42,42 +48,37 @@ const sequentialEventAddition = (eventStore, start, end) => {
 
   newStartString = newStartDate.toISOString().substring(0, 10);
 
-  return sequentialEventAddition(result.store, newStartString, end);
+  return sequentialEventAddition(result.data, newStartString, end);
 };
 
 const eventStoreCount = (store) => store.length;
 
-const getEventId = (store) => eventStoreCount(store) + 1;
-
-const getStoreToProcess = (eventStore) => {
-  let eventStoreToProcess;
-
-  if (Array.isArray(eventStore)) {
-    eventStoreToProcess = eventStore;
-  } else {
-    eventStoreToProcess = eventStore.store;
-  }
-
-  return eventStoreToProcess;
-};
+// receives the eventStore and returns an event id
+// which is calculated by incrementing the evendIdSeed
+const getEventId = (store) => store.eventIdSeed + 1;
 
 const addStoreEvent = (eventStore, event) => {
-  // inconsistent store being passed
-  // ToDo: standardize the eventStore argument
-  const eventStoreToProcess = getStoreToProcess(eventStore);
+  // not sure how to handle the eventSeedId
+  // for the time being, when it is incremented
+  // it will be updated in the return object
+  const { data, eventIdSeed } = eventStore;
+  let newEventId = eventIdSeed;
+
+  // check if event has an Id
+  const eventMissingId = !Boolean(event.eventId);
+  // if not, generate an eventId from the eventIdSeed
+  if (eventMissingId) {
+    newEventId = eventIdSeed + 1;
+  }
 
   let eventWithId = {
     ...event,
-    eventId: event.eventId ? event.eventId : getEventId(eventStoreToProcess),
+    eventId: newEventId,
   };
 
-  if (eventStore) {
-    eventWithId = eventStoreToProcess.concat(eventWithId);
-  } else {
-    eventWithId = eventStoreToProcess.concat(eventWithId);
-  }
+  const updatedEventStoreData = data.concat(eventWithId);
 
-  return { store: eventWithId }; //ToDo eventId Generation
+  return { data: updatedEventStoreData, eventIdSeed: newEventId };
 };
 
 const eventExistsInStore = (store, id) => {
@@ -87,16 +88,12 @@ const eventExistsInStore = (store, id) => {
 };
 
 const removeStoreEvent = (eventStore, id) => {
-  const eventStoreToProcess = getStoreToProcess(eventStore);
-
-  if (!eventExistsInStore(eventStoreToProcess, id)) {
+  if (!eventExistsInStore(eventStore.data, id)) {
     throw new Error("Event does not exist in store");
   }
 
-  const filteredStore = eventStoreToProcess.filter(
-    (event) => event.eventId !== id
-  );
-  return { store: filteredStore };
+  const filteredStore = eventStore.data.filter((event) => event.eventId !== id);
+  return { data: filteredStore, eventIdSeed: eventStore.eventIdSeed };
 };
 
 const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
@@ -124,7 +121,7 @@ const omitObjectByKey = (objectToProcess, keyToOmit) => {
 const getEventById = (eventStore, eventId) => {
   // modifying function so that event returned does not contain ID
   // as it is not part of the event structure
-  const eventStoreToProcess = getStoreToProcess(eventStore);
+  const eventStoreToProcess = eventStore.data;
   const eventToReturn = eventStoreToProcess.filter(
     (event) => event.eventId === eventId
   );
@@ -135,7 +132,7 @@ const getEventById = (eventStore, eventId) => {
 };
 
 const updateStoreEvent = (eventStore, eventId, event) => {
-  const eventStoreToProcess = getStoreToProcess(eventStore);
+  const eventStoreToProcess = eventStore.data;
   // check if event exists in store
   if (eventExistsInStore(eventStoreToProcess, eventId)) {
     // retrieve event by Id
