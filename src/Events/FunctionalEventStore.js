@@ -23,7 +23,16 @@
  * CHANGES:
  * - rename event.store to event.data
  * - modify way in which event seed is calculated: incremented in place rather than in function
+ 
  */
+
+//#region - Fix sequential Event Addition
+//  - because of changes in object structure the sequential addition function
+//  now needs to accept the entire store structure, rather than just the data
+// - updated eventStore data invocation in failing test
+// - update getEventById to operate on entire event store, rather than on eventStore.data
+// - Standardize the way in which the event store data is passed to functions that retrieve specific events
+//#endregion
 
 // return a new store structure, containing an event seed id
 
@@ -48,7 +57,7 @@ const sequentialEventAddition = (eventStore, start, end) => {
 
   newStartString = newStartDate.toISOString().substring(0, 10);
 
-  return sequentialEventAddition(result.data, newStartString, end);
+  return sequentialEventAddition(result, newStartString, end);
 };
 
 const eventStoreCount = (store) => store.length;
@@ -88,11 +97,11 @@ const eventExistsInStore = (store, id) => {
 };
 
 const removeStoreEvent = (eventStore, id) => {
-  if (!eventExistsInStore(eventStore.data, id)) {
+  if (!eventExistsInStore(eventStore, id)) {
     throw new Error("Event does not exist in store");
   }
 
-  const filteredStore = eventStore.data.filter((event) => event.eventId !== id);
+  const filteredStore = eventStore.filter((event) => event.eventId !== id);
   return { data: filteredStore, eventIdSeed: eventStore.eventIdSeed };
 };
 
@@ -121,10 +130,8 @@ const omitObjectByKey = (objectToProcess, keyToOmit) => {
 const getEventById = (eventStore, eventId) => {
   // modifying function so that event returned does not contain ID
   // as it is not part of the event structure
-  const eventStoreToProcess = eventStore.data;
-  const eventToReturn = eventStoreToProcess.filter(
-    (event) => event.eventId === eventId
-  );
+
+  const eventToReturn = eventStore.filter((event) => event.eventId === eventId);
 
   const returnObj = omitObjectByKey(eventToReturn[0], "eventId");
 
@@ -132,14 +139,14 @@ const getEventById = (eventStore, eventId) => {
 };
 
 const updateStoreEvent = (eventStore, eventId, event) => {
-  const eventStoreToProcess = eventStore.data;
+  //const eventStoreToProcess = eventStore.data;
   // check if event exists in store
-  if (eventExistsInStore(eventStoreToProcess, eventId)) {
+  if (eventExistsInStore(eventStore.data, eventId)) {
     // retrieve event by Id
 
-    let eventToModify = getEventById(eventStoreToProcess, eventId);
+    let eventToModify = getEventById(eventStore.data, eventId);
     // remove event from store
-    const eventStoreMinusEvent = removeStoreEvent(eventStoreToProcess, eventId);
+    const eventStoreMinusEvent = removeStoreEvent(eventStore.data, eventId);
     // modify event
     const modifiedEvent = { ...eventToModify, ...event, eventId: eventId };
     // add event to store
