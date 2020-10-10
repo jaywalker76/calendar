@@ -19,16 +19,6 @@ let inProps = (key, props) => {
   }
 };
 
-let omit = (obj, props) => {
-  let newObj = {};
-  Object.keys(obj).forEach((key) => {
-    if (!inProps(key, props)) {
-      newObj[key] = obj[key];
-    }
-  });
-  return newObj;
-};
-
 describe("Module functionality with empty event store", () => {
   it("should correctly add and delete events to a store", () => {
     let eventStoreInstance = newStore();
@@ -37,6 +27,7 @@ describe("Module functionality with empty event store", () => {
     expect(eventStoreCount(eventStoreInstance.data)).toBe(0);
     // expect adding an event to an empty store to return a store with count of one and event id = 1
     const sampleEvent = {
+      title: "first event",
       startDate: `2021-01-01`,
       endDate: `2021-01-02`,
     };

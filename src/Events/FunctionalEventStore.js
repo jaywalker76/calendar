@@ -33,8 +33,8 @@
 //#region - Fix sequential addition and update and eventIdSeedUpdate
 // - updated methods, so that correct eventSeed is returned (in some cases it was being ommited)
 //  and an updated event retains its id, rather than incrementing it
+// - return a new store structure, containing an event seed id
 //#endregion
-// return a new store structure, containing an event seed id
 
 //#region
 // - expand tests for new store creation
@@ -52,16 +52,23 @@
 // Etc.
 //#endregion
 
+//#region
+// - add title to event structure
+// - remove getEventId function as no longer needed
+// - remove omit function from test suite, as this functionality makes sense here
+//#endregion
+
 const newStore = () => {
   return { data: [], eventIdSeed: 0 };
 };
 
-const sequentialEventAddition = (eventStore, start, end) => {
+const sequentialEventAddition = (eventStore, title, start, end) => {
   if (start > end) {
     return eventStore;
   }
 
   let result = addStoreEvent(eventStore, {
+    title: title,
     startDate: start,
     endDate: start,
   });
@@ -77,10 +84,6 @@ const sequentialEventAddition = (eventStore, start, end) => {
 };
 
 const eventStoreCount = (store) => store.length;
-
-// receives the eventStore and returns an event id
-// which is calculated by incrementing the evendIdSeed
-const getEventId = (store) => store.eventIdSeed + 1;
 
 const addStoreEvent = (eventStore, event) => {
   // not sure how to handle the eventSeedId
