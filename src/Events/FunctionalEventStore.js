@@ -107,7 +107,10 @@ const addStoreEvent = (eventStore, event) => {
 
   const updatedEventStoreData = data.concat(eventWithId);
 
-  return { data: updatedEventStoreData, eventIdSeed: eventIdSeedToReturn };
+  return {
+    store: { data: updatedEventStoreData, eventIdSeed: eventIdSeedToReturn },
+    eventId: eventIdToApply,
+  };
 };
 
 const eventExistsInStore = (store, id) => {

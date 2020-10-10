@@ -45,10 +45,13 @@ describe("Module functionality with empty event store", () => {
       eventStoreInstance,
       sampleEvent
     );
-    expect(eventStoreCount(eventStoreWithAddedEvent.data)).toBe(1);
+
+    const { store, eventId } = eventStoreWithAddedEvent;
+
+    expect(eventStoreCount(store.data)).toBe(1);
     // not sure about this - stuck on how to test the eventId; currently returning
     // the eventSeedId
-    expect(eventStoreWithAddedEvent.eventIdSeed).toBe(1);
+    expect(eventId).toBe(1);
   });
 
   it("Add a new Store Event", () => {
