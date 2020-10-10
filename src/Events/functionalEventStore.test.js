@@ -223,13 +223,13 @@ describe("Module functionality with empty event store", () => {
     };
 
     let firstStoreUpdate = updateStoreEvent(eventStore, 1, eventUpdate);
-    expect(getEventById(firstStoreUpdate, 1)).toMatchObject(eventUpdate);
+    expect(getEventById(firstStoreUpdate.data, 1)).toMatchObject(eventUpdate);
 
     let secondStoreUpdate = updateStoreEvent(firstStoreUpdate, 3, eventUpdate);
-    expect(getEventById(secondStoreUpdate, 3)).toMatchObject(eventUpdate);
+    expect(getEventById(secondStoreUpdate.data, 3)).toMatchObject(eventUpdate);
 
     let thirdStoreUpdate = updateStoreEvent(secondStoreUpdate, 5, eventUpdate);
-    expect(getEventById(thirdStoreUpdate, 5)).toMatchObject(eventUpdate);
+    expect(getEventById(thirdStoreUpdate.data, 5)).toMatchObject(eventUpdate);
   });
 });
 

@@ -34,6 +34,10 @@
 // - Standardize the way in which the event store data is passed to functions that retrieve specific events
 //#endregion
 
+//#region - Fix sequential addition and update and eventIdSeedUpdate
+// - updated methods, so that correct eventSeed is returned (in some cases it was being ommited)
+//  and an updated event retains its id, rather than incrementing it
+//#endregion
 // return a new store structure, containing an event seed id
 
 const newStore = () => {
@@ -71,23 +75,27 @@ const addStoreEvent = (eventStore, event) => {
   // for the time being, when it is incremented
   // it will be updated in the return object
   const { data, eventIdSeed } = eventStore;
-  let newEventId = eventIdSeed;
+  let eventIdToApply;
+  let eventIdSeedToReturn = eventIdSeed;
 
   // check if event has an Id
   const eventMissingId = !Boolean(event.eventId);
   // if not, generate an eventId from the eventIdSeed
   if (eventMissingId) {
-    newEventId = eventIdSeed + 1;
+    eventIdToApply = eventIdSeed + 1;
+    eventIdSeedToReturn = eventIdToApply;
+  } else {
+    eventIdToApply = event.eventId;
   }
 
   let eventWithId = {
     ...event,
-    eventId: newEventId,
+    eventId: eventIdToApply,
   };
 
   const updatedEventStoreData = data.concat(eventWithId);
 
-  return { data: updatedEventStoreData, eventIdSeed: newEventId };
+  return { data: updatedEventStoreData, eventIdSeed: eventIdSeedToReturn };
 };
 
 const eventExistsInStore = (store, id) => {
@@ -97,12 +105,13 @@ const eventExistsInStore = (store, id) => {
 };
 
 const removeStoreEvent = (eventStore, id) => {
-  if (!eventExistsInStore(eventStore, id)) {
+  const { data, eventIdSeed } = eventStore;
+  if (!eventExistsInStore(data, id)) {
     throw new Error("Event does not exist in store");
   }
 
-  const filteredStore = eventStore.filter((event) => event.eventId !== id);
-  return { data: filteredStore, eventIdSeed: eventStore.eventIdSeed };
+  const filteredStore = data.filter((event) => event.eventId !== id);
+  return { data: filteredStore, eventIdSeed: eventIdSeed };
 };
 
 const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
@@ -146,7 +155,7 @@ const updateStoreEvent = (eventStore, eventId, event) => {
 
     let eventToModify = getEventById(eventStore.data, eventId);
     // remove event from store
-    const eventStoreMinusEvent = removeStoreEvent(eventStore.data, eventId);
+    const eventStoreMinusEvent = removeStoreEvent(eventStore, eventId);
     // modify event
     const modifiedEvent = { ...eventToModify, ...event, eventId: eventId };
     // add event to store
