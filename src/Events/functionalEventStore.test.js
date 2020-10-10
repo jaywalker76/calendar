@@ -30,10 +30,10 @@ let omit = (obj, props) => {
 };
 
 describe("Module functionality with empty event store", () => {
-  it("new store to have count of zero", () => {
+  it("should correctly add and delete events to a store", () => {
     let eventStoreInstance = newStore();
     expect(eventStoreInstance).toBeTruthy();
-
+    // expect new store to have count of zero
     expect(eventStoreCount(eventStoreInstance.data)).toBe(0);
     // expect adding an event to an empty store to return a store with count of one and event id = 1
     const sampleEvent = {
@@ -49,48 +49,43 @@ describe("Module functionality with empty event store", () => {
     const { store, eventId } = eventStoreWithAddedEvent;
 
     expect(eventStoreCount(store.data)).toBe(1);
-    // not sure about this - stuck on how to test the eventId; currently returning
-    // the eventSeedId
     expect(eventId).toBe(1);
+
+    // expect to retrieve the added event by the id returned
+    // when adding an event to a store (empty or with some other events added before and after)
+    const firstAddedEvent = getEventById(store.data, eventId);
+    expect(firstAddedEvent).toBeTruthy();
+    expect(firstAddedEvent).toMatchObject(sampleEvent);
+
+    // expect adding a second event will return a store with count of two and event id = 2
+    let eventStoreWithTwoEvents = addStoreEvent(store, sampleEvent);
+    const {
+      store: updatedStore,
+      eventId: secondEventId,
+    } = eventStoreWithTwoEvents;
+
+    expect(eventStoreCount(updatedStore.data)).toBe(2);
+    expect(secondEventId).toBe(2);
+
+    // expect removing the second event and adding a third one will return a store
+    // with a count of two and event id = 3
+
+    let storeWithEventRemoved = removeStoreEvent(updatedStore, 1);
+    let eventStoreAfterRemovalAndAddition = addStoreEvent(
+      storeWithEventRemoved,
+      sampleEvent
+    );
+    const {
+      store: storeWithDeletionAndAddition,
+      eventId: thirdEventAddedId,
+    } = eventStoreAfterRemovalAndAddition;
+
+    expect(eventStoreCount(storeWithDeletionAndAddition.data)).toBe(2);
+    expect(thirdEventAddedId).toBe(3);
+    expect(() =>
+      removeStoreEvent(storeWithDeletionAndAddition, 1)
+    ).toThrowError("Event does not exist in store");
   });
-
-  // it("Add a new Store Event", () => {
-  //   let sampleEvent = {
-  //     startDate: `2021-01-01`,
-  //     endDate: `2021-01-02`,
-  //   };
-
-  //   let eventStoreInstance = newStore();
-  //   let eventStoreWithAddedEvent = addStoreEvent(
-  //     eventStoreInstance,
-  //     sampleEvent
-  //   );
-
-  //   const { store, eventId } = eventStoreWithAddedEvent;
-
-  //   // rewriting test so that eventId is appended to the added event
-  //   expect(eventStoreWithAddedEvent.data[0]).toMatchObject(sampleEvent);
-  //   expect(eventStoreWithAddedEvent.data[0].eventId).toBe(1);
-  // });
-
-  // it("Adds and removes a single Store Event", () => {
-  //   let sampleEvent = {
-  //     startDate: `2021-01-01`,
-  //     endDate: `2021-01-02`,
-  //   };
-
-  //   let eventStoreInstance = newStore();
-  //   let eventStoreWithAddedEvent = addStoreEvent(
-  //     eventStoreInstance,
-  //     sampleEvent
-  //   );
-  //   // did not maintain in mind what was the expected object here
-  //   let storeWithEventRemoved = removeStoreEvent(eventStoreWithAddedEvent, 1);
-  //   expect(() => removeStoreEvent(storeWithEventRemoved, 1)).toThrowError(
-  //     "Event does not exist in store"
-  //   );
-  //   expect(storeWithEventRemoved).toMatchObject({ data: [] });
-  // });
 
   // it("Adds multiple events and deletes first, middle and last events", () => {
   //   let firstEvent = {
