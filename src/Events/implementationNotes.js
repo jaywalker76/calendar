@@ -22,7 +22,6 @@
 // we already have one -> we'll rename the function
 // - eventStoreCount: (store) -> # of events in store
 // - getEventById: (store, id) -> event
-
 // *NOTA* Aqui o ‘event’ retornado não tem o ID, porque o ID não faz parte da definição da estrutura do evento.
 
 // - Implement a function that returns a new store

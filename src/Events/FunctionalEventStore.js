@@ -16,14 +16,10 @@
  *  - um evento (quer como argumento, quer como output das funções) tem a estrutura { title, start_date, end_date }
  */
 
-// initial model was a simple array -> wondering if i'm modifying the object to conform
-// to existing tests, rather than rewriting the tests and functionality as needed
-
 /**
  * CHANGES:
  * - rename event.store to event.data
  * - modify way in which event seed is calculated: incremented in place rather than in function
- 
  */
 
 //#region - Fix sequential Event Addition
@@ -39,6 +35,22 @@
 //  and an updated event retains its id, rather than incrementing it
 //#endregion
 // return a new store structure, containing an event seed id
+
+//#region
+// - expand tests for new store creation
+// expect newStore.data to equal []
+// expect newStore.eventSeedId to be 0
+
+// refactor event addition, so that returned store is a complete store(data+seed)
+
+// Uma alternativa seria definir os testes por combinação de operações, por exemplo:
+// expect new store to have count of zero - v
+// expect adding an event to an empty store to return a store with count of one and event id = 1
+// expect to retrieve the added event by the id returned when adding an event to a store (empty or with some other events added before and after)
+// expect adding a second event will return a store with count of two and event id = 2
+// expect removing the second event and adding a third one will return a store with a count of two and event id = 3
+// Etc.
+//#endregion
 
 const newStore = () => {
   return { data: [], eventIdSeed: 0 };

@@ -30,11 +30,25 @@ let omit = (obj, props) => {
 };
 
 describe("Module functionality with empty event store", () => {
-  it("Retrieves empty EventStore instance", () => {
+  it("new store to have count of zero", () => {
     let eventStoreInstance = newStore();
     expect(eventStoreInstance).toBeTruthy();
 
-    // expect(eventStoreInstance).toEqual(expect.arrayContaining(eventStore));
+    expect(eventStoreCount(eventStoreInstance.data)).toBe(0);
+    // expect adding an event to an empty store to return a store with count of one and event id = 1
+    const sampleEvent = {
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+
+    let eventStoreWithAddedEvent = addStoreEvent(
+      eventStoreInstance,
+      sampleEvent
+    );
+    expect(eventStoreCount(eventStoreWithAddedEvent.data)).toBe(1);
+    // not sure about this - stuck on how to test the eventId; currently returning
+    // the eventSeedId
+    expect(eventStoreWithAddedEvent.eventIdSeed).toBe(1);
   });
 
   it("Add a new Store Event", () => {
