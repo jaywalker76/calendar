@@ -67,7 +67,7 @@ const sequentialEventAddition = (eventStore, title, start, end) => {
     return eventStore;
   }
 
-  let result = addStoreEvent(eventStore, {
+  const { store } = addStoreEvent(eventStore, {
     title: title,
     startDate: start,
     endDate: start,
@@ -80,7 +80,7 @@ const sequentialEventAddition = (eventStore, title, start, end) => {
 
   newStartString = newStartDate.toISOString().substring(0, 10);
 
-  return sequentialEventAddition(result, newStartString, end);
+  return sequentialEventAddition(store, title, newStartString, end);
 };
 
 const eventStoreCount = (store) => store.length;

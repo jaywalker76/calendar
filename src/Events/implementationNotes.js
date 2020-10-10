@@ -84,12 +84,15 @@ if(store.eventIdSeed){
 }
 
 /*
-Já que vais testar a estrutura da store, se calhar também seria de validar que o store.data é uma array. E talvez colocar a lógica de validação numa função à parte porque provavelmente vais querer verificar que tens uma store bem formada nos outros métodos também.
+Já que vais testar a estrutura da store, se calhar também seria de validar que o store.data é uma array. 
+E talvez colocar a lógica de validação numa função à parte porque provavelmente vais querer verificar 
+que tens uma store bem formada nos outros métodos também.
 */
 // step 4 - update event instance with generated id
 const updatedEvent = {...event, eventId}
 /*
-Aqui estás a assumir que o evento que te foi passado está bem formado e que não tem campos a mais. Uma implementação mais defensiva seria, pelo menos, ir buscar explicitamente os campos:
+Aqui estás a assumir que o evento que te foi passado está bem formado e que não tem campos a mais. 
+Uma implementação mais defensiva seria, pelo menos, ir buscar explicitamente os campos:
 const updatedEvent = { eventId, title: event.title, start_date: event.start_date, end_date: event.end_date };
 */
 // step 5 - update event store with updated eventSeedId && return store

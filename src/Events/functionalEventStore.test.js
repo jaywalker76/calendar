@@ -156,6 +156,7 @@ describe("Module functionality with empty event store", () => {
     //const sequentialEventAddition = (eventStore, start, end) => {
     const eventStore = sequentialEventAddition(
       eventStoreInstance,
+      "event title",
       "2020-01-01",
       "2020-01-15"
     );
@@ -218,23 +219,31 @@ describe("Module functionality with empty event store", () => {
     //const sequentialEventAddition = (eventStore, start, end) => {
     const eventStore = sequentialEventAddition(
       eventStoreInstance,
+      "event name",
       "2020-01-01",
       "2020-01-05"
     );
 
     const eventUpdate = {
+      title: "event name",
       startDate: `2020-01-06`,
       endDate: `2020-01-06`,
     };
 
-    let firstStoreUpdate = updateStoreEvent(eventStore, 1, eventUpdate);
-    expect(getEventById(firstStoreUpdate.data, 1)).toMatchObject(eventUpdate);
+    const { store } = updateStoreEvent(eventStore, 1, eventUpdate);
+    expect(getEventById(store.data, 1)).toMatchObject(eventUpdate);
 
-    let secondStoreUpdate = updateStoreEvent(firstStoreUpdate, 3, eventUpdate);
-    expect(getEventById(secondStoreUpdate.data, 3)).toMatchObject(eventUpdate);
+    const { store: updatedStore } = updateStoreEvent(store, 3, eventUpdate);
+    expect(getEventById(updatedStore.data, 3)).toMatchObject(eventUpdate);
 
-    let thirdStoreUpdate = updateStoreEvent(secondStoreUpdate, 5, eventUpdate);
-    expect(getEventById(thirdStoreUpdate.data, 5)).toMatchObject(eventUpdate);
+    const { store: storeAfterThirdUpdate } = updateStoreEvent(
+      updatedStore,
+      5,
+      eventUpdate
+    );
+    expect(getEventById(storeAfterThirdUpdate.data, 5)).toMatchObject(
+      eventUpdate
+    );
   });
 });
 
@@ -246,6 +255,7 @@ describe("Functional Event Addition", () => {
 
     const alteredStore = sequentialEventAddition(
       eventStoreInstance,
+      "some event title",
       startDate,
       endDate
     );
@@ -257,15 +267,20 @@ describe("Functional Event Addition", () => {
     const startDate = `2020-01-01`;
     const endDate = `2020-01-01`;
 
-    const expectedStore = [
-      {
-        startDate: `2020-01-01`,
-        endDate: `2020-01-01`,
-      },
-    ];
+    const expectedStore = {
+      data: [
+        {
+          title: "some title",
+          startDate: `2020-01-01`,
+          endDate: `2020-01-01`,
+        },
+      ],
+      eventIdSeed: 1,
+    };
 
     const alteredStore = sequentialEventAddition(
       eventStoreInstance,
+      "some title",
       startDate,
       endDate
     );
@@ -278,19 +293,25 @@ describe("Functional Event Addition", () => {
     const startDate = `2020-01-01`;
     const endDate = `2020-01-02`;
 
-    const expectedStore = [
-      {
-        startDate: `2020-01-01`,
-        endDate: `2020-01-01`,
-      },
-      {
-        startDate: `2020-01-02`,
-        endDate: `2020-01-02`,
-      },
-    ];
+    const expectedStore = {
+      data: [
+        {
+          title: "some title",
+          startDate: `2020-01-01`,
+          endDate: `2020-01-01`,
+        },
+        {
+          title: "some title",
+          startDate: `2020-01-02`,
+          endDate: `2020-01-02`,
+        },
+      ],
+      eventIdSeed: 2,
+    };
 
     const alteredStore = sequentialEventAddition(
       eventStoreInstance,
+      "some title",
       startDate,
       endDate
     );
