@@ -260,7 +260,11 @@ const updateStoreEvent = (eventStore, eventId, eventUpdate) => {
     // remove event from store
     const eventStoreMinusEvent = removeStoreEvent(eventStore, eventId);
     // modify event
-    const modifiedEvent = { ...eventToModify, ...event, eventId: eventId };
+    const modifiedEvent = {
+      ...eventToModify,
+      ...eventUpdate,
+      eventId: eventId,
+    };
     // add event to store
     const updatedEventStore = addStoreEvent(
       eventStoreMinusEvent,

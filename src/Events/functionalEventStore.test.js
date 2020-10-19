@@ -9,16 +9,6 @@ import {
   getEventById,
 } from "./FunctionalEventStore";
 
-let inProps = (key, props) => {
-  if (typeof props === "string") {
-    return key === props;
-  } else {
-    return props.some((omitKey) => {
-      return omitKey === key;
-    });
-  }
-};
-
 describe("Module functionality with empty event store", () => {
   it("should correctly add and delete events to a store", () => {
     let eventStoreInstance = newStore();
