@@ -68,13 +68,14 @@ const newStore = () => {
 };
 /**
  * This function generates a sequence of events, starting at the provided start date
- * and ending at the provided end date, which are placed into the provided event store
+ * and ending at the provided end date (inclusive), which are placed into the provided event store
+ * The events start and end on the same day and have no time assignation
  *
- * @param {Object {date: array, eventIdSeed: int}} eventStore - Event store to which to add an event
+ * @param {Object {data: array, eventIdSeed: int}} eventStore - Event store to which to add an event
  * @param { String } title - event title
  * @param { String } start - Event Start Date
  * @param { String } end - Event End Date
- * @returns {Object {date: array, eventIdSeed: int}} store containing the newly created event data and updated eventId Seed
+ * @returns {Object {data: array, eventIdSeed: int}} store containing the newly created event data and updated eventId Seed
  */
 const sequentialEventAddition = (eventStore, title, start, end) => {
   if (start > end) {
@@ -99,7 +100,7 @@ const sequentialEventAddition = (eventStore, title, start, end) => {
 /**
  * This function returns the count of events contained in a given store
  *
- * @param {Object {date: array, eventIdSeed: int}} eventStore - event from which we want to retrieve the event count
+ * @param {Object {data: array, eventIdSeed: int}} eventStore - event from which we want to retrieve the event count
  * @returns { int } - the number of events in the store
  */
 const eventStoreCount = (eventStore) => eventStore.length;
@@ -107,10 +108,9 @@ const eventStoreCount = (eventStore) => eventStore.length;
 /**
  * Adds an event to a given store
  *
- * @param {Object {date: array, eventIdSeed: int}} eventStore - Event store to which to add an event
- * @param {Object {Title: String, StartDate: String, EndDate:String}} event - given event to be added to given event store
- * @returns {Object {date: array, eventIdSeed: int}} eventStore - updated Event Store containing the provided event.
- * The event will contain an event id
+ * @param {Object {data: array, eventIdSeed: int}} eventStore - Event store to which to add an event
+ * @param {Object {title: String, startDate: String, endDate:String}} event - given event to be added to given event store
+ * @returns {Object {store:{data:array, eventIdSeed: int}, eventId: int}  - updated Event Store containing the provided event.
  */
 const addStoreEvent = (eventStore, event) => {
   // not sure how to handle the eventSeedId
@@ -145,7 +145,7 @@ const addStoreEvent = (eventStore, event) => {
 /**
  * Given an event Id checks if the event exists in the event store
  *
- * @param {Object {date: array, eventIdSeed: int}} eventStore - event store in which we want to verify if a 
+ * @param {Object {data: array, eventIdSeed: int}} eventStore - event store in which we want to verify if a 
  * given event exists
  * @param {int} id - Event Id that we want to look for in the event store
  
@@ -161,10 +161,10 @@ const eventExistsInStore = (eventStore, id) => {
 /**
  * Given an event id, removes the event from the store, if the event does exist
  *
- * @param {Object {date: array, eventIdSeed: int}} eventStore - event store from which we want to remove and event
+ * @param {Object {data: array, eventIdSeed: int}} eventStore - event store from which we want to remove and event
  * @param {int} Id - Id of the event that we want to remove
- * @returns {Object {date: array, eventIdSeed: int}} eventStore - copy of original event store, minus the removed event,
- * Throws error if event to remove does not exist
+ * @returns {Object {data: array, eventIdSeed: int}} eventStore - copy of original event store, minus the removed event,
+ * Throws error if event to remove does not exist -> check for jsdoc implementation
  */
 const removeStoreEvent = (eventStore, id) => {
   const { data, eventIdSeed } = eventStore;
@@ -176,14 +176,16 @@ const removeStoreEvent = (eventStore, id) => {
   return { data: filteredStore, eventIdSeed: eventIdSeed };
 };
 /**
- * Given a start date and an end date that specify a date range, returns an
- * array containing the events that fall in specified period
+ * Given a start date and an end date that specify a date range, returns a
+ * map containing the events within a specified period
  *
- * @param {Object {date: array, eventIdSeed: int}} eventStore - event store from which we want to retrieve
+ * @param {Object {data: array, eventIdSeed: int}} eventStore - event store from which we want to retrieve
  * events which fall in a given time range
  * @param {string} startOfRange - start date of the period in which we want to retrieve events
- * @param {string} endOfRange - end date of the period in which we want to retrieve events
- * @returns {array} eventsInTimeRange - array containing events in time range
+ * @param {string} endOfRange - end date of the period (inclusive) in which we want to retrieve events
+ * @returns {eventId: event} eventsInTimeRange - map containing events in time range
+ * check for declaration type in JSDocs
+ *
  */
 const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
   // what should be the return type here?
@@ -198,7 +200,7 @@ const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
   return eventsInTimeRange;
 };
 /**
- * Given an object and a key, it strips said key from object.
+ * Given an object and a key, it returns a copy of the object, not containing said key
  * Used to compare events in tests
  *
  * @param {object} objectToProcess
@@ -217,9 +219,10 @@ const omitObjectByKey = (objectToProcess, keyToOmit) => {
 /**
  * Given an event id, retrieves a said event, if it exists, from a given store
  *
- * @param {Object {date: array, eventIdSeed: int}} eventStore
+ * @param {Object {data: array, eventIdSeed: int}} eventStore
  * @param {int} eventId Id of the event we wish to retrieve
  * @returns {Object {Title: String, StartDate: String, EndDate:String}} event - Event we are looking for
+ * if event does not exist it should return undefined -> need to update specification as per JSDoc
  */
 const getEventById = (eventStore, eventId) => {
   // modifying function so that event returned does not contain ID
@@ -235,10 +238,10 @@ const getEventById = (eventStore, eventId) => {
  * Given an event Id, if the event exists in the given store, it updates the event
  * with the provided data
  *
- * @param {Object {date: array, eventIdSeed: int}} eventStore - store in which we want to update an event
+ * @param {Object {data: array, eventIdSeed: int}} eventStore - store in which we want to update an event
  * @param {int} eventId - Id of the event we wish to update
  * @param {Object {Title: String, StartDate: String, EndDate:String}} eventUpdate - data with which to update event
- * @returns {Object {date: array, eventIdSeed: int}} updatedEventStore - store having the updated event and no update to eventIdSeed
+ * @returns {Object {data: array, eventIdSeed: int}} - store having the updated event and no update to eventIdSeed
  */
 const updateStoreEvent = (eventStore, eventId, eventUpdate) => {
   //const eventStoreToProcess = eventStore.data;
