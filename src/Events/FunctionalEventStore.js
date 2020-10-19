@@ -110,7 +110,7 @@ const sequentialEventAddition = (eventStore, title, start, end) => {
  * @param {eventStore} eventStore - event from which we want to retrieve the event count
  * @returns { int } - the number of events in the store
  */
-const eventStoreCount = (eventStore) => eventStore.length;
+const eventStoreCount = (eventStore) => eventStore.data.length;
 
 /**
  * Adds an event to a given store
@@ -154,12 +154,12 @@ const addStoreEvent = (eventStore, event) => {
  *
  * @param {eventStore} eventStore - event store in which we want to verify if a 
  * given event exists
- * @param {int} id - Event Id that we want to look for in the event store
+ * @param {number} id - Event Id that we want to look for in the event store
  
  * @returns {boolean} - returns true if an event with the given Id exists in the store, false otherwise
  */
 const eventExistsInStore = (eventStore, id) => {
-  const checkForEventInStore = eventStore.filter(
+  const checkForEventInStore = eventStore.data.filter(
     (event) => event.eventId === id
   );
 
@@ -169,15 +169,16 @@ const eventExistsInStore = (eventStore, id) => {
  * Given an event id, removes the event from the store, if the event does exist
  *
  * @param {eventStore} eventStore - event store from which we want to remove and event
- * @param {int} Id - Id of the event that we want to remove
+ * @param {number} Id - Id of the event that we want to remove
  * @returns {eventStore} eventStore - copy of original event store, minus the removed event,
  * Throws error if event to remove does not exist -> check for jsdoc implementation
  */
 const removeStoreEvent = (eventStore, id) => {
-  const { data, eventIdSeed } = eventStore;
-  if (!eventExistsInStore(data, id)) {
+  if (!eventExistsInStore(eventStore, id)) {
     throw new Error("Event does not exist in store");
   }
+
+  const { data, eventIdSeed } = eventStore;
 
   const filteredStore = data.filter((event) => event.eventId !== id);
   return { data: filteredStore, eventIdSeed: eventIdSeed };
@@ -198,7 +199,7 @@ const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
   // what should be the return type here?
   let eventsInTimeRange = [];
 
-  eventStore.forEach((event) => {
+  eventStore.data.forEach((event) => {
     if (event.startDate >= startOfRange && event.startDate <= endOfRange) {
       eventsInTimeRange.push(event);
     }
@@ -227,7 +228,7 @@ const omitObjectByKey = (objectToProcess, keyToOmit) => {
  * Given an event id, retrieves a said event, if it exists, from a given store
  *
  * @param {eventStore} eventStore
- * @param {int} eventId Id of the event we wish to retrieve
+ * @param {number} eventId Id of the event we wish to retrieve
  * @returns {Object {Title: String, StartDate: String, EndDate:String}} event - Event we are looking for
  * if event does not exist it should return undefined -> need to update specification as per JSDoc
  */
@@ -235,7 +236,9 @@ const getEventById = (eventStore, eventId) => {
   // modifying function so that event returned does not contain ID
   // as it is not part of the event structure
 
-  const eventToReturn = eventStore.filter((event) => event.eventId === eventId);
+  const eventToReturn = eventStore.data.filter(
+    (event) => event.eventId === eventId
+  );
 
   const returnObj = omitObjectByKey(eventToReturn[0], "eventId");
 
@@ -246,17 +249,14 @@ const getEventById = (eventStore, eventId) => {
  * with the provided data
  *
  * @param {eventStore} eventStore - store in which we want to update an event
- * @param {int} eventId - Id of the event we wish to update
+ * @param {number} eventId - Id of the event we wish to update
  * @param {Object {Title: String, StartDate: String, EndDate:String}} eventUpdate - data with which to update event
  * @returns {eventStore} - store having the updated event and no update to eventIdSeed
  */
 const updateStoreEvent = (eventStore, eventId, eventUpdate) => {
-  //const eventStoreToProcess = eventStore.data;
-  // check if event exists in store
-  if (eventExistsInStore(eventStore.data, eventId)) {
+  if (eventExistsInStore(eventStore, eventId)) {
     // retrieve event by Id
-
-    let eventToModify = getEventById(eventStore.data, eventId);
+    let eventToModify = getEventById(eventStore, eventId);
     // remove event from store
     const eventStoreMinusEvent = removeStoreEvent(eventStore, eventId);
     // modify event
@@ -270,6 +270,7 @@ const updateStoreEvent = (eventStore, eventId, eventUpdate) => {
       eventStoreMinusEvent,
       modifiedEvent
     );
+    debugger;
     return updatedEventStore;
   } else {
     throw new Error("Event does not exist in store");
