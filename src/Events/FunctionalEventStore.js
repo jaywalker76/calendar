@@ -16,33 +16,6 @@
  *  - um evento (quer como argumento, quer como output das funções) tem a estrutura { title, start_date, end_date }
  */
 
-/**
- * CHANGES:
- * - rename event.store to event.data
- * - modify way in which event seed is calculated: incremented in place rather than in function
- */
-
-//#region - Fix sequential Event Addition
-//  - because of changes in object structure the sequential addition function
-//  now needs to accept the entire store structure, rather than just the data
-// - updated eventStore data invocation in failing test
-// - update getEventById to operate on entire event store, rather than on eventStore.data
-// - Standardize the way in which the event store data is passed to functions that retrieve specific events
-//#endregion
-
-//#region - Fix sequential addition and update and eventIdSeedUpdate
-// - updated methods, so that correct eventSeed is returned (in some cases it was being ommited)
-//  and an updated event retains its id, rather than incrementing it
-// - return a new store structure, containing an event seed id
-//#endregion
-
-//#region
-// - expand tests for new store creation
-// expect newStore.data to equal []
-// expect newStore.eventSeedId to be 0
-
-// refactor event addition, so that returned store is a complete store(data+seed)
-
 // Uma alternativa seria definir os testes por combinação de operações, por exemplo:
 // expect new store to have count of zero - v
 // expect adding an event to an empty store to return a store with count of one and event id = 1 v
@@ -50,12 +23,6 @@
 // expect adding a second event will return a store with count of two and event id = 2
 // expect removing the second event and adding a third one will return a store with a count of two and event id = 3
 // Etc.
-//#endregion
-
-//#region
-// - add title to event structure
-// - remove getEventId function as no longer needed
-// - remove omit function from test suite, as this functionality makes sense here
 //#endregion
 
 /**
