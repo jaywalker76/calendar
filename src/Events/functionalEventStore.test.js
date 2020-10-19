@@ -14,7 +14,7 @@ describe("Module functionality with empty event store", () => {
     let eventStoreInstance = newStore();
     expect(eventStoreInstance).toBeTruthy();
     // expect new store to have count of zero
-    expect(eventStoreCount(eventStoreInstance.data)).toBe(0);
+    expect(eventStoreCount(eventStoreInstance)).toBe(0);
     // expect adding an event to an empty store to return a store with count of one and event id = 1
     const sampleEvent = {
       title: "first event",
@@ -29,12 +29,12 @@ describe("Module functionality with empty event store", () => {
 
     const { store, eventId } = eventStoreWithAddedEvent;
 
-    expect(eventStoreCount(store.data)).toBe(1);
+    expect(eventStoreCount(store)).toBe(1);
     expect(eventId).toBe(1);
 
     // expect to retrieve the added event by the id returned
     // when adding an event to a store (empty or with some other events added before and after)
-    const firstAddedEvent = getEventById(store.data, eventId);
+    const firstAddedEvent = getEventById(store, eventId);
     expect(firstAddedEvent).toBeTruthy();
     expect(firstAddedEvent).toMatchObject(sampleEvent);
 
@@ -45,7 +45,7 @@ describe("Module functionality with empty event store", () => {
       eventId: secondEventId,
     } = eventStoreWithTwoEvents;
 
-    expect(eventStoreCount(updatedStore.data)).toBe(2);
+    expect(eventStoreCount(updatedStore)).toBe(2);
     expect(secondEventId).toBe(2);
 
     // expect removing the second event and adding a third one will return a store
@@ -61,7 +61,7 @@ describe("Module functionality with empty event store", () => {
       eventId: thirdEventAddedId,
     } = eventStoreAfterRemovalAndAddition;
 
-    expect(eventStoreCount(storeWithDeletionAndAddition.data)).toBe(2);
+    expect(eventStoreCount(storeWithDeletionAndAddition)).toBe(2);
     expect(thirdEventAddedId).toBe(3);
     expect(() =>
       removeStoreEvent(storeWithDeletionAndAddition, 1)
@@ -151,21 +151,21 @@ describe("Module functionality with empty event store", () => {
       "2020-01-15"
     );
 
-    expect(eventStoreCount(eventStore.data)).toBe(15);
+    expect(eventStoreCount(eventStore)).toBe(15);
     expect(
-      getEventsInRange(eventStore.data, "2020-01-01", "2020-01-05").length
+      getEventsInRange(eventStore, "2020-01-01", "2020-01-05").length
     ).toBe(5);
     // no events in range
     expect(
-      getEventsInRange(eventStore.data, "2020-02-01", "2020-02-05").length
+      getEventsInRange(eventStore, "2020-02-01", "2020-02-05").length
     ).toBe(0);
     // start date not in range
     expect(
-      getEventsInRange(eventStore.data, "2019-12-31", "2020-01-04").length
+      getEventsInRange(eventStore, "2019-12-31", "2020-01-04").length
     ).toBe(4);
     // end date not in range
     expect(
-      getEventsInRange(eventStore.data, "2020-01-13", "2020-01-18").length
+      getEventsInRange(eventStore, "2020-01-13", "2020-01-18").length
     ).toBe(3);
     // additional test cases:
     // check that returned object matches
@@ -221,19 +221,17 @@ describe("Module functionality with empty event store", () => {
     };
 
     const { store } = updateStoreEvent(eventStore, 1, eventUpdate);
-    expect(getEventById(store.data, 1)).toMatchObject(eventUpdate);
+    expect(getEventById(store, 1)).toMatchObject(eventUpdate);
 
     const { store: updatedStore } = updateStoreEvent(store, 3, eventUpdate);
-    expect(getEventById(updatedStore.data, 3)).toMatchObject(eventUpdate);
+    expect(getEventById(updatedStore, 3)).toMatchObject(eventUpdate);
 
     const { store: storeAfterThirdUpdate } = updateStoreEvent(
       updatedStore,
       5,
       eventUpdate
     );
-    expect(getEventById(storeAfterThirdUpdate.data, 5)).toMatchObject(
-      eventUpdate
-    );
+    expect(getEventById(storeAfterThirdUpdate, 5)).toMatchObject(eventUpdate);
   });
 });
 
