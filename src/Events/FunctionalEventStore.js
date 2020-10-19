@@ -59,9 +59,16 @@
 //#endregion
 
 /**
+ * @typedef eventStore
+ * @type {object}
+ * @property {array} data - contains events.
+ * @property {number} eventIdSeed - used to generate event ids assignable to neew events.
+ */
+
+/**
  * Function returns a store object containing an empty data array and an eventId seed set to 0
  *
- * @returns {Object {array, int}} - returns a new data store
+ * @returns {eventStore}  - returns a new data store
  */
 const newStore = () => {
   return { data: [], eventIdSeed: 0 };
@@ -71,11 +78,11 @@ const newStore = () => {
  * and ending at the provided end date (inclusive), which are placed into the provided event store
  * The events start and end on the same day and have no time assignation
  *
- * @param {Object {data: array, eventIdSeed: int}} eventStore - Event store to which to add an event
+ * @param {eventStore} eventStore - Event store to which to add an event
  * @param { String } title - event title
  * @param { String } start - Event Start Date
  * @param { String } end - Event End Date
- * @returns {Object {data: array, eventIdSeed: int}} store containing the newly created event data and updated eventId Seed
+ * @returns {eventStore} store containing the newly created event data and updated eventId Seed
  */
 const sequentialEventAddition = (eventStore, title, start, end) => {
   if (start > end) {
@@ -100,7 +107,7 @@ const sequentialEventAddition = (eventStore, title, start, end) => {
 /**
  * This function returns the count of events contained in a given store
  *
- * @param {Object {data: array, eventIdSeed: int}} eventStore - event from which we want to retrieve the event count
+ * @param {eventStore} eventStore - event from which we want to retrieve the event count
  * @returns { int } - the number of events in the store
  */
 const eventStoreCount = (eventStore) => eventStore.length;
@@ -108,7 +115,7 @@ const eventStoreCount = (eventStore) => eventStore.length;
 /**
  * Adds an event to a given store
  *
- * @param {Object {data: array, eventIdSeed: int}} eventStore - Event store to which to add an event
+ * @param {eventStore} eventStore - Event store to which to add an event
  * @param {Object {title: String, startDate: String, endDate:String}} event - given event to be added to given event store
  * @returns {Object {store:{data:array, eventIdSeed: int}, eventId: int}  - updated Event Store containing the provided event.
  */
@@ -145,7 +152,7 @@ const addStoreEvent = (eventStore, event) => {
 /**
  * Given an event Id checks if the event exists in the event store
  *
- * @param {Object {data: array, eventIdSeed: int}} eventStore - event store in which we want to verify if a 
+ * @param {eventStore} eventStore - event store in which we want to verify if a 
  * given event exists
  * @param {int} id - Event Id that we want to look for in the event store
  
@@ -161,9 +168,9 @@ const eventExistsInStore = (eventStore, id) => {
 /**
  * Given an event id, removes the event from the store, if the event does exist
  *
- * @param {Object {data: array, eventIdSeed: int}} eventStore - event store from which we want to remove and event
+ * @param {eventStore} eventStore - event store from which we want to remove and event
  * @param {int} Id - Id of the event that we want to remove
- * @returns {Object {data: array, eventIdSeed: int}} eventStore - copy of original event store, minus the removed event,
+ * @returns {eventStore} eventStore - copy of original event store, minus the removed event,
  * Throws error if event to remove does not exist -> check for jsdoc implementation
  */
 const removeStoreEvent = (eventStore, id) => {
@@ -179,7 +186,7 @@ const removeStoreEvent = (eventStore, id) => {
  * Given a start date and an end date that specify a date range, returns a
  * map containing the events within a specified period
  *
- * @param {Object {data: array, eventIdSeed: int}} eventStore - event store from which we want to retrieve
+ * @param {eventStore} eventStore - event store from which we want to retrieve
  * events which fall in a given time range
  * @param {string} startOfRange - start date of the period in which we want to retrieve events
  * @param {string} endOfRange - end date of the period (inclusive) in which we want to retrieve events
@@ -219,7 +226,7 @@ const omitObjectByKey = (objectToProcess, keyToOmit) => {
 /**
  * Given an event id, retrieves a said event, if it exists, from a given store
  *
- * @param {Object {data: array, eventIdSeed: int}} eventStore
+ * @param {eventStore} eventStore
  * @param {int} eventId Id of the event we wish to retrieve
  * @returns {Object {Title: String, StartDate: String, EndDate:String}} event - Event we are looking for
  * if event does not exist it should return undefined -> need to update specification as per JSDoc
@@ -238,10 +245,10 @@ const getEventById = (eventStore, eventId) => {
  * Given an event Id, if the event exists in the given store, it updates the event
  * with the provided data
  *
- * @param {Object {data: array, eventIdSeed: int}} eventStore - store in which we want to update an event
+ * @param {eventStore} eventStore - store in which we want to update an event
  * @param {int} eventId - Id of the event we wish to update
  * @param {Object {Title: String, StartDate: String, EndDate:String}} eventUpdate - data with which to update event
- * @returns {Object {data: array, eventIdSeed: int}} - store having the updated event and no update to eventIdSeed
+ * @returns {eventStore} - store having the updated event and no update to eventIdSeed
  */
 const updateStoreEvent = (eventStore, eventId, eventUpdate) => {
   //const eventStoreToProcess = eventStore.data;
