@@ -158,6 +158,7 @@ const addStoreEvent = (eventStore, event) => {
  
  * @returns {boolean} - returns true if an event with the given Id exists in the store, false otherwise
  */
+// I don't understand how this is interchangeable with getEventById
 const eventExistsInStore = (eventStore, id) => {
   const checkForEventInStore = eventStore.data.filter(
     (event) => event.eventId === id
@@ -171,8 +172,9 @@ const eventExistsInStore = (eventStore, id) => {
  * @param {eventStore} eventStore - event store from which we want to remove and event
  * @param {number} Id - Id of the event that we want to remove
  * @returns {eventStore} eventStore - copy of original event store, minus the removed event,
- * Throws error if event to remove does not exist -> check for jsdoc implementation
+ * @throws Will throw an error if the event does not exist in the store.
  */
+
 const removeStoreEvent = (eventStore, id) => {
   if (!eventExistsInStore(eventStore, id)) {
     throw new Error("Event does not exist in store");
@@ -252,6 +254,7 @@ const getEventById = (eventStore, eventId) => {
  * @param {number} eventId - Id of the event we wish to update
  * @param {Object {Title: String, StartDate: String, EndDate:String}} eventUpdate - data with which to update event
  * @returns {eventStore} - store having the updated event and no update to eventIdSeed
+ * @throws Will throw an error if the event does not exist in the store.
  */
 const updateStoreEvent = (eventStore, eventId, eventUpdate) => {
   if (eventExistsInStore(eventStore, eventId)) {
@@ -270,7 +273,6 @@ const updateStoreEvent = (eventStore, eventId, eventUpdate) => {
       eventStoreMinusEvent,
       modifiedEvent
     );
-    debugger;
     return updatedEventStore;
   } else {
     throw new Error("Event does not exist in store");
