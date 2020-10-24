@@ -48,9 +48,6 @@ describe("Module functionality with empty event store", () => {
     expect(eventStoreCount(updatedStore)).toBe(2);
     expect(secondEventId).toBe(2);
 
-    // expect removing the second event and adding a third one will return a store
-    // with a count of two and event id = 3
-
     let storeWithEventRemoved = removeStoreEvent(updatedStore, 1);
     let eventStoreAfterRemovalAndAddition = addStoreEvent(
       storeWithEventRemoved,
@@ -68,82 +65,9 @@ describe("Module functionality with empty event store", () => {
     ).toThrowError("Event does not exist in store");
   });
 
-  // it("Adds multiple events and deletes first, middle and last events", () => {
-  //   let firstEvent = {
-  //     startDate: `2021-01-01`,
-  //     endDate: `2021-01-02`,
-  //   };
-  //   let secondEvent = {
-  //     startDate: `2021-01-01`,
-  //     endDate: `2021-01-02`,
-  //   };
-  //   let thirdEvent = {
-  //     startDate: `2021-01-01`,
-  //     endDate: `2021-01-02`,
-  //   };
-  //   let fourthEvent = {
-  //     startDate: `2021-01-01`,
-  //     endDate: `2021-01-02`,
-  //   };
-  //   let fifthEvent = {
-  //     startDate: `2021-01-01`,
-  //     endDate: `2021-01-02`,
-  //   };
-
-  //   let eventStoreInstance = newStore();
-
-  //   let firstAddition = addStoreEvent(eventStoreInstance, firstEvent);
-  //   let secondAddition = addStoreEvent(firstAddition, secondEvent);
-  //   let thirdAddition = addStoreEvent(secondAddition, thirdEvent);
-  //   let fourthAddition = addStoreEvent(thirdAddition, fourthEvent);
-  //   let finalStore = addStoreEvent(fourthAddition, fifthEvent);
-
-  //   expect(eventStoreCount(finalStore.data)).toBe(5);
-
-  //   //*  - as operações de removeStoreEvent e updateStoreEventfazem throw de um erro
-  //   // se o eventId não existir na store
-  //   // thought about adding a getEventById functionality, for testing purposes
-  //   // but realized that I can test for object retrieval by ID, by testing for the
-  //   // removal of unexisting items
-
-  //   // test that events removed don't exist in respective store
-  //   // do we want to test on every step or just in the final block?
-  //   let firstRemoval = removeStoreEvent(finalStore, 1);
-
-  //   expect(() => removeStoreEvent(firstRemoval, 1)).toThrowError(
-  //     "Event does not exist in store"
-  //   );
-
-  //   let secondRemoval = removeStoreEvent(firstRemoval, 3);
-
-  //   expect(() => removeStoreEvent(secondRemoval, 3)).toThrowError(
-  //     "Event does not exist in store"
-  //   );
-
-  //   let finalRemoval = removeStoreEvent(secondRemoval, 5);
-
-  //   expect(() => removeStoreEvent(finalRemoval, 5)).toThrowError(
-  //     "Event does not exist in store"
-  //   );
-
-  //   expect(eventStoreCount(finalRemoval.data)).toBe(2);
-  // });
-
-  // memory aid -> to remove later
-  // describe("exception test", () => {
-  //   it("should throw an error", () => {
-  //     expect(func).toThrow();
-  //     // expect(func).not.toThrow();
-  //   });
-  //   it("should throw an error", () => {
-  //     expect(func).toThrowError("my error");
-  //   });
-  // });
-
   it("Retrieve Events in a given Range", () => {
     // initialize store
     let eventStoreInstance = newStore();
-    //const sequentialEventAddition = (eventStore, start, end) => {
     const eventStore = sequentialEventAddition(
       eventStoreInstance,
       "event title",
@@ -186,37 +110,6 @@ describe("Module functionality with empty event store", () => {
     // not sure if these tests are necessary
   });
 
-  // it("Adds a new Store Event and subsequently updates the event", () => {
-  //   const sampleEvent = {
-  //     startDate: `2021-01-01`,
-  //     endDate: `2021-01-02`,
-  //   };
-
-  //   const eventUpdate = {
-  //     startDate: `2020-01-01`,
-  //     endDate: `2020-01-02`,
-  //   };
-  //   let eventStoreInstance = newStore();
-  //   let eventStoreWithAddedEvent = addStoreEvent(
-  //     eventStoreInstance,
-  //     sampleEvent
-  //   );
-
-  //   expect(eventStoreWithAddedEvent.data[0]).toMatchObject(sampleEvent);
-  //   expect(eventStoreWithAddedEvent.data[0].eventId).toBe(1);
-
-  //   let updatedStore = updateStoreEvent(
-  //     eventStoreWithAddedEvent,
-  //     1,
-  //     eventUpdate
-  //   );
-  //   expect(updatedStore.data[0]).toMatchObject(eventUpdate);
-
-  //   expect(() =>
-  //     updateStoreEvent(eventStoreWithAddedEvent, 2, eventUpdate)
-  //   ).toThrowError("Event does not exist in store");
-  // });
-
   it("Updates first, middle and last event in store", () => {
     let eventStoreInstance = newStore();
     //const sequentialEventAddition = (eventStore, start, end) => {
@@ -233,7 +126,6 @@ describe("Module functionality with empty event store", () => {
       endDate: `2020-01-06`,
     };
 
-    // const { data } = updateStoreEvent(eventStore, 1, eventUpdate);
     const updatedStore = updateStoreEvent(eventStore, 1, eventUpdate);
     expect(getEventById(updatedStore, 1)).toMatchObject(eventUpdate);
 
@@ -361,25 +253,3 @@ describe("Functional Event Addition", () => {
     expect(alteredStore).toMatchObject(expectedStore);
   });
 });
-
-// *      addStoreEvent: (store, event) -> { store: store, eventId: id }
-
-// newStore = () => functionalStore()
-
-// sequentialEventAddition = ( eventStore, start, end) =>
-// if(start > end){
-// return eventStore;
-// } else {
-// const {store, eventId} = addEvent(eventStore, {title: "title", startDate:start, endDate:start})
-// sequentialEventAddition(store, start+1, end)
-// }
-
-// nextday=new Date(oldDate.getFullYear(),oldDate.getMonth(),oldDate.getDate()+1);
-
-// iterativeEventAddition = (eventStore, start, end) =>
-// let store = eventStore
-// for(i = start; i < end; i++){
-// store = addEvent(eventStore, {title: "title", startDate:i, endDate:i}).store
-// }
-
-// return store
