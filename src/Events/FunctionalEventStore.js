@@ -75,7 +75,7 @@ const sequentialEventAddition = (eventStore, title, start, end) => {
  * This function returns the count of events contained in a given store
  *
  * @param {eventStore} eventStore - event from which we want to retrieve the event count
- * @returns { int } - the number of events in the store
+ * @returns { number } - the number of events in the store
  */
 const eventStoreCount = (eventStore) => eventStore.data.length;
 
@@ -84,7 +84,7 @@ const eventStoreCount = (eventStore) => eventStore.data.length;
  *
  * @param {eventStore} eventStore - Event store to which to add an event
  * @param {Object {title: String, startDate: String, endDate:String}} event - given event to be added to given event store
- * @returns {Object {store:{data:array, eventIdSeed: int}, eventId: int}  - updated Event Store containing the provided event.
+ * @returns {Object {store:{data:array, eventIdSeed: number}, eventId: number}  - updated Event Store containing the provided event.
  */
 const addStoreEvent = (eventStore, event) => {
   // not sure how to handle the eventSeedId
@@ -204,19 +204,16 @@ const omitObjectByKey = (objectToProcess, keyToOmit) => {
  *
  * @param {eventStore} eventStore
  * @param {number} eventId Id of the event we wish to retrieve
- * @returns {Object {Title: String, StartDate: String, EndDate:String}} event - Event we are looking for
- * if event does not exist it should return undefined -> need to update specification as per JSDoc
+ * @returns {{Object {Title: String, StartDate: String, EndDate:String}} | undefined} event - Event we are
+ * looking for, or undefined if it does not exist
  */
 const getEventById = (eventStore, eventId) => {
-  // modifying function so that event returned does not contain ID
-  // as it is not part of the event structure
+  debugger;
   const eventToReturn = eventStore.data.filter(
     (event) => event.eventId === eventId
-  );
+  )[0];
 
-  const returnObj = omitObjectByKey(eventToReturn[0], "eventId");
-
-  return returnObj;
+  return eventToReturn ? omitObjectByKey(eventToReturn, "eventId") : undefined;
 };
 /**
  * Given an event Id, if the event exists in the given store, it updates the event

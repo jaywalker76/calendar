@@ -253,6 +253,43 @@ describe("Module functionality with empty event store", () => {
   });
 });
 
+describe("GetEventById functionality", () => {
+  it("If an event exists in a store return it", () => {
+    let eventStoreInstance = newStore();
+    const sampleEvent = {
+      title: "first event",
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+
+    let eventStoreWithAddedEvent = addStoreEvent(
+      eventStoreInstance,
+      sampleEvent
+    );
+
+    const { store, eventId } = eventStoreWithAddedEvent;
+
+    expect(getEventById(store, eventId)).toBeTruthy();
+  });
+  it("If event does not exist in a store return undefined", () => {
+    let eventStoreInstance = newStore();
+    const sampleEvent = {
+      title: "first event",
+      startDate: `2021-01-01`,
+      endDate: `2021-01-02`,
+    };
+
+    let eventStoreWithAddedEvent = addStoreEvent(
+      eventStoreInstance,
+      sampleEvent
+    );
+
+    const { store } = eventStoreWithAddedEvent;
+
+    expect(getEventById(store, 2)).toBeUndefined();
+  });
+});
+
 describe("Functional Event Addition", () => {
   it("Sequential event addition on an empty store returns an empty store if start is greater than end", () => {
     let eventStoreInstance = newStore();
