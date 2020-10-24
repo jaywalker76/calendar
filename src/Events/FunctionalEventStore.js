@@ -90,6 +90,12 @@ const addStoreEvent = (eventStore, event) => {
   // not sure how to handle the eventSeedId
   // for the time being, when it is incremented
   // it will be updated in the return object
+
+  //   at this point -> if the event already exists, this is an update,
+  // if so, need to retrieve the event and update it,
+  // and concat should be used for new event addition:
+  // add should only add, update should only update
+
   const { data, eventIdSeed } = eventStore;
   let eventIdToApply;
   let eventIdSeedToReturn = eventIdSeed;
@@ -204,7 +210,6 @@ const omitObjectByKey = (objectToProcess, keyToOmit) => {
 const getEventById = (eventStore, eventId) => {
   // modifying function so that event returned does not contain ID
   // as it is not part of the event structure
-
   const eventToReturn = eventStore.data.filter(
     (event) => event.eventId === eventId
   );
@@ -224,23 +229,22 @@ const getEventById = (eventStore, eventId) => {
  * @throws Will throw an error if the event does not exist in the store.
  */
 const updateStoreEvent = (eventStore, eventId, eventUpdate) => {
-  if (eventExistsInStore(eventStore, eventId)) {
-    // retrieve event by Id
-    let eventToModify = getEventById(eventStore, eventId);
-    // remove event from store
+  const { eventIdSeed } = eventStore;
+
+  let eventToModify = getEventById(eventStore, eventId);
+
+  if (eventToModify) {
     const eventStoreMinusEvent = removeStoreEvent(eventStore, eventId);
-    // modify event
     const modifiedEvent = {
       ...eventToModify,
       ...eventUpdate,
       eventId: eventId,
     };
-    // add event to store
-    const updatedEventStore = addStoreEvent(
-      eventStoreMinusEvent,
+
+    const eventStoreWithUpdatedEvent = eventStoreMinusEvent.data.concat(
       modifiedEvent
     );
-    return updatedEventStore;
+    return { data: eventStoreWithUpdatedEvent, eventIdSeed: eventIdSeed };
   } else {
     throw new Error("Event does not exist in store");
   }

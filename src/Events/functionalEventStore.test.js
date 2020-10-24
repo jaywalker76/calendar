@@ -233,18 +233,23 @@ describe("Module functionality with empty event store", () => {
       endDate: `2020-01-06`,
     };
 
-    const { store } = updateStoreEvent(eventStore, 1, eventUpdate);
-    expect(getEventById(store, 1)).toMatchObject(eventUpdate);
+    // const { data } = updateStoreEvent(eventStore, 1, eventUpdate);
+    const updatedStore = updateStoreEvent(eventStore, 1, eventUpdate);
+    expect(getEventById(updatedStore, 1)).toMatchObject(eventUpdate);
 
-    const { store: updatedStore } = updateStoreEvent(store, 3, eventUpdate);
-    expect(getEventById(updatedStore, 3)).toMatchObject(eventUpdate);
-
-    const { store: storeAfterThirdUpdate } = updateStoreEvent(
+    const storeWithSecondUpdate = updateStoreEvent(
       updatedStore,
+      3,
+      eventUpdate
+    );
+    expect(getEventById(storeWithSecondUpdate, 3)).toMatchObject(eventUpdate);
+
+    const storeWithThirdUpdate = updateStoreEvent(
+      storeWithSecondUpdate,
       5,
       eventUpdate
     );
-    expect(getEventById(storeAfterThirdUpdate, 5)).toMatchObject(eventUpdate);
+    expect(getEventById(storeWithThirdUpdate, 5)).toMatchObject(eventUpdate);
   });
 });
 
