@@ -3,4 +3,4 @@ module.test_*
 .gitignore_*
 .history
 .gitignore
-output
+output/

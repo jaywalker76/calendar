@@ -151,22 +151,35 @@ describe("Module functionality with empty event store", () => {
       "2020-01-15"
     );
 
+    let retrievedEventsInRange = getEventsInRange(
+      eventStore,
+      "2020-01-01",
+      "2020-01-05"
+    );
+
     expect(eventStoreCount(eventStore)).toBe(15);
-    expect(
-      getEventsInRange(eventStore, "2020-01-01", "2020-01-05").length
-    ).toBe(5);
+    expect(Object.keys(retrievedEventsInRange).length).toBe(5);
     // no events in range
-    expect(
-      getEventsInRange(eventStore, "2020-02-01", "2020-02-05").length
-    ).toBe(0);
+    retrievedEventsInRange = getEventsInRange(
+      eventStore,
+      "2020-02-01",
+      "2020-02-05"
+    );
+    expect(Object.keys(retrievedEventsInRange).length).toBe(0);
     // start date not in range
-    expect(
-      getEventsInRange(eventStore, "2019-12-31", "2020-01-04").length
-    ).toBe(4);
+    retrievedEventsInRange = getEventsInRange(
+      eventStore,
+      "2019-12-31",
+      "2020-01-04"
+    );
+    expect(Object.keys(retrievedEventsInRange).length).toBe(4);
     // end date not in range
-    expect(
-      getEventsInRange(eventStore, "2020-01-13", "2020-01-18").length
-    ).toBe(3);
+    retrievedEventsInRange = getEventsInRange(
+      eventStore,
+      "2020-01-13",
+      "2020-01-18"
+    );
+    expect(Object.keys(retrievedEventsInRange).length).toBe(3);
     // additional test cases:
     // check that returned object matches
     // test for correct returns when startDate/endDate/start and end date do not exist in store
