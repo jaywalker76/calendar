@@ -166,11 +166,11 @@ const removeStoreEvent = (eventStore, id) => {
  */
 const getEventsInRange = (eventStore, startOfRange, endOfRange) => {
   // what should be the return type here?
-  let eventsInTimeRange = [];
+  let eventsInTimeRange = {};
 
   eventStore.data.forEach((event) => {
     if (event.startDate >= startOfRange && event.startDate <= endOfRange) {
-      eventsInTimeRange.push(event);
+      eventsInTimeRange[event.eventId] = event;
     }
   });
 
