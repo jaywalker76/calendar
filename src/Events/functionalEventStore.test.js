@@ -112,7 +112,6 @@ describe("Module functionality with empty event store", () => {
 
   it("Updates first, middle and last event in store", () => {
     let eventStoreInstance = newStore();
-    //const sequentialEventAddition = (eventStore, start, end) => {
     const eventStore = sequentialEventAddition(
       eventStoreInstance,
       "event name",

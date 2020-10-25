@@ -1,6 +1,10 @@
 /**
 This module is responsible for handling the model to be presented visually
 */
+/**
+ * Creates a new Calendar Module.
+ * @class
+ */
 module.exports = class CalendarModule {
   /**
    *

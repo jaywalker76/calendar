@@ -19,7 +19,8 @@
 // Uma alternativa seria definir os testes por combinação de operações, por exemplo:
 // expect new store to have count of zero - v
 // expect adding an event to an empty store to return a store with count of one and event id = 1 v
-// expect to retrieve the added event by the id returned when adding an event to a store (empty or with some other events added before and after)
+// expect to retrieve the added event by the id returned
+// when adding an event to a store (empty or with some other events added before and after)
 // expect adding a second event will return a store with count of two and event id = 2
 // expect removing the second event and adding a third one will return a store with a count of two and event id = 3
 // Etc.
@@ -131,7 +132,7 @@ const addStoreEvent = (eventStore, event) => {
  
  * @returns {boolean} - returns true if an event with the given Id exists in the store, false otherwise
  */
-// I don't understand how this is interchangeable with getEventById
+
 const eventExistsInStore = (eventStore, id) => {
   const checkForEventInStore = eventStore.data.filter(
     (event) => event.eventId === id
