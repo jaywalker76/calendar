@@ -1,0 +1,49 @@
+- Event rendering: 
+    - event on same day
+    - event spanning various days
+    - multiple events on same day
+        - how many events per day 
+        - if more than 2 events per day
+            - event starts in same day 
+
+Specs:
+- render: 
+    - on cell: 
+        - display event title: truncated -> display full title on tooltip (same day)
+
+    - for events spanning multiple days: 
+        - how to display the text? 
+            - for the time being we are considering truncating the text; later will consider other options
+            - for events spanning weeks, display event title on first cell
+        - events spanning months:
+            - starts at end of previous month, and in current month you only see the beginning of the representation
+            - this hinges on the definition of first cell:
+                - first cell: 
+                    - of event (if in same week/month)
+                    - of visible period (if event starts in previous month, for instance)
+
+    - eventsFragment
+        - one or more eventsFragments per cell
+            - title: optional -> due to being rendered only on first cell for time being;
+            implicitly, this will be only exist if it has to be rendered, and this will be inferred in the 
+            background
+            - isStart/isEnd -> used to apply caps to the event representation
+
+Tests:
+    - To be done at CalendarBody level
+        - receives monthObject, enriched with event fragments 
+        - test cases run on the enriched monthObject
+- 
+    
+Reflect use cases in storybook
+
+Considerations:
+    - Should cells be isolated, maybe made into their own components?
+        - needs other types of testing, focused on the cell behavior, rather than on the calendar 
+        as a whole
+        
+
+Homework:
+- specify test case scenarios for given specs
+- consider overlaps and begin/end scenarios 
+    - interval superpositions: as if in a straight line
