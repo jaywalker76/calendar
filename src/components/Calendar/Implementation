@@ -33,7 +33,23 @@ Tests:
     - To be done at CalendarBody level
         - receives monthObject, enriched with event fragments 
         - test cases run on the enriched monthObject
-- 
+
+Test:
+    - if event spans more than one day event:
+        - title should be rendered on first cell belonging to event
+    - event starts on previous month:
+        - current month displays the remainder of the representation
+        - current month cell does not have start cap 
+        - current cell has event designation tab
+        - if it's last day in event should have end cap
+    - event starts and ends on same day
+        - has event designation tab
+        - has event start cap
+        - event contains event title
+    - event overlap in cell
+        - two events  with start and end on the same day 
+        - event ends on same day where new event starts 
+        - events overlap on day 
     
 Reflect use cases in storybook
 
