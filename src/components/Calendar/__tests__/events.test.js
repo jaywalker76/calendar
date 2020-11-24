@@ -7,7 +7,10 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 let wrapper;
 // by event designation we mean an event indicator. Visually this would
 // be the colored cell representing an event in the calendar
+
+// this block code can be made parametric ->
 describe("single event starts and ends in same day", () => {
+  // need level information
   it("should have start cap", () => {
     // expect cell to have start cap
   });
@@ -20,12 +23,21 @@ describe("single event starts and ends in same day", () => {
   it("should have title", () => {
     // expect cell to have  title
   });
+  // test for cell level - lvl 1
 });
 
 describe("single event starts and ends in different days in same month", () => {
   it("", () => {
+    // order limited by layout
+    // []
+    // []
+    // []
+    // ...
+    // -> this shows only when more than 3 events exist in cell
+    // -> break into single tests **
     // expect start cell to have start cap, event designation tab,end cap, title
     // expect end cell to have event designation tab,end cap
+    // <-- these tests make sense for model testing
     // expect cells spanned to match event duration in days in same week
     // expect cells spanned to match event duration in days across different weeks
     // expect cells spanned to match event duration in days across different months
@@ -39,7 +51,7 @@ describe("single event starts and ends in different days in same month", () => {
     // event starts on sunday and ends on monday
     // expect cell in sunday to have start cap, event, title, event designation tab
     // expect cell in monday to have event designation tab, end cap
-    // expect cell count to be 8
+    // expect cell count to be 8 -->
   });
 
   it("single event starts and ends in different days in different months ", () => {

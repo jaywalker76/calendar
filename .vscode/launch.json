@@ -4,6 +4,16 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+    // {
+    //   "type": "robotframework-lsp",
+    //   "name": "Robot: Current File",
+    //   "request": "launch",
+    //   "cwd": "${workspaceFolder}",
+    //   "target": "${file}",
+    //   "terminal": "none",
+    //   "env": {},
+    //   "args": []
+    // },
     {
       "type": "node",
       "request": "attach",
