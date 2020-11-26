@@ -26,6 +26,117 @@ describe("single event starts and ends in same day", () => {
   // test for cell level - lvl 1
 });
 
+// Scenarios
+//|
+//|
+//|
+//|
+
+// no events in cell
+// expect cell:
+//  - to have no start cap
+//  - to have no end cap
+//  - to have no event tab
+
+//|[]
+//|
+//|
+//|
+
+// expect cell:
+//  - to have 1 start cap
+//  - to have 1 end cap
+//  - to have 1 event tab
+
+//|[]
+//|[]
+//|
+//|
+
+// expect cell:
+//  - to have 2 start cap
+//  - to have 2 end cap
+//  - to have 2 event tab
+
+//|[]
+//|[]
+//|[]
+//|
+
+// expect cell:
+//  - to have 3 start cap
+//  - to have 3 end cap
+//  - to have 3 event tab
+//  - to have more events designator
+
+//|[]
+//|[]
+//|[]
+//|...
+
+// expect cell:
+//  - to have 3 start cap
+//  - to have 3 end cap
+//  - to have 3 event tab
+//  - to have more events designator
+
+//|]
+//|[]
+//|[]
+//|...
+
+// expect cell:
+//  - to have 2 start cap
+//  - to have 3 end cap
+//  - to have 3 event tab
+//  - to have more events designator
+
+//|[
+//|[]
+//|[]
+//|...
+
+// expect cell:
+//  - to have 3 start cap
+//  - to have 2 end cap
+//  - to have 3 event tab
+//  - to have more events designator
+
+//|][
+//|][
+//|][
+//|
+
+// expect cell:
+//  - to have 3 start cap
+//  - to have 3 end cap
+//  - to have 6 event tab
+
+//|[
+//|[]
+//|]
+
+// expect cell:
+//  - to have 2 start cap
+//  - to have 2 end cap
+//  - to have 3 event tab
+
+//|[
+//|[
+//|[
+
+// expect cell:
+//  - to have 3 start cap
+//  - to have 3 event tab
+
+//|]
+//|]
+//|]
+
+// expect cell:
+//  - to have 3 end cap
+//  - to have 3 event tab
+
 describe("single event starts and ends in different days in same month", () => {
   it("", () => {
     // order limited by layout
