@@ -1,16 +1,46 @@
 import React from "react";
 import Enzyme, { mount } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
+import Calendar from "../Calendar";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
+
+const setup = (props = {}, state = null) => {
+  return mount(<Calendar {...props} />);
+};
 
 let wrapper;
 // by event designation we mean an event indicator. Visually this would
 // be the colored cell representing an event in the calendar
 
 // this block code can be made parametric ->
-describe("single event starts and ends in same day", () => {
-  // need level information
+describe("single events", () => {
+  describe("no event in cell", () => {
+    wrapper = setup({
+      startDate: "2020/06/01",
+    });
+
+    const firstDayInJune = wrapper
+      .find("[data-test='calendar-day-cell']")
+      .first();
+
+    const eventStart = firstDayInJune.find("[data-test='event-start']");
+    const eventBody = firstDayInJune.find("[data-test='event-body']");
+    const eventEnd = firstDayInJune.find("[data-test='event-end']");
+
+    it("should have no event start", () => {
+      expect(eventStart.length).toBe(0);
+    });
+
+    it("should have no event body", () => {
+      expect(eventBody.length).toBe(0);
+    });
+
+    it("should have event end", () => {
+      expect(eventEnd.length).toBe(0);
+    });
+  });
+
   it("should have start cap", () => {
     // expect cell to have start cap
   });

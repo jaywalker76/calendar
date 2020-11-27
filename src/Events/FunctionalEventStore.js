@@ -209,7 +209,6 @@ const omitObjectByKey = (objectToProcess, keyToOmit) => {
  * looking for, or undefined if it does not exist
  */
 const getEventById = (eventStore, eventId) => {
-  debugger;
   const eventToReturn = eventStore.data.filter(
     (event) => event.eventId === eventId
   )[0];

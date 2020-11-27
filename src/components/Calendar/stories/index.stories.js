@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import Calendar from "../Calendar";
 import CalendarHeader from "../CalendarHeader/CalendarHeader";
+import CalendarBody from "../CalendarBody/CalendarBody";
 
 import { getMonthYearString, updateDateValue } from "../utils";
 
@@ -72,8 +73,17 @@ export const calendarWithNavigationArrows = () => (
 
 export const calendarHeader = () => (
   <CalendarHeader
-    data-test="calendar-header"
+    data-test='calendar-header'
     displayNavArrows={true}
     dateToDisplay={"April 2020"}
+  />
+);
+
+export const cellContents = () => (
+  <Calendar
+    startDate={"2020/06/01"}
+    includeHeader={true}
+    startOfWeek={1}
+    dayDescriptorType={"short"}
   />
 );
