@@ -520,6 +520,65 @@ const February2010 = [
   ],
 ];
 
+// month with no leading days
+const June2020WithEvents = [
+  [
+    {
+      day: 1,
+      weekday: 1,
+      currentMonth: true,
+      eventObject: {
+        eventStart: true,
+        eventBody: true,
+        eventEnd: true,
+        eventTitle: "Test",
+      },
+    },
+    { day: 2, weekday: 2, currentMonth: true },
+    { day: 3, weekday: 3, currentMonth: true },
+    { day: 4, weekday: 4, currentMonth: true },
+    { day: 5, weekday: 5, currentMonth: true },
+    { day: 6, weekday: 6, currentMonth: true },
+    { day: 7, weekday: 0, currentMonth: true },
+  ],
+  [
+    { day: 8, weekday: 1, currentMonth: true },
+    { day: 9, weekday: 2, currentMonth: true },
+    { day: 10, weekday: 3, currentMonth: true },
+    { day: 11, weekday: 4, currentMonth: true },
+    { day: 12, weekday: 5, currentMonth: true },
+    { day: 13, weekday: 6, currentMonth: true },
+    { day: 14, weekday: 0, currentMonth: true },
+  ],
+  [
+    { day: 15, weekday: 1, currentMonth: true },
+    { day: 16, weekday: 2, currentMonth: true },
+    { day: 17, weekday: 3, currentMonth: true },
+    { day: 18, weekday: 4, currentMonth: true },
+    { day: 19, weekday: 5, currentMonth: true },
+    { day: 20, weekday: 6, currentMonth: true },
+    { day: 21, weekday: 0, currentMonth: true },
+  ],
+  [
+    { day: 22, weekday: 1, currentMonth: true },
+    { day: 23, weekday: 2, currentMonth: true },
+    { day: 24, weekday: 3, currentMonth: true },
+    { day: 25, weekday: 4, currentMonth: true },
+    { day: 26, weekday: 5, currentMonth: true },
+    { day: 27, weekday: 6, currentMonth: true },
+    { day: 28, weekday: 0, currentMonth: true },
+  ],
+  [
+    { day: 29, weekday: 1, currentMonth: true },
+    { day: 30, weekday: 2, currentMonth: true },
+    { day: 1, weekday: 3, currentMonth: false },
+    { day: 2, weekday: 4, currentMonth: false },
+    { day: 3, weekday: 5, currentMonth: false },
+    { day: 4, weekday: 6, currentMonth: false },
+    { day: 5, weekday: 0, currentMonth: false },
+  ],
+];
+
 export {
   February2015,
   February2019,
@@ -532,4 +591,5 @@ export {
   July2020,
   February2016,
   February2010,
+  June2020WithEvents,
 };

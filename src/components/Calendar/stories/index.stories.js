@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Calendar from "../Calendar";
 import CalendarHeader from "../CalendarHeader/CalendarHeader";
 import CalendarBody from "../CalendarBody/CalendarBody";
+import { June2020WithEvents } from "../../../Core/CoreTestSamples/month_objects";
 
 import { getMonthYearString, updateDateValue } from "../utils";
 
@@ -79,11 +80,14 @@ export const calendarHeader = () => (
   />
 );
 
-export const cellContents = () => (
-  <Calendar
-    startDate={"2020/06/01"}
-    includeHeader={true}
-    startOfWeek={1}
-    dayDescriptorType={"short"}
-  />
-);
+export const cellContents = () => {
+  const calendarColHeader = [1, 2, 3, 4, 5, 6, 0];
+  const dayDescriptorType = "short";
+  return (
+    <CalendarBody
+      monthObject={June2020WithEvents}
+      calendarColHeader={calendarColHeader}
+      dayDescriptorType={dayDescriptorType}
+    />
+  );
+};

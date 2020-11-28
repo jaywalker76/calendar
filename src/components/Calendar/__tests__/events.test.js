@@ -2,26 +2,44 @@ import React from "react";
 import Enzyme, { mount } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
 import Calendar from "../Calendar";
+import CalendarBody from "../CalendarBody";
+import {
+  June2020,
+  June2020WithEvents,
+} from "../../../Core/CoreTestSamples/month_objects";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
-const setup = (props = {}, state = null) => {
-  return mount(<Calendar {...props} />);
+const calendarColHeader = [1, 2, 3, 4, 5, 6, 0];
+const dayDescriptorType = "short";
+
+const mockSetup = (props = {}, state = null) => {
+  const { monthObject } = props;
+  return mount(
+    <CalendarBody
+      monthObject={monthObject}
+      calendarColHeader={calendarColHeader}
+      dayDescriptorType={dayDescriptorType}
+    />
+  );
 };
 
 let wrapper;
 // by event designation we mean an event indicator. Visually this would
 // be the colored cell representing an event in the calendar
 
-// this block code can be made parametric ->
+// Tasks: get event rendering in cell tests passing;
+// create mock month object with events for June 2020
+// alter cell rendering to output the event representation
 describe("single events", () => {
-  wrapper = setup({
-    startDate: "2020/06/01",
+  wrapper = mockSetup({
+    monthObject: June2020,
   });
 
   const firstDayInJune = wrapper
     .find("[data-test='calendar-day-cell']")
     .first();
+
   describe("no event in cell", () => {
     const eventStart = firstDayInJune.find("[data-test='event-start']");
     const eventBody = firstDayInJune.find("[data-test='event-body']");
@@ -41,6 +59,14 @@ describe("single events", () => {
   });
 
   describe("single event in cell", () => {
+    wrapper = mockSetup({
+      monthObject: June2020WithEvents,
+    });
+
+    const firstDayInJune = wrapper
+      .find("[data-test='calendar-day-cell']")
+      .first();
+
     const eventStart = firstDayInJune.find("[data-test='event-start']");
     const eventBody = firstDayInJune.find("[data-test='event-body']");
     const eventEnd = firstDayInJune.find("[data-test='event-end']");

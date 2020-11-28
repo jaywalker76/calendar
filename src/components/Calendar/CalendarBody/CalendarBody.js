@@ -33,22 +33,38 @@ const CalendarBody = (props) => {
         calendarColHeader={calendarColHeader}
         dayDescriptorType={dayDescriptorType}
       />
-      <div data-test="calendar-body">
+      <div data-test='calendar-body'>
         {monthObject.map((rows, row_id) => (
-          <div key={row_id} className={rowStyle} data-test="calendar-rows">
-            {rows.map((cell, cell_id) => (
-              <div
-                key={cell_id}
-                className={cellStyle}
-                data-test="calendar-day-cell"
-                onClick={() => {
-                  alert("Hello");
-                }}
-              >
-                {cell.day}
-                {cell.currentMonth}
-              </div>
-            ))}
+          <div key={row_id} className={rowStyle} data-test='calendar-rows'>
+            {rows.map((cell, cell_id) => {
+              return (
+                <div
+                  key={cell_id}
+                  className={cellStyle}
+                  data-test='calendar-day-cell'
+                  onClick={() => {
+                    alert("Hello");
+                  }}
+                >
+                  {cell.day}
+                  {cell.currentMonth}
+                  {cell.eventObject && (
+                    <div>
+                      {cell.eventObject.eventStart && (
+                        <div data-test='event-start'>[</div>
+                      )}
+                      {cell.eventObject.eventBody && (
+                        <div data-test='event-body'>{"Body"}</div>
+                      )}
+                      {cell.eventObject.eventEnd && (
+                        <div data-test='event-end'>]</div>
+                      )}
+                      {cell.eventObject.eventStart}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         ))}
       </div>
