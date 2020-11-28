@@ -5,6 +5,12 @@ import CalendarCell from "../CalendarCell";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
+const cellWithoutEvent = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+};
+
 const cellWithEvent = {
   day: 1,
   weekday: 1,
@@ -25,6 +31,29 @@ let wrapper;
 
 describe("single events", () => {
   wrapper = mockSetup();
+
+  describe("no event in cell", () => {
+    wrapper = mount(<CalendarCell cell={cellWithoutEvent} cellId={1} />);
+    const firstDayInJune = wrapper
+      .find("[data-test='calendar-day-cell']")
+      .first();
+
+    const eventStart = firstDayInJune.find("[data-test='event-start']");
+    const eventBody = firstDayInJune.find("[data-test='event-body']");
+    const eventEnd = firstDayInJune.find("[data-test='event-end']");
+
+    it("should have event start", () => {
+      expect(eventStart.length).toBe(0);
+    });
+
+    it("should have event body", () => {
+      expect(eventBody.length).toBe(0);
+    });
+
+    it("should have event end", () => {
+      expect(eventEnd.length).toBe(0);
+    });
+  });
 
   describe("single event in cell", () => {
     const firstDayInJune = wrapper
