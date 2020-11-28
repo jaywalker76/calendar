@@ -24,6 +24,17 @@ const cellStyle = css`
   border: 1px solid gray;
 `;
 
+const dayNumber = css`
+  line-height: 20px;
+  text-align: end;
+`;
+
+const eventWrapper = css`
+  display: flex;
+  line-height: 20px;
+  justify-content: center;
+`;
+
 const CalendarBody = (props) => {
   const { monthObject, calendarColHeader, dayDescriptorType } = props;
 
@@ -46,10 +57,10 @@ const CalendarBody = (props) => {
                     alert("Hello");
                   }}
                 >
-                  {cell.day}
+                  <div className={dayNumber}>{cell.day}</div>
                   {cell.currentMonth}
                   {cell.eventObject && (
-                    <div>
+                    <div className={eventWrapper}>
                       {cell.eventObject.eventStart && (
                         <div data-test='event-start'>[</div>
                       )}

@@ -1,6 +1,6 @@
 const styling = {
   outerWrapper: {
-    width: 600
+    width: 600,
   },
   /*
   calendarWrapper: {
@@ -18,13 +18,13 @@ const styling = {
     textTransform: "uppercase",
     fontWeight: 400,
     fontSize: "70%",
-    borderBottom: "1px solid red"
+    borderBottom: "1px solid red",
   },
   dayHeaderCell: {
     textAlign: "center",
     flexGrow: 1,
     flexBasis: 0,
-    maxWidth: "100%"
+    maxWidth: "100%",
   },
   row: {
     margin: 0,
@@ -32,7 +32,7 @@ const styling = {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    width: "100%"
+    width: "100%",
   },
   cell: {
     maxWidth: "100%",
@@ -40,8 +40,8 @@ const styling = {
     flexBasis: "calc(100% / 7)",
     width: "calc(100% / 7)",
     position: "relative",
-    height: "5em"
-  }
+    height: "5em",
+  },
 };
 
 export default styling;
