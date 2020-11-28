@@ -23,12 +23,36 @@ const cellWithEvent = {
   },
 };
 
-const cellWithEventStartEndDifferentDay = {
+const cellStartAndBody = {
   day: 1,
   weekday: 1,
   currentMonth: true,
   eventObject: {
     eventStart: true,
+    eventBody: true,
+    eventEnd: false,
+    eventTitle: "Test",
+  },
+};
+
+const cellBodyAndEnd = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: {
+    eventStart: false,
+    eventBody: true,
+    eventEnd: true,
+    eventTitle: "Test",
+  },
+};
+
+const cellWithBody = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: {
+    eventStart: false,
     eventBody: true,
     eventEnd: false,
     eventTitle: "Test",
@@ -107,9 +131,7 @@ describe("single events", () => {
       //|
       //|
       //|
-      wrapper = mount(
-        <CalendarCell cell={cellWithEventStartEndDifferentDay} cellId={1} />
-      );
+      wrapper = mount(<CalendarCell cell={cellStartAndBody} cellId={1} />);
       const calendarCell = wrapper
         .find("[data-test='calendar-day-cell']")
         .first();
@@ -120,6 +142,62 @@ describe("single events", () => {
 
       it("should have event start", () => {
         expect(eventStart.length).toBe(1);
+      });
+
+      it("should have event body", () => {
+        expect(eventBody.length).toBe(1);
+      });
+
+      it("should not have event end", () => {
+        expect(eventEnd.length).toBe(0);
+      });
+    });
+
+    describe("event ends on different day", () => {
+      // Scenarios
+      //|]
+      //|
+      //|
+      //|
+      wrapper = mount(<CalendarCell cell={cellBodyAndEnd} cellId={1} />);
+      const calendarCell = wrapper
+        .find("[data-test='calendar-day-cell']")
+        .first();
+
+      const eventStart = calendarCell.find("[data-test='event-start']");
+      const eventBody = calendarCell.find("[data-test='event-body']");
+      const eventEnd = calendarCell.find("[data-test='event-end']");
+
+      it("should have event start", () => {
+        expect(eventStart.length).toBe(0);
+      });
+
+      it("should have event body", () => {
+        expect(eventBody.length).toBe(1);
+      });
+
+      it("should not have event end", () => {
+        expect(eventEnd.length).toBe(1);
+      });
+    });
+
+    describe("event in cell with different start and end", () => {
+      // Scenarios
+      //|=
+      //|
+      //|
+      //|
+      wrapper = mount(<CalendarCell cell={cellWithBody} cellId={1} />);
+      const calendarCell = wrapper
+        .find("[data-test='calendar-day-cell']")
+        .first();
+
+      const eventStart = calendarCell.find("[data-test='event-start']");
+      const eventBody = calendarCell.find("[data-test='event-body']");
+      const eventEnd = calendarCell.find("[data-test='event-end']");
+
+      it("should have event start", () => {
+        expect(eventStart.length).toBe(0);
       });
 
       it("should have event body", () => {
