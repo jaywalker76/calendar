@@ -15,15 +15,14 @@ let wrapper;
 
 // this block code can be made parametric ->
 describe("single events", () => {
+  wrapper = setup({
+    startDate: "2020/06/01",
+  });
+
+  const firstDayInJune = wrapper
+    .find("[data-test='calendar-day-cell']")
+    .first();
   describe("no event in cell", () => {
-    wrapper = setup({
-      startDate: "2020/06/01",
-    });
-
-    const firstDayInJune = wrapper
-      .find("[data-test='calendar-day-cell']")
-      .first();
-
     const eventStart = firstDayInJune.find("[data-test='event-start']");
     const eventBody = firstDayInJune.find("[data-test='event-body']");
     const eventEnd = firstDayInJune.find("[data-test='event-end']");
@@ -36,8 +35,26 @@ describe("single events", () => {
       expect(eventBody.length).toBe(0);
     });
 
-    it("should have event end", () => {
+    it("should have no event end", () => {
       expect(eventEnd.length).toBe(0);
+    });
+  });
+
+  describe("single event in cell", () => {
+    const eventStart = firstDayInJune.find("[data-test='event-start']");
+    const eventBody = firstDayInJune.find("[data-test='event-body']");
+    const eventEnd = firstDayInJune.find("[data-test='event-end']");
+
+    it("should have event start", () => {
+      expect(eventStart.length).toBe(1);
+    });
+
+    it("should have event body", () => {
+      expect(eventBody.length).toBe(1);
+    });
+
+    it("should have event end", () => {
+      expect(eventEnd.length).toBe(1);
     });
   });
 
