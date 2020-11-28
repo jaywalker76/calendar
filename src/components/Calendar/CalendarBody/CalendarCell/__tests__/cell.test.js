@@ -54,6 +54,40 @@ describe("Cell Rendering", () => {
       }
     );
   });
+
+  describe("Two Events in cell with different configurations", () => {
+    //     // Scenarios
+    //     //|[]
+    //     //|[]
+    //     //|
+    //     //|
+    test.each`
+      description                       | cellParameter      | expectedEventStart | expectedEventBody | expectedEventEnd
+      ${"cell has start, body and end"} | ${twoEventsInCell} | ${2}               | ${2}              | ${2}
+    `(
+      "$description",
+      ({
+        cellParameter,
+        expectedEventStart,
+        expectedEventBody,
+        expectedEventEnd,
+      }) => {
+        wrapper = mount(<CalendarCell cell={cellParameter} cellId={1} />);
+
+        const calendarCell = wrapper
+          .find("[data-test='calendar-day-cell']")
+          .first();
+
+        const eventStart = calendarCell.find("[data-test='event-start']");
+        const eventBody = calendarCell.find("[data-test='event-body']");
+        const eventEnd = calendarCell.find("[data-test='event-end']");
+
+        expect(eventStart.length).toBe(expectedEventStart);
+        expect(eventBody.length).toBe(expectedEventBody);
+        expect(eventEnd.length).toBe(expectedEventEnd);
+      }
+    );
+  });
 });
 
 //   describe("two events in cell", () => {

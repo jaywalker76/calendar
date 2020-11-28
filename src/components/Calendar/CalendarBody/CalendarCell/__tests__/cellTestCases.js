@@ -52,10 +52,31 @@ const cellWithBody = {
   },
 };
 
+const twoEventsInCell = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: [
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+  ],
+};
+
 export {
   cellWithoutEvent,
   cellWithEvent,
   cellStartAndBody,
   cellBodyAndEnd,
   cellWithBody,
+  twoEventsInCell,
 };
