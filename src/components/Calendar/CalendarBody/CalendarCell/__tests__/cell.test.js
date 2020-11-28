@@ -23,6 +23,18 @@ const cellWithEvent = {
   },
 };
 
+const cellWithEventStartEndDifferentDay = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: {
+    eventStart: true,
+    eventBody: true,
+    eventEnd: false,
+    eventTitle: "Test",
+  },
+};
+
 const mockSetup = (props = {}, state = null) => {
   return mount(<CalendarCell cell={cellWithEvent} cellId={1} />);
 };
@@ -33,47 +45,90 @@ describe("single events", () => {
   wrapper = mockSetup();
 
   describe("no event in cell", () => {
+    // Scenarios
+    //|
+    //|
+    //|
+    //|
     wrapper = mount(<CalendarCell cell={cellWithoutEvent} cellId={1} />);
-    const firstDayInJune = wrapper
+    const calendarCell = wrapper
       .find("[data-test='calendar-day-cell']")
       .first();
 
-    const eventStart = firstDayInJune.find("[data-test='event-start']");
-    const eventBody = firstDayInJune.find("[data-test='event-body']");
-    const eventEnd = firstDayInJune.find("[data-test='event-end']");
+    const eventStart = calendarCell.find("[data-test='event-start']");
+    const eventBody = calendarCell.find("[data-test='event-body']");
+    const eventEnd = calendarCell.find("[data-test='event-end']");
 
-    it("should have event start", () => {
+    it("should not have event start", () => {
       expect(eventStart.length).toBe(0);
     });
 
-    it("should have event body", () => {
+    it("should not have event body", () => {
       expect(eventBody.length).toBe(0);
     });
 
-    it("should have event end", () => {
+    it("should not have event end", () => {
       expect(eventEnd.length).toBe(0);
     });
   });
 
   describe("single event in cell", () => {
-    const firstDayInJune = wrapper
-      .find("[data-test='calendar-day-cell']")
-      .first();
+    // Scenarios
+    //|[]
+    //|
+    //|
+    //|
+    describe("event starts and ends in same day", () => {
+      wrapper = mount(<CalendarCell cell={cellWithEvent} cellId={1} />);
+      const firstDayInJune = wrapper
+        .find("[data-test='calendar-day-cell']")
+        .first();
 
-    const eventStart = firstDayInJune.find("[data-test='event-start']");
-    const eventBody = firstDayInJune.find("[data-test='event-body']");
-    const eventEnd = firstDayInJune.find("[data-test='event-end']");
+      const eventStart = firstDayInJune.find("[data-test='event-start']");
+      const eventBody = firstDayInJune.find("[data-test='event-body']");
+      const eventEnd = firstDayInJune.find("[data-test='event-end']");
 
-    it("should have event start", () => {
-      expect(eventStart.length).toBe(1);
+      it("should have event start", () => {
+        expect(eventStart.length).toBe(1);
+      });
+
+      it("should have event body", () => {
+        expect(eventBody.length).toBe(1);
+      });
+
+      it("should have event end", () => {
+        expect(eventEnd.length).toBe(1);
+      });
     });
 
-    it("should have event body", () => {
-      expect(eventBody.length).toBe(1);
-    });
+    describe("event starts but ends in different day", () => {
+      // Scenarios
+      //|[
+      //|
+      //|
+      //|
+      wrapper = mount(
+        <CalendarCell cell={cellWithEventStartEndDifferentDay} cellId={1} />
+      );
+      const calendarCell = wrapper
+        .find("[data-test='calendar-day-cell']")
+        .first();
 
-    it("should have event end", () => {
-      expect(eventEnd.length).toBe(1);
+      const eventStart = calendarCell.find("[data-test='event-start']");
+      const eventBody = calendarCell.find("[data-test='event-body']");
+      const eventEnd = calendarCell.find("[data-test='event-end']");
+
+      it("should have event start", () => {
+        expect(eventStart.length).toBe(1);
+      });
+
+      it("should have event body", () => {
+        expect(eventBody.length).toBe(1);
+      });
+
+      it("should not have event end", () => {
+        expect(eventEnd.length).toBe(0);
+      });
     });
   });
 
@@ -91,12 +146,6 @@ describe("single events", () => {
   });
   // test for cell level - lvl 1
 });
-
-// Scenarios
-//|
-//|
-//|
-//|
 
 // no events in cell
 // expect cell:
