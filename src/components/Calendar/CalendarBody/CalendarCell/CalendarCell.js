@@ -52,6 +52,7 @@ const CalendarCell = (props) => {
       <div className={dayNumber}>{cell.day}</div>
       {cell.currentMonth}
       {cell.eventObject && cellEventRenderer(cell.eventObject)}
+      {cell.additionalEvents && <div data-test='additional-events'>...</div>}
     </div>
   );
 };

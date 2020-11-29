@@ -580,7 +580,33 @@ const June2020WithEvents = [
         },
       ],
     },
-    { day: 4, weekday: 4, currentMonth: true },
+    {
+      day: 4,
+      weekday: 4,
+      currentMonth: true,
+
+      eventObject: [
+        {
+          eventStart: true,
+          eventBody: true,
+          eventEnd: true,
+          eventTitle: "Test",
+        },
+        {
+          eventStart: true,
+          eventBody: true,
+          eventEnd: true,
+          eventTitle: "Test",
+        },
+        {
+          eventStart: true,
+          eventBody: true,
+          eventEnd: true,
+          eventTitle: "Test",
+        },
+      ],
+      additionalEvents: true,
+    },
     { day: 5, weekday: 5, currentMonth: true },
     { day: 6, weekday: 6, currentMonth: true },
     { day: 7, weekday: 0, currentMonth: true },
