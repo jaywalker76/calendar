@@ -80,6 +80,66 @@ const twoEventsInCell = {
   ],
 };
 
+const eventsStartDiffDays = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: [
+    {
+      eventStart: false,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+  ],
+};
+
+const eventsEndDiffDays = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: [
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: false,
+      eventTitle: "Test",
+    },
+  ],
+};
+
+const bothEventsStartAndEndDiffDays = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: [
+    {
+      eventStart: false,
+      eventBody: true,
+      eventEnd: false,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: false,
+      eventBody: true,
+      eventEnd: false,
+      eventTitle: "Test",
+    },
+  ],
+};
+
 export {
   cellWithoutEvent,
   cellWithEvent,
@@ -87,4 +147,7 @@ export {
   cellBodyAndEnd,
   cellWithBody,
   twoEventsInCell,
+  eventsStartDiffDays,
+  eventsEndDiffDays,
+  bothEventsStartAndEndDiffDays,
 };

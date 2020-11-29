@@ -12,6 +12,9 @@ import {
   cellBodyAndEnd,
   cellWithBody,
   twoEventsInCell,
+  eventsStartDiffDays,
+  eventsEndDiffDays,
+  bothEventsStartAndEndDiffDays,
 } from "./cellTestCases";
 
 const mockSetup = (props = {}, state = null) => {
@@ -58,13 +61,16 @@ describe("Cell Rendering", () => {
 
   describe("Two Events in cell with different configurations", () => {
     //     // Scenarios
-    //     //|[]
-    //     //|[]
-    //     //|
-    //     //|
+    //     //|[]  |]    |[] |=
+    //     //|[]  |[]   |[  |=
+    //     //|    |     |   |
+    //     //|    |     |   |
     test.each`
-      description                            | cellParameter      | expectedEventStart | expectedEventBody | expectedEventEnd
-      ${"cell has 2 of start, body and end"} | ${twoEventsInCell} | ${2}               | ${2}              | ${2}
+      description                                                 | cellParameter                    | expectedEventStart | expectedEventBody | expectedEventEnd
+      ${"both events start and end on the same day"}              | ${twoEventsInCell}               | ${2}               | ${2}              | ${2}
+      ${"events start on different days and end on the same day"} | ${eventsStartDiffDays}           | ${1}               | ${2}              | ${2}
+      ${"events start on same day and end on diff days"}          | ${eventsEndDiffDays}             | ${2}               | ${2}              | ${1}
+      ${"both events start and end on different days"}            | ${bothEventsStartAndEndDiffDays} | ${0}               | ${2}              | ${0}
     `(
       "$description",
       ({
