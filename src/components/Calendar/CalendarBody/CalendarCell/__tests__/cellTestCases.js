@@ -140,6 +140,110 @@ const bothEventsStartAndEndDiffDays = {
   ],
 };
 
+const threeEventsInCell = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: [
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+  ],
+};
+
+const threeEventsInCellDiffStart = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: [
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: false,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+  ],
+};
+
+const threeEventsInCellDiffEnd = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: [
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: false,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: false,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+  ],
+};
+
+const threeEventsInCellDiffOriginAndEnd = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: [
+    {
+      eventStart: false,
+      eventBody: true,
+      eventEnd: false,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: false,
+      eventBody: true,
+      eventEnd: false,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: false,
+      eventBody: true,
+      eventEnd: false,
+      eventTitle: "Test",
+    },
+  ],
+};
+
 export {
   cellWithoutEvent,
   cellWithEvent,
@@ -150,4 +254,8 @@ export {
   eventsStartDiffDays,
   eventsEndDiffDays,
   bothEventsStartAndEndDiffDays,
+  threeEventsInCell,
+  threeEventsInCellDiffStart,
+  threeEventsInCellDiffEnd,
+  threeEventsInCellDiffOriginAndEnd,
 };
