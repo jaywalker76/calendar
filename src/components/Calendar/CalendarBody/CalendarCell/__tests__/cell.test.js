@@ -19,6 +19,7 @@ import {
   threeEventsInCellDiffStart,
   threeEventsInCellDiffEnd,
   threeEventsInCellDiffOriginAndEnd,
+  threeEventsWithAdditionalInformation,
 } from "./cellTestCases";
 
 const mockSetup = (props = {}, state = null) => {
@@ -136,6 +137,28 @@ describe("Cell Rendering", () => {
         expect(eventEnd.length).toBe(expectedEventEnd);
       }
     );
+  });
+
+  it("cell with 3 events and additional event info", () => {
+    wrapper = mount(
+      <CalendarCell cell={threeEventsWithAdditionalInformation} cellId={1} />
+    );
+    debugger;
+    const calendarCell = wrapper
+      .find("[data-test='calendar-day-cell']")
+      .first();
+
+    const eventStart = calendarCell.find("[data-test='event-start']");
+    const eventBody = calendarCell.find("[data-test='event-body']");
+    const eventEnd = calendarCell.find("[data-test='event-end']");
+    const additionalEvents = calendarCell.find(
+      "[data-test='additional-events']"
+    );
+
+    expect(eventStart.length).toBe(3);
+    expect(eventBody.length).toBe(3);
+    expect(eventEnd.length).toBe(3);
+    expect(additionalEvents.length).toBe(1);
   });
 });
 

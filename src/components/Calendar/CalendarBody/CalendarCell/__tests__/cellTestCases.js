@@ -244,6 +244,33 @@ const threeEventsInCellDiffOriginAndEnd = {
   ],
 };
 
+const threeEventsWithAdditionalInformation = {
+  day: 1,
+  weekday: 1,
+  currentMonth: true,
+  eventObject: [
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+    {
+      eventStart: true,
+      eventBody: true,
+      eventEnd: true,
+      eventTitle: "Test",
+    },
+  ],
+  additionalEvents: true,
+};
+
 export {
   cellWithoutEvent,
   cellWithEvent,
@@ -258,4 +285,5 @@ export {
   threeEventsInCellDiffStart,
   threeEventsInCellDiffEnd,
   threeEventsInCellDiffOriginAndEnd,
+  threeEventsWithAdditionalInformation,
 };
