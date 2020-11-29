@@ -8,8 +8,7 @@ import { css } from "emotion";
 const cellStyle = css`
   background: white;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  height: 100px;
   text-align: center;
   background: aquamarine;
   border: 1px solid gray;
