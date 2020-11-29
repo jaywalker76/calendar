@@ -26,16 +26,21 @@ const eventWrapper = css`
   justify-content: center;
 `;
 
-const cellEventRenderer = (eventDetails) => (
-  <div className={eventWrapper}>
-    {eventDetails.eventStart && <div data-test='event-start'>[</div>}
-    {eventDetails.eventBody && <div data-test='event-body'>{"Body"}</div>}
-    {eventDetails.eventEnd && <div data-test='event-end'>]</div>}
-  </div>
-);
+const cellEventRenderer = (eventDetails) => {
+  return eventDetails.map((element) => {
+    return (
+      <div className={eventWrapper}>
+        {element.eventStart && <div data-test='event-start'>[</div>}
+        {element.eventBody && <div data-test='event-body'>{"Body"}</div>}
+        {element.eventEnd && <div data-test='event-end'>]</div>}
+      </div>
+    );
+  });
+};
 
 const CalendarCell = (props) => {
   const { cell, cellId } = props;
+
   return (
     <div
       key={cellId}

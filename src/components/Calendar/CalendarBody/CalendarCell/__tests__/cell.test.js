@@ -11,6 +11,7 @@ import {
   cellStartAndBody,
   cellBodyAndEnd,
   cellWithBody,
+  twoEventsInCell,
 } from "./cellTestCases";
 
 const mockSetup = (props = {}, state = null) => {
@@ -62,8 +63,8 @@ describe("Cell Rendering", () => {
     //     //|
     //     //|
     test.each`
-      description                       | cellParameter      | expectedEventStart | expectedEventBody | expectedEventEnd
-      ${"cell has start, body and end"} | ${twoEventsInCell} | ${2}               | ${2}              | ${2}
+      description                            | cellParameter      | expectedEventStart | expectedEventBody | expectedEventEnd
+      ${"cell has 2 of start, body and end"} | ${twoEventsInCell} | ${2}               | ${2}              | ${2}
     `(
       "$description",
       ({
