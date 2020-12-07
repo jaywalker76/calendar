@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, { mount } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
-import CalendarCell from "../CalendarCell";
+import CalendarCell from "../CalendarDay";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 

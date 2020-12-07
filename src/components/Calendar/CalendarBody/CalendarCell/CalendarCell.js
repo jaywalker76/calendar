@@ -21,6 +21,11 @@ const eventWrapper = css`
   margin-bottom: 5px;
 `;
 
+/**
+ *
+ * @param {array} eventDetails - contains events passed to cell for rendering
+ *
+ */
 const cellEventRenderer = (eventDetails) => {
   return eventDetails.map((element) => {
     return (
@@ -33,9 +38,7 @@ const cellEventRenderer = (eventDetails) => {
   });
 };
 
-const CalendarCell = (props) => {
-  const { events } = props;
-
+const CalendarCell = ({ events }) => {
   return (
     <div
       // key={cellId}
