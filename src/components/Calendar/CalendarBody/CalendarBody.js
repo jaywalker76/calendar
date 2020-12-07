@@ -24,11 +24,11 @@ const CalendarBody = (props) => {
         calendarColHeader={calendarColHeader}
         dayDescriptorType={dayDescriptorType}
       />
-      <div data-test='calendar-body'>
+      <div data-test="calendar-body">
         {monthObject.map((rows, row_id) => (
-          <div key={row_id} className={rowStyle} data-test='calendar-rows'>
+          <div key={row_id} className={rowStyle} data-test="calendar-rows">
             {rows.map((cell, cell_id) => {
-              return <CalendarCell cell={cell} cellId={cell_id} />;
+              return <CalendarCell cell={cell} cellId={cell_id} />; // calendar day -> calendar cell
             })}
           </div>
         ))}

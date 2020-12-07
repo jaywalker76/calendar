@@ -271,6 +271,12 @@ const threeEventsWithAdditionalInformation = {
   additionalEvents: true,
 };
 
+/**
+ * Reformulate code -> adapt tests
+ * add tests -> for event cell index to ensure that these match across event
+ * add integration test -> body -> container -> cell
+ */
+
 export {
   cellWithoutEvent,
   cellWithEvent,
