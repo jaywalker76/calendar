@@ -10,7 +10,7 @@ import {
   cellStartAndBody,
   cellBodyAndEnd,
   cellWithBody,
-} from "./cellTestCases";
+} from "../../CalendarDay/__tests__/cellTestCases";
 
 // event rendering in cell now contemplates the correct placement
 // of the event indicators: start, body, end
@@ -103,3 +103,4 @@ describe("Cell Rendering", () => {
       expect(eventEnd.length).toBe(0);
     });
   });
+});
