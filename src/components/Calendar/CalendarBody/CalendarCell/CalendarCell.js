@@ -6,18 +6,11 @@ import React from "react";
 import { css } from "emotion";
 
 const cellStyle = css`
-  background: white;
-  width: 100%;
-  height: 120px;
-  text-align: center;
-  border: 1px solid gray;
-`;
-
-const dayNumber = css`
-  line-height: 20px;
-  text-align: end;
-  font-size: 25px;
-  padding: 5px;
+  // background: white;
+  // width: 100%;
+  // height: 135px;
+  // text-align: center;
+  // border: 1px solid gray;
 `;
 
 const eventWrapper = css`
@@ -41,25 +34,18 @@ const cellEventRenderer = (eventDetails) => {
 };
 
 const CalendarCell = (props) => {
-  const { cell, cellId } = props;
+  const { events } = props;
 
   return (
     <div
-      key={cellId}
+      // key={cellId}
       className={cellStyle}
       data-test='calendar-day-cell'
       // onClick={() => {
       //   alert("Hello");
       // }}
     >
-      <div className={dayNumber}>{cell.day}</div>
-      {cell.currentMonth}
-      {cell.eventObject && cellEventRenderer(cell.eventObject)}
-      {cell.additionalEvents && (
-        <div className={eventWrapper} data-test='additional-events'>
-          ...
-        </div>
-      )}
+      {cellEventRenderer(events)}
     </div>
   );
 };
