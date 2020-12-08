@@ -106,28 +106,14 @@ describe("Cell Rendering", () => {
   });
 
   describe("events wrapped in event slot", () => {
-    describe("cell does not contains events", () => {
-      wrapper = mockSetup(cellWithoutEvent);
-      const calendarCell = wrapper
-        .find("[data-test='calendar-day-cell']")
-        .first();
+    wrapper = mockSetup(cellWithBody);
+    const calendarCell = wrapper
+      .find("[data-test='calendar-day-cell']")
+      .first();
 
-      it("event wrapper is contained within a slot", () => {
-        const eventSlot = calendarCell.find("[data-test='event-slot']");
-        expect(eventSlot.length).toBe(0);
-      });
-    });
-
-    describe("cell contains events", () => {
-      wrapper = mockSetup(cellWithBody);
-      const calendarCell = wrapper
-        .find("[data-test='calendar-day-cell']")
-        .first();
-
-      it("event wrapper is contained within a slot", () => {
-        const eventSlot = calendarCell.find("[data-test='event-slot']");
-        expect(eventSlot.length).toBe(1);
-      });
+    it("event wrapper is contained within a slot", () => {
+      const eventSlot = calendarCell.find("[data-test='event-slot']");
+      expect(eventSlot.length).toBe(1);
     });
   });
 
