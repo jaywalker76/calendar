@@ -29,10 +29,12 @@ const eventWrapper = css`
 const cellEventRenderer = (eventDetails) => {
   return eventDetails.map((element) => {
     return (
-      <div className={eventWrapper}>
-        {element.eventStart && <div data-test='event-start'>[</div>}
-        {element.eventBody && <div data-test='event-body'>{"Body"}</div>}
-        {element.eventEnd && <div data-test='event-end'>]</div>}
+      <div data-test='event-slot'>
+        <div className={eventWrapper}>
+          {element.eventStart && <div data-test='event-start'>[</div>}
+          {element.eventBody && <div data-test='event-body'>{"Body"}</div>}
+          {element.eventEnd && <div data-test='event-end'>]</div>}
+        </div>
       </div>
     );
   });
