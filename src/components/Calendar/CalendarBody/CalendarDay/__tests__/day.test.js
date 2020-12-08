@@ -1,7 +1,8 @@
 import React from "react";
 import Enzyme, { mount } from "enzyme";
 import EnzymeAdapter from "enzyme-adapter-react-16";
-import CalendarCell from "../CalendarDay";
+
+import CalendarDay from "../CalendarDay";
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
@@ -22,145 +23,168 @@ import {
   threeEventsWithAdditionalInformation,
 } from "./cellTestCases";
 
-const mockSetup = (props = {}, state = null) => {
-  return mount(<CalendarCell cell={cellWithEvent} cellId={1} />);
+const mockSetup = (props) => {
+  return mount(<CalendarDay {...props} />);
 };
 
 let wrapper;
 
-describe("Cell Rendering", () => {
-  wrapper = mockSetup();
+describe("event slot rendering", () => {
+  describe("events wrapped in event slot", () => {
+    wrapper = mockSetup({ cell: cellWithBody, cellId: 1 });
+    const calendarDay = wrapper.find("[data-test='calendar-day-cell']").first();
 
-  describe("Single Event in cell with different configurations", () => {
-    test.each`
-      description                       | cellParameter       | expectedEventStart | expectedEventBody | expectedEventEnd
-      ${"no event in cell"}             | ${cellWithoutEvent} | ${0}               | ${0}              | ${0}
-      ${"cell has start, body and end"} | ${cellWithEvent}    | ${1}               | ${1}              | ${1}
-      ${"cell has start and body"}      | ${cellStartAndBody} | ${1}               | ${1}              | ${0}
-      ${"cell has body and end"}        | ${cellBodyAndEnd}   | ${0}               | ${1}              | ${1}
-      ${"cell has body"}                | ${cellWithBody}     | ${0}               | ${1}              | ${0}
-    `(
-      "$description",
-      ({
-        cellParameter,
-        expectedEventStart,
-        expectedEventBody,
-        expectedEventEnd,
-      }) => {
-        wrapper = mount(<CalendarCell cell={cellParameter} cellId={1} />);
+    it("event wrapper is contained within a slot", () => {
+      const eventSlot = calendarDay.find("[data-test='event-slot']");
+      const eventWrapper = eventSlot.find("[data-test='event-wrapper']");
+      expect(eventSlot.length).toBe(1);
+    });
 
-        const calendarCell = wrapper
-          .find("[data-test='calendar-day-cell']")
-          .first();
-
-        const eventStart = calendarCell.find("[data-test='event-start']");
-        const eventBody = calendarCell.find("[data-test='event-body']");
-        const eventEnd = calendarCell.find("[data-test='event-end']");
-
-        expect(eventStart.length).toBe(expectedEventStart);
-        expect(eventBody.length).toBe(expectedEventBody);
-        expect(eventEnd.length).toBe(expectedEventEnd);
-      }
-    );
+    it("day with one event has a single event slot", () => {
+      const eventSlot = calendarDay.find("[data-test='event-slot']");
+      expect(eventSlot.length).toBe(1);
+    });
   });
 
-  describe("Two Events in cell with different configurations", () => {
-    //     // Scenarios
-    //     //|[]  |]    |[] |=
-    //     //|[]  |[]   |[  |=
-    //     //|    |     |   |
-    //     //|    |     |   |
-    test.each`
-      description                                                 | cellParameter                    | expectedEventStart | expectedEventBody | expectedEventEnd
-      ${"both events start and end on the same day"}              | ${twoEventsInCell}               | ${2}               | ${2}              | ${2}
-      ${"events start on different days and end on the same day"} | ${eventsStartDiffDays}           | ${1}               | ${2}              | ${2}
-      ${"events start on same day and end on diff days"}          | ${eventsEndDiffDays}             | ${2}               | ${2}              | ${1}
-      ${"both events start and end on different days"}            | ${bothEventsStartAndEndDiffDays} | ${0}               | ${2}              | ${0}
-    `(
-      "$description",
-      ({
-        cellParameter,
-        expectedEventStart,
-        expectedEventBody,
-        expectedEventEnd,
-      }) => {
-        wrapper = mount(<CalendarCell cell={cellParameter} cellId={1} />);
-
-        const calendarCell = wrapper
-          .find("[data-test='calendar-day-cell']")
-          .first();
-
-        const eventStart = calendarCell.find("[data-test='event-start']");
-        const eventBody = calendarCell.find("[data-test='event-body']");
-        const eventEnd = calendarCell.find("[data-test='event-end']");
-
-        expect(eventStart.length).toBe(expectedEventStart);
-        expect(eventBody.length).toBe(expectedEventBody);
-        expect(eventEnd.length).toBe(expectedEventEnd);
-      }
-    );
-  });
-
-  describe("Three Events in cell with different configurations", () => {
-    // Scenarios
-    //|[]  |]   |]  |]  |[  |[]  | | | | | | |
-    //|[]  |[]  |]  |]  |[  |[]  | | | | | | |
-    //|[]  |[]  |[] |]  |[  |[]  | | | | | | |
-    //|    |    |   |   |   |... | | | | | | |
-
-    test.each`
-      description                                                 | cellParameter                        | expectedEventStart | expectedEventBody | expectedEventEnd
-      ${"3 events start and end on the same day"}                 | ${threeEventsInCell}                 | ${3}               | ${3}              | ${3}
-      ${"events start on different days and end on the same day"} | ${threeEventsInCellDiffStart}        | ${2}               | ${3}              | ${3}
-      ${"events start on same day and end on diff days"}          | ${threeEventsInCellDiffEnd}          | ${3}               | ${3}              | ${1}
-      ${"all events start and end on different days"}             | ${threeEventsInCellDiffOriginAndEnd} | ${0}               | ${3}              | ${0}
-    `(
-      "$description",
-      ({
-        cellParameter,
-        expectedEventStart,
-        expectedEventBody,
-        expectedEventEnd,
-      }) => {
-        wrapper = mount(<CalendarCell cell={cellParameter} cellId={1} />);
-
-        const calendarCell = wrapper
-          .find("[data-test='calendar-day-cell']")
-          .first();
-
-        const eventStart = calendarCell.find("[data-test='event-start']");
-        const eventBody = calendarCell.find("[data-test='event-body']");
-        const eventEnd = calendarCell.find("[data-test='event-end']");
-
-        expect(eventStart.length).toBe(expectedEventStart);
-        expect(eventBody.length).toBe(expectedEventBody);
-        expect(eventEnd.length).toBe(expectedEventEnd);
-      }
-    );
-  });
-
-  it("cell with 3 events and additional event info", () => {
-    wrapper = mount(
-      <CalendarCell cell={threeEventsWithAdditionalInformation} cellId={1} />
-    );
-    debugger;
-    const calendarCell = wrapper
-      .find("[data-test='calendar-day-cell']")
-      .first();
-
-    const eventStart = calendarCell.find("[data-test='event-start']");
-    const eventBody = calendarCell.find("[data-test='event-body']");
-    const eventEnd = calendarCell.find("[data-test='event-end']");
-    const additionalEvents = calendarCell.find(
-      "[data-test='additional-events']"
-    );
-
-    expect(eventStart.length).toBe(3);
-    expect(eventBody.length).toBe(3);
-    expect(eventEnd.length).toBe(3);
-    expect(additionalEvents.length).toBe(1);
+  describe("renders events in same lane", () => {
+    // wrapper = mockSetup(cellWithBody);
+    // const calendarCell = wrapper
+    //   .find("[data-test='calendar-day-cell']")
+    //   .first();
   });
 });
+
+// describe("Cell Rendering", () => {
+//   wrapper = mockSetup();
+
+//   describe("Single Event in cell with different configurations", () => {
+//     test.each`
+//       description                       | cellParameter       | expectedEventStart | expectedEventBody | expectedEventEnd
+//       ${"no event in cell"}             | ${cellWithoutEvent} | ${0}               | ${0}              | ${0}
+//       ${"cell has start, body and end"} | ${cellWithEvent}    | ${1}               | ${1}              | ${1}
+//       ${"cell has start and body"}      | ${cellStartAndBody} | ${1}               | ${1}              | ${0}
+//       ${"cell has body and end"}        | ${cellBodyAndEnd}   | ${0}               | ${1}              | ${1}
+//       ${"cell has body"}                | ${cellWithBody}     | ${0}               | ${1}              | ${0}
+//     `(
+//       "$description",
+//       ({
+//         cellParameter,
+//         expectedEventStart,
+//         expectedEventBody,
+//         expectedEventEnd,
+//       }) => {
+//         wrapper = mount(<CalendarCell cell={cellParameter} cellId={1} />);
+
+//         const calendarCell = wrapper
+//           .find("[data-test='calendar-day-cell']")
+//           .first();
+
+//         const eventStart = calendarCell.find("[data-test='event-start']");
+//         const eventBody = calendarCell.find("[data-test='event-body']");
+//         const eventEnd = calendarCell.find("[data-test='event-end']");
+
+//         expect(eventStart.length).toBe(expectedEventStart);
+//         expect(eventBody.length).toBe(expectedEventBody);
+//         expect(eventEnd.length).toBe(expectedEventEnd);
+//       }
+//     );
+//   });
+
+//   describe("Two Events in cell with different configurations", () => {
+//     //     // Scenarios
+//     //     //|[]  |]    |[] |=
+//     //     //|[]  |[]   |[  |=
+//     //     //|    |     |   |
+//     //     //|    |     |   |
+//     test.each`
+//       description                                                 | cellParameter                    | expectedEventStart | expectedEventBody | expectedEventEnd
+//       ${"both events start and end on the same day"}              | ${twoEventsInCell}               | ${2}               | ${2}              | ${2}
+//       ${"events start on different days and end on the same day"} | ${eventsStartDiffDays}           | ${1}               | ${2}              | ${2}
+//       ${"events start on same day and end on diff days"}          | ${eventsEndDiffDays}             | ${2}               | ${2}              | ${1}
+//       ${"both events start and end on different days"}            | ${bothEventsStartAndEndDiffDays} | ${0}               | ${2}              | ${0}
+//     `(
+//       "$description",
+//       ({
+//         cellParameter,
+//         expectedEventStart,
+//         expectedEventBody,
+//         expectedEventEnd,
+//       }) => {
+//         wrapper = mount(<CalendarCell cell={cellParameter} cellId={1} />);
+
+//         const calendarCell = wrapper
+//           .find("[data-test='calendar-day-cell']")
+//           .first();
+
+//         const eventStart = calendarCell.find("[data-test='event-start']");
+//         const eventBody = calendarCell.find("[data-test='event-body']");
+//         const eventEnd = calendarCell.find("[data-test='event-end']");
+
+//         expect(eventStart.length).toBe(expectedEventStart);
+//         expect(eventBody.length).toBe(expectedEventBody);
+//         expect(eventEnd.length).toBe(expectedEventEnd);
+//       }
+//     );
+//   });
+
+//   describe("Three Events in cell with different configurations", () => {
+//     // Scenarios
+//     //|[]  |]   |]  |]  |[  |[]  | | | | | | |
+//     //|[]  |[]  |]  |]  |[  |[]  | | | | | | |
+//     //|[]  |[]  |[] |]  |[  |[]  | | | | | | |
+//     //|    |    |   |   |   |... | | | | | | |
+
+//     test.each`
+//       description                                                 | cellParameter                        | expectedEventStart | expectedEventBody | expectedEventEnd
+//       ${"3 events start and end on the same day"}                 | ${threeEventsInCell}                 | ${3}               | ${3}              | ${3}
+//       ${"events start on different days and end on the same day"} | ${threeEventsInCellDiffStart}        | ${2}               | ${3}              | ${3}
+//       ${"events start on same day and end on diff days"}          | ${threeEventsInCellDiffEnd}          | ${3}               | ${3}              | ${1}
+//       ${"all events start and end on different days"}             | ${threeEventsInCellDiffOriginAndEnd} | ${0}               | ${3}              | ${0}
+//     `(
+//       "$description",
+//       ({
+//         cellParameter,
+//         expectedEventStart,
+//         expectedEventBody,
+//         expectedEventEnd,
+//       }) => {
+//         wrapper = mount(<CalendarCell cell={cellParameter} cellId={1} />);
+
+//         const calendarCell = wrapper
+//           .find("[data-test='calendar-day-cell']")
+//           .first();
+
+//         const eventStart = calendarCell.find("[data-test='event-start']");
+//         const eventBody = calendarCell.find("[data-test='event-body']");
+//         const eventEnd = calendarCell.find("[data-test='event-end']");
+
+//         expect(eventStart.length).toBe(expectedEventStart);
+//         expect(eventBody.length).toBe(expectedEventBody);
+//         expect(eventEnd.length).toBe(expectedEventEnd);
+//       }
+//     );
+//   });
+
+//   it("cell with 3 events and additional event info", () => {
+//     // debugger;
+//     // wrapper = mount(
+//     //   <CalendarDay cell={threeEventsWithAdditionalInformation} cellId={1} />
+//     // );
+//     // const calendarCell = wrapper
+//     //   .find("[data-test='calendar-day-cell']")
+//     //   .first();
+//     // const eventStart = calendarCell.find("[data-test='event-start']");
+//     // const eventBody = calendarCell.find("[data-test='event-body']");
+//     // const eventEnd = calendarCell.find("[data-test='event-end']");
+//     // const additionalEvents = calendarCell.find(
+//     //   "[data-test='additional-events']"
+//     // );
+//     // expect(eventStart.length).toBe(3);
+//     // expect(eventBody.length).toBe(3);
+//     // expect(eventEnd.length).toBe(3);
+//     // expect(additionalEvents.length).toBe(1);
+//   });
+// });
 
 //   describe("two events in cell", () => {
 //     // Scenarios

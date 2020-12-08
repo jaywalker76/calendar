@@ -104,23 +104,4 @@ describe("Cell Rendering", () => {
       expect(eventEnd.length).toBe(0);
     });
   });
-
-  describe("events wrapped in event slot", () => {
-    wrapper = mockSetup(cellWithBody);
-    const calendarCell = wrapper
-      .find("[data-test='calendar-day-cell']")
-      .first();
-
-    it("event wrapper is contained within a slot", () => {
-      const eventSlot = calendarCell.find("[data-test='event-slot']");
-      expect(eventSlot.length).toBe(1);
-    });
-  });
-
-  describe("renders events in same lane", () => {
-    wrapper = mockSetup(cellWithBody);
-    const calendarCell = wrapper
-      .find("[data-test='calendar-day-cell']")
-      .first();
-  });
 });
