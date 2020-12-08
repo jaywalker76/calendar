@@ -44,6 +44,17 @@ describe("event slot rendering", () => {
       const eventSlot = calendarDay.find("[data-test='event-slot']");
       expect(eventSlot.length).toBe(1);
     });
+
+    describe("event slot positiong", () => {
+      wrapper = mockSetup({ cell: threeEventsInCell, cellId: 1 });
+      const calendarDay = wrapper
+        .find("[data-test='calendar-day-cell']")
+        .first();
+      it("day with three events has a three event slots", () => {
+        const eventSlot = calendarDay.find("[data-test='event-slot']");
+        expect(eventSlot.length).toBe(3);
+      });
+    });
   });
 
   describe("renders events in same lane", () => {
