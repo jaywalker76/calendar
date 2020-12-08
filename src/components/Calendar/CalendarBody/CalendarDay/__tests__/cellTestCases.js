@@ -274,6 +274,10 @@ const threeEventsWithAdditionalInformation = {
 /**
  * Reformulate code -> adapt tests
  * add tests -> for event cell index to ensure that these match across event
+ * test: index matching
+ *  test for placement on correct zone
+ *  test for placement at calendar extremities
+ *  test that just first element has body text
  * add integration test -> body -> container -> cell
  */
 
